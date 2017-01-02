@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<meta name="Description" content="This page provides the steps to properly test the compatibility of your rotation vector sensor implementation. This test should be run when the device declares the TYPE_ROTATION_VECTOR composite sensor feature. See this video tutorial for additional details…">
+
+<link rel="shortcut icon" type="image/x-icon" href="../../favicon.ico" />
+<title>Rotation Vector CV Crosscheck | Android Open Source Project</title>
+
+<!-- STYLESHEETS -->
+<link rel="stylesheet"
+href="https://fonts.googleapis.com/css?family=Roboto:regular,medium,thin,italic,mediumitalic,bold" title="roboto">
+<link href="../../assets/css/default.css" rel="stylesheet" type="text/css">
+
+
+
+<!-- JAVASCRIPT -->
+<script src="https://www.google.com/jsapi" type="text/javascript"></script>
+<script src="../../assets/js/android_3p-bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+  var toRoot = "/";
+  
+  var devsite = false;
+  
+</script>
+<script src="../../assets/js/docs.js" type="text/javascript"></script>
+
+
+<script type="text/javascript" src="https://www.gstatic.com/feedback/api.js"></script>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-45455297-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</head>
+
+<body class="gc-documentation 
+  " itemscope itemtype="http://schema.org/Article">
+<a name="top"></a>
+
+  
+    <!-- Header -->
+    <div id="header">
+        <div class="wrap" id="header-wrap">
+          <div class="col-3 saclogo">
+          <a href="../../index.html">
+            <img src="../../assets/images/sac_logo.png"
+                srcset="/assets/images/sac_logo@2x.png 2x"
+                width="123" height="25" alt="Android Open Source Project" />
+          </a>
+          </div>
+            <ul class="nav-x col-9">
+                <li class="source">
+                  <a href="../../source/index.html" 
+                  >Source</a></li>
+                <li class="devices"><a href="../../devices/index.html" 
+                  >Devices</a></li>
+                <li class="security"><a href="../../security/index.html" 
+                  >Security</a></li>
+                <li class="compatibility last"><a href="../index.html" class="selected"
+                  >Compatibility</a></li>
+            </ul>
+            <!-- New Search -->
+            <div class="menu-container">
+            <div class="moremenu">
+    <div id="more-btn"></div>
+  </div>
+  <div class="morehover" id="moremenu">
+    <div class="top"></div>
+    <div class="mid">
+      <div class="header">Android Sites</div>
+      <ul>
+        <li class="active"><a>Android Open Source Project</a></li>
+        <li><a href="http://www.android.com">Android.com</a></li>
+        <li><a href="http://developer.android.com">Android Developers</a></li>
+      </ul>
+      <!-- <div class="header">Support</div>
+      <ul>
+        <li><a href="/support.html">Developer Support</a></li>
+      </ul> -->
+      <br class="clearfix" />
+    </div>
+    <div class="bottom"></div>
+  </div>
+
+  <div class="search" id="search-container">
+    <div class="search-inner">
+      <div id="search-btn"></div>
+      <div class="left"></div>
+      <form onsubmit="return submit_search()">
+        <input id="search_autocomplete" type="text" value="" autocomplete="off" name="q"
+onfocus="search_focus_changed(this, true)" onblur="search_focus_changed(this, false)"
+onkeydown="return search_changed(event, true, '/')"
+onkeyup="return search_changed(event, false, '/')" />
+      </form>
+      <div class="right"></div>
+        <a class="close hide">close</a>
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+  </div>
+  <div id="search_filtered_wrapper">
+    <div id="search_filtered_div" class="no-display">
+        <ul id="search_filtered">
+        </ul>
+    </div>
+  </div>
+
+  </div>
+  <!-- /New Search> -->
+        </div>
+    </div>
+    <!-- /Header -->
+
+  <div id="searchResults" class="wrap" style="display:none;">
+          <h2 id="searchTitle">Results</h2>
+          <div id="leftSearchControl" class="search-control">Loading...</div>
+  </div>
+
+  
+  
+  
+    
+  <div class="wrap clearfix" id="body-content">
+    <div class="col-4" id="side-nav" itemscope itemtype="http://schema.org/SiteNavigationElement">
+      <div id="devdoc-nav" class="scroll-pane">
+<a class="totop" href="rotation-vector.html#top" data-g-event="left-nav-top">to top</a>
+
+<!--
+    Copyright 2013 The Android Open Source Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<ul id="nav">
+<!-- Compatibility -->
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="../index.html">
+        <span class="en">Compatibility</span>
+      </a>
+    </div>
+    <ul>
+      <li><a href="../overview.html">Overview</a></li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../cdd.html">
+            <span class="en">Compatibility Definition</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../android-cdd.html">CDD in HTML</a></li>
+          <li><a href="../android-cdd.pdf">CDD in PDF</a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../cts-intro.html">
+            <span class="en">Compatibility Test Suite</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="setup.html">Set up CTS</a></li>
+          <li><a href="run.html">Run CTS</a></li>
+          <li class="nav-section">
+            <div class="nav-section-header">
+            <a href="verifier.html">
+              <span class="en">Run CTS Verifier</span>
+            </a>
+            </div>
+           <ul>
+            <li><a href="audio-framework.html">Audio Framework</a></li>
+            <li><a href="camera-hal.html">Camera HAL Testing</a></li>
+            <li><a href="near-ultrasound.html">Near Ultrasound Tests</a></li>
+            <li><a href="rotation-vector.html">Rotation Vector Crosscheck</a></li>
+           </ul>
+          </li>
+          <li><a href="interpret.html">Interpret Results</a></li>
+          <li><a href="development.html">Develop CTS</a></li>
+          <li><a href="downloads.html">Downloads</a></li>
+        </ul>
+      </li>
+      <li><a href="../contact-us.html">Contact Us</a></li>
+    </ul>
+<!-- End Compatibility -->
+  </li>
+
+
+</ul>
+
+
+      </div>
+    </div> <!-- end side-nav -->
+    <script>
+      $(document).ready(function() {
+        scrollIntoView("devdoc-nav");
+        });
+    </script>
+
+  
+
+
+
+
+<div class="col-12" id="doc-col" >
+
+
+  
+    
+      
+        <h1 itemprop="name" >Rotation Vector CV Crosscheck</h1>
+      
+    
+  
+
+
+  
+  <div id="jd-content">
+
+    <div class="jd-descr" itemprop="articleBody">
+    <!--
+    Copyright 2015 The Android Open Source Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<div class="figure" style="width:214px">
+  <img src="images/acircles_pattern_reduced.png" alt="Test pattern thumbnail" height="166" />
+  <p class="img-caption">
+    <strong>Figure 1.</strong> Thumbnail of test pattern. Download the
+full-resolution image linked above.
+  </p>
+</div>
+<p>This page provides the steps to properly test the compatibility of your <a
+href="../../devices/sensors/sensor-types.html#rotation_vector">rotation
+vector sensor</a> implementation. This test should be run when the device declares
+the TYPE_ROTATION_VECTOR composite sensor feature. See this <a
+href="https://www.youtube.com/watch?v=MsDVmsH1PaI">video tutorial</a> for
+additional details.</p>
+
+<h2 id=testing>Testing</h2>
+
+<ol>
+  <li>Install OpenCV Manager on the Android device being tested.
+  <li>Download the OpenCV SDK from <a
+href="http://opencv.org/downloads.html">OpenCV.org</a>. Select
+<strong>OpenCV for Android</strong> with version 3.0.0.
+  <li>Find the APK
+from the <code>apk</code> folder inside the downloaded archive. Consult <a
+href="http://developer.android.com/tools/help/adb.html#move">installing an
+application</a> for the command to load APKs onto the Android device from
+computer.
+  <li>If there is active account logged into Google Play, also locate
+OpenCV Manager in Google Play and disable <em>Auto-update</em> in the context menu
+(the popup menu from the "..." button).
+  <img src="images/openvc-play.png" alt="Disable OpenCV Manager Auto-updates" height="533" id="disable-opencv" />
+  <p class="img-caption">
+    <strong>Figure 2.</strong> Disabling Auto-update in Google Play.
+  </p>
+  <li>Print out the linked <a href="images/acircles_pattern.pdf">test pattern</a>,
+disabling any scaling options when printing. The pattern should fit US
+Letter paper in landscape or anything bigger.
+<p class="note"><strong>Note:</strong> The inline picture above is low
+resolution and just for illustration. Please do not directly print it as your
+pattern.</p>
+  <li>Place the pattern on a horizontal surface.
+  <li>Start the <strong>Rotation Vector CV Crosscheck</strong> in the CTS Verifier
+app. Follow the guide to turn on airplane mode, turn off auto rotate, and
+adjust adaptive brightness and location if these changes have
+not been made.<br />
+  <img src="images/RVCVXCheck_start.png" alt="Test initiation" height="533" id="test-start" />
+  <p class="img-caption">
+    <strong>Figure 3.</strong> Initiating the test.
+  </p>
+  <li>When the video preview appears, place the phone three feet (or one meter) over
+the pattern so the main camera is facing the pattern with yellow marker on the
+screen and yellow marker on the pattern aligned at the same corner.<br />
+<img src="images/RVCVXCheck_down.png" alt="Test pattern placement" height="207" id="test-pattern-placement" />
+  <p class="img-caption">
+    <strong>Figure 4.</strong> Placing the test pattern.
+  </p>
+  <li>While keeping the pattern entirely in the camera view, rotate the Android
+device under test (DUT) around the pattern in three different directions, one
+by one (1, 2 and then 3 illustrated in picture below) as prompted by the
+rotation range indicator. Keep movement smooth and steady for the best result.<br />
+  <img src="images/RVCVXCheck_flow.png" alt="Device movement" height="426" id="device-movement" />
+  <p class="img-caption">
+    <strong>Figure 5.</strong> Manipulating the device under test.
+  </p>
+  <li>After the capture, the camera preview will disappear and the analysis process
+will start. Wait patiently for analysis to finish; it usually takes one to five
+minutes depending on the phone performance. The phone will sound and vibrate at
+analysis completion. A numerical result will be presented on screen if the
+analysis is successful.<br />
+  <img src="images/RVCVXCheck_next.png" alt="Test completion" height="533" id="test-complete"/>
+  <p class="img-caption">
+    <strong>Figure 6.</strong> Finishing the test.
+  </p>
+  <li>Click <strong>next</strong> to proceed to the pass/fail screen and review the result.<br />
+  <img src="images/RVCVXCheck_pass.png" alt="Test success" height="533" id="test-success" />
+  <p class="img-caption">
+    <strong>Figure 7.</strong> Passing the test.
+  </p>
+<li>Follow these tips for best results:
+  <ol>
+    <li>Since this is a manual test with complexity, you may want to try it a few times
+for the best results.
+    <li>Accelerometer, gyroscope, and magnetometer should be calibrated before testing
+for good results.
+    <li>See this <a href="https://www.youtube.com/watch?v=MsDVmsH1PaI">video
+tutorial</a> for additional details.
+  </ol>
+</ol>
+
+<h2 id=troubleshooting>Troubleshooting</h2>
+  <ol>
+    <li>Symptom: Test crashed when starting test case or immediately after finishing video recording.<br>
+	Cause: Likely an OpenCV Manager compatibility issue. Check
+        <code>logcat</code> to confirm. If confirmed, check version and arch of the
+        installed OpenCV Manager.
+    <li>Symptom: Test fails frequently due to "Too many invalid frame" errors.<br>
+        Cause: Likely due to video quality. Confirm the following conditions:
+      <ol>
+        <li>There is enough ambient lighting for the test. Natural light
+            usually gives the best result. However, when it is not available, abundant
+            light from multiple angles that does not form obvious shadows works, as well.
+            Avoid low angle lighting to reduce glare.
+        <li>The motion during video taking is smooth. Jerky movement causes
+            blur and confuses the computer vision software.
+        <li>The pattern should always be entirely in video preview frame and
+            located around the center. The pattern should be 1/4 ~ 1/2 the size of the
+            video preview window. If the pattern is too small, the accuracy is reduced.
+            If the pattern is too big, lens distortion is more obvious, and it is more
+            difficult to keep the pattern always inside video recording frame.
+        <li>The camera is able to focus well. Some devices have trouble in
+            focusing during video recording. This is usually due to there is too few
+            variations in the scene, e.g. solid color smooth floor surface. Moving test
+            pattern to a place with textured surface or introducing objects around the test
+            pattern usually helps.
+        <li>Image stabilization is turned off.
+      </ol>
+    <li>Symptom: The pitch and roll test works fine, but the yaw test regularly fails.<br>
+	Cause: First, make sure the magnetic field sensor is well calibrated.
+        Rotation vector does not function well if magnetic field sensor is not
+        calibrated.<br>
+        It is also possible that yaw axis fails due to video taking. Hold the
+        device steady and walk/move around the test pattern for the yaw section of
+        test. It is hard to maintain the quality of video while rotating device in
+        hand.
+  </ol>
+
+<h2 id=reporting>Reporting feedback</h2>
+
+<p>If the steps above do not help, please make sure to follow the feedback steps below to report your issue.</p>
+
+<p>Please gather the following information when reporting a bug:</p>
+  <ol>
+    <li>Android bugreport
+    <li>Screenshot if there is any error message on screen.
+    <li>Contents of <code>/sdcard/RVCVRecData/</code>. This folder contains
+        video files and thus can be quite large if the test has already been taken
+        multiple times. Clearing the folder and performing the test again will
+        help reduce size. Inspect video files inside to find obvious issues in
+        recording.
+    <li>Screenshot of the OpenCV Manager app.
+  </ol>
+
+    </div>
+
+      <div class="content-footer-sac"
+                    itemscope itemtype="http://schema.org/SiteNavigationElement">
+        <div class="layout-content-col col-9" style="padding-top:4px">
+        </div>
+        
+        <div class="paging-links layout-content-col col-4">
+          
+        </div>
+        
+      </div>
+      
+      
+    </div> <!-- end jd-content -->
+  <div id="footer" class="wrap" >
+  <style>.feedback { float: right !Important }</style>
+  <div class="feedback">
+    <a href="rotation-vector.html#" class="button" onclick=" try {
+      userfeedback.api.startFeedback({'productId':'715571','authuser':'1'});return false;}catch(e){}">Site Feedback</a>
+  </div>
+  <div id="copyright">
+    
+  Except as noted, this content is 
+  licensed under <a href="http://creativecommons.org/licenses/by/2.5/">
+  Creative Commons Attribution 2.5</a>. For details and 
+  restrictions, see the <a href="../../license.html">Content 
+  License</a>.
+  </div>
+    <div id="footerlinks">
+    
+  <p>
+    <a href="../../source/index.html">About Android</a>&nbsp;&nbsp;|&nbsp;
+    <a href="../../source/community.html">Community</a>&nbsp;&nbsp;|&nbsp;
+    <a href="../../legal.html">Legal</a>&nbsp;&nbsp;|&nbsp;
+  </p>
+  </div>
+
+</div><!-- end doc-content -->
+
+</div> <!-- end body-content --> 
+
+
+
+
+
+
+</body>
+</html>
+
+
+

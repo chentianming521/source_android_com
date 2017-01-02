@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<meta name="Description" content="Application signing allows developers to identify the author of the application and to update their application without creating complicated interfaces and permissions. Every application that is run on the Android platform must be signed by the developer…">
+
+<link rel="shortcut icon" type="image/x-icon" href="../../favicon.ico" />
+<title>Application Signing | Android Open Source Project</title>
+
+<!-- STYLESHEETS -->
+<link rel="stylesheet"
+href="https://fonts.googleapis.com/css?family=Roboto:regular,medium,thin,italic,mediumitalic,bold" title="roboto">
+<link href="../../assets/css/default.css" rel="stylesheet" type="text/css">
+
+
+
+<!-- JAVASCRIPT -->
+<script src="https://www.google.com/jsapi" type="text/javascript"></script>
+<script src="../../assets/js/android_3p-bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+  var toRoot = "/";
+  
+  var devsite = false;
+  
+</script>
+<script src="../../assets/js/docs.js" type="text/javascript"></script>
+
+
+<script type="text/javascript" src="https://www.gstatic.com/feedback/api.js"></script>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-45455297-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</head>
+
+<body class="gc-documentation 
+  " itemscope itemtype="http://schema.org/Article">
+<a name="top"></a>
+
+  
+    <!-- Header -->
+    <div id="header">
+        <div class="wrap" id="header-wrap">
+          <div class="col-3 saclogo">
+          <a href="../../index.html">
+            <img src="../../assets/images/sac_logo.png"
+                srcset="/assets/images/sac_logo@2x.png 2x"
+                width="123" height="25" alt="Android Open Source Project" />
+          </a>
+          </div>
+            <ul class="nav-x col-9">
+                <li class="source">
+                  <a href="../../source/index.html" 
+                  >Source</a></li>
+                <li class="devices"><a href="../../devices/index.html" 
+                  >Devices</a></li>
+                <li class="security"><a href="../index.html" class="selected"
+                  >Security</a></li>
+                <li class="compatibility last"><a href="../../compatibility/index.html" 
+                  >Compatibility</a></li>
+            </ul>
+            <!-- New Search -->
+            <div class="menu-container">
+            <div class="moremenu">
+    <div id="more-btn"></div>
+  </div>
+  <div class="morehover" id="moremenu">
+    <div class="top"></div>
+    <div class="mid">
+      <div class="header">Android Sites</div>
+      <ul>
+        <li class="active"><a>Android Open Source Project</a></li>
+        <li><a href="http://www.android.com">Android.com</a></li>
+        <li><a href="http://developer.android.com">Android Developers</a></li>
+      </ul>
+      <!-- <div class="header">Support</div>
+      <ul>
+        <li><a href="/support.html">Developer Support</a></li>
+      </ul> -->
+      <br class="clearfix" />
+    </div>
+    <div class="bottom"></div>
+  </div>
+
+  <div class="search" id="search-container">
+    <div class="search-inner">
+      <div id="search-btn"></div>
+      <div class="left"></div>
+      <form onsubmit="return submit_search()">
+        <input id="search_autocomplete" type="text" value="" autocomplete="off" name="q"
+onfocus="search_focus_changed(this, true)" onblur="search_focus_changed(this, false)"
+onkeydown="return search_changed(event, true, '/')"
+onkeyup="return search_changed(event, false, '/')" />
+      </form>
+      <div class="right"></div>
+        <a class="close hide">close</a>
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+  </div>
+  <div id="search_filtered_wrapper">
+    <div id="search_filtered_div" class="no-display">
+        <ul id="search_filtered">
+        </ul>
+    </div>
+  </div>
+
+  </div>
+  <!-- /New Search> -->
+        </div>
+    </div>
+    <!-- /Header -->
+
+  <div id="searchResults" class="wrap" style="display:none;">
+          <h2 id="searchTitle">Results</h2>
+          <div id="leftSearchControl" class="search-control">Loading...</div>
+  </div>
+
+  
+  
+  
+    
+  <div class="wrap clearfix" id="body-content">
+    <div class="col-4" id="side-nav" itemscope itemtype="http://schema.org/SiteNavigationElement">
+      <div id="devdoc-nav" class="scroll-pane">
+<a class="totop" href="index.html#top" data-g-event="left-nav-top">to top</a>
+
+<!--
+    Copyright 2015 The Android Open Source Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<ul id="nav">
+  <li class="nav-section">
+    <div class="nav-section-header">
+        <a href="../index.html">
+          <span class="en">Overview</span>
+        </a>
+    </div>
+    <ul>
+      <li><a href="../overview/kernel-security.html">Kernel Security</a></li>
+      <li><a href="../overview/app-security.html">App Security</a></li>
+      <li><a href="../overview/implement.html">Implementing Security</a></li>
+      <li><a href="../overview/updates-resources.html">Updates and Resources</a></li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../enhancements/index.html">
+            <span class="en">Enhancements</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../enhancements/enhancements70.html">Android 7.0</a></li>
+          <li><a href="../enhancements/enhancements60.html">Android 6.0</a></li>
+          <li><a href="../enhancements/enhancements50.html">Android 5.0</a></li>
+          <li><a href="../enhancements/enhancements44.html">Android 4.4</a></li>
+          <li><a href="../enhancements/enhancements43.html">Android 4.3</a></li>
+          <li><a href="../enhancements/enhancements42.html">Android 4.2</a></li>
+          <li><a href="../enhancements/enhancements41.html">Android 4.1</a></li>
+        </ul>
+      </li>
+      <li><a href="../overview/acknowledgements.html">Acknowledgements</a></li>
+    </ul>
+  </li>
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="../bulletin/index.html">
+        <span class="en">Bulletins</span>
+      </a>
+    </div>
+    <ul>
+      <li class="nav-section">
+         <div class="nav-section-header">
+           <a href="../advisory/index.html">
+         <span class="en">Advisories</span>
+        </a>
+       </div>
+         <ul>
+           <li><a href="../advisory/2016-03-18.html">2016-03-18</a></li>
+         </ul>
+      </li>
+      <li><a href="../bulletin/2016-08-01.html">August 2016</a></li>
+      <li><a href="../bulletin/2016-07-01.html">July 2016</a></li>
+      <li><a href="../bulletin/2016-06-01.html">June 2016</a></li>
+      <li><a href="../bulletin/2016-05-01.html">May 2016</a></li>
+      <li><a href="../bulletin/2016-04-02.html">April 2016</a></li>
+      <li><a href="../bulletin/2016-03-01.html">March 2016</a></li>
+      <li><a href="../bulletin/2016-02-01.html">February 2016</a></li>
+      <li><a href="../bulletin/2016-01-01.html">January 2016</a></li>
+      <li class="nav-section">
+         <div class="nav-section-header">
+           <a href="../bulletin/2015.html">
+         <span class="en">2015 Bulletins</span>
+        </a>
+       </div>
+         <ul>
+           <li><a href="../bulletin/2015-12-01.html">December 2015</a></li>
+           <li><a href="../bulletin/2015-11-01.html">November 2015</a></li>
+           <li><a href="../bulletin/2015-10-01.html">October 2015</a></li>
+           <li><a href="../bulletin/2015-09-01.html">September 2015</a></li>
+           <li><a href="../bulletin/2015-08-01.html">August 2015</a></li>
+         </ul>
+      </li>
+    </ul>
+  </li>
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="index.html">
+        <span class="en">Application Signing</span>
+      </a>
+    </div>
+    <ul>
+      <li><a href="v2.html">APK Signature Scheme v2</a></li>
+    </ul>
+  </li>
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="../authentication/index.html">
+        <span class="en">Authentication</span>
+      </a>
+    </div>
+    <ul>
+      <li><a href="../../devices/tech/security/authentication/fingerprint-hal.html">Fingerprint HAL</a></li>
+      <li><a href="../../devices/tech/security/authentication/gatekeeper.html">Gatekeeper</a></li>
+    </ul>
+  </li>
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="../keystore/index.html">
+        <span class="en">Keystore</span>
+      </a>
+    </div>
+    <ul>
+      <li><a href="../keystore/features.html">Features</a></li>
+      <li><a href="../keystore/implementer-ref.html">Implementer's Reference</a></li>
+    </ul>
+  </li>
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="../trusty/index.html">
+        <span class="en">Trusty TEE</span>
+      </a>
+    </div>
+    <ul>
+      <li><a href="../trusty/trusty-ref.html">Trusty API Reference</a></li>
+    </ul>
+  </li>
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="../../devices/tech/encryption/index.html">
+        <span class="en">Encryption</span>
+      </a>
+    </div>
+    <ul>
+      <li><a href="../encryption/file-based.html">File-Based Encryption</a></li>
+      <li><a href="../encryption/full-disk.html">Full-Disk Encryption</a></li>
+    </ul>
+  </li>
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="../../devices/tech/security/selinux/index.html">
+        <span class="en">SELinux</span>
+      </a>
+    </div>
+    <ul>
+      <li><a href="../selinux/concepts.html">Concepts</a></li>
+      <li><a href="../selinux/implement.html">Implementation</a></li>
+      <li><a href="../selinux/customize.html">Customization</a></li>
+      <li><a href="../selinux/validate.html">Validation</a></li>
+      <li><a href="../selinux/device-policy.html">Writing Policy</a></li>
+    </ul>
+  </li>
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="../verifiedboot/index.html">
+        <span class="en">Verified Boot</span>
+      </a>
+    </div>
+    <ul>
+      <li><a href="../verifiedboot/verified-boot.html">Verifying Boot</a></li>
+      <li><a href="../verifiedboot/dm-verity.html">Implementing dm-verity</a></li>
+    </ul>
+  </li>
+</ul>
+
+
+      </div>
+    </div> <!-- end side-nav -->
+    <script>
+      $(document).ready(function() {
+        scrollIntoView("devdoc-nav");
+        });
+    </script>
+
+  
+
+
+
+
+<div class="col-12" id="doc-col" >
+
+
+  
+    
+      
+        <h1 itemprop="name" >Application Signing</h1>
+      
+    
+  
+
+
+  
+  <div id="jd-content">
+
+    <div class="jd-descr" itemprop="articleBody">
+    <!--
+    Copyright 2016 The Android Open Source Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<div id="qv-wrapper">
+  <div id="qv">
+    <h2>In this document</h2>
+    <ol id="auto-toc">
+   </ol>
+  </div>
+</div>
+
+<p>
+Application signing allows developers to identify the author of the application
+and to update their application without creating complicated interfaces and
+permissions. Every application that is run on the Android platform must be <a
+href="https://developer.android.com/studio/publish/app-signing.html">signed by
+the developer</a>. Applications that attempt to install without being signed
+will be rejected by either Google Play or the package installer on the Android
+device.
+</p>
+<p>
+On Google Play, application signing bridges the trust Google has with the
+developer and the trust the developer has with their application. Developers
+know their application is provided, unmodified, to the Android device; and
+developers can be held accountable for behavior of their application.
+</p>
+<p>
+On Android, application signing is the first step to placing an application in
+its Application Sandbox. The signed application certificate defines which user
+ID is associated with which application; different applications run under
+different user IDs. Application signing ensures that one application cannot
+access any other application except through well-defined IPC.
+</p>
+<p>
+When an application (APK file) is installed onto an Android device, the Package
+Manager verifies that the APK has been properly signed with the certificate
+included in that APK. If the certificate (or, more accurately, the public key in
+the certificate) matches the key used to sign any other APK on the device, the
+new APK has the option to specify in the manifest that it will share a UID with
+the other similarly-signed APKs.
+</p>
+<p>
+Applications can be signed by a third-party (OEM, operator, alternative market)
+or self-signed. Android provides code signing using self-signed certificates
+that developers can generate without external assistance or permission.
+Applications do not have to be signed by a central authority. Android currently
+does not perform CA verification for application certificates.
+</p>
+<p>
+Applications are also able to declare security permissions at the Signature
+protection level, restricting access only to applications signed with the same
+key while maintaining distinct UIDs and Application Sandboxes. A closer
+relationship with a shared Application Sandbox is allowed via the <a
+href="https://developer.android.com/guide/topics/manifest/manifest-element.html#uid">shared
+UID feature</a> where two or more applications signed with same developer key
+can declare a shared UID in their manifest.
+</p>
+<h2>APK signing schemes</h2>
+<p>
+Android supports two application signing schemes, one based on JAR signing (v1
+scheme) and <a href="v2.html">APK Signature Scheme v2 (v2 scheme)</a>, which
+was introduced in Android Nougat (Android 7.0).
+</p>
+<p>
+For maximum compatibility, applications should be signed both with v1 and v2
+schemes. Android Nougat and newer devices install apps signed with v2 scheme
+more quickly than those signed only with v1 scheme. Older Android platforms
+ignore v2 signatures and thus need apps to contain v1 signatures.
+</p>
+<h3 id="v1">JAR signing (v1 scheme)</h3>
+<p>
+APK signing has been a part of Android from the beginning. It is based on <a
+href="https://docs.oracle.com/javase/8/docs/technotes/guides/jar/jar.html#Signed_JAR_File">
+signed JAR</a>. For details on using this scheme, see the Android Studio documentation on
+<a href="https://developer.android.com/studio/publish/app-signing.html">Signing
+your app</a>.
+</p>
+<p>
+v1 signatures do not protect some parts of the APK, such as ZIP metadata. The
+APK verifier needs to process lots of untrusted (not yet verified) data
+structures and then discard data not covered by the signatures. This offers a
+sizeable attack surface. Moreover, the APK verifier must uncompress all
+compressed entries, consuming more time and memory. To address these issues,
+Android 7.0 introduced APK Signature Scheme v2.
+</p>
+<h3 id="v2">APK Signature Scheme v2 (v2 scheme)</h3>
+<p>
+Android 7.0 introduces APK signature scheme v2 (v2 scheme). The contents of the
+APK are hashed and signed, then the resulting APK Signing Block is inserted
+into the APK. For details on applying the v2 scheme to an application, refer to
+<a href="https://developer.android.com/preview/api-overview.html#apk_signature_v2">APK
+Signature Scheme v2</a> in the Android N Developer Preview.
+</p>
+<p>
+During validation, v2 scheme treats the APK file as a blob and performs signature
+checking across the entire file. Any modification to the APK, including ZIP metadata
+modifications, invalidates the APK signature. This form of APK verification is
+substantially faster and enables detection of more classes of unauthorized
+modifications.
+</p>
+<p>
+The new format is backwards compatible, so APKs signed with the new signature
+format can be installed on older Android devices (which simply ignore the extra
+data added to the APK), as long as these APKs are also v1-signed.
+</p>
+<p>
+  <img src="../images/apk-validation-process.png" alt="APK signature verification process" id="figure1" />
+</p>
+<p class="img-caption"><strong>Figure 1.</strong> APK signature verification
+process (new steps in red)</p>
+
+<p>
+Whole-file hash of the APK is verified against the v2 signature stored in the
+APK Signing Block. The hash covers everything except the APK Signing Block,
+which contains the v2 signature. Any modification to the APK outside of the APK
+Signing Block invalidates the APK's v2 signature. APKs with stripped v2
+signature are rejected as well, because their v1 signature specifies that the
+APK was v2-signed, which makes Android Nougat and newer refuse to verify APKs
+using their v1 signatures.
+</p>
+
+<p>For details on the APK signature verification process, see the <a href="v2.html#verification">
+Verification section</a> of APK Signature Scheme v2.</p>
+
+    </div>
+
+      <div class="content-footer-sac"
+                    itemscope itemtype="http://schema.org/SiteNavigationElement">
+        <div class="layout-content-col col-9" style="padding-top:4px">
+        </div>
+        
+        <div class="paging-links layout-content-col col-4">
+          
+        </div>
+        
+      </div>
+      
+      
+    </div> <!-- end jd-content -->
+  <div id="footer" class="wrap" >
+  <style>.feedback { float: right !Important }</style>
+  <div class="feedback">
+    <a href="index.html#" class="button" onclick=" try {
+      userfeedback.api.startFeedback({'productId':'715571','authuser':'1'});return false;}catch(e){}">Site Feedback</a>
+  </div>
+  <div id="copyright">
+    
+  Except as noted, this content is 
+  licensed under <a href="http://creativecommons.org/licenses/by/2.5/">
+  Creative Commons Attribution 2.5</a>. For details and 
+  restrictions, see the <a href="../../license.html">Content 
+  License</a>.
+  </div>
+    <div id="footerlinks">
+    
+  <p>
+    <a href="../../source/index.html">About Android</a>&nbsp;&nbsp;|&nbsp;
+    <a href="../../source/community.html">Community</a>&nbsp;&nbsp;|&nbsp;
+    <a href="../../legal.html">Legal</a>&nbsp;&nbsp;|&nbsp;
+  </p>
+  </div>
+
+</div><!-- end doc-content -->
+
+</div> <!-- end body-content --> 
+
+
+
+
+
+
+</body>
+</html>
+
+
+

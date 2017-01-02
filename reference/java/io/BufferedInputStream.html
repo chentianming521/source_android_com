@@ -1,0 +1,3342 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  
+
+
+
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta content="IE=edge" http-equiv="X-UA-Compatible">
+
+
+
+
+
+<script>var a=window.devsite||{};window.devsite=a;a.readyCallbacks=[];window.devsite.readyCallbacks=a.readyCallbacks;a.ready=function(b){a.readyCallbacks.push(b)};window.devsite.ready=a.ready;
+</script>
+
+<meta charset="utf-8">
+
+<meta name="xsrf_token" content="uwvTlDWbrrNq4EN90olJI8M6kha3Ijrwv9wP874ftAU6MTQ4MzM3MjQxNTU3MTY2MA" />
+
+
+  <link rel="canonical" href="BufferedInputStream.html">
+
+
+
+  <link rel="alternate" href="BufferedInputStream.html" hreflang="en">
+
+  <link rel="alternate" href="https://developer.android.google.cn/reference/java/io/BufferedInputStream.html" hreflang="en-cn">
+
+
+<link rel="alternate" href="BufferedInputStream.html" hreflang="x-default">
+
+
+
+
+<link rel="shortcut icon" href="https://developer.android.com/favicon.ico">
+
+<link rel="apple-touch-icon" href="https://developer.android.com/images/brand/Android_Robot_200.png">
+
+
+<title>
+
+  BufferedInputStream | Android Developers
+
+</title>
+
+
+<!-- STYLESHEETS -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Condensed">
+<link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Roboto:light,regular,medium,thin,italic,mediumitalic,bold"
+    title="roboto">
+
+
+
+
+<link href="https://developer.android.com/static/css/default.css?v=2017010203" rel="stylesheet" type="text/css">
+<!-- JAVASCRIPT -->
+<script src="https://developer.android.com/_static/81b4e5d5c8/js/android_3p-bundle.js" type="text/javascript"></script>
+<script src="https://developer.android.com/_static/81b4e5d5c8/js/script_foot_closure_android.js"></script>
+<script src="https://developer.android.com/_static/81b4e5d5c8/js/script_foot_android.js"></script>
+
+<script type="text/javascript">
+  var toRoot = '/';
+  var useUpdatedTemplates = true;
+  devsite.permissions.init({"dbf0e738b8ca34a787d59b20daa90e83": true, "782f0ac910272faf7315ed00833f4d6b": false, "5d17cf7d98343d37cdc5bede08b7b28e": true, "098dafe57affddc137df300142652cfd": false, "cb025a64a50094835616312f4774a53d": true, "e243c7e32cf8217137654928e1480ad1": true, "51470233c56fc1fde50f00b73c52b216": false, "6decc2350b46d7e6433a3c4ae1ab018f": true, "752953480de00a336d911a46966cc16d": false, "700def1a83e356c06c0925afb05de4b0": false, "6749dcb526ce9bde6993550c7d928d24": true});
+
+  
+  var useDevsiteMetadata = true;
+
+  var replaceBlog = false;
+  var replaceYouTube = false;
+  var customSearchEnabled = true;
+  var siteDefaultLocale = 'en';
+
+  var ANDROID_LANGUAGES = [
+      'id','en','es','pt-br','vi','ru','ja','zh-cn','zh-tw','ko'
+  ];
+</script>
+<script src="https://developer.android.com/static/js/docs.js?v=2017010203" type="text/javascript"></script>
+
+
+</head>
+
+<body class="gc-documentation develop reference " itemscope itemtype="http://schema.org/Article">
+  
+
+
+  
+    <input class="google-analytics-id-json" type="hidden" value="{&quot;dimensions&quot;: {&quot;dimension6&quot;: &quot;en&quot;, &quot;dimension4&quot;: &quot;Reference&quot;, &quot;dimension5&quot;: &quot;en&quot;, &quot;dimension3&quot;: false, &quot;dimension1&quot;: &quot;Signed out&quot;, &quot;dimension8&quot;: null}, &quot;gaid&quot;: &quot;UA-49880327-2&quot;}">
+  
+    <input class="google-analytics-id-json" type="hidden" value="{&quot;dimensions&quot;: {&quot;dimension6&quot;: &quot;en&quot;, &quot;dimension4&quot;: &quot;Reference&quot;, &quot;dimension5&quot;: &quot;en&quot;, &quot;dimension3&quot;: false, &quot;dimension1&quot;: &quot;Signed out&quot;, &quot;dimension8&quot;: null}, &quot;gaid&quot;: &quot;UA-5831155-1&quot;}">
+  
+
+
+
+  
+  
+    <script>
+      var dataLayer = [{"freeTrialEligibleUser": "False", "language": {"requested": "en", "served": "en"}, "projectName": "Reference", "scriptsafe": null, "signedIn": "False", "internalUser": "False"}];
+    </script>
+  
+
+
+
+  <a href="BufferedInputStream.html#top" id="skip-to-main">Skip to content</a>
+  <header id="header-wrapper">
+    <div class="dac-header" id="header">
+      <div class="dac-header-inner">
+        <a class="dac-nav-toggle" data-dac-toggle-nav href="BufferedInputStream.html" title="Open navigation">
+          <span class="dac-nav-hamburger">
+            <span class="dac-nav-hamburger-top"></span>
+            <span class="dac-nav-hamburger-mid"></span>
+            <span class="dac-nav-hamburger-bot"></span>
+          </span>
+        </a>
+        
+        <a class="dac-header-logo" href="https://developer.android.com/index.html">
+          <img class="dac-header-logo-image" src="https://developer.android.com/static/images/android_logo.png"
+              srcset="https://developer.android.com/static/images/android_logo_2x.png 2x"
+              width="32" height="36" alt="Android"> Developers</a>
+        <ul class="dac-header-tabs">
+          <li>
+            <a class="dac-header-tab" href="https://developer.android.com/design/index.html"
+               zh-tw-lang="設計"
+               zh-cn-lang="设计"
+               ru-lang="Проектирование"
+               ko-lang="디자인"
+               ja-lang="設計"
+               es-lang="Diseñar">Design</a>
+          </li>
+          <li>
+            <a class="dac-header-tab" href="https://developer.android.com/develop/index.html"
+               zh-tw-lang="開發"
+               zh-cn-lang="开发"
+               ru-lang="Разработка"
+               ko-lang="개발"
+               ja-lang="開発"
+               es-lang="Desarrollar">Develop</a>
+          </li>
+          <li>
+            <a class="dac-header-tab" href="https://developer.android.com/distribute/index.html"
+               zh-tw-lang="發佈"
+               zh-cn-lang="分发"
+               ru-lang="Распространение"
+               ko-lang="배포"
+               ja-lang="配布"
+               es-lang="Distribuir">Distribute</a>
+          </li>
+        </ul>
+        <a class="dac-header-console-btn" href="https://play.google.com/apps/publish/">
+          <span class="dac-sprite dac-google-play"></span>
+          <span class="dac-visible-desktop-inline">Developer</span>
+          Console
+        </a>
+        <form data-search="" class="dac-header-search">
+  <button class="dac-header-search-close" data-search-close="">
+    <i class="dac-sprite dac-back-arrow"></i>
+  </button>
+
+  <div class="dac-header-search-inner">
+    <i class="dac-sprite dac-search-white dac-header-search-icon"></i>
+    <input id="search_autocomplete" type="text" value="" autocomplete="off" name="q" class="dac-header-search-input" placeholder="Search">
+    <button class="dac-header-search-clear dac-hidden" data-search-clear="">
+      <i class="dac-sprite dac-close-black"></i>
+    </button>
+  </div>
+</form>
+
+        
+      </div><!--/.header-wrap.wrap-->
+    </div><!--/.header-->
+
+    
+
+<div id="search-results"
+     class="dac-search-results
+            ">
+  <div id="dac-search-results-history" class="dac-search-results-history">
+    <div class="wrap dac-search-results-history-wrap">
+      <div class="cols">
+        <div class="col-1of2 col-tablet-1of2 col-mobile-1of1">
+          <h2>Most visited</h2>
+          <div class="resource-flow-layout" data-history-query="history:most/visited" data-maxresults="3" data-cardsizes="18x2"></div>
+        </div>
+
+        <div class="col-1of2 col-tablet-1of2 col-mobile-1of1">
+          <h2>Recently visited</h2>
+          <div class="resource-flow-layout cols" data-history-query="history:recent" data-allow-duplicates="true" data-maxresults="3" data-cardsizes="18x2"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="dac-search-results-content" class="dac-search-results-content">
+    <div class="dac-search-results-metadata wrap">
+      <div class="dac-search-results-for">
+        <h2>Results for <span id="search-results-for"></span></h2>
+      </div>
+
+      <div id="dac-search-results-hero"></div>
+
+      <div class="dac-search-results-hero cols">
+        <div id="dac-search-results-reference"
+             class="
+                    col-3of6 col-tablet-1of2
+                    
+                    col-mobile-1of1">
+          <div class="suggest-card reference no-display">
+            <ul class="dac-search-results-reference">
+            </ul>
+          </div>
+        </div>
+        
+        <div id="dac-custom-search-results"></div>
+        
+      </div>
+
+      
+
+    </div>
+  </div>
+</div>
+
+  </header>
+
+  <a name="navigation" tabindex=0 class="nav-start-marker">navigation</a>
+  <nav class="dac-nav">
+    <div class="dac-nav-dimmer" data-dac-toggle-nav></div>
+    <div class="dac-nav-sidebar" data-swap data-dynamic="false" data-transition-speed="300" data-dac-nav>
+      <div data-swap-container>
+        
+        <a class="dac-nav-back-button dac-swap-section dac-up dac-no-anim" tabindex=0 data-swap-button>
+          
+          <i class="dac-sprite dac-nav-back"></i> <span class="dac-nav-back-title">Back</span>
+        </a>
+
+        <div class="dac-nav-sub dac-swap-section dac-right dac-active" itemscope
+            itemtype="http://schema.org/SiteNavigationElement">
+          
+          
+            
+              
+              <button data-fullscreen="" class="dac-nav-fullscreen">
+                <i class="dac-sprite dac-fullscreen"></i>
+              </button>
+              <script>$('[data-fullscreen]').dacFullscreen();</script>
+              <div id="devdoc-nav">
+                <div id="api-nav-header">
+                  <div id="api-level-toggle">
+                    <label for="apiLevelCheckbox" class="disabled"
+                        title="Select your target API level to dim
+                            unavailable APIs">API level:
+                    </label>
+                    <div class="select-wrapper">
+                      <select id="apiLevelSelector"></select>
+                    </div>
+                  </div><!-- end toggle -->
+                  <div id="api-nav-title">Android APIs</div>
+                </div><!-- end nav header -->
+                <script>
+                  buildApiLevelSelector();
+                </script>
+                <div class="dac-reference-nav" data-reference-tree="">
+                  <ul class="dac-reference-nav-list" data-reference-namespaces="">
+                    <li class="api apilevel-1"><a href="https://developer.android.com/reference/android/package-summary.html" >android</a></li><li class="api apilevel-4"><a href="https://developer.android.com/reference/android/accessibilityservice/package-summary.html" >android.accessibilityservice</a></li><li class="api apilevel-5"><a href="https://developer.android.com/reference/android/accounts/package-summary.html" >android.accounts</a></li><li class="api apilevel-11"><a href="https://developer.android.com/reference/android/animation/package-summary.html" >android.animation</a></li><li class="api apilevel-16"><a href="https://developer.android.com/reference/android/annotation/package-summary.html" >android.annotation</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/android/app/package-summary.html" >android.app</a></li><li class="api apilevel-8"><a href="https://developer.android.com/reference/android/app/admin/package-summary.html" >android.app.admin</a></li><li class="api apilevel-23"><a href="https://developer.android.com/reference/android/app/assist/package-summary.html" >android.app.assist</a></li><li class="api apilevel-8"><a href="https://developer.android.com/reference/android/app/backup/package-summary.html" >android.app.backup</a></li><li class="api apilevel-21"><a href="https://developer.android.com/reference/android/app/job/package-summary.html" >android.app.job</a></li><li class="api apilevel-21"><a href="https://developer.android.com/reference/android/app/usage/package-summary.html" >android.app.usage</a></li><li class="api apilevel-3"><a href="https://developer.android.com/reference/android/appwidget/package-summary.html" >android.appwidget</a></li><li class="api apilevel-5"><a href="https://developer.android.com/reference/android/bluetooth/package-summary.html" >android.bluetooth</a></li><li class="api apilevel-21"><a href="https://developer.android.com/reference/android/bluetooth/le/package-summary.html" >android.bluetooth.le</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/android/content/package-summary.html" >android.content</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/android/content/pm/package-summary.html" >android.content.pm</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/android/content/res/package-summary.html" >android.content.res</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/android/database/package-summary.html" >android.database</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/android/database/sqlite/package-summary.html" >android.database.sqlite</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/databinding/package-summary.html" >android.databinding</a></li><li class="api apilevel-11"><a href="https://developer.android.com/reference/android/drm/package-summary.html" >android.drm</a></li><li class="api apilevel-4"><a href="https://developer.android.com/reference/android/gesture/package-summary.html" >android.gesture</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/android/graphics/package-summary.html" >android.graphics</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/android/graphics/drawable/package-summary.html" >android.graphics.drawable</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/android/graphics/drawable/shapes/package-summary.html" >android.graphics.drawable.shapes</a></li><li class="api apilevel-19"><a href="https://developer.android.com/reference/android/graphics/pdf/package-summary.html" >android.graphics.pdf</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/android/hardware/package-summary.html" >android.hardware</a></li><li class="api apilevel-21"><a href="https://developer.android.com/reference/android/hardware/camera2/package-summary.html" >android.hardware.camera2</a></li><li class="api apilevel-21"><a href="https://developer.android.com/reference/android/hardware/camera2/params/package-summary.html" >android.hardware.camera2.params</a></li><li class="api apilevel-17"><a href="https://developer.android.com/reference/android/hardware/display/package-summary.html" >android.hardware.display</a></li><li class="api apilevel-23"><a href="https://developer.android.com/reference/android/hardware/fingerprint/package-summary.html" >android.hardware.fingerprint</a></li><li class="api apilevel-16"><a href="https://developer.android.com/reference/android/hardware/input/package-summary.html" >android.hardware.input</a></li><li class="api apilevel-12"><a href="https://developer.android.com/reference/android/hardware/usb/package-summary.html" >android.hardware.usb</a></li><li class="api apilevel-24"><a href="https://developer.android.com/reference/android/icu/lang/package-summary.html" >android.icu.lang</a></li><li class="api apilevel-24"><a href="https://developer.android.com/reference/android/icu/math/package-summary.html" >android.icu.math</a></li><li class="api apilevel-24"><a href="https://developer.android.com/reference/android/icu/text/package-summary.html" >android.icu.text</a></li><li class="api apilevel-24"><a href="https://developer.android.com/reference/android/icu/util/package-summary.html" >android.icu.util</a></li><li class="api apilevel-3"><a href="https://developer.android.com/reference/android/inputmethodservice/package-summary.html" >android.inputmethodservice</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/android/location/package-summary.html" >android.location</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/android/media/package-summary.html" >android.media</a></li><li class="api apilevel-9"><a href="https://developer.android.com/reference/android/media/audiofx/package-summary.html" >android.media.audiofx</a></li><li class="api apilevel-21"><a href="https://developer.android.com/reference/android/media/browse/package-summary.html" >android.media.browse</a></li><li class="api apilevel-14"><a href="https://developer.android.com/reference/android/media/effect/package-summary.html" >android.media.effect</a></li><li class="api apilevel-23"><a href="https://developer.android.com/reference/android/media/midi/package-summary.html" >android.media.midi</a></li><li class="api apilevel-21"><a href="https://developer.android.com/reference/android/media/projection/package-summary.html" >android.media.projection</a></li><li class="api apilevel-21"><a href="https://developer.android.com/reference/android/media/session/package-summary.html" >android.media.session</a></li><li class="api apilevel-21"><a href="https://developer.android.com/reference/android/media/tv/package-summary.html" >android.media.tv</a></li><li class="api apilevel-12"><a href="https://developer.android.com/reference/android/mtp/package-summary.html" >android.mtp</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/android/net/package-summary.html" >android.net</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/android/net/http/package-summary.html" >android.net.http</a></li><li class="api apilevel-16"><a href="https://developer.android.com/reference/android/net/nsd/package-summary.html" >android.net.nsd</a></li><li class="api apilevel-12"><a href="https://developer.android.com/reference/android/net/rtp/package-summary.html" >android.net.rtp</a></li><li class="api apilevel-9"><a href="https://developer.android.com/reference/android/net/sip/package-summary.html" >android.net.sip</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/android/net/wifi/package-summary.html" >android.net.wifi</a></li><li class="api apilevel-14"><a href="https://developer.android.com/reference/android/net/wifi/p2p/package-summary.html" >android.net.wifi.p2p</a></li><li class="api apilevel-16"><a href="https://developer.android.com/reference/android/net/wifi/p2p/nsd/package-summary.html" >android.net.wifi.p2p.nsd</a></li><li class="api apilevel-9"><a href="https://developer.android.com/reference/android/nfc/package-summary.html" >android.nfc</a></li><li class="api apilevel-19"><a href="https://developer.android.com/reference/android/nfc/cardemulation/package-summary.html" >android.nfc.cardemulation</a></li><li class="api apilevel-10"><a href="https://developer.android.com/reference/android/nfc/tech/package-summary.html" >android.nfc.tech</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/android/opengl/package-summary.html" >android.opengl</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/android/os/package-summary.html" >android.os</a></li><li class="api apilevel-24"><a href="https://developer.android.com/reference/android/os/health/package-summary.html" >android.os.health</a></li><li class="api apilevel-9"><a href="https://developer.android.com/reference/android/os/storage/package-summary.html" >android.os.storage</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/android/preference/package-summary.html" >android.preference</a></li><li class="api apilevel-19"><a href="https://developer.android.com/reference/android/print/package-summary.html" >android.print</a></li><li class="api apilevel-19"><a href="https://developer.android.com/reference/android/print/pdf/package-summary.html" >android.print.pdf</a></li><li class="api apilevel-19"><a href="https://developer.android.com/reference/android/printservice/package-summary.html" >android.printservice</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/android/provider/package-summary.html" >android.provider</a></li><li class="api apilevel-11"><a href="https://developer.android.com/reference/android/renderscript/package-summary.html" >android.renderscript</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/android/sax/package-summary.html" >android.sax</a></li><li class="api apilevel-14"><a href="https://developer.android.com/reference/android/security/package-summary.html" >android.security</a></li><li class="api apilevel-23"><a href="https://developer.android.com/reference/android/security/keystore/package-summary.html" >android.security.keystore</a></li><li class="api apilevel-22"><a href="https://developer.android.com/reference/android/service/carrier/package-summary.html" >android.service.carrier</a></li><li class="api apilevel-23"><a href="https://developer.android.com/reference/android/service/chooser/package-summary.html" >android.service.chooser</a></li><li class="api apilevel-17"><a href="https://developer.android.com/reference/android/service/dreams/package-summary.html" >android.service.dreams</a></li><li class="api apilevel-21"><a href="https://developer.android.com/reference/android/service/media/package-summary.html" >android.service.media</a></li><li class="api apilevel-18"><a href="https://developer.android.com/reference/android/service/notification/package-summary.html" >android.service.notification</a></li><li class="api apilevel-24"><a href="https://developer.android.com/reference/android/service/quicksettings/package-summary.html" >android.service.quicksettings</a></li><li class="api apilevel-21"><a href="https://developer.android.com/reference/android/service/restrictions/package-summary.html" >android.service.restrictions</a></li><li class="api apilevel-14"><a href="https://developer.android.com/reference/android/service/textservice/package-summary.html" >android.service.textservice</a></li><li class="api apilevel-21"><a href="https://developer.android.com/reference/android/service/voice/package-summary.html" >android.service.voice</a></li><li class="api apilevel-24"><a href="https://developer.android.com/reference/android/service/vr/package-summary.html" >android.service.vr</a></li><li class="api apilevel-7"><a href="https://developer.android.com/reference/android/service/wallpaper/package-summary.html" >android.service.wallpaper</a></li><li class="api apilevel-3"><a href="https://developer.android.com/reference/android/speech/package-summary.html" >android.speech</a></li><li class="api apilevel-4"><a href="https://developer.android.com/reference/android/speech/tts/package-summary.html" >android.speech.tts</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/annotation/package-summary.html" >android.support.annotation</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/annotations/package-summary.html" >android.support.annotations</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/app/recommendation/package-summary.html" >android.support.app.recommendation</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/compat/package-summary.html" >android.support.compat</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/coreui/package-summary.html" >android.support.coreui</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/coreutils/package-summary.html" >android.support.coreutils</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/customtabs/package-summary.html" >android.support.customtabs</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/design/package-summary.html" >android.support.design</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/design/widget/package-summary.html" >android.support.design.widget</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/fragment/package-summary.html" >android.support.fragment</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/graphics/drawable/package-summary.html" >android.support.graphics.drawable</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/mediacompat/package-summary.html" >android.support.mediacompat</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/multidex/package-summary.html" >android.support.multidex</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/percent/package-summary.html" >android.support.percent</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/provider/package-summary.html" >android.support.provider</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/transition/package-summary.html" >android.support.transition</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/v13/package-summary.html" >android.support.v13</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/v13/app/package-summary.html" >android.support.v13.app</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/v13/view/package-summary.html" >android.support.v13.view</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/v13/view/inputmethod/package-summary.html" >android.support.v13.view.inputmethod</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/v14/preference/package-summary.html" >android.support.v14.preference</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/v17/leanback/package-summary.html" >android.support.v17.leanback</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/v17/leanback/app/package-summary.html" >android.support.v17.leanback.app</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/v17/leanback/database/package-summary.html" >android.support.v17.leanback.database</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/v17/leanback/graphics/package-summary.html" >android.support.v17.leanback.graphics</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/v17/leanback/system/package-summary.html" >android.support.v17.leanback.system</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/v17/leanback/widget/package-summary.html" >android.support.v17.leanback.widget</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/v17/leanback/widget/picker/package-summary.html" >android.support.v17.leanback.widget.picker</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/v17/preference/package-summary.html" >android.support.v17.preference</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/v4/package-summary.html" >android.support.v4</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/v4/accessibilityservice/package-summary.html" >android.support.v4.accessibilityservice</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/v4/app/package-summary.html" >android.support.v4.app</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/v4/content/package-summary.html" >android.support.v4.content</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/v4/content/pm/package-summary.html" >android.support.v4.content.pm</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/v4/content/res/package-summary.html" >android.support.v4.content.res</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/v4/database/package-summary.html" >android.support.v4.database</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/v4/graphics/package-summary.html" >android.support.v4.graphics</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/v4/graphics/drawable/package-summary.html" >android.support.v4.graphics.drawable</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/v4/hardware/display/package-summary.html" >android.support.v4.hardware.display</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/v4/hardware/fingerprint/package-summary.html" >android.support.v4.hardware.fingerprint</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/v4/media/package-summary.html" >android.support.v4.media</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/v4/media/session/package-summary.html" >android.support.v4.media.session</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/v4/net/package-summary.html" >android.support.v4.net</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/v4/os/package-summary.html" >android.support.v4.os</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/v4/print/package-summary.html" >android.support.v4.print</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/v4/provider/package-summary.html" >android.support.v4.provider</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/v4/text/package-summary.html" >android.support.v4.text</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/v4/text/util/package-summary.html" >android.support.v4.text.util</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/v4/util/package-summary.html" >android.support.v4.util</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/v4/view/package-summary.html" >android.support.v4.view</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/v4/view/accessibility/package-summary.html" >android.support.v4.view.accessibility</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/v4/view/animation/package-summary.html" >android.support.v4.view.animation</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/v4/widget/package-summary.html" >android.support.v4.widget</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/v7/app/package-summary.html" >android.support.v7.app</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/v7/appcompat/package-summary.html" >android.support.v7.appcompat</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/v7/cardview/package-summary.html" >android.support.v7.cardview</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/v7/content/res/package-summary.html" >android.support.v7.content.res</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/v7/graphics/package-summary.html" >android.support.v7.graphics</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/v7/graphics/drawable/package-summary.html" >android.support.v7.graphics.drawable</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/v7/gridlayout/package-summary.html" >android.support.v7.gridlayout</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/v7/media/package-summary.html" >android.support.v7.media</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/v7/mediarouter/package-summary.html" >android.support.v7.mediarouter</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/v7/palette/package-summary.html" >android.support.v7.palette</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/v7/preference/package-summary.html" >android.support.v7.preference</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/v7/recyclerview/package-summary.html" >android.support.v7.recyclerview</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/v7/util/package-summary.html" >android.support.v7.util</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/v7/view/package-summary.html" >android.support.v7.view</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/v7/widget/package-summary.html" >android.support.v7.widget</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/v7/widget/helper/package-summary.html" >android.support.v7.widget.helper</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/v7/widget/util/package-summary.html" >android.support.v7.widget.util</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/android/support/v8/renderscript/package-summary.html" >android.support.v8.renderscript</a></li><li class="api apilevel-21"><a href="https://developer.android.com/reference/android/system/package-summary.html" >android.system</a></li><li class="api apilevel-21"><a href="https://developer.android.com/reference/android/telecom/package-summary.html" >android.telecom</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/android/telephony/package-summary.html" >android.telephony</a></li><li class="api apilevel-5"><a href="https://developer.android.com/reference/android/telephony/cdma/package-summary.html" >android.telephony.cdma</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/android/telephony/gsm/package-summary.html" >android.telephony.gsm</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/android/test/package-summary.html" >android.test</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/android/test/mock/package-summary.html" >android.test.mock</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/android/test/suitebuilder/package-summary.html" >android.test.suitebuilder</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/android/test/suitebuilder/annotation/package-summary.html" >android.test.suitebuilder.annotation</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/android/text/package-summary.html" >android.text</a></li><li class="api apilevel-3"><a href="https://developer.android.com/reference/android/text/format/package-summary.html" >android.text.format</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/android/text/method/package-summary.html" >android.text.method</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/android/text/style/package-summary.html" >android.text.style</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/android/text/util/package-summary.html" >android.text.util</a></li><li class="api apilevel-19"><a href="https://developer.android.com/reference/android/transition/package-summary.html" >android.transition</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/android/util/package-summary.html" >android.util</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/android/view/package-summary.html" >android.view</a></li><li class="api apilevel-4"><a href="https://developer.android.com/reference/android/view/accessibility/package-summary.html" >android.view.accessibility</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/android/view/animation/package-summary.html" >android.view.animation</a></li><li class="api apilevel-3"><a href="https://developer.android.com/reference/android/view/inputmethod/package-summary.html" >android.view.inputmethod</a></li><li class="api apilevel-14"><a href="https://developer.android.com/reference/android/view/textservice/package-summary.html" >android.view.textservice</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/android/webkit/package-summary.html" >android.webkit</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/android/widget/package-summary.html" >android.widget</a></li><li class="api apilevel-"><a href="https://developer.android.com/reference/com/android/test/runner/package-summary.html" >com.android.test.runner</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/dalvik/annotation/package-summary.html" >dalvik.annotation</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/dalvik/bytecode/package-summary.html" >dalvik.bytecode</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/dalvik/system/package-summary.html" >dalvik.system</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/java/awt/font/package-summary.html" >java.awt.font</a></li><li class="api apilevel-3"><a href="https://developer.android.com/reference/java/beans/package-summary.html" >java.beans</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/package-summary.html" >java.io</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/java/lang/package-summary.html" >java.lang</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/java/lang/annotation/package-summary.html" >java.lang.annotation</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/java/lang/ref/package-summary.html" >java.lang.ref</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/java/lang/reflect/package-summary.html" >java.lang.reflect</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/java/math/package-summary.html" >java.math</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/java/net/package-summary.html" >java.net</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/java/nio/package-summary.html" >java.nio</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/java/nio/channels/package-summary.html" >java.nio.channels</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/java/nio/channels/spi/package-summary.html" >java.nio.channels.spi</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/java/nio/charset/package-summary.html" >java.nio.charset</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/java/nio/charset/spi/package-summary.html" >java.nio.charset.spi</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/java/security/package-summary.html" >java.security</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/java/security/acl/package-summary.html" >java.security.acl</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/java/security/cert/package-summary.html" >java.security.cert</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/java/security/interfaces/package-summary.html" >java.security.interfaces</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/java/security/spec/package-summary.html" >java.security.spec</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/java/sql/package-summary.html" >java.sql</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/java/text/package-summary.html" >java.text</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/java/util/package-summary.html" >java.util</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/java/util/concurrent/package-summary.html" >java.util.concurrent</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/java/util/concurrent/atomic/package-summary.html" >java.util.concurrent.atomic</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/java/util/concurrent/locks/package-summary.html" >java.util.concurrent.locks</a></li><li class="api apilevel-24"><a href="https://developer.android.com/reference/java/util/function/package-summary.html" >java.util.function</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/java/util/jar/package-summary.html" >java.util.jar</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/java/util/logging/package-summary.html" >java.util.logging</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/java/util/prefs/package-summary.html" >java.util.prefs</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/java/util/regex/package-summary.html" >java.util.regex</a></li><li class="api apilevel-24"><a href="https://developer.android.com/reference/java/util/stream/package-summary.html" >java.util.stream</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/java/util/zip/package-summary.html" >java.util.zip</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/javax/crypto/package-summary.html" >javax.crypto</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/javax/crypto/interfaces/package-summary.html" >javax.crypto.interfaces</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/javax/crypto/spec/package-summary.html" >javax.crypto.spec</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/javax/microedition/khronos/egl/package-summary.html" >javax.microedition.khronos.egl</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/javax/microedition/khronos/opengles/package-summary.html" >javax.microedition.khronos.opengles</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/javax/net/package-summary.html" >javax.net</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/javax/net/ssl/package-summary.html" >javax.net.ssl</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/javax/security/auth/package-summary.html" >javax.security.auth</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/javax/security/auth/callback/package-summary.html" >javax.security.auth.callback</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/javax/security/auth/login/package-summary.html" >javax.security.auth.login</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/javax/security/auth/x500/package-summary.html" >javax.security.auth.x500</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/javax/security/cert/package-summary.html" >javax.security.cert</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/javax/sql/package-summary.html" >javax.sql</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/javax/xml/package-summary.html" >javax.xml</a></li><li class="api apilevel-8"><a href="https://developer.android.com/reference/javax/xml/datatype/package-summary.html" >javax.xml.datatype</a></li><li class="api apilevel-8"><a href="https://developer.android.com/reference/javax/xml/namespace/package-summary.html" >javax.xml.namespace</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/javax/xml/parsers/package-summary.html" >javax.xml.parsers</a></li><li class="api apilevel-8"><a href="https://developer.android.com/reference/javax/xml/transform/package-summary.html" >javax.xml.transform</a></li><li class="api apilevel-8"><a href="https://developer.android.com/reference/javax/xml/transform/dom/package-summary.html" >javax.xml.transform.dom</a></li><li class="api apilevel-8"><a href="https://developer.android.com/reference/javax/xml/transform/sax/package-summary.html" >javax.xml.transform.sax</a></li><li class="api apilevel-8"><a href="https://developer.android.com/reference/javax/xml/transform/stream/package-summary.html" >javax.xml.transform.stream</a></li><li class="api apilevel-8"><a href="https://developer.android.com/reference/javax/xml/validation/package-summary.html" >javax.xml.validation</a></li><li class="api apilevel-8"><a href="https://developer.android.com/reference/javax/xml/xpath/package-summary.html" >javax.xml.xpath</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/junit/framework/package-summary.html" >junit.framework</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/junit/runner/package-summary.html" >junit.runner</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/org/apache/http/conn/package-summary.html" >org.apache.http.conn</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/org/apache/http/conn/scheme/package-summary.html" >org.apache.http.conn.scheme</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/org/apache/http/conn/ssl/package-summary.html" >org.apache.http.conn.ssl</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/org/apache/http/params/package-summary.html" >org.apache.http.params</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/org/json/package-summary.html" >org.json</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/org/w3c/dom/package-summary.html" >org.w3c.dom</a></li><li class="api apilevel-8"><a href="https://developer.android.com/reference/org/w3c/dom/ls/package-summary.html" >org.w3c.dom.ls</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/org/xml/sax/package-summary.html" >org.xml.sax</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/org/xml/sax/ext/package-summary.html" >org.xml.sax.ext</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/org/xml/sax/helpers/package-summary.html" >org.xml.sax.helpers</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/org/xmlpull/v1/package-summary.html" >org.xmlpull.v1</a></li><li class="api apilevel-1"><a href="https://developer.android.com/reference/org/xmlpull/v1/sax2/package-summary.html" >org.xmlpull.v1.sax2</a></li>
+                  </ul>
+                </div>
+              </div>
+            
+          
+        </div>
+        
+        
+          
+
+
+<ul id="dac-main-navigation" class="dac-nav-list dac-swap-section dac-left dac-no-anim" tabindex=0>
+  <li class="dac-nav-item home">
+    <a class="dac-nav-link" href="https://developer.android.com/index.html">Home</a>
+    <i class="dac-sprite dac-expand-more-black dac-nav-sub-slider" tabindex=0></i>
+    <ul class="dac-nav-secondary about">
+      <li class="dac-nav-item versions">
+        <a class="dac-nav-link" href="https://developer.android.com/about/versions/nougat/index.html">Android</a>
+      </li>
+      <li class="dac-nav-item wear">
+        <a class="dac-nav-link" href="https://developer.android.com/wear/index.html">Wear</a>
+      </li>
+      <li class="dac-nav-item tv">
+        <a class="dac-nav-link" href="https://developer.android.com/tv/index.html">TV</a>
+      </li>
+      <li class="dac-nav-item auto">
+        <a class="dac-nav-link" href="https://developer.android.com/auto/index.html">Auto</a>
+      </li>
+      
+      <li class="dac-nav-item things">
+        <a class="dac-nav-link" href="https://developer.android.com/things/index.html">Things</a>
+      </li>
+      
+    </ul>
+  </li>
+  <li class="dac-nav-item design">
+    <a class="dac-nav-link" href="https://developer.android.com/design/index.html"
+       zh-tw-lang="設計"
+       zh-cn-lang="设计"
+       ru-lang="Проектирование"
+       ko-lang="디자인"
+       ja-lang="設計"
+       es-lang="Diseñar">Design</a>
+  </li>
+  <li class="dac-nav-item develop">
+    <a class="dac-nav-link" href="https://developer.android.com/develop/index.html"
+       zh-tw-lang="開發"
+       zh-cn-lang="开发"
+       ru-lang="Разработка"
+       ko-lang="개발"
+       ja-lang="開発"
+       es-lang="Desarrollar">Develop</a>
+    <i class="dac-sprite dac-expand-more-black dac-nav-sub-slider" tabindex=0></i>
+    <ul class="dac-nav-secondary develop">
+      <li class="dac-nav-item training">
+        <a class="dac-nav-link" href="https://developer.android.com/training/index.html"
+           zh-tw-lang="訓練課程"
+           zh-cn-lang="培训"
+           ru-lang="Курсы"
+           ko-lang="교육"
+           ja-lang="トレーニング"
+           es-lang="Capacitación">Training</a>
+      </li>
+      <li class="dac-nav-item guide">
+        <a class="dac-nav-link" href="https://developer.android.com/guide/index.html"
+           zh-tw-lang="API 指南"
+           zh-cn-lang="API 指南"
+           ru-lang="Руководства по API"
+           ko-lang="API 가이드"
+           ja-lang="API ガイド"
+           es-lang="Guías de la API">API Guides</a>
+      </li>
+      <li class="dac-nav-item reference">
+        <a class="dac-nav-link" href="https://developer.android.com/reference/packages.html"
+           zh-tw-lang="參考資源"
+           zh-cn-lang="参考"
+           ru-lang="Справочник"
+           ko-lang="참조문서"
+           ja-lang="リファレンス"
+           es-lang="Referencia">Reference</a>
+      </li>
+      <li class="dac-nav-item samples">
+        <a class="dac-nav-link" href="https://developer.android.com/samples/index.html">Samples</a>
+      </li>
+      <li class="dac-nav-item studio">
+        <a class="dac-nav-link" href="https://developer.android.com/studio/index.html"
+           >Android Studio</a></li>
+      <li class="dac-nav-item ndk">
+        <a class="dac-nav-link" href="https://developer.android.com/ndk/index.html"
+           >Android NDK</a></li>
+      <li class="dac-nav-item google">
+        <a class="dac-nav-link" href="https://developer.android.com/google/index.html">Google Services</a>
+      </li>
+    </ul>
+  </li>
+  <li class="dac-nav-item distribute">
+    <a class="dac-nav-link" href="https://developer.android.com/distribute/index.html"
+       zh-tw-lang="發佈"
+       zh-cn-lang="分发"
+       ru-lang="Распространение"
+       ko-lang="배포"
+       ja-lang="配布"
+       es-lang="Distribuir">Distribute</a>
+    <i class="dac-sprite dac-expand-more-black dac-nav-sub-slider" tabindex=0></i>
+    <ul class="dac-nav-secondary distribute">
+      <li class="dac-nav-item googleplay">
+        <a class="dac-nav-link" href="https://developer.android.com/distribute/googleplay/index.html">Google Play</a></li>
+      <li class="dac-nav-item essentials">
+        <a class="dac-nav-link" href="https://developer.android.com/distribute/essentials/index.html">Essentials</a></li>
+      <li class="dac-nav-item users">
+        <a class="dac-nav-link" href="https://developer.android.com/distribute/users/index.html">Get Users</a></li>
+      <li class="dac-nav-item engage">
+        <a class="dac-nav-link" href="https://developer.android.com/distribute/engage/index.html">Engage &amp; Retain</a></li>
+      <li class="dac-nav-item monetize">
+        <a class="dac-nav-link" href="https://developer.android.com/distribute/monetize/index.html">Earn</a>
+      </li>
+      <li class="dac-nav-item analyze">
+        <a class="dac-nav-link" href="https://developer.android.com/distribute/analyze/index.html">Analyze</a>
+      </li>
+      <li class="dac-nav-item stories">
+        <a class="dac-nav-link" href="https://developer.android.com/distribute/stories/index.html">Stories</a>
+      </li>
+    </ul>
+  </li>
+  
+</ul>
+
+        
+      </div>
+    </div>
+  </nav>
+
+  <a name="top" tabindex="0"></a>
+  
+  <div class="wrap clearfix" id="body-content">
+  
+    
+      
+    
+    <div class="jd-descr" itemprop="articleBody">
+      
+<div id="doc-api-level" class="1" style="display:none"></div>
+
+
+
+<div id="naMessage"></div>
+
+<div id="api-info-block">
+<div class="api-level">
+  
+  Added in <a href="https://developer.android.com/guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 1</a>
+  
+  
+
+</div>
+
+
+
+  
+   
+  
+  
+  
+   
+  
+  
+
+  
+   
+  
+  
+  
+  
+
+  
+   
+  
+  
+  
+  
+
+  
+   
+  
+  
+  
+  
+
+  
+   
+  
+  
+  
+  
+
+
+<div class="sum-details-links">
+
+Summary:
+
+
+
+
+
+
+
+  <a href="BufferedInputStream.html#lfields">Fields</a>
+  
+
+
+  &#124; <a href="BufferedInputStream.html#inhfields">Inherited Fields</a>
+  
+
+
+  &#124; <a href="BufferedInputStream.html#pubctors">Ctors</a>
+  
+
+
+
+  &#124; <a href="BufferedInputStream.html#pubmethods">Methods</a>
+  
+
+
+
+  &#124; <a href="BufferedInputStream.html#inhmethods">Inherited Methods</a>
+
+&#124; <a href="BufferedInputStream.html#" onclick="return toggleAllClassInherited()" id="toggleAllClassInherited">[Expand All]</a>
+
+</div><!-- end sum-details-links -->
+</div><!-- end api-info-block -->
+
+<div class="api apilevel-1" id="jd-content">
+
+<!-- ======== START OF CLASS DATA ======== -->
+
+<h1 class="api-title">BufferedInputStream</h1>
+<p>
+<code class="api-signature">
+  public
+  
+  
+  
+  class
+  BufferedInputStream
+</code>
+<br>
+
+
+<code class="api-signature">
+  
+  
+  
+</code>
+
+<code class="api-signature">
+  
+  
+  
+</code>
+
+<code class="api-signature">
+  
+    extends <a href="https://developer.android.com/reference/java/io/FilterInputStream.html">FilterInputStream</a>
+  
+  
+  
+</code>
+
+<code class="api-signature">
+  
+  
+  
+</code>
+
+</p><table class="jd-inheritance-table">
+
+
+  <tr>
+    
+    <td colspan="4" class="jd-inheritance-class-cell"><a href="https://developer.android.com/reference/java/lang/Object.html">java.lang.Object</a>
+    </td>
+  </tr>
+  
+
+  <tr>
+    
+      <td class="jd-inheritance-space">&nbsp;&nbsp;&nbsp;&#x21b3;</td>
+    
+    <td colspan="3" class="jd-inheritance-class-cell"><a href="InputStream.html">java.io.InputStream</a>
+    </td>
+  </tr>
+  
+
+  <tr>
+    
+      <td class="jd-inheritance-space">&nbsp;</td>
+    
+      <td class="jd-inheritance-space">&nbsp;&nbsp;&nbsp;&#x21b3;</td>
+    
+    <td colspan="2" class="jd-inheritance-class-cell"><a href="https://developer.android.com/reference/java/io/FilterInputStream.html">java.io.FilterInputStream</a>
+    </td>
+  </tr>
+  
+
+  <tr>
+    
+      <td class="jd-inheritance-space">&nbsp;</td>
+    
+      <td class="jd-inheritance-space">&nbsp;</td>
+    
+      <td class="jd-inheritance-space">&nbsp;&nbsp;&nbsp;&#x21b3;</td>
+    
+    <td colspan="1" class="jd-inheritance-class-cell">java.io.BufferedInputStream
+    </td>
+  </tr>
+  
+
+</table>
+  
+
+    
+
+<br><hr>
+
+
+  <p>A <code>BufferedInputStream</code> adds
+ functionality to another input stream-namely,
+ the ability to buffer the input and to
+ support the <code>mark</code> and <code>reset</code>
+ methods. When  the <code>BufferedInputStream</code>
+ is created, an internal buffer array is
+ created. As bytes  from the stream are read
+ or skipped, the internal buffer is refilled
+ as necessary  from the contained input stream,
+ many bytes at a time. The <code>mark</code>
+ operation  remembers a point in the input
+ stream and the <code>reset</code> operation
+ causes all the  bytes read since the most
+ recent <code>mark</code> operation to be
+ reread before new bytes are  taken from
+ the contained input stream.</p>
+
+
+
+
+
+
+
+<h2 class="api-section">Summary</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- =========== FIELD SUMMARY =========== -->
+<table id="lfields" class="responsive properties">
+<tr><th colspan="2"><h3>Fields</h3></th></tr>
+
+
+
+  <tr class="api apilevel-1" >
+    <td><code>
+    protected
+    
+    
+    byte[]</code></td>
+    <td width="100%">
+      <code><a href="BufferedInputStream.html#buf">buf</a></code>
+      <p>The internal buffer array where the data is stored.
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-1" >
+    <td><code>
+    protected
+    
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="BufferedInputStream.html#count">count</a></code>
+      <p>The index one greater than the index of the last valid byte in
+ the buffer.
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-1" >
+    <td><code>
+    protected
+    
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="BufferedInputStream.html#marklimit">marklimit</a></code>
+      <p>The maximum read ahead allowed after a call to the
+ <code>mark</code> method before subsequent calls to the
+ <code>reset</code> method fail.
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-1" >
+    <td><code>
+    protected
+    
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="BufferedInputStream.html#markpos">markpos</a></code>
+      <p>The value of the <code>pos</code> field at the time the last
+ <code>mark</code> method was called.
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+  <tr class="api apilevel-1" >
+    <td><code>
+    protected
+    
+    
+    int</code></td>
+    <td width="100%">
+      <code><a href="BufferedInputStream.html#pos">pos</a></code>
+      <p>The current position in the buffer.
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+
+</table>
+
+
+
+
+
+<!-- =========== FIELD SUMMARY =========== -->
+<table id="inhfields" class="properties inhtable">
+<tr><th><h3>Inherited fields</h3></th></tr>
+
+
+  <tr class="api apilevel-" >
+  <td>
+  
+  <a href="BufferedInputStream.html#" onclick="return toggleInherited(this, null)" id="inherited-fields-java.io.FilterInputStream" class="jd-expando-trigger closed"
+          ><img height="34" id="inherited-fields-java.io.FilterInputStream-trigger"
+          src="https://developer.android.com/assets/images/styles/disclosure_down.png"
+          class="jd-expando-trigger-img" /></a>From
+  class
+  <code>
+    <a href="https://developer.android.com/reference/java/io/FilterInputStream.html">java.io.FilterInputStream</a>
+  </code>
+  <div id="inherited-fields-java.io.FilterInputStream">
+    <div id="inherited-fields-java.io.FilterInputStream-list"
+          class="jd-inheritedlinks">
+    </div>
+    <div id="inherited-fields-java.io.FilterInputStream-summary" style="display: none;">
+      <table class="jd-sumtable-expando responsive">
+      
+
+
+  <tr class="api apilevel-1" >
+    <td><code>
+    protected
+    
+    
+    <a href="InputStream.html">InputStream</a></code></td>
+    <td width="100%">
+      <code><a href="https://developer.android.com/reference/java/io/FilterInputStream.html#in">in</a></code>
+      <p>The input stream to be filtered.
+      
+    
+</p>
+    </td>
+  </tr>
+  
+
+</table>
+    </div>
+  </div>
+  </td></tr>
+
+
+
+
+
+
+
+
+
+
+</table>
+
+
+
+
+<!-- ======== CONSTRUCTOR SUMMARY ======== -->
+<table id="pubctors" class="responsive constructors">
+<tr><th colspan="2"><h3>Public constructors</h3></th></tr>
+
+
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td width="100%">
+      <code>
+      <a href="BufferedInputStream.html#BufferedInputStream(java.io.InputStream)">BufferedInputStream</a>(<a href="InputStream.html">InputStream</a> in)
+      </code>
+      
+        <p>Creates a <code>BufferedInputStream</code>
+ and saves its  argument, the input stream
+ <code>in</code>, for later use.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td width="100%">
+      <code>
+      <a href="BufferedInputStream.html#BufferedInputStream(java.io.InputStream, int)">BufferedInputStream</a>(<a href="InputStream.html">InputStream</a> in, int size)
+      </code>
+      
+        <p>Creates a <code>BufferedInputStream</code>
+ with the specified buffer size,
+ and saves its  argument, the input stream
+ <code>in</code>, for later use.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+
+</table>
+
+
+
+
+
+
+<!-- ========== METHOD SUMMARY =========== -->
+<table id="pubmethods" class="responsive methods">
+<tr><th colspan="2"><h3>Public methods</h3></th></tr>
+
+
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        int</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="BufferedInputStream.html#available()">available</a>()
+      </code>
+      
+        <p>Returns an estimate of the number of bytes that can be read (or
+ skipped over) from this input stream without blocking by the next
+ invocation of a method for this input stream.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="BufferedInputStream.html#close()">close</a>()
+      </code>
+      
+        <p>Closes this input stream and releases any system resources
+ associated with the stream.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="BufferedInputStream.html#mark(int)">mark</a>(int readlimit)
+      </code>
+      
+        <p>See the general contract of the <code>mark</code>
+ method of <code>InputStream</code>.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        boolean</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="BufferedInputStream.html#markSupported()">markSupported</a>()
+      </code>
+      
+        <p>Tests if this input stream supports the <code>mark</code>
+ and <code>reset</code> methods.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        int</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="BufferedInputStream.html#read()">read</a>()
+      </code>
+      
+        <p>See
+ the general contract of the <code>read</code>
+ method of <code>InputStream</code>.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        int</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="BufferedInputStream.html#read(byte[], int, int)">read</a>(byte[] b, int off, int len)
+      </code>
+      
+        <p>Reads bytes from this byte-input stream into the specified byte array,
+ starting at the given offset.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="BufferedInputStream.html#reset()">reset</a>()
+      </code>
+      
+        <p>See the general contract of the <code>reset</code>
+ method of <code>InputStream</code>.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        long</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="BufferedInputStream.html#skip(long)">skip</a>(long n)
+      </code>
+      
+        <p>See the general contract of the <code>skip</code>
+ method of <code>InputStream</code>.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+
+</table>
+
+
+
+
+
+
+
+<!-- ========== METHOD SUMMARY =========== -->
+<table id="inhmethods" class="methods inhtable">
+<tr><th><h3>Inherited methods</h3></th></tr>
+
+
+<tr class="api apilevel-" >
+<td colspan="2">
+
+  <a href="BufferedInputStream.html#" onclick="return toggleInherited(this, null)" id="inherited-methods-java.io.FilterInputStream" class="jd-expando-trigger closed"
+          ><img height="34" id="inherited-methods-java.io.FilterInputStream-trigger"
+          src="https://developer.android.com/assets/images/styles/disclosure_down.png"
+          class="jd-expando-trigger-img" /></a>From
+class
+<code>
+  
+    <a href="https://developer.android.com/reference/java/io/FilterInputStream.html">java.io.FilterInputStream</a>
+  
+</code>
+<div id="inherited-methods-java.io.FilterInputStream">
+  <div id="inherited-methods-java.io.FilterInputStream-list"
+        class="jd-inheritedlinks">
+  </div>
+  <div id="inherited-methods-java.io.FilterInputStream-summary" style="display: none;">
+    <table class="jd-sumtable-expando responsive">
+      
+
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        int</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="https://developer.android.com/reference/java/io/FilterInputStream.html#available()">available</a>()
+      </code>
+      
+        <p>Returns an estimate of the number of bytes that can be read (or
+ skipped over) from this input stream without blocking by the next
+ caller of a method for this input stream.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="https://developer.android.com/reference/java/io/FilterInputStream.html#close()">close</a>()
+      </code>
+      
+        <p>Closes this input stream and releases any system resources
+ associated with the stream.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="https://developer.android.com/reference/java/io/FilterInputStream.html#mark(int)">mark</a>(int readlimit)
+      </code>
+      
+        <p>Marks the current position in this input stream.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        boolean</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="https://developer.android.com/reference/java/io/FilterInputStream.html#markSupported()">markSupported</a>()
+      </code>
+      
+        <p>Tests if this input stream supports the <code>mark</code>
+ and <code>reset</code> methods.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        int</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="https://developer.android.com/reference/java/io/FilterInputStream.html#read()">read</a>()
+      </code>
+      
+        <p>Reads the next byte of data from this input stream.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        int</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="https://developer.android.com/reference/java/io/FilterInputStream.html#read(byte[], int, int)">read</a>(byte[] b, int off, int len)
+      </code>
+      
+        <p>Reads up to <code>len</code> bytes of data from this input stream
+ into an array of bytes.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        int</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="https://developer.android.com/reference/java/io/FilterInputStream.html#read(byte[])">read</a>(byte[] b)
+      </code>
+      
+        <p>Reads up to <code>byte.length</code> bytes of data from this
+ input stream into an array of bytes.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="https://developer.android.com/reference/java/io/FilterInputStream.html#reset()">reset</a>()
+      </code>
+      
+        <p>Repositions this stream to the position at the time the
+ <code>mark</code> method was last called on this input stream.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        long</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="https://developer.android.com/reference/java/io/FilterInputStream.html#skip(long)">skip</a>(long n)
+      </code>
+      
+        <p>Skips over and discards <code>n</code> bytes of data from the
+ input stream.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+
+    </table>
+  </div>
+</div>
+</td></tr>
+
+
+
+<tr class="api apilevel-" >
+<td colspan="2">
+
+  <a href="BufferedInputStream.html#" onclick="return toggleInherited(this, null)" id="inherited-methods-java.io.InputStream" class="jd-expando-trigger closed"
+          ><img height="34" id="inherited-methods-java.io.InputStream-trigger"
+          src="https://developer.android.com/assets/images/styles/disclosure_down.png"
+          class="jd-expando-trigger-img" /></a>From
+class
+<code>
+  
+    <a href="InputStream.html">java.io.InputStream</a>
+  
+</code>
+<div id="inherited-methods-java.io.InputStream">
+  <div id="inherited-methods-java.io.InputStream-list"
+        class="jd-inheritedlinks">
+  </div>
+  <div id="inherited-methods-java.io.InputStream-summary" style="display: none;">
+    <table class="jd-sumtable-expando responsive">
+      
+
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        int</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="InputStream.html#available()">available</a>()
+      </code>
+      
+        <p>Returns an estimate of the number of bytes that can be read (or
+ skipped over) from this input stream without blocking by the next
+ invocation of a method for this input stream.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="InputStream.html#close()">close</a>()
+      </code>
+      
+        <p>Closes this input stream and releases any system resources associated
+ with the stream.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="InputStream.html#mark(int)">mark</a>(int readlimit)
+      </code>
+      
+        <p>Marks the current position in this input stream.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        boolean</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="InputStream.html#markSupported()">markSupported</a>()
+      </code>
+      
+        <p>Tests if this input stream supports the <code>mark</code> and
+ <code>reset</code> methods.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        abstract
+        
+        
+        
+        
+        int</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="InputStream.html#read()">read</a>()
+      </code>
+      
+        <p>Reads the next byte of data from the input stream.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        int</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="InputStream.html#read(byte[], int, int)">read</a>(byte[] b, int off, int len)
+      </code>
+      
+        <p>Reads up to <code>len</code> bytes of data from the input stream into
+ an array of bytes.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        int</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="InputStream.html#read(byte[])">read</a>(byte[] b)
+      </code>
+      
+        <p>Reads some number of bytes from the input stream and stores them into
+ the buffer array <code>b</code>.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="InputStream.html#reset()">reset</a>()
+      </code>
+      
+        <p>Repositions this stream to the position at the time the
+ <code>mark</code> method was last called on this input stream.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        long</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="InputStream.html#skip(long)">skip</a>(long n)
+      </code>
+      
+        <p>Skips over and discards <code>n</code> bytes of data from this input
+ stream.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+
+    </table>
+  </div>
+</div>
+</td></tr>
+
+
+
+<tr class="api apilevel-" >
+<td colspan="2">
+
+  <a href="BufferedInputStream.html#" onclick="return toggleInherited(this, null)" id="inherited-methods-java.lang.Object" class="jd-expando-trigger closed"
+          ><img height="34" id="inherited-methods-java.lang.Object-trigger"
+          src="https://developer.android.com/assets/images/styles/disclosure_down.png"
+          class="jd-expando-trigger-img" /></a>From
+class
+<code>
+  
+    <a href="https://developer.android.com/reference/java/lang/Object.html">java.lang.Object</a>
+  
+</code>
+<div id="inherited-methods-java.lang.Object">
+  <div id="inherited-methods-java.lang.Object-list"
+        class="jd-inheritedlinks">
+  </div>
+  <div id="inherited-methods-java.lang.Object-summary" style="display: none;">
+    <table class="jd-sumtable-expando responsive">
+      
+
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        <a href="https://developer.android.com/reference/java/lang/Object.html">Object</a></code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="https://developer.android.com/reference/java/lang/Object.html#clone()">clone</a>()
+      </code>
+      
+        <p>Creates and returns a copy of this object.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        boolean</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="https://developer.android.com/reference/java/lang/Object.html#equals(java.lang.Object)">equals</a>(<a href="https://developer.android.com/reference/java/lang/Object.html">Object</a> obj)
+      </code>
+      
+        <p>Indicates whether some other object is "equal to" this one.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="https://developer.android.com/reference/java/lang/Object.html#finalize()">finalize</a>()
+      </code>
+      
+        <p>Called by the garbage collector on an object when garbage collection
+ determines that there are no more references to the object.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        final
+        
+        <a href="https://developer.android.com/reference/java/lang/Class.html">Class</a>&lt;?&gt;</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="https://developer.android.com/reference/java/lang/Object.html#getClass()">getClass</a>()
+      </code>
+      
+        <p>Returns the runtime class of this <code>Object</code>.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        int</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="https://developer.android.com/reference/java/lang/Object.html#hashCode()">hashCode</a>()
+      </code>
+      
+        <p>Returns a hash code value for the object.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        final
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="https://developer.android.com/reference/java/lang/Object.html#notify()">notify</a>()
+      </code>
+      
+        <p>Wakes up a single thread that is waiting on this object's
+ monitor.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        final
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="https://developer.android.com/reference/java/lang/Object.html#notifyAll()">notifyAll</a>()
+      </code>
+      
+        <p>Wakes up all threads that are waiting on this object's monitor.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        
+        
+        <a href="../lang/String.html">String</a></code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="https://developer.android.com/reference/java/lang/Object.html#toString()">toString</a>()
+      </code>
+      
+        <p>Returns a string representation of the object.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        final
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="https://developer.android.com/reference/java/lang/Object.html#wait(long, int)">wait</a>(long millis, int nanos)
+      </code>
+      
+        <p>Causes the current thread to wait until another thread invokes the
+ <code><a href="https://developer.android.com/reference/java/lang/Object.html#notify()">notify()</a></code> method or the
+ <code><a href="https://developer.android.com/reference/java/lang/Object.html#notifyAll()">notifyAll()</a></code> method for this object, or
+ some other thread interrupts the current thread, or a certain
+ amount of real time has elapsed.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        final
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="https://developer.android.com/reference/java/lang/Object.html#wait(long)">wait</a>(long millis)
+      </code>
+      
+        <p>Causes the current thread to wait until either another thread invokes the
+ <code><a href="https://developer.android.com/reference/java/lang/Object.html#notify()">notify()</a></code> method or the
+ <code><a href="https://developer.android.com/reference/java/lang/Object.html#notifyAll()">notifyAll()</a></code> method for this object, or a
+ specified amount of time has elapsed.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        
+        
+        
+        final
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="https://developer.android.com/reference/java/lang/Object.html#wait()">wait</a>()
+      </code>
+      
+        <p>Causes the current thread to wait until another thread invokes the
+ <code><a href="https://developer.android.com/reference/java/lang/Object.html#notify()">notify()</a></code> method or the
+ <code><a href="https://developer.android.com/reference/java/lang/Object.html#notifyAll()">notifyAll()</a></code> method for this object.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+
+    </table>
+  </div>
+</div>
+</td></tr>
+
+
+
+<tr class="api apilevel-" >
+<td colspan="2">
+
+  <a href="BufferedInputStream.html#" onclick="return toggleInherited(this, null)" id="inherited-methods-java.io.Closeable" class="jd-expando-trigger closed"
+          ><img height="34" id="inherited-methods-java.io.Closeable-trigger"
+          src="https://developer.android.com/assets/images/styles/disclosure_down.png"
+          class="jd-expando-trigger-img" /></a>From
+interface
+<code>
+  
+    <a href="https://developer.android.com/reference/java/io/Closeable.html">java.io.Closeable</a>
+  
+</code>
+<div id="inherited-methods-java.io.Closeable">
+  <div id="inherited-methods-java.io.Closeable-list"
+        class="jd-inheritedlinks">
+  </div>
+  <div id="inherited-methods-java.io.Closeable-summary" style="display: none;">
+    <table class="jd-sumtable-expando responsive">
+      
+
+
+  
+  <tr class="api apilevel-1" >
+  
+  
+    <td><code>
+        abstract
+        
+        
+        
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="https://developer.android.com/reference/java/io/Closeable.html#close()">close</a>()
+      </code>
+      
+        <p>Closes this stream and releases any system resources associated
+ with it.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+
+    </table>
+  </div>
+</div>
+</td></tr>
+
+
+
+<tr class="api apilevel-" >
+<td colspan="2">
+
+  <a href="BufferedInputStream.html#" onclick="return toggleInherited(this, null)" id="inherited-methods-java.lang.AutoCloseable" class="jd-expando-trigger closed"
+          ><img height="34" id="inherited-methods-java.lang.AutoCloseable-trigger"
+          src="https://developer.android.com/assets/images/styles/disclosure_down.png"
+          class="jd-expando-trigger-img" /></a>From
+interface
+<code>
+  
+    <a href="https://developer.android.com/reference/java/lang/AutoCloseable.html">java.lang.AutoCloseable</a>
+  
+</code>
+<div id="inherited-methods-java.lang.AutoCloseable">
+  <div id="inherited-methods-java.lang.AutoCloseable-list"
+        class="jd-inheritedlinks">
+  </div>
+  <div id="inherited-methods-java.lang.AutoCloseable-summary" style="display: none;">
+    <table class="jd-sumtable-expando responsive">
+      
+
+
+  
+  <tr class="api apilevel-19" >
+  
+  
+    <td><code>
+        abstract
+        
+        
+        
+        
+        void</code>
+    </td>
+  
+    <td width="100%">
+      <code>
+      <a href="https://developer.android.com/reference/java/lang/AutoCloseable.html#close()">close</a>()
+      </code>
+      
+        <p>Closes this resource, relinquishing any underlying resources.
+        
+    
+</p>
+      
+    </td>
+  </tr>
+  
+
+
+    </table>
+  </div>
+</div>
+</td></tr>
+
+
+</table>
+
+
+
+<!-- XML Attributes -->
+
+
+<!-- Enum Values -->
+
+
+<!-- Constants -->
+
+
+<!-- Fields -->
+
+
+<!-- ========= FIELD DETAIL ======== -->
+<h2 class="api-section">Fields</h2>
+
+
+
+
+<A NAME="buf"></A>
+
+<div class="api apilevel-1">
+    <h3 class="api-name">buf</h3>
+    <div class="api-level">
+      
+  Added in <a href="https://developer.android.com/guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 1</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+byte[] buf</pre>
+    
+    
+
+    
+  <p>The internal buffer array where the data is stored. When necessary,
+ it may be replaced by another array of
+ a different size.
+</p>
+
+    
+</div>
+
+
+
+<A NAME="count"></A>
+
+<div class="api apilevel-1">
+    <h3 class="api-name">count</h3>
+    <div class="api-level">
+      
+  Added in <a href="https://developer.android.com/guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 1</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int count</pre>
+    
+    
+
+    
+  <p>The index one greater than the index of the last valid byte in
+ the buffer.
+ This value is always
+ in the range <code>0</code> through <code>buf.length</code>;
+ elements <code>buf[0]</code>  through <code>buf[count-1]
+ </code>contain buffered input data obtained
+ from the underlying  input stream.
+</p>
+
+    
+</div>
+
+
+
+<A NAME="marklimit"></A>
+
+<div class="api apilevel-1">
+    <h3 class="api-name">marklimit</h3>
+    <div class="api-level">
+      
+  Added in <a href="https://developer.android.com/guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 1</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int marklimit</pre>
+    
+    
+
+    
+  <p>The maximum read ahead allowed after a call to the
+ <code>mark</code> method before subsequent calls to the
+ <code>reset</code> method fail.
+ Whenever the difference between <code>pos</code>
+ and <code>markpos</code> exceeds <code>marklimit</code>,
+ then the  mark may be dropped by setting
+ <code>markpos</code> to <code>-1</code>.</p>
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code><a href="BufferedInputStream.html#mark(int)">mark(int)</a></code></li><li><code><a href="BufferedInputStream.html#reset()">reset()</a></code></li>
+      </ul>
+  </div>
+
+    
+</div>
+
+
+
+<A NAME="markpos"></A>
+
+<div class="api apilevel-1">
+    <h3 class="api-name">markpos</h3>
+    <div class="api-level">
+      
+  Added in <a href="https://developer.android.com/guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 1</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int markpos</pre>
+    
+    
+
+    
+  <p>The value of the <code>pos</code> field at the time the last
+ <code>mark</code> method was called.
+ <p>
+ This value is always
+ in the range <code>-1</code> through <code>pos</code>.
+ If there is no marked position in  the input
+ stream, this field is <code>-1</code>. If
+ there is a marked position in the input
+ stream,  then <code>buf[markpos]</code>
+ is the first byte to be supplied as input
+ after a <code>reset</code> operation. If
+ <code>markpos</code> is not <code>-1</code>,
+ then all bytes from positions <code>buf[markpos]</code>
+ through  <code>buf[pos-1]</code> must remain
+ in the buffer array (though they may be
+ moved to  another place in the buffer array,
+ with suitable adjustments to the values
+ of <code>count</code>,  <code>pos</code>,
+ and <code>markpos</code>); they may not
+ be discarded unless and until the difference
+ between <code>pos</code> and <code>markpos</code>
+ exceeds <code>marklimit</code>.</p>
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code><a href="BufferedInputStream.html#mark(int)">mark(int)</a></code></li><li><code><a href="BufferedInputStream.html#pos">pos</a></code></li>
+      </ul>
+  </div>
+
+    
+</div>
+
+
+
+<A NAME="pos"></A>
+
+<div class="api apilevel-1">
+    <h3 class="api-name">pos</h3>
+    <div class="api-level">
+      
+  Added in <a href="https://developer.android.com/guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 1</a>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int pos</pre>
+    
+    
+
+    
+  <p>The current position in the buffer. This is the index of the next
+ character to be read from the <code>buf</code> array.
+ <p>
+ This value is always in the range <code>0</code>
+ through <code>count</code>. If it is less
+ than <code>count</code>, then  <code>buf[pos]</code>
+ is the next byte to be supplied as input;
+ if it is equal to <code>count</code>, then
+ the  next <code>read</code> or <code>skip</code>
+ operation will require more bytes to be
+ read from the contained  input stream.</p>
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code><a href="BufferedInputStream.html#buf">buf</a></code></li>
+      </ul>
+  </div>
+
+    
+</div>
+
+
+
+
+<!-- Public ctors -->
+
+
+<!-- ========= CONSTRUCTOR DETAIL ======== -->
+<h2 class="api-section">Public constructors</h2>
+
+
+
+<A NAME="BufferedInputStream(java.io.InputStream)"></A>
+
+<div class="api apilevel-1">
+    <h3 class="api-name">BufferedInputStream</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="https://developer.android.com/guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 1</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+BufferedInputStream (<a href="InputStream.html">InputStream</a> in)</pre>
+    
+    
+
+    
+  <p>Creates a <code>BufferedInputStream</code>
+ and saves its  argument, the input stream
+ <code>in</code>, for later use. An internal
+ buffer array is created and  stored in <code>buf</code>.</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>in</code></td>
+        <td width="100%">
+          <code>InputStream</code>:
+          the underlying input stream.
+</td>
+      </tr>
+    </table>
+
+</div>
+
+
+<A NAME="BufferedInputStream(java.io.InputStream, int)"></A>
+
+<div class="api apilevel-1">
+    <h3 class="api-name">BufferedInputStream</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="https://developer.android.com/guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 1</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+BufferedInputStream (<a href="InputStream.html">InputStream</a> in, 
+                int size)</pre>
+    
+    
+
+    
+  <p>Creates a <code>BufferedInputStream</code>
+ with the specified buffer size,
+ and saves its  argument, the input stream
+ <code>in</code>, for later use.  An internal
+ buffer array of length  <code>size</code>
+ is created and stored in <code>buf</code>.</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>in</code></td>
+        <td width="100%">
+          <code>InputStream</code>:
+          the underlying input stream.</td>
+      </tr>
+      <tr>
+        <td><code>size</code></td>
+        <td width="100%">
+          <code>int</code>:
+          the buffer size.</td>
+      </tr>
+    </table>
+      <table class="responsive">
+      <tr><th colspan=2>Throws</th></tr>
+        <tr>
+          <td><code><a href="https://developer.android.com/reference/java/lang/IllegalArgumentException.html">IllegalArgumentException</a></code></td>
+          <td width="100%">if size <= 0.
+</td>
+        </tr>
+      </table>
+  
+
+</div>
+
+
+
+
+
+<!-- ========= CONSTRUCTOR DETAIL ======== -->
+<!-- Protected ctors -->
+
+
+
+<!-- ========= METHOD DETAIL ======== -->
+<!-- Public methdos -->
+
+<h2 class="api-section">Public methods</h2>
+
+
+
+<A NAME="available()"></A>
+
+<div class="api apilevel-1">
+    <h3 class="api-name">available</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="https://developer.android.com/guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 1</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int available ()</pre>
+    
+    
+
+    
+  <p>Returns an estimate of the number of bytes that can be read (or
+ skipped over) from this input stream without blocking by the next
+ invocation of a method for this input stream. The next invocation might be
+ the same thread or another thread.  A single read or skip of this
+ many bytes will not block, but may read or skip fewer bytes.
+ <p>
+ This method returns the sum of the number of bytes remaining to be read in
+ the buffer (<code>count&nbsp;- pos</code>) and the result of calling the
+ <code><a href="https://developer.android.com/reference/java/io/FilterInputStream.html#in">in</a></code>.available().</p>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code>int</code></td>
+        <td width="100%">an estimate of the number of bytes that can be read (or skipped
+             over) from this input stream without blocking.</td>
+      </tr>
+    </table>
+      <table class="responsive">
+      <tr><th colspan=2>Throws</th></tr>
+        <tr>
+          <td><code><a href="https://developer.android.com/reference/java/io/IOException.html">IOException</a></code></td>
+          <td width="100%">if this input stream has been closed by
+                          invoking its <code><a href="BufferedInputStream.html#close()">close()</a></code> method,
+                          or an I/O error occurs.
+</td>
+        </tr>
+      </table>
+  
+
+</div>
+
+
+<A NAME="close()"></A>
+
+<div class="api apilevel-1">
+    <h3 class="api-name">close</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="https://developer.android.com/guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 1</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+void close ()</pre>
+    
+    
+
+    
+  <p>Closes this input stream and releases any system resources
+ associated with the stream.
+ Once the stream has been closed, further read(), available(), reset(),
+ or skip() invocations will throw an IOException.
+ Closing a previously closed stream has no effect.</p>
+      <table class="responsive">
+      <tr><th colspan=2>Throws</th></tr>
+        <tr>
+          <td><code><a href="https://developer.android.com/reference/java/io/IOException.html">IOException</a></code></td>
+          <td width="100%">if an I/O error occurs.
+</td>
+        </tr>
+      </table>
+  
+
+</div>
+
+
+<A NAME="mark(int)"></A>
+
+<div class="api apilevel-1">
+    <h3 class="api-name">mark</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="https://developer.android.com/guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 1</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+void mark (int readlimit)</pre>
+    
+    
+
+    
+  <p>See the general contract of the <code>mark</code>
+ method of <code>InputStream</code>.</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>readlimit</code></td>
+        <td width="100%">
+          <code>int</code>:
+          the maximum limit of bytes that can be read before
+                      the mark position becomes invalid.</td>
+      </tr>
+    </table>
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code><a href="BufferedInputStream.html#reset()">reset()</a></code></li>
+      </ul>
+  </div>
+
+</div>
+
+
+<A NAME="markSupported()"></A>
+
+<div class="api apilevel-1">
+    <h3 class="api-name">markSupported</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="https://developer.android.com/guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 1</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+boolean markSupported ()</pre>
+    
+    
+
+    
+  <p>Tests if this input stream supports the <code>mark</code>
+ and <code>reset</code> methods. The <code>markSupported</code>
+ method of <code>BufferedInputStream</code> returns
+ <code>true</code>.</p>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code>boolean</code></td>
+        <td width="100%">a <code>boolean</code> indicating if this stream type supports
+          the <code>mark</code> and <code>reset</code> methods.</td>
+      </tr>
+    </table>
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code><a href="InputStream.html#mark(int)">mark(int)</a></code></li><li><code><a href="InputStream.html#reset()">reset()</a></code></li>
+      </ul>
+  </div>
+
+</div>
+
+
+<A NAME="read()"></A>
+
+<div class="api apilevel-1">
+    <h3 class="api-name">read</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="https://developer.android.com/guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 1</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int read ()</pre>
+    
+    
+
+    
+  <p>See
+ the general contract of the <code>read</code>
+ method of <code>InputStream</code>.</p>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code>int</code></td>
+        <td width="100%">the next byte of data, or <code>-1</code> if the end of the
+             stream is reached.</td>
+      </tr>
+    </table>
+      <table class="responsive">
+      <tr><th colspan=2>Throws</th></tr>
+        <tr>
+          <td><code><a href="https://developer.android.com/reference/java/io/IOException.html">IOException</a></code></td>
+          <td width="100%">if this input stream has been closed by
+                          invoking its <code><a href="BufferedInputStream.html#close()">close()</a></code> method,
+                          or an I/O error occurs.</td>
+        </tr>
+      </table>
+  
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code><a href="https://developer.android.com/reference/java/io/FilterInputStream.html#in">in</a></code></li>
+      </ul>
+  </div>
+
+</div>
+
+
+<A NAME="read(byte[], int, int)"></A>
+
+<div class="api apilevel-1">
+    <h3 class="api-name">read</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="https://developer.android.com/guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 1</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+int read (byte[] b, 
+                int off, 
+                int len)</pre>
+    
+    
+
+    
+  <p>Reads bytes from this byte-input stream into the specified byte array,
+ starting at the given offset.
+
+ <p> This method implements the general contract of the corresponding
+ <code><code><a href="InputStream.html#read(byte[], int, int)">read</a></code></code> method of
+ the <code><code><a href="InputStream.html">InputStream</a></code></code> class.  As an additional
+ convenience, it attempts to read as many bytes as possible by repeatedly
+ invoking the <code>read</code> method of the underlying stream.  This
+ iterated <code>read</code> continues until one of the following
+ conditions becomes true: <ul>
+
+   <li> The specified number of bytes have been read,
+
+   <li> The <code>read</code> method of the underlying stream returns
+   <code>-1</code>, indicating end-of-file, or
+
+   <li> The <code>available</code> method of the underlying stream
+   returns zero, indicating that further input requests would block.
+
+ </ul> If the first <code>read</code> on the underlying stream returns
+ <code>-1</code> to indicate end-of-file then this method returns
+ <code>-1</code>.  Otherwise this method returns the number of bytes
+ actually read.
+
+ <p> Subclasses of this class are encouraged, but not required, to
+ attempt to read as many bytes as possible in the same fashion.</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>b</code></td>
+        <td width="100%">
+          <code>byte</code>:
+          destination buffer.</td>
+      </tr>
+      <tr>
+        <td><code>off</code></td>
+        <td width="100%">
+          <code>int</code>:
+          offset at which to start storing bytes.</td>
+      </tr>
+      <tr>
+        <td><code>len</code></td>
+        <td width="100%">
+          <code>int</code>:
+          maximum number of bytes to read.</td>
+      </tr>
+    </table>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code>int</code></td>
+        <td width="100%">the number of bytes read, or <code>-1</code> if the end of
+             the stream has been reached.</td>
+      </tr>
+    </table>
+      <table class="responsive">
+      <tr><th colspan=2>Throws</th></tr>
+        <tr>
+          <td><code><a href="https://developer.android.com/reference/java/io/IOException.html">IOException</a></code></td>
+          <td width="100%">if this input stream has been closed by
+                          invoking its <code><a href="BufferedInputStream.html#close()">close()</a></code> method,
+                          or an I/O error occurs.
+</td>
+        </tr>
+      </table>
+  
+
+</div>
+
+
+<A NAME="reset()"></A>
+
+<div class="api apilevel-1">
+    <h3 class="api-name">reset</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="https://developer.android.com/guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 1</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+void reset ()</pre>
+    
+    
+
+    
+  <p>See the general contract of the <code>reset</code>
+ method of <code>InputStream</code>.
+ <p>
+ If <code>markpos</code> is <code>-1</code>
+ (no mark has been set or the mark has been
+ invalidated), an <code>IOException</code>
+ is thrown. Otherwise, <code>pos</code> is
+ set equal to <code>markpos</code>.</p>
+      <table class="responsive">
+      <tr><th colspan=2>Throws</th></tr>
+        <tr>
+          <td><code><a href="https://developer.android.com/reference/java/io/IOException.html">IOException</a></code></td>
+          <td width="100%">if this stream has not been marked or,
+                  if the mark has been invalidated, or the stream
+                  has been closed by invoking its <code><a href="BufferedInputStream.html#close()">close()</a></code>
+                  method, or an I/O error occurs.</td>
+        </tr>
+      </table>
+  
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code><a href="BufferedInputStream.html#mark(int)">mark(int)</a></code></li>
+      </ul>
+  </div>
+
+</div>
+
+
+<A NAME="skip(long)"></A>
+
+<div class="api apilevel-1">
+    <h3 class="api-name">skip</h3>
+    <div class="api-level">
+      <div>
+  Added in <a href="https://developer.android.com/guide/topics/manifest/uses-sdk-element.html#ApiLevels">API level 1</a></div>
+      
+  
+
+    </div>
+<pre class="api-signature no-pretty-print">
+long skip (long n)</pre>
+    
+    
+
+    
+  <p>See the general contract of the <code>skip</code>
+ method of <code>InputStream</code>.</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>n</code></td>
+        <td width="100%">
+          <code>long</code>:
+          the number of bytes to be skipped.</td>
+      </tr>
+    </table>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code>long</code></td>
+        <td width="100%">the actual number of bytes skipped.</td>
+      </tr>
+    </table>
+      <table class="responsive">
+      <tr><th colspan=2>Throws</th></tr>
+        <tr>
+          <td><code><a href="https://developer.android.com/reference/java/io/IOException.html">IOException</a></code></td>
+          <td width="100%">if the stream does not support seek,
+                          or if this input stream has been closed by
+                          invoking its <code><a href="BufferedInputStream.html#close()">close()</a></code> method, or an
+                          I/O error occurs.
+</td>
+        </tr>
+      </table>
+  
+
+</div>
+
+
+
+
+
+<!-- ========= METHOD DETAIL ======== -->
+
+
+
+<!-- ========= END OF CLASS DATA ========= -->
+
+</div><!-- end jd-content -->
+
+
+
+<div class="data-reference-resources-wrapper">
+  
+  <ul data-reference-resources>
+    
+    
+    <li><h2>Interfaces</h2>
+      <ul>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/Closeable.html">Closeable</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/DataInput.html">DataInput</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/DataOutput.html">DataOutput</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/Externalizable.html">Externalizable</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/FileFilter.html">FileFilter</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/FilenameFilter.html">FilenameFilter</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/Flushable.html">Flushable</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/ObjectInput.html">ObjectInput</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/ObjectInputValidation.html">ObjectInputValidation</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/ObjectOutput.html">ObjectOutput</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/ObjectStreamConstants.html">ObjectStreamConstants</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/Serializable.html">Serializable</a></li>
+      </ul>
+    </li>
+    
+    <li><h2>Classes</h2>
+      <ul>
+          <li class="selected api apilevel-1"><a href="BufferedInputStream.html">BufferedInputStream</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/BufferedOutputStream.html">BufferedOutputStream</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/BufferedReader.html">BufferedReader</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/BufferedWriter.html">BufferedWriter</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/ByteArrayInputStream.html">ByteArrayInputStream</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/ByteArrayOutputStream.html">ByteArrayOutputStream</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/CharArrayReader.html">CharArrayReader</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/CharArrayWriter.html">CharArrayWriter</a></li>
+          <li class="api apilevel-9"><a href="https://developer.android.com/reference/java/io/Console.html">Console</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/DataInputStream.html">DataInputStream</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/DataOutputStream.html">DataOutputStream</a></li>
+          <li class="api apilevel-1"><a href="File.html">File</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/FileDescriptor.html">FileDescriptor</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/FileInputStream.html">FileInputStream</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/FileOutputStream.html">FileOutputStream</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/FilePermission.html">FilePermission</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/FileReader.html">FileReader</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/FileWriter.html">FileWriter</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/FilterInputStream.html">FilterInputStream</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/FilterOutputStream.html">FilterOutputStream</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/FilterReader.html">FilterReader</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/FilterWriter.html">FilterWriter</a></li>
+          <li class="api apilevel-1"><a href="InputStream.html">InputStream</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/InputStreamReader.html">InputStreamReader</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/LineNumberInputStream.html">LineNumberInputStream</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/LineNumberReader.html">LineNumberReader</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/ObjectInputStream.html">ObjectInputStream</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/ObjectInputStream.GetField.html">ObjectInputStream.GetField</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/ObjectOutputStream.html">ObjectOutputStream</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/ObjectOutputStream.PutField.html">ObjectOutputStream.PutField</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/ObjectStreamClass.html">ObjectStreamClass</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/ObjectStreamField.html">ObjectStreamField</a></li>
+          <li class="api apilevel-1"><a href="OutputStream.html">OutputStream</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/OutputStreamWriter.html">OutputStreamWriter</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/PipedInputStream.html">PipedInputStream</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/PipedOutputStream.html">PipedOutputStream</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/PipedReader.html">PipedReader</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/PipedWriter.html">PipedWriter</a></li>
+          <li class="api apilevel-1"><a href="PrintStream.html">PrintStream</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/PrintWriter.html">PrintWriter</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/PushbackInputStream.html">PushbackInputStream</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/PushbackReader.html">PushbackReader</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/RandomAccessFile.html">RandomAccessFile</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/Reader.html">Reader</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/SequenceInputStream.html">SequenceInputStream</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/SerializablePermission.html">SerializablePermission</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/StreamTokenizer.html">StreamTokenizer</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/StringBufferInputStream.html">StringBufferInputStream</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/StringReader.html">StringReader</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/StringWriter.html">StringWriter</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/Writer.html">Writer</a></li>
+      </ul>
+    </li>
+    
+    
+    <li><h2>Exceptions</h2>
+      <ul>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/CharConversionException.html">CharConversionException</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/EOFException.html">EOFException</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/FileNotFoundException.html">FileNotFoundException</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/InterruptedIOException.html">InterruptedIOException</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/InvalidClassException.html">InvalidClassException</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/InvalidObjectException.html">InvalidObjectException</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/IOException.html">IOException</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/NotActiveException.html">NotActiveException</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/NotSerializableException.html">NotSerializableException</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/ObjectStreamException.html">ObjectStreamException</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/OptionalDataException.html">OptionalDataException</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/StreamCorruptedException.html">StreamCorruptedException</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/SyncFailedException.html">SyncFailedException</a></li>
+          <li class="api apilevel-24"><a href="https://developer.android.com/reference/java/io/UncheckedIOException.html">UncheckedIOException</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/UnsupportedEncodingException.html">UnsupportedEncodingException</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/UTFDataFormatException.html">UTFDataFormatException</a></li>
+          <li class="api apilevel-1"><a href="https://developer.android.com/reference/java/io/WriteAbortedException.html">WriteAbortedException</a></li>
+      </ul>
+    </li>
+    
+    <li><h2>Errors</h2>
+      <ul>
+          <li class="api apilevel-9"><a href="https://developer.android.com/reference/java/io/IOError.html">IOError</a></li>
+      </ul>
+    </li>
+  </ul>
+  
+</div>
+
+
+
+
+    </div>
+
+    
+
+    
+    
+
+
+
+<div class="wrap">
+  <footer class="dac-footer ">
+    <div class="cols dac-footer-main">
+      <div class="col-1of2">
+        <a class="dac-footer-getnews" id="newsletter" data-modal-toggle="newsletter" title="Sign up for the newsletter">
+          Get news &amp; tips <span class="dac-fab dac-primary"><i class="dac-sprite dac-mail"></i><span class="hide-text">Sign up for the newsletter</span></span>
+        </a>
+      </div>
+      <div class="col-1of2 dac-footer-reachout">
+        <div class="dac-footer-contact">
+          <a class="dac-footer-contact-link" href="http://android-developers.blogspot.com/" title="Blog">Blog</a>
+          <a class="dac-footer-contact-link" href="https://developer.android.com/support.html" title="Support">Support</a>
+        </div>
+        <div class="dac-footer-social">
+          <a class="dac-button-social dac-youtube dac-footer-social-link" href="https://www.youtube.com/user/androiddevelopers" title="Android Developers on YouTube"><i class="dac-sprite dac-youtube"></i><span class="hide-text">Android Developers on YouTube</span></a>
+          <a class="dac-button-social dac-gplus dac-footer-social-link" href="https://plus.google.com/+AndroidDevelopers" title="Android Developers on Google+"><i class="dac-sprite dac-gplus"></i><span class="hide-text">Android Developers on Google+</span></a>
+          <a class="dac-button-social dac-twitter dac-footer-social-link" href="https://twitter.com/AndroidDev" title="Android Developers on Twitter"><i class="dac-sprite dac-twitter"></i><span class="hide-text">Android Developers on Twitter</span></a>
+        </div>
+      </div>
+    </div>
+
+    <hr class="dac-footer-separator"/>
+      
+      <p class="dac-footer-copyright">
+        Except as noted, this content is
+        licensed under <a href="http://creativecommons.org/licenses/by/2.5/">
+        Creative Commons Attribution 2.5</a>. For details and
+        restrictions, see the <a href="https://developer.android.com/license.html">Content
+        License</a>.
+      </p>
+    
+
+    <p class="dac-footer-links">
+      <a href="https://developer.android.com/about/android.html" title="About Android">About Android</a>
+      <a href="https://developer.android.com/auto/index.html" title="Auto">Auto</a>
+      <a href="https://developer.android.com/tv/index.html" title="TV">TV</a>
+      <a href="https://developer.android.com/wear/index.html" title="Wear">Wear</a>
+      <a href="https://developer.android.com/legal.html" title="Legal">Legal</a>
+    </p>
+
+    <!-- TODO(akassay) Update all DAC js to use the class instead of the id b/30368561 -->
+    <form class="devsite-utility-footer-language" id="setlang" action="https://developer.android.com/i18n/setlang/" method="post">
+      <input type="hidden" name="xsrf_token" value="uwvTlDWbrrNq4EN90olJI8M6kha3Ijrwv9wP874ftAU6MTQ4MzM3MjQxNTU3MTY2MA" />
+      <input type="hidden" name="next" value="/reference/java/io/BufferedInputStream.html">
+      <span id="language" class="locales">
+        <select class="devsite-utility-footer-language-select" name="language">
+          
+          <option value="id"
+            >
+            Bahasa Indonesia
+          </option>
+          
+          <option value="en"
+             selected="selected" >
+            English
+          </option>
+          
+          <option value="es"
+            >
+            español
+          </option>
+          
+          <option value="pt-br"
+            >
+            Português Brasileiro
+          </option>
+          
+          <option value="vi"
+            >
+            Tiếng Việt
+          </option>
+          
+          <option value="ru"
+            >
+            Русский
+          </option>
+          
+          <option value="ja"
+            >
+            日本語
+          </option>
+          
+          <option value="zh-cn"
+            >
+            简体中文
+          </option>
+          
+          <option value="zh-tw"
+            >
+            繁體中文
+          </option>
+          
+          <option value="ko"
+            >
+            한국어
+          </option>
+          
+        </select>
+      </span>
+    </form>
+  </footer>
+</div><!--/.wrap -->
+
+
+<div class="dac-toast-group">
+  <div class="dac-toast" data-toast>
+    <div class="dac-toast-wrap">
+      This site uses cookies to store your preferences for site-specific language and display options.
+    </div>
+  </div>
+</div>
+
+<div data-modal="newsletter" data-newsletter data-swap class="dac-modal newsletter">
+  <div class="dac-modal-container">
+    <div class="dac-modal-window">
+      <header class="dac-modal-header">
+        <div class="dac-modal-header-actions">
+          <button class="dac-modal-header-close" data-modal-toggle></button>
+        </div>
+        <div class="dac-swap" data-swap-container>
+          <section class="dac-swap-section dac-active dac-down">
+            <h2 class="norule dac-modal-header-title" data-t="newsletter.title"></h2>
+            <p class="dac-modal-header-subtitle" data-t="newsletter.requiredHint"></p>
+          </section>
+          <section class="dac-swap-section dac-up">
+            <h2 class="norule dac-modal-header-title" data-t="newsletter.successTitle">Hooray!</h2>
+          </section>
+        </div>
+      </header>
+      <div class="dac-swap" data-swap-container>
+        <section class="dac-swap-section dac-active dac-left">
+          <form action="https://docs.google.com/forms/d/1QgnkzbEJIDu9lMEea0mxqWrXUJu0oBCLD7ar23V0Yys/formResponse" class="dac-form" method="post" target="dac-newsletter-iframe">
+            <input type="hidden" name="entry.935454734" data-newsletter-language>
+            <section class="dac-modal-content">
+              <fieldset class="dac-form-fieldset">
+                <div class="cols">
+                  <div class="col-1of2 newsletter-leftCol">
+                    <div class="dac-form-input-group">
+                      <label for="newsletter-full-name" class="dac-form-floatlabel" data-t="newsletter.name">Full name</label>
+                      <input type="text" class="dac-form-input" name="entry.1357890476" id="newsletter-full-name" required>
+                      <span class="dac-form-required">*</span>
+                    </div>
+                    <div class="dac-form-input-group">
+                      <label for="newsletter-email" class="dac-form-floatlabel" data-t="newsletter.email">Email address</label>
+                      <input type="email" class="dac-form-input" name="entry.472100832" id="newsletter-email" required>
+                      <span class="dac-form-required">*</span>
+                    </div>
+                  </div>
+                  <div class="col-1of2 newsletter-rightCol">
+                    <div class="dac-form-input-group">
+                      <label for="newsletter-company" class="dac-form-floatlabel" data-t="newsletter.company">Company / developer name</label>
+                      <input type="text" class="dac-form-input" name="entry.1664780309" id="newsletter-company">
+                    </div>
+                    <div class="dac-form-input-group">
+                      <label for="newsletter-play-store" class="dac-form-floatlabel" data-t="newsletter.appUrl">One of your Play Store app URLs</label>
+                      <input type="url" class="dac-form-input" name="entry.47013838" id="newsletter-play-store" required>
+                      <span class="dac-form-required">*</span>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+              <fieldset class="dac-form-fieldset">
+                <div class="cols">
+                  <div class="col-1of2 newsletter-leftCol">
+                    <legend class="dac-form-legend"><span data-t="newsletter.business.label">Which best describes your business:</span><span class="dac-form-required">*</span>
+                    </legend>
+                    <div class="dac-form-radio-group">
+                      <input type="radio" value="Apps" class="dac-form-radio" name="entry.1796324055" id="newsletter-business-type-app" required>
+                      <label for="newsletter-business-type-app" class="dac-form-radio-button"></label>
+                      <label for="newsletter-business-type-app" class="dac-form-label" data-t="newsletter.business.apps">Apps</label>
+                    </div>
+                    <div class="dac-form-radio-group">
+                      <input type="radio" value="Games" class="dac-form-radio" name="entry.1796324055" id="newsletter-business-type-games" required>
+                      <label for="newsletter-business-type-games" class="dac-form-radio-button"></label>
+                      <label for="newsletter-business-type-games" class="dac-form-label" data-t="newsletter.business.games">Games</label>
+                    </div>
+                    <div class="dac-form-radio-group">
+                      <input type="radio" value="Apps and Games" class="dac-form-radio" name="entry.1796324055" id="newsletter-business-type-appsgames" required>
+                      <label for="newsletter-business-type-appsgames" class="dac-form-radio-button"></label>
+                      <label for="newsletter-business-type-appsgames" class="dac-form-label" data-t="newsletter.business.both">Apps &amp; Games</label>
+                    </div>
+                  </div>
+                  <div class="col-1of2 newsletter-rightCol newsletter-checkboxes">
+                    <div class="dac-form-radio-group">
+                      <div class="dac-media">
+                        <div class="dac-media-figure">
+                          <input type="checkbox" class="dac-form-checkbox" name="entry.732309842" id="newsletter-add" required value="Add me to the mailing list for the monthly newsletter and occasional emails about development and Google Play opportunities.">
+                          <label for="newsletter-add" class="dac-form-checkbox-button"></label>
+                        </div>
+                        <div class="dac-media-body">
+                          <label for="newsletter-add" class="dac-form-label dac-form-aside"><span data-t="newsletter.confirmMailingList"></span><span class="dac-form-required">*</span></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="dac-form-radio-group">
+                      <div class="dac-media">
+                        <div class="dac-media-figure">
+                          <input type="checkbox" class="dac-form-checkbox" name="entry.2045036090" id="newsletter-terms" required value="I acknowledge that the information provided in this form will be subject to Google's privacy policy (https://www.google.com/policies/privacy/).">
+                          <label for="newsletter-terms" class="dac-form-checkbox-button"></label>
+                        </div>
+                        <div class="dac-media-body">
+                          <label for="newsletter-terms" class="dac-form-label dac-form-aside"><span data-t="newsletter.privacyPolicy" data-t-html></span><span class="dac-form-required">*</span></label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+            </section>
+            <footer class="dac-modal-footer">
+              <div class="cols">
+                <div class="col-2of5">
+                </div>
+              </div>
+              <button type="submit" value="Submit" class="dac-fab dac-primary dac-large dac-modal-action"><i class="dac-sprite dac-arrow-right"></i></button>
+            </footer>
+          </form>
+        </section>
+        <section class="dac-swap-section dac-right">
+          <div class="dac-modal-content">
+            <p class="newsletter-success-message" data-t="newsletter.successDetails"></p>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</div><!--/.dac-modal.newsletter-->
+
+
+<div data-modal="langform" class="dac-modal" id="langform">
+  <div class="dac-modal-container">
+    <div class="dac-modal-window">
+      <header class="dac-modal-header">
+        <div class="dac-modal-header-actions">
+          <button class="dac-modal-header-close" data-modal-toggle></button>
+        </div>
+        <section class="dac-swap-section dac-active dac-down">
+          <h2 class="norule dac-modal-header-title"></h2>
+        </section>
+      </header>
+      <section class="dac-swap-section dac-active dac-left">
+          <section class="dac-modal-content">
+            <fieldset class="dac-form-fieldset">
+              <div class="cols">
+                <div class="col-2of2 langform-leftCol">
+                  <p id="resetLangText"></p>
+                  <p id="resetLangCta"></p>
+                </div>
+              </div>
+            </fieldset>
+          </section>
+          <footer class="dac-modal-footer" id="langfooter">
+            <div class="cols">
+              <div class="col-2of5">
+              </div>
+            </div>
+            <a href="BufferedInputStream.html#" class="yes" onclick="return false;">
+              <button class="button dac-primary dac-modal-action lang yes" data-t="newsletter.resetLangButtonYes" data-modal-toggle></button>
+            </a>
+            <a href="BufferedInputStream.html#" class="" onclick="return false;">
+              <button class="button dac-primary dac-modal-action lang no" data-t="newsletter.resetLangButtonNo" data-modal-toggle></button>
+            </a>
+          </footer>
+        </form>
+      </section>
+    </div>
+  </div>
+</div><!--/.dac-modal-->
+
+
+<div data-modal="api-unavailable" class="dac-modal" id="api-unavailable">
+  <div class="dac-modal-container">
+    <div class="dac-modal-window">
+      <header class="dac-modal-header">
+        <div class="dac-modal-header-actions">
+          <button class="dac-modal-header-close" data-modal-toggle></button>
+        </div>
+        <section class="dac-swap-section dac-active dac-down">
+          <h2 class="norule dac-modal-header-title">
+            This class requires API level <span class="api-level"></span>
+            or higher
+          </h2>
+        </section>
+      </header>
+      <section class="dac-swap-section dac-active dac-left">
+          <section class="dac-modal-content">
+
+      <p>This doc is hidden because your selected API level for the
+      documentation is <span class="selected-level"></span>. You can change the
+      documentation API level with the selector above the left navigation.</p>
+
+      <p>For more information about specifying the API level your app requires,
+      read <a
+      href="https://developer.android.com/training/basics/supporting-devices/platforms.html">Supporting
+      Different Platform Versions</a>.</p>
+
+          </section>
+          <footer class="dac-modal-footer" id="langfooter">
+            <div class="cols">
+              <div class="col-2of5">
+              </div>
+            </div>
+            <a href="BufferedInputStream.html#" class="ok" onclick="return false;">
+              <button class="button dac-primary dac-modal-action ok"
+              data-modal-toggle>
+                OK, make this page visible
+              </button>
+            </a>
+          </footer>
+        </form>
+      </section>
+    </div>
+  </div>
+</div><!--/.dac-modal#api-unavailable-->
+
+    
+  </div><!--/#body-content-->
+
+  <!-- Nav Setup -->
+  <script>$('[data-dac-nav]').dacNav();</script>
+  <script type="text/javascript">
+    $('.slideshow-container').dacSlideshow({
+        btnPrev: '.slideshow-prev',
+        btnNext: '.slideshow-next',
+        btnPause: '#pauseButton'
+    });
+
+    $(".feed").dacTabbedList({
+      nav_id: '.feed-nav',
+      frame_id: '.feed-frame'
+    });
+  </script>
+  
+  <script src="https://developer.android.com/ytblogger_lists_unified.js?v=2017010203" defer></script>
+  <script src="https://developer.android.com/android_metadata_en.js?v=2017010203" defer></script>
+  
+  <script src="https://developer.android.com/reference/lists.js?v=2017010203" defer></script>
+  <script src="https://developer.android.com/reference/gcm_lists.js?v=2017010203" defer></script>
+  <script src="https://developer.android.com/reference/gms_lists.js?v=2017010203" defer></script>
+  <script src="https://developer.android.com/reference/android/support/wearable/lists.js?v=2017010203" defer></script>
+  <script src="https://developer.android.com/reference/android/support/test/lists.js?v=2017010203" defer></script>
+  <script src="https://developer.android.com/reference/android/support/constraint/lists.js?v=2017010203" defer></script>
+  <script src="https://developer.android.com/_static2/81b4e5d5c8/jsi18n/"></script>
+  <script>
+    // Load localized metadata.
+    (function(lang) {
+      if (lang === 'en') { return; }
+      document.write('<script src="https://developer.android.com/android_metadata_en.js?v=2017010203" defer></' + 'script>');
+    })(getLangPref())
+
+    // Add skip to content for accessibility.
+    $('#skip-to-main').click(function() {
+      $('a[name=top]').focus();
+    });
+
+    $('.devsite-utility-footer-language-select').each(function() {
+      $(this).change(function() {
+        changeLangPref(this.value, true)
+        $('.devsite-utility-footer-language').submit();
+      });
+    });
+  </script>
+
+  <script>
+    (function($) {
+      devsite.analytics.InitAnalytics();
+    })(jQuery);
+  </script>
+
+  
+
+<div id="survey-box-wrapper">
+  <div class="material-dialog" style="width:270px">
+    <div class="material-dialog-title">
+      Take a one-minute survey?
+    </div>
+    <div class="material-dialog-description">
+      Help us improve Android tools and documentation.
+    </div>
+    <div class="material-button-bar">
+      <a class="dac-button dac-primary dac-raised" target="_blank"
+          href="https://goo.gl/forms/kV7MoyD2dvcWkd5N2">Sure</a>
+      <a class="dac-button" href="BufferedInputStream.html#">No thanks</a>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<meta name="Description" content="SELinux is set up to default-deny, which means that every single access for which it has a hook in the kernel must be explicitly allowed by policy. This means a policy file is comprised of a large amount of information regarding rules, types, classes,…">
+
+<link rel="shortcut icon" type="image/x-icon" href="../../favicon.ico" />
+<title>Implementing SELinux | Android Open Source Project</title>
+
+<!-- STYLESHEETS -->
+<link rel="stylesheet"
+href="https://fonts.googleapis.com/css?family=Roboto:regular,medium,thin,italic,mediumitalic,bold" title="roboto">
+<link href="../../assets/css/default.css" rel="stylesheet" type="text/css">
+
+
+
+<!-- JAVASCRIPT -->
+<script src="https://www.google.com/jsapi" type="text/javascript"></script>
+<script src="../../assets/js/android_3p-bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+  var toRoot = "/";
+  
+  var devsite = false;
+  
+</script>
+<script src="../../assets/js/docs.js" type="text/javascript"></script>
+
+
+<script type="text/javascript" src="https://www.gstatic.com/feedback/api.js"></script>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-45455297-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</head>
+
+<body class="gc-documentation 
+  " itemscope itemtype="http://schema.org/Article">
+<a name="top"></a>
+
+  
+    <!-- Header -->
+    <div id="header">
+        <div class="wrap" id="header-wrap">
+          <div class="col-3 saclogo">
+          <a href="../../index.html">
+            <img src="../../assets/images/sac_logo.png"
+                srcset="/assets/images/sac_logo@2x.png 2x"
+                width="123" height="25" alt="Android Open Source Project" />
+          </a>
+          </div>
+            <ul class="nav-x col-9">
+                <li class="source">
+                  <a href="../../source/index.html" 
+                  >Source</a></li>
+                <li class="devices"><a href="../../devices/index.html" 
+                  >Devices</a></li>
+                <li class="security"><a href="../index.html" class="selected"
+                  >Security</a></li>
+                <li class="compatibility last"><a href="../../compatibility/index.html" 
+                  >Compatibility</a></li>
+            </ul>
+            <!-- New Search -->
+            <div class="menu-container">
+            <div class="moremenu">
+    <div id="more-btn"></div>
+  </div>
+  <div class="morehover" id="moremenu">
+    <div class="top"></div>
+    <div class="mid">
+      <div class="header">Android Sites</div>
+      <ul>
+        <li class="active"><a>Android Open Source Project</a></li>
+        <li><a href="http://www.android.com">Android.com</a></li>
+        <li><a href="http://developer.android.com">Android Developers</a></li>
+      </ul>
+      <!-- <div class="header">Support</div>
+      <ul>
+        <li><a href="/support.html">Developer Support</a></li>
+      </ul> -->
+      <br class="clearfix" />
+    </div>
+    <div class="bottom"></div>
+  </div>
+
+  <div class="search" id="search-container">
+    <div class="search-inner">
+      <div id="search-btn"></div>
+      <div class="left"></div>
+      <form onsubmit="return submit_search()">
+        <input id="search_autocomplete" type="text" value="" autocomplete="off" name="q"
+onfocus="search_focus_changed(this, true)" onblur="search_focus_changed(this, false)"
+onkeydown="return search_changed(event, true, '/')"
+onkeyup="return search_changed(event, false, '/')" />
+      </form>
+      <div class="right"></div>
+        <a class="close hide">close</a>
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+  </div>
+  <div id="search_filtered_wrapper">
+    <div id="search_filtered_div" class="no-display">
+        <ul id="search_filtered">
+        </ul>
+    </div>
+  </div>
+
+  </div>
+  <!-- /New Search> -->
+        </div>
+    </div>
+    <!-- /Header -->
+
+  <div id="searchResults" class="wrap" style="display:none;">
+          <h2 id="searchTitle">Results</h2>
+          <div id="leftSearchControl" class="search-control">Loading...</div>
+  </div>
+
+  
+  
+  
+    
+  <div class="wrap clearfix" id="body-content">
+    <div class="col-4" id="side-nav" itemscope itemtype="http://schema.org/SiteNavigationElement">
+      <div id="devdoc-nav" class="scroll-pane">
+<a class="totop" href="implement.html#top" data-g-event="left-nav-top">to top</a>
+
+<!--
+    Copyright 2015 The Android Open Source Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<ul id="nav">
+  <li class="nav-section">
+    <div class="nav-section-header">
+        <a href="../index.html">
+          <span class="en">Overview</span>
+        </a>
+    </div>
+    <ul>
+      <li><a href="../overview/kernel-security.html">Kernel Security</a></li>
+      <li><a href="../overview/app-security.html">App Security</a></li>
+      <li><a href="../overview/implement.html">Implementing Security</a></li>
+      <li><a href="../overview/updates-resources.html">Updates and Resources</a></li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../enhancements/index.html">
+            <span class="en">Enhancements</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../enhancements/enhancements70.html">Android 7.0</a></li>
+          <li><a href="../enhancements/enhancements60.html">Android 6.0</a></li>
+          <li><a href="../enhancements/enhancements50.html">Android 5.0</a></li>
+          <li><a href="../enhancements/enhancements44.html">Android 4.4</a></li>
+          <li><a href="../enhancements/enhancements43.html">Android 4.3</a></li>
+          <li><a href="../enhancements/enhancements42.html">Android 4.2</a></li>
+          <li><a href="../enhancements/enhancements41.html">Android 4.1</a></li>
+        </ul>
+      </li>
+      <li><a href="../overview/acknowledgements.html">Acknowledgements</a></li>
+    </ul>
+  </li>
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="../bulletin/index.html">
+        <span class="en">Bulletins</span>
+      </a>
+    </div>
+    <ul>
+      <li class="nav-section">
+         <div class="nav-section-header">
+           <a href="../advisory/index.html">
+         <span class="en">Advisories</span>
+        </a>
+       </div>
+         <ul>
+           <li><a href="../advisory/2016-03-18.html">2016-03-18</a></li>
+         </ul>
+      </li>
+      <li><a href="../bulletin/2016-08-01.html">August 2016</a></li>
+      <li><a href="../bulletin/2016-07-01.html">July 2016</a></li>
+      <li><a href="../bulletin/2016-06-01.html">June 2016</a></li>
+      <li><a href="../bulletin/2016-05-01.html">May 2016</a></li>
+      <li><a href="../bulletin/2016-04-02.html">April 2016</a></li>
+      <li><a href="../bulletin/2016-03-01.html">March 2016</a></li>
+      <li><a href="../bulletin/2016-02-01.html">February 2016</a></li>
+      <li><a href="../bulletin/2016-01-01.html">January 2016</a></li>
+      <li class="nav-section">
+         <div class="nav-section-header">
+           <a href="../bulletin/2015.html">
+         <span class="en">2015 Bulletins</span>
+        </a>
+       </div>
+         <ul>
+           <li><a href="../bulletin/2015-12-01.html">December 2015</a></li>
+           <li><a href="../bulletin/2015-11-01.html">November 2015</a></li>
+           <li><a href="../bulletin/2015-10-01.html">October 2015</a></li>
+           <li><a href="../bulletin/2015-09-01.html">September 2015</a></li>
+           <li><a href="../bulletin/2015-08-01.html">August 2015</a></li>
+         </ul>
+      </li>
+    </ul>
+  </li>
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="../apksigning/index.html">
+        <span class="en">Application Signing</span>
+      </a>
+    </div>
+    <ul>
+      <li><a href="../apksigning/v2.html">APK Signature Scheme v2</a></li>
+    </ul>
+  </li>
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="../authentication/index.html">
+        <span class="en">Authentication</span>
+      </a>
+    </div>
+    <ul>
+      <li><a href="../../devices/tech/security/authentication/fingerprint-hal.html">Fingerprint HAL</a></li>
+      <li><a href="../../devices/tech/security/authentication/gatekeeper.html">Gatekeeper</a></li>
+    </ul>
+  </li>
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="../keystore/index.html">
+        <span class="en">Keystore</span>
+      </a>
+    </div>
+    <ul>
+      <li><a href="../keystore/features.html">Features</a></li>
+      <li><a href="../keystore/implementer-ref.html">Implementer's Reference</a></li>
+    </ul>
+  </li>
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="../trusty/index.html">
+        <span class="en">Trusty TEE</span>
+      </a>
+    </div>
+    <ul>
+      <li><a href="../trusty/trusty-ref.html">Trusty API Reference</a></li>
+    </ul>
+  </li>
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="../../devices/tech/encryption/index.html">
+        <span class="en">Encryption</span>
+      </a>
+    </div>
+    <ul>
+      <li><a href="../encryption/file-based.html">File-Based Encryption</a></li>
+      <li><a href="../encryption/full-disk.html">Full-Disk Encryption</a></li>
+    </ul>
+  </li>
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="../../devices/tech/security/selinux/index.html">
+        <span class="en">SELinux</span>
+      </a>
+    </div>
+    <ul>
+      <li><a href="concepts.html">Concepts</a></li>
+      <li><a href="implement.html">Implementation</a></li>
+      <li><a href="customize.html">Customization</a></li>
+      <li><a href="validate.html">Validation</a></li>
+      <li><a href="device-policy.html">Writing Policy</a></li>
+    </ul>
+  </li>
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="../verifiedboot/index.html">
+        <span class="en">Verified Boot</span>
+      </a>
+    </div>
+    <ul>
+      <li><a href="../verifiedboot/verified-boot.html">Verifying Boot</a></li>
+      <li><a href="../verifiedboot/dm-verity.html">Implementing dm-verity</a></li>
+    </ul>
+  </li>
+</ul>
+
+
+      </div>
+    </div> <!-- end side-nav -->
+    <script>
+      $(document).ready(function() {
+        scrollIntoView("devdoc-nav");
+        });
+    </script>
+
+  
+
+
+
+
+<div class="col-12" id="doc-col" >
+
+
+  
+    
+      
+        <h1 itemprop="name" >Implementing SELinux</h1>
+      
+    
+  
+
+
+  
+  <div id="jd-content">
+
+    <div class="jd-descr" itemprop="articleBody">
+    <!--
+    Copyright 2014 The Android Open Source Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<div id="qv-wrapper">
+  <div id="qv">
+    <h2>In this document</h2>
+    <ol id="auto-toc">
+    </ol>
+  </div>
+</div>
+
+<p>SELinux is set up to default-deny, which means that every single access for
+which it has a hook in the kernel must be explicitly allowed by policy.  This
+means a policy file is comprised of a large amount of information regarding
+rules, types, classes, permissions, and more.  A full consideration of SELinux
+is out of the scope of this document, but an understanding of how to write
+policy rules is now essential when bringing up new Android devices. There is a
+great deal of information available regarding SELinux already. See <a
+href="../../devices/tech/security/selinux/index.html#supporting_documentation">Supporting
+documentation</a> for suggested resources.</p>
+
+<h2 id=summary_of_steps>Summary of steps</h2>
+
+<p>Here is a brief summary of the steps needed to implement SELinux on your
+Android device:</p>
+
+<ol>
+  <li>Add SELinux support in the kernel and configuration.
+  <li>Grant each service (process or daemon) started from <code>init</code> its own domain.
+  <li>Identify these services by:
+  <ul>
+    <li>Reviewing the init.&lt;device&gt;.rc file and finding all services.
+    <li>Examining warnings of the form <em>init:  Warning!  Service name needs a SELinux domain defined; please fix!</em> in <code>dmesg</code> output.
+    <li>Checking <code>ps -Z | grep init</code> output to see which services are running in the init domain.
+  </ul>
+  <li>Label all new processes, drivers, sockets, etc.
+All objects need to be labeled
+properly to ensure they interact properly with the policies you apply. See the
+labels used in AOSP for examples to follow in label name creation.
+  <li>Institute security policies that fully cover all labels and restrict
+permissions to their absolute minimum.
+</ol>
+
+<p>Ideally, OEMs start with the policies in the AOSP and then build upon them for
+their own customizations.</p>
+
+<h2 id=key_files>Key files</h2>
+
+<p>SELinux for Android is accompanied by everything you need to enable SELinux
+now. You merely need to integrate the <a href="https://android.googlesource.com/kernel/common/">latest Android kernel</a> and then incorporate the files found in the <a href="https://android.googlesource.com/platform/system/sepolicy/">system/sepolicy</a> directory:</p>
+
+<p><a href="https://android.googlesource.com/kernel/common/">https://android.googlesource.com/kernel/common/ </a></p>
+
+<p><a href="https://android.googlesource.com/platform/system/sepolicy/">https://android.googlesource.com/platform/system/sepolicy/</a></p>
+
+<p>Those files when compiled comprise the SELinux kernel security policy and cover
+the upstream Android operating system. You should not need to modify the
+system/sepolicy files directly. Instead, add your own device-specific policy
+files within the /device/manufacturer/device-name/sepolicy directory.</p>
+
+<p>Here are the files you must create or edit in order to implement SELinux:</p>
+
+<ul>
+  <li><em>New SELinux policy source (*.te) files</em> - Located in the
+<root>/device/manufacturer/device-name/sepolicy directory. These files define
+domains and their labels. The new policy files get
+concatenated with the existing policy files during compilation into a single
+SELinux kernel policy file.
+<p class="caution"><strong>Important:</strong> Do not alter the app.te file
+provided by the Android Open Source Project.
+Doing so risks breaking all third-party applications.</p>
+  <li><em>Updated BoardConfig.mk makefile</em> - Located in the <device-name>
+directory containing the sepolicy subdirectory. It must be updated to reference
+the sepolicy subdirectory once created if it
+wasn’t in initial implementation.
+  <li><em>file_contexts</em> - Located in the sepolicy subdirectory. This file
+assigns labels to files and is used by various userspace components. As you
+create new policies, create or update this file to
+assign new labels to files. In order to apply new file_contexts, you must
+rebuild the filesystem image or run <code>restorecon</code> on the file to be
+relabeled.  On upgrades, changes to file_contexts are automatically applied to
+the system and userdata partitions as part of the upgrade.  Changes can also be
+automatically applied on upgrade to other partitions by adding
+restorecon_recursive calls to your init.<em>board</em>.rc file after the
+partition has been mounted read-write.
+  <li><em>genfs_contexts</em> - Located in the sepolicy subdirectory. This file
+assigns labels to filesystems such as proc or vfat that do not support extended
+attributes.  This configuration is loaded as part of the kernel policy but
+changes may not take effect for in-core inodes, requiring a reboot or
+unmounting and re-mounting the filesystem to fully apply the change.  Specific
+labels may also be assigned to specific mounts such as vfat using the context=
+mount option.
+  <li><em>property_contexts</em> - Located in the sepolicy subdirectory. This
+file assigns labels to Android system properties to control what processes can
+set them.  This configuration is read by the init process during startup and
+whenever the selinux.reload_policy property is set to 1.
+  <li><em>service_contexts</em> - Located in the sepolicy subdirectory. This
+file assigns labels to Android binder services to control what processes can
+add (register) and find (lookup) a binder reference for the service.  This
+configuration is read by the servicemanager process during startup and whenever
+the selinux.reload_policy property is set to 1.
+  <li><em>seapp_contexts</em> - Located in the sepolicy subdirectory. This file
+assigns labels to app processes and /data/data directories.  This configuration
+is read by the zygote process on each app launch and by installd during startup
+and whenever the selinux.reload_policy property is set to 1.
+  <li><em>mac_permissions.xml</em> - Located in the sepolicy subdirectory. This
+file assigns a seinfo tag to apps based on their signature and optionally their
+package name.  The seinfo tag can then be used as a key in the seapp_contexts
+file to assign a specific label to all apps with that seinfo tag.  This
+configuration is read by system_server during startup.
+</ul>
+
+<p>Then just update your BoardConfig.mk makefile - located in the directory
+containing the sepolicy subdirectory - to reference the sepolicy subdirectory
+and each policy file once created, as shown below. The BOARD_SEPOLICY variables
+and their meaning is documented in the system/sepolicy/README file.</p>
+
+<pre>
+BOARD_SEPOLICY_DIRS += \
+        &lt;root>/device/manufacturer/device-name/sepolicy
+
+BOARD_SEPOLICY_UNION += \
+        genfs_contexts \
+        file_contexts \
+        sepolicy.te
+</pre>
+
+<p class="note"><strong>Note:</strong> As of the M release,
+BOARD_SEPOLICY_UNION is no longer required as all policy files found within any
+directory included in the BOARD_SEPOLICY_DIRS variable are joined with the
+base policy automatically.</p>
+
+<p>After rebuilding your device, it is enabled with SELinux. You can now either
+customize your SELinux policies to accommodate your own additions to the
+Android operating system as described in <a
+href="customize.html">Customization</a> or verify your existing setup as
+covered in <a href="validate.html">Validation</a>.</p>
+
+<p>Once the new policy files and BoardConfig.mk updates are in place, the new
+policy settings are automatically built into the final kernel policy file.</p>
+
+<h2 id=use_cases>Use cases</h2>
+
+<p>Here are specific examples of exploits to consider when crafting your own
+software and associated SELinux policies:</p>
+
+<p><strong>Symlinks</strong> - Because symlinks appear as files, they are often read just as that. This can
+lead to exploits. For instance, some privileged components such as init change
+the permissions of certain files, sometimes to be excessively open.</p>
+
+<p>Attackers might then replace those files with symlinks to code they control,
+allowing the attacker to overwrite arbitrary files. But if you know your
+application will never traverse a symlink, you can prohibit it from doing so
+with SELinux.</p>
+
+<p><strong>System files</strong> - Consider the class of system files that should only be modified by the
+system server. Still, since netd, init, and vold run as root, they can access
+those system files. So if netd became compromised, it could compromise those
+files and potentially the system server itself.</p>
+
+<p>With SELinux, you can identify those files as system server data files.
+Therefore, the only domain that has read/write access to them is system server.
+Even if netd became compromised, it could not switch domains to the system
+server domain and access those system files although it runs as root.</p>
+
+<p><strong>App data</strong> - Another example is the class of functions that must run as root but should
+not get to access app data. This is incredibly useful as wide-ranging
+assertions can be made, such as certain domains unrelated to application data
+being prohibited from accessing the internet.</p>
+
+<p><strong>setattr</strong> - For commands such as chmod and chown, you could identify the set of files
+where the associated domain can conduct setattr. Anything outside of that could
+be prohibited from these changes, even by root. So an application might run
+chmod and chown against those labeled app_data_files but not shell_data_files
+or system_data_files.</p>
+
+<h2 id=steps_in_detail>Steps in detail</h2>
+
+<p>Here is a detailed view of how Android recommends you employ and customize
+SELinux to protect your devices:</p>
+
+<ol>
+  <li>Enable SELinux in the kernel:
+<code>CONFIG_SECURITY_SELINUX=y</code>
+  <li>Change the kernel_cmdline parameter so that:<br/>
+<code>BOARD_KERNEL_CMDLINE := androidboot.selinux=permissive</code>.
+<br/>
+This is only for initial development of policy for the device.  Once you have
+an initial bootstrap policy, remove this parameter so that your device is
+enforcing or it will fail CTS.
+  <li>Boot up the system in permissive and see what denials are encountered on boot:<br/>
+On Ubuntu 14.04 or newer:
+<br/>
+<code>adb shell su -c dmesg | grep denied | audit2allow -p out/target/product/<em>board</em>/root/sepolicy</code>
+<br/>
+On Ubuntu 12.04:
+<code>adb shell su -c dmesg | grep denied | audit2allow</code>
+  <li>Evaluate the output. See <a href="validate.html">Validation</a> for instructions and tools.
+  <li>Identify devices, and other new files that need labeling.
+  <li>Use existing or new labels for your objects.
+Look at the *_contexts files to
+see how things were previously labeled and use knowledge of the label meanings
+to assign a new one. Ideally, this will be an existing label which will fit
+into policy, but sometimes a new label will be needed, and rules for access to
+that label will be needed, as well.
+  <li>Identify domains/processes that should have their own security domains. A policy will likely need to be written for each of these from scratch. All services spawned from <code>init</code>, for instance, should have their own. The following commands help reveal those that remain running (but ALL services need such a treatment):<br/>
+<code>$ adb shell su -c ps -Z | grep init</code><br/>
+<code>$ adb shell su -c dmesg | grep 'avc: '</code>
+  <li>Review init.&lt;device&gt;.rc to identify any which are without a type.
+These should
+be given domains EARLY in order to avoid adding rules to init or otherwise
+confusing <code>init</code> accesses with ones that are in their own policy.
+  <li>Set up <code>BOARD_CONFIG.mk</code> to use <code>BOARD_SEPOLICY_*</code> variables. See
+the README in system/sepolicy for details on setting this up.
+  <li> Examine the init.&lt;device&gt;.rc and fstab.&lt;device&gt; file and make sure every use of “mount”
+corresponds to a properly labeled filesystem or that a context= mount option is specified.
+  <li> Go through each denial and create SELinux policy to properly handle each. See
+the examples within <a href="customize.html">Customization</a>.
+</ol>
+
+    </div>
+
+      <div class="content-footer-sac"
+                    itemscope itemtype="http://schema.org/SiteNavigationElement">
+        <div class="layout-content-col col-9" style="padding-top:4px">
+        </div>
+        
+        <div class="paging-links layout-content-col col-4">
+          
+        </div>
+        
+      </div>
+      
+      
+    </div> <!-- end jd-content -->
+  <div id="footer" class="wrap" >
+  <style>.feedback { float: right !Important }</style>
+  <div class="feedback">
+    <a href="implement.html#" class="button" onclick=" try {
+      userfeedback.api.startFeedback({'productId':'715571','authuser':'1'});return false;}catch(e){}">Site Feedback</a>
+  </div>
+  <div id="copyright">
+    
+  Except as noted, this content is 
+  licensed under <a href="http://creativecommons.org/licenses/by/2.5/">
+  Creative Commons Attribution 2.5</a>. For details and 
+  restrictions, see the <a href="../../license.html">Content 
+  License</a>.
+  </div>
+    <div id="footerlinks">
+    
+  <p>
+    <a href="../../source/index.html">About Android</a>&nbsp;&nbsp;|&nbsp;
+    <a href="../../source/community.html">Community</a>&nbsp;&nbsp;|&nbsp;
+    <a href="../../legal.html">Legal</a>&nbsp;&nbsp;|&nbsp;
+  </p>
+  </div>
+
+</div><!-- end doc-content -->
+
+</div> <!-- end body-content --> 
+
+
+
+
+
+
+</body>
+</html>
+
+
+

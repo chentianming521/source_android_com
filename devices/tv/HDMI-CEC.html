@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<meta name="Description" content="The High-Definition Multimedia Interface Consumer Electronics Control (HDMI-CEC) standard allows mulitmedia consumer products to communicate and exchange information with each other. HDMI-CEC supports many features, like Remote Control Passthrough and…">
+
+<link rel="shortcut icon" type="image/x-icon" href="../../favicon.ico" />
+<title>HDMI-CEC Control Service | Android Open Source Project</title>
+
+<!-- STYLESHEETS -->
+<link rel="stylesheet"
+href="https://fonts.googleapis.com/css?family=Roboto:regular,medium,thin,italic,mediumitalic,bold" title="roboto">
+<link href="../../assets/css/default.css" rel="stylesheet" type="text/css">
+
+
+
+<!-- JAVASCRIPT -->
+<script src="https://www.google.com/jsapi" type="text/javascript"></script>
+<script src="../../assets/js/android_3p-bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+  var toRoot = "/";
+  
+  var devsite = false;
+  
+</script>
+<script src="../../assets/js/docs.js" type="text/javascript"></script>
+
+<script src="../../navtree_data.js" type="text/javascript"></script>
+
+
+<script type="text/javascript" src="https://www.gstatic.com/feedback/api.js"></script>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-45455297-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</head>
+
+<body class="gc-documentation 
+  " itemscope itemtype="http://schema.org/Article">
+<a name="top"></a>
+
+  
+    <!-- Header -->
+    <div id="header">
+        <div class="wrap" id="header-wrap">
+          <div class="col-3 saclogo">
+          <a href="../../index.html">
+            <img src="../../assets/images/sac_logo.png"
+                srcset="/assets/images/sac_logo@2x.png 2x"
+                width="123" height="25" alt="Android Open Source Project" />
+          </a>
+          </div>
+            <ul class="nav-x col-9">
+                <li class="source">
+                  <a href="../../source/index.html" 
+                  >Source</a></li>
+                <li class="devices"><a href="../index.html" class="selected"
+                  >Devices</a></li>
+                <li class="security"><a href="../../security/index.html" 
+                  >Security</a></li>
+                <li class="compatibility last"><a href="../../compatibility/index.html" 
+                  >Compatibility</a></li>
+            </ul>
+            <!-- New Search -->
+            <div class="menu-container">
+            <div class="moremenu">
+    <div id="more-btn"></div>
+  </div>
+  <div class="morehover" id="moremenu">
+    <div class="top"></div>
+    <div class="mid">
+      <div class="header">Android Sites</div>
+      <ul>
+        <li class="active"><a>Android Open Source Project</a></li>
+        <li><a href="http://www.android.com">Android.com</a></li>
+        <li><a href="http://developer.android.com">Android Developers</a></li>
+      </ul>
+      <!-- <div class="header">Support</div>
+      <ul>
+        <li><a href="/support.html">Developer Support</a></li>
+      </ul> -->
+      <br class="clearfix" />
+    </div>
+    <div class="bottom"></div>
+  </div>
+
+  <div class="search" id="search-container">
+    <div class="search-inner">
+      <div id="search-btn"></div>
+      <div class="left"></div>
+      <form onsubmit="return submit_search()">
+        <input id="search_autocomplete" type="text" value="" autocomplete="off" name="q"
+onfocus="search_focus_changed(this, true)" onblur="search_focus_changed(this, false)"
+onkeydown="return search_changed(event, true, '/')"
+onkeyup="return search_changed(event, false, '/')" />
+      </form>
+      <div class="right"></div>
+        <a class="close hide">close</a>
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+  </div>
+  <div id="search_filtered_wrapper">
+    <div id="search_filtered_div" class="no-display">
+        <ul id="search_filtered">
+        </ul>
+    </div>
+  </div>
+
+  </div>
+  <!-- /New Search> -->
+        </div>
+    </div>
+    <!-- /Header -->
+
+  <div id="searchResults" class="wrap" style="display:none;">
+          <h2 id="searchTitle">Results</h2>
+          <div id="leftSearchControl" class="search-control">Loading...</div>
+  </div>
+
+  
+  
+  
+    
+  <div class="wrap clearfix" id="body-content">
+    <div class="col-4" id="side-nav" itemscope itemtype="http://schema.org/SiteNavigationElement">
+      <div id="devdoc-nav" class="scroll-pane">
+<a class="totop" href="HDMI-CEC.html#top" data-g-event="left-nav-top">to top</a>
+
+<!--
+    Copyright 2015 The Android Open Source Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<ul id="nav">
+  <li class="nav-section">  <!-- Begin nav section, Device Interfaces -->
+    <div class="nav-section-header">
+      <a href="../index.html">
+        <span class="en">Interfaces</span>
+      </a>
+    </div>
+    <ul>
+  <li class="nav-section">
+  <div class="nav-section-header">
+      <a href="../accessories/index.html">
+        <span class="en">Accessories</span>
+      </a>
+    </div>
+    <ul>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../accessories/audio.html">
+            <span class="en">Audio Accessories</span>
+          </a>
+        </div>
+        <ul>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../accessories/headset/index.html">
+            <span class="en">Headset</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../accessories/headset/specification.html">Specification</a></li>
+          <li><a href="../accessories/headset/requirements.html">Requirements</a></li>
+          <li><a href="../accessories/headset/testing.html">Testing</a></li>
+        </ul>
+      </li>
+        </ul>
+      </li>
+  <li class="nav-section">
+  <div class="nav-section-header">
+      <a href="../accessories/custom.html">
+        <span class="en">Custom Accessories</span>
+      </a>
+    </div>
+    <ul>
+      <li class="nav-section">
+        <div class="nav-section-header"><a href="../accessories/protocol.html"><span class="en">AOA</span>
+        </a>
+        </div>
+        <ul>
+          <li><a href="../accessories/aoa2.html">AOA 2.0</a></li>
+          <li><a href="../accessories/aoa.html">AOA 1.0</a></li>
+        </ul>
+        </li>
+        <div class="nav-section-header"><a href="../accessories/stylus.html"><span class="en">Stylus</span>
+        </a>
+        </div>
+       </ul>
+     </li>
+    </ul>
+      <li class="nav-section">
+      <div class="nav-section-header">
+        <a href="../audio/index.html">
+          <span class="en">Audio</span>
+        </a>
+      </div>
+        <ul>
+          <li><a href="../audio/terminology.html">Terminology</a></li>
+          <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="../audio/implement.html">
+                <span class="en">Implementation</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="../audio/implement-policy.html">Policy Configuration</a></li>
+              <li><a href="../audio/implement-shared-library.html">Shared Library</a></li>
+              <li><a href="../audio/implement-pre-processing.html">Pre-processing Effects</a></li>
+            </ul>
+         </li>
+          <li><a href="../audio/data_formats.html">Data Formats</a></li>
+          <li><a href="../audio/attributes.html">Attributes</a></li>
+          <li><a href="../audio/warmup.html">Warmup</a></li>
+          <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="../audio/latency.html">
+                <span class="en">Latency</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="../audio/latency_contrib.html">Contributors</a></li>
+              <li><a href="../audio/latency_design.html">Design</a></li>
+              <li><a href="../audio/latency_measure.html">Measure</a></li>
+              <li><a href="../audio/testing_circuit.html">Light Testing Circuit</a></li>
+              <li><a href="../audio/loopback.html">Audio Loopback Dongle</a></li>
+              <li><a href="../audio/latency_measurements.html">Measurements</a></li>
+              <li><a href="../audio/latency_app.html">Applications</a></li>
+            </ul>
+          </li>
+          <li><a href="../audio/avoiding_pi.html">Priority Inversion</a></li>
+          <li><a href="../audio/src.html">Sample Rate Conversion</a></li>
+          <li><a href="../audio/debugging.html">Debugging</a></li>
+          <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="../audio/midi.html">
+                <span class="em">MIDI</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="../audio/midi_arch.html">MIDI Architecture</a></li>
+              <li><a href="../audio/midi_test.html">MIDI Test Procedure</a></li>
+            </ul>
+          <li><a href="../audio/usb.html">USB Digital Audio</a></li>
+          <li><a href="../audio/tv.html">TV Audio</a></li>
+        </ul>
+      </li>
+      <li><a href="../automotive.html">Automotive</a></li>
+      <li><a href="../bluetooth.html">Bluetooth</a></li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../camera/index.html">
+            <span class="en">Camera</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../camera/camera3.html">Camera HAL3</a></li>
+          <li><a href="../camera/camera3_requests_hal.html">HAL Subsystem</a></li>
+          <li><a href="../camera/camera3_metadata.html">Metadata and Controls</a></li>
+          <li><a href="../camera/camera3_3Amodes.html">3A Modes and State</a></li>
+          <li><a href="../camera/camera3_crop_reprocess.html">Output and Cropping</a></li>
+          <li><a href="../camera/camera3_error_stream.html">Errors and Streams</a></li>
+          <li><a href="../camera/camera3_requests_methods.html">Request Creation</a></li>
+          <li><a href="../camera/versioning.html">Version Support</a></li>
+        </ul>
+      </li>
+
+      <li><a href="../drm.html">DRM</a></li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../graphics/index.html">
+            <span class="en">Graphics</span>
+          </a>
+        </div>
+        <ul>
+         <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="../graphics/architecture.html">
+                <span class="en">Architecture</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="../graphics/arch-bq-gralloc.html">BufferQueue</a></li>
+              <li><a href="../graphics/arch-sf-hwc.html">SurfaceFlinger and HWC</a></li>
+              <li><a href="../graphics/arch-sh.html">Surface and SurfaceHolder</a></li>
+              <li><a href="../graphics/arch-egl-opengl.html">OpenGL ES</a></li>
+              <li><a href="../graphics/arch-vulkan.html">Vulkan</a></li>
+              <li><a href="../graphics/arch-sv-glsv.html">SurfaceView</a></li>
+              <li><a href="../graphics/arch-st.html">SurfaceTexture</a></li>
+              <li><a href="../graphics/arch-tv.html">TextureView</a></li>
+              <li><a href="../graphics/arch-gameloops.html">Game Loops</a></li>
+            </ul>
+         </li>
+         <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="../graphics/implement.html">
+                <span class="en">Implementing</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="../graphics/implement-hwc.html">Hardware Composer HAL</a></li>
+              <li><a href="../graphics/implement-vsync.html">VSYNC</a></li>
+              <li><a href="../graphics/implement-vulkan.html">Vulkan</a></li>
+              <li><a href="../graphics/implement-vdisplays.html">Virtual Displays</a></li>
+            </ul>
+         </li>
+         <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="../graphics/testing.html">
+                <span class="en">OpenGL ES Testing</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="../graphics/build-tests.html">Building test programs</a></li>
+              <li><a href="../graphics/port-tests.html">Porting the test framework</a></li>
+              <li><a href="../graphics/run-tests.html">Running the tests</a></li>
+              <li><a href="../graphics/automate-tests.html">Automating the tests</a></li>
+              <li><a href="../graphics/test-groups.html">Using special test groups</a></li>
+              <li><a href="../graphics/cts-integration.html">Integrating with Android CTS</a></li>
+            </ul>
+         </li>
+        </ul> </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../input/index.html">
+            <span class="en">Input</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../input/overview.html">Overview</a></li>
+          <li><a href="../input/key-layout-files.html">Key Layout Files</a></li>
+          <li><a href="../input/key-character-map-files.html">Key Character Map Files</a></li>
+          <li><a href="../input/input-device-configuration-files.html">Input Device Configuration Files</a></li>
+          <li><a href="../input/migration-guide.html">Migration Guide</a></li>
+          <li><a href="../input/keyboard-devices.html">Keyboard Devices</a></li>
+          <li><a href="../tech/input/touch-devices.html">Touch Devices</a></li>
+          <li><a href="../tech/input/dumpsys.html">Diagnostics</a></li>
+          <li><a href="../input/getevent.html">Getevent</a></li>
+          <li><a href="../input/validate-keymaps.html">Validate Keymaps</a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../media.html">
+            <span class="en">Media</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../media/framework-hardening.html">Framework
+          Hardening</a></li>
+          <li><a href="../media/soc.html">SoC Dependencies</a></li>
+          <li><a href="../media/oem.html">OEM Dependencies</a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../sensors/index.html">
+            <span class="en">Sensors</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../sensors/sensor-stack.html">Sensor stack</a></li>
+          <li><a href="../sensors/report-modes.html">Reporting modes</a></li>
+          <li><a href="../sensors/suspend-mode.html">Suspend mode</a></li>
+          <li><a href="../sensors/power-use.html">Power consumption</a></li>
+          <li><a href="../sensors/interaction.html">Interaction</span></a></li>
+          <li><a href="../sensors/hal-interface.html">HAL interface</a></li>
+          <li><a href="../sensors/batching.html">Batching</a></li>
+          <li><a href="../sensors/sensor-types.html">Sensor types</a></li>
+          <li><a href="../sensors/versioning.html">Version deprecation</a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="https://source.android.com/devices/storage/index.html">
+            <span class="en">Storage</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../storage/traditional.html">Traditional Storage</a></li>
+          <li><a href="../storage/adoptable.html">Adoptable Storage</a></li>
+          <li><a href="../storage/config.html">Device Configuration</a></li>
+          <li><a href="../storage/config-example.html">Configuration Examples</a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="index.html">
+            <span class="en">TV</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="HDMI-CEC.html">HDMI-CEC control service</a></li>
+          <li><a href="reference-tv-app.html">Reference TV App</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li> <!-- End nav-section, Device Interfaces-->
+
+
+  <li class="nav-section"> <!--Begin nav-section, Core Technologies-->
+    <div class="nav-section-header">
+      <a href="../tech/index.html">
+        <span class="en">Core Technologies</span>
+      </a>
+    </div>
+
+    <ul>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../tech/dalvik/index.html">
+          <span class="en">ART and Dalvik</span></a>
+        </div>
+        <ul>
+          <li><a href="../tech/dalvik/dalvik-bytecode.html">Bytecode Format</a></li>
+          <li><a href="../tech/dalvik/dex-format.html">.Dex Format</a></li>
+          <li><a href="../tech/dalvik/instruction-formats.html">Instruction Formats</a></li>
+          <li><a href="../tech/dalvik/constraints.html">Constraints</a></li>
+          <li><a href="../tech/dalvik/configure.html">Configuration</a></li>
+          <li><a href="../tech/dalvik/gc-debug.html">Garbage Collection</a></li>
+          <li><a href="../tech/dalvik/jit-compiler.html">JIT Compilation</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+            <a href="../tech/config/index.html">
+              <span class="en">Configuration</span>
+            </a>
+        </div>
+        <ul>
+          <li><a href="../tech/config/carrier.html">Carrier Customization</a></li>
+          <li><a href="../tech/config/connect_tests.html">Connectivity Tests</a></li>
+          <li><a href="../tech/config/filesystem.html">File System</a></li>
+          <li><a href="../tech/kernel.html">Kernel Configuration</a></li>
+          <li><a href="../tech/config/kernel_network_tests.html">Kernel Network Tests</a></li>
+          <li><a href="../tech/config/low-ram.html">Low RAM</a></li>
+          <li><a href="../tech/config/namespaces_libraries.html">Namespaces for Libraries</a></li>
+          <li><a href="../tech/config/renderer.html">OpenGLRenderer</a></li>
+          <li><a href="../tech/config/runtime_perms.html">Runtime Permissions</a></li>
+          <li><a href="../tech/config/uicc.html">UICC</a></li>
+          <li><a href="../tech/config/voicemail.html">Visual Voicemail</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+            <a href="../tech/connect/index.html">
+              <span class="en">Connectivity</span>
+            </a>
+        </div>
+        <ul>
+          <li><a href="../tech/connect/block-numbers.html">Block Phone Numbers</a></li>
+          <li><a href="../tech/connect/call-notification.html">Call Notifications</a></li>
+          <li><a href="../tech/connect/data-saver.html">Data Saver Mode</a></li>
+          <li><a href="../tech/connect/felica.html">Host Card Emulation of FeliCa</a></li>
+          <li><a href="../tech/connect/ril.html">Radio Interface Layer (RIL)</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../tech/datausage/index.html">
+            <span class="en">Data Usage</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../tech/datausage/iface-overview.html">Network interface statistics overview</a></li>
+          <li><a href="../tech/datausage/excluding-network-types.html">Excluding Network Types from Data Usage</a></li>
+          <li><a href="../tech/datausage/tethering-data.html">Tethering Data</a></li>
+          <li><a href="../tech/datausage/usage-cycle-resets-dates.html">Usage Cycle Reset Dates</a></li>
+          <li><a href="../tech/datausage/kernel-overview.html">Kernel Overview</a></li>
+          <li><a href="../tech/datausage/tags-explained.html">Data Usage Tags Explained</a></li>
+          <li><a href="../tech/datausage/kernel-changes.html">Kernel Changes</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../tech/debug/index.html">
+            <span class="en">Debugging</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../tech/debug/asan.html">AddressSanitizer</a></li>
+          <li><a href="../tech/debug/dumpsys.html">Dumpsys</a></li>
+          <li><a href="../tech/debug/native-memory.html">Native Memory Use</a></li>
+          <li><a href="../tech/debug/netstats.html">Network Use</a></li>
+          <li><a href="../tech/debug/procstats.html">RAM Use</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../tech/admin/index.html">
+          <span class="en">Device Administration</span></a>
+        </div>
+        <ul>
+          <li><a href="../tech/admin/implement.html">Implementation</a></li>
+          <li><a href="../tech/admin/multi-user.html">Multiple Users</a></li>
+          <li><a href="../tech/admin/managed-profiles.html">Managed Profiles</a></li>
+          <li><a href="../tech/admin/provision.html">Provisioning</a></li>
+          <li><a href="../tech/admin/multiuser-apps.html">Multiuser Apps</a></li>
+          <li><a href="../tech/admin/enterprise-telephony.html">Enterprise Telephony</a></li>
+          <li><a href="../tech/admin/testing-provision.html">Testing Device Provisioning</a></li>
+          <li><a href="../tech/admin/testing-setup.html">Testing Device Administration</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+            <a href="../tech/display/index.html">
+              <span class="en">Display Settings</span></a>
+        </div>
+        <ul>
+          <li><a href="../tech/display/dnd.html">Do Not Disturb</a></li>
+          <li><a href="../tech/display/multi-window.html">Multi-Window</a></li>
+          <li><a href="../tech/display/hdr.html">HDR Video</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header empty">
+          <a href="../halref/index.html">
+            <span class="en">HAL File Reference</span>
+          </a>
+        </div>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+            <a href="../tech/ota/index.html">
+              <span class="en">OTA Updates</span>
+            </a>
+        </div>
+        <ul>
+          <li><a href="../tech/ota/tools.html">OTA Tools</a></li>
+          <li><a href="../tech/ota/block.html">Block-based OTA</a></li>
+          <li><a href="../tech/ota/inside_packages.html">Inside OTA Packages</a></li>
+          <li><a href="../tech/ota/device_code.html">Device-Specific Code</a></li>
+          <li><a href="../tech/ota/reduce_size.html">Reducing OTA Size</a></li>
+          <li><a href="../tech/ota/sign_builds.html">Signing Builds for Release</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../tech/power/index.html"><span class="en">Power</span></a>
+        </div>
+        <ul>
+          <li><a href="../tech/power/mgmt.html">Power Management</a></li>
+          <li><a href="../tech/power/performance.html">Performance Management</a></li>
+          <li><a href="../tech/power/component.html">Component Power</a></li>
+          <li><a href="../tech/power/device.html">Device Power</a></li>
+          <li><a href="../tech/power/values.html">Power Values</a></li>
+          <li><a href="../tech/power/batterystats.html">Battery Use</a>
+          </li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../tech/test_infra/tradefed/index.html">
+            <span class="en">Testing Infrastructure</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../tech/test_infra/tradefed/fundamentals/index.html">Start Here</a></li>
+          <li><a href="../tech/test_infra/tradefed/fundamentals/machine_setup.html">Machine Setup</a></li>
+          <li><a href="../tech/test_infra/tradefed/fundamentals/devices.html">Working with Devices</a></li>
+          <li><a href="../tech/test_infra/tradefed/fundamentals/lifecycle.html">Test Lifecycle</a></li>
+          <li><a href="../tech/test_infra/tradefed/fundamentals/options.html">Option Handling</a></li>
+          <li><a href="../tech/test_infra/tradefed/full_example.html">An End-to-End Example</a></li>
+          <li id="tradefed-tree-list" class="nav-section">
+            <div class="nav-section-header">
+              <a href="../../reference/packages.html">
+                <span class="en">Package Index</span>
+              </a>
+            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li> <!-- End nav-section, Core Technologies -->
+</ul> 
+
+
+      </div>
+      <script type="text/javascript">
+        showTradefedRefTree();
+      </script>
+    </div> <!-- end side-nav -->
+    <script>
+      $(document).ready(function() {
+        scrollIntoView("devdoc-nav");
+        });
+    </script>
+
+  
+
+
+
+
+<div class="col-12" id="doc-col" >
+
+
+  
+    
+      
+        <h1 itemprop="name" >HDMI-CEC Control Service</h1>
+      
+    
+  
+
+
+  
+  <div id="jd-content">
+
+    <div class="jd-descr" itemprop="articleBody">
+    <!--
+    Copyright 2014 The Android Open Source Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<div id="qv-wrapper">
+  <div id="qv">
+    <h2>In this document</h2>
+    <ol id="auto-toc">
+   </ol>
+  </div>
+</div>
+
+<h2 id=intro>Introduction</h2>
+
+<p>The High-Definition Multimedia Interface Consumer Electronics Control (HDMI-CEC) standard allows mulitmedia consumer products to communicate and
+exchange information with each other. HDMI-CEC supports many features, like
+Remote Control Passthrough and System Audio Control, but one of the most
+popular is One Touch Play. One Touch Play lets a media source device turn on
+the TV and switch its input port automatically, so you don’t have to search for
+the TV remote to switch from your Chromecast to Blu-ray player.</p>
+
+<p>Most manufacturers have adopted HDMI-CEC so their devices work with other
+companies’ devices. But because each manufacturer implements the HDMI-CEC
+standard in different ways, devices don’t always understand each other and
+supported features vary between devices. Because of this variance, consumers
+can’t safely assume that two products that claim CEC support are completely
+compatible.</p>
+
+<h2 id=solution>Solution</h2>
+
+
+<p>With the introduction of the Android TV Input Framework (TIF), HDMI-CEC brings
+together all connected devices and minimizes compatibility issues. Android has
+created a system service called <code>HdmiControlService</code> to alleviate these pain points.</p>
+
+<p>By offering <code>HdmiControlService</code> as a part of the Android ecosystem, Android hopes to provide:</p>
+
+<ul>
+  <li>A standard implementation of HDMI-CEC for all manufacturers, which will reduce
+device incompatibility. Previously, manufacturers had to develop their own
+implementations of HDMI-CEC or use third-party solutions.</li>
+  <li>A service that is well-tested against numerous HDMI-CEC devices already in the
+market. Android has been conducting rigorous research on compatibility issues
+found among the products and collecting useful advice from partners experienced
+in the technology. The CEC service is designed to keep a healthy balance
+between the standard and modifications to that standard so that it works with
+the products that people already use.</li>
+</ul>
+
+<h2 id=overall_design>Overall design</h2>
+
+
+<p><code>HdmiControlService</code> is connected with the rest of the system like TV Input Framework (TIF), Audio service, and Power service to implement the various features the standard
+specifies.</p>
+
+<p>See the following diagram for a depiction of the switch from a custom CEC
+controller to an implementation of the simpler HDMI-CEC hardware abstraction
+layer (HAL).</p>
+
+<img src="images/HDMI_Control_Service.png" alt="Diagram that shows how HDMI-CEC was implemented before and after Android 5.0">
+
+<p class="img-caption"><strong>Figure 1.</strong> HDMI Control Service replacement</p>
+
+<h2 id=implementation>Implementation</h2>
+
+
+<p>See the following diagram for a detailed view of the HDMI control service.</p>
+
+<img src="images/HDMI_Control_Service_Flow.png" alt="Image that shows how HDMI Control service details">
+
+<p class="img-caption"><strong>Figure 2.</strong> HDMI Control Service details</p>
+
+<p>Here are the key ingredients to a proper Android HDMI-CEC implementation:</p>
+
+<ul>
+  <li> A manager class <code>HdmiControlManager</code> provides privileged apps with the API. System services like TV Input Manager service and Audio service can grab the service directly.</li>
+  <li> The service is designed to allow hosting more than one type of logical device.</li>
+  <li> HDMI-CEC is connected with the hardware via a hardware abstraction layer (HAL)
+to simplify handling differences of the protocol and signalling mechanisms
+between the devices. The HAL definition is available for device manufacturers
+to use to implement the HAL layer.</li>
+</ul>
+
+<p class="note"><strong>Note</strong>: Device manufacturers should add the following line into <code>PRODUCT_COPY_FILES</code> in <code>device.mk</code>.</p>
+
+<pre>
+PRODUCT_COPY_FILES += \
+frameworks/native/data/etc/android.hardware.hdmi.cec.xml:system/etc/permissions/android.hardware.hdmi.cec.xml
+</pre>
+
+
+<p>Depending on whether your device is a HDMI sink device or a HDMI source device,
+device manufacturers need to set <code>ro.hdmi.device_type</code> in <code>device.mk</code> for <code>HdmiControlService</code> to work correctly.</p>
+
+<p>For HDMI source devices, like Over the Top (OTT) boxes, set:</p>
+
+<pre>
+PRODUCT_PROPERTY_OVERRIDES += ro.hdmi.device_type=<strong>4</strong>
+</pre>
+
+<p>For HDMI sink devices, like panel TVs, set:</p>
+
+<pre>
+PRODUCT_PROPERTY_OVERRIDES += ro.hdmi.device_type=<strong>0</strong></pre>
+</p>
+
+
+<ul>
+  <li> A device manufacturer-provided proprietary CEC controller cannot coexist with <code>HdmiControlService</code>. It must be disabled or removed. Common requirements for this come from the need to handle manufacturer-specific commands. The manufacturer-specific
+command handler should be incorporated into the service by extending/modifying
+it. This work is left to the device manufacturer and not specified by Android.
+Note that any change made in the service for manufacturer-specific commands
+must not interfere with the way standard commands are handled or the device
+will not be Android compatible.</li>
+  <li> Access to the HDMI-CEC service is guarded with the protection level <code>SignatureOrSystem</code>. Only system components or the apps placed in <code>/system/priv-app</code> can access the service. This is to protect the service from abuse by apps with malicious intent.</li>
+</ul>
+
+<p>Android supports type <code>TV/Display(0)</code> and <code>playback device(4)</code>, which can issue the One Touch Play command to display. The other types (tuner
+and recorder) are currently not supported.</p>
+
+<h2 id=hdmi-cec_hal_definition>HDMI-CEC HAL definition</h2>
+
+
+<p>In order to have the service in action, the HDMI-CEC HAL needs to be
+implemented to the definition provided by Android. It abstracts differences in
+the hardware level and exposes the primitive operations (allocate/read/write,
+etc.) to the upper layer through API.</p>
+
+<p>The API calls that device manufacturers must support are:</p>
+
+<h3 id=tx_rx_events>TX/RX/Events</h3>
+<ul>
+  <li><code>send_message</code></li>
+  <li><code>register_event_callback</code></li>
+</ul>
+
+<h3 id=info>Info</h3>
+<ul>
+  <li><code>get_physical_address</code></li>
+  <li><code>get_version</code></li>
+  <li><code>get_vendor_id</code></li>
+  <li><code>get_port_info</code></li>
+</ul>
+
+<h3 id=logical_address>Logical Address</h3>
+<ul>
+  <li><code>add_logical_address</code></li>
+  <li><code>clear_logical_address</code></li>
+</ul>
+
+<h3 id=status>Status</h3>
+<ul>
+  <li><code>is_connected set_option</code></li>
+  <li><code>set_audio_return_channel</code></li>
+</ul>
+
+<p>Here is an excerpt of the HDMI-CEC HAL definition regarding APIs:</p>
+
+<pre>
+#ifndef ANDROID_INCLUDE_HARDWARE_HDMI_CEC_H
+#define ANDROID_INCLUDE_HARDWARE_HDMI_CEC_H
+
+...
+
+/*
+ * HDMI-CEC HAL interface definition.
+ */
+typedef struct hdmi_cec_device {
+    /**
+     * Common methods of the HDMI-CEC device.  This *must* be the first member of
+     * hdmi_cec_device as users of this structure will cast a hw_device_t to hdmi_cec_device
+     * pointer in contexts where it's known the hw_device_t references a hdmi_cec_device.
+     */
+    struct hw_device_t common;
+
+    /*
+     * (*add_logical_address)() passes the logical address that will be used
+     * in this system.
+     *
+     * HAL may use it to configure the hardware so that the CEC commands addressed
+     * the given logical address can be filtered in. This method can be called
+     * as many times as necessary in order to support multiple logical devices.
+     * addr should be in the range of valid logical addresses for the call
+     * to succeed.
+     *
+     * Returns 0 on success or -errno on error.
+     */
+    int (*add_logical_address)(const struct hdmi_cec_device* dev, cec_logical_address_t addr);
+
+    /*
+     * (*clear_logical_address)() tells HAL to reset all the logical addresses.
+     *
+     * It is used when the system doesn't need to process CEC command any more,
+     * hence to tell HAL to stop receiving commands from the CEC bus, and change
+     * the state back to the beginning.
+     */
+    void (*clear_logical_address)(const struct hdmi_cec_device* dev);
+
+    /*
+     * (*get_physical_address)() returns the CEC physical address. The
+     * address is written to addr.
+     *
+     * The physical address depends on the topology of the network formed
+     * by connected HDMI devices. It is therefore likely to change if the cable
+     * is plugged off and on again. It is advised to call get_physical_address
+     * to get the updated address when hot plug event takes place.
+     *
+     * Returns 0 on success or -errno on error.
+     */
+    int (*get_physical_address)(const struct hdmi_cec_device* dev, uint16_t* addr);
+
+    /*
+     * (*send_message)() transmits HDMI-CEC message to other HDMI device.
+     *
+     * The method should be designed to return in a certain amount of time not
+     * hanging forever, which can happen if CEC signal line is pulled low for
+     * some reason. HAL implementation should take the situation into account
+     * so as not to wait forever for the message to get sent out.
+     *
+     * It should try retransmission at least once as specified in the standard.
+     *
+     * Returns error code. See HDMI_RESULT_SUCCESS, HDMI_RESULT_NACK, and
+     * HDMI_RESULT_BUSY.
+     */
+    int (*send_message)(const struct hdmi_cec_device* dev, const cec_message_t*);
+
+    /*
+     * (*register_event_callback)() registers a callback that HDMI-CEC HAL
+     * can later use for incoming CEC messages or internal HDMI events.
+     * When calling from C++, use the argument arg to pass the calling object.
+     * It will be passed back when the callback is invoked so that the context
+     * can be retrieved.
+     */
+    void (*register_event_callback)(const struct hdmi_cec_device* dev,
+            event_callback_t callback, void* arg);
+
+    /*
+     * (*get_version)() returns the CEC version supported by underlying hardware.
+     */
+    void (*get_version)(const struct hdmi_cec_device* dev, int* version);
+
+    /*
+     * (*get_vendor_id)() returns the identifier of the vendor. It is
+     * the 24-bit unique company ID obtained from the IEEE Registration
+     * Authority Committee (RAC).
+     */
+    void (*get_vendor_id)(const struct hdmi_cec_device* dev, uint32_t* vendor_id);
+
+    /*
+     * (*get_port_info)() returns the hdmi port information of underlying hardware.
+     * info is the list of HDMI port information, and 'total' is the number of
+     * HDMI ports in the system.
+     */
+    void (*get_port_info)(const struct hdmi_cec_device* dev,
+            struct hdmi_port_info* list[], int* total);
+
+    /*
+     * (*set_option)() passes flags controlling the way HDMI-CEC service works down
+     * to HAL implementation. Those flags will be used in case the feature needs
+     * update in HAL itself, firmware or microcontroller.
+     */
+    void (*set_option)(const struct hdmi_cec_device* dev, int flag, int value);
+
+    /*
+     * (*set_audio_return_channel)() configures ARC circuit in the hardware logic
+     * to start or stop the feature. Flag can be either 1 to start the feature
+     * or 0 to stop it.
+     *
+     * Returns 0 on success or -errno on error.
+     */
+    void (*set_audio_return_channel)(const struct hdmi_cec_device* dev, int flag);
+
+    /*
+     * (*is_connected)() returns the connection status of the specified port.
+     * Returns HDMI_CONNECTED if a device is connected, otherwise HDMI_NOT_CONNECTED.
+     * The HAL should watch for +5V power signal to determine the status.
+     */
+    int (*is_connected)(const struct hdmi_cec_device* dev, int port);
+
+    /* Reserved for future use to maximum 16 functions. Must be NULL. */
+    void* reserved[16 - 11];
+} hdmi_cec_device_t;
+
+#endif /* ANDROID_INCLUDE_HARDWARE_HDMI_CEC_H */
+</pre>
+
+
+<p>The API lets the service make use of the hardware resource to send/receive
+HDMI-CEC commands, configure necessary settings, and (optionally) communicate
+with the microprocessor in the underlying platform that will take over the CEC
+control while the Android system is in standby mode.</p>
+
+<h2 id=testing>Testing</h2>
+
+
+<p>Device manufacturers must test the APIs of the HDMI-CEC HAL with their own
+tools to make sure they provide expected functionality.</p>
+
+    </div>
+
+      <div class="content-footer-sac"
+                    itemscope itemtype="http://schema.org/SiteNavigationElement">
+        <div class="layout-content-col col-9" style="padding-top:4px">
+        </div>
+        
+        <div class="paging-links layout-content-col col-4">
+          
+        </div>
+        
+      </div>
+      
+      
+    </div> <!-- end jd-content -->
+  <div id="footer" class="wrap" >
+  <style>.feedback { float: right !Important }</style>
+  <div class="feedback">
+    <a href="HDMI-CEC.html#" class="button" onclick=" try {
+      userfeedback.api.startFeedback({'productId':'715571','authuser':'1'});return false;}catch(e){}">Site Feedback</a>
+  </div>
+  <div id="copyright">
+    
+  Except as noted, this content is 
+  licensed under <a href="http://creativecommons.org/licenses/by/2.5/">
+  Creative Commons Attribution 2.5</a>. For details and 
+  restrictions, see the <a href="../../license.html">Content 
+  License</a>.
+  </div>
+    <div id="footerlinks">
+    
+  <p>
+    <a href="../../source/index.html">About Android</a>&nbsp;&nbsp;|&nbsp;
+    <a href="../../source/community.html">Community</a>&nbsp;&nbsp;|&nbsp;
+    <a href="../../legal.html">Legal</a>&nbsp;&nbsp;|&nbsp;
+  </p>
+  </div>
+
+</div><!-- end doc-content -->
+
+</div> <!-- end body-content --> 
+
+
+
+
+
+
+</body>
+</html>
+
+
+

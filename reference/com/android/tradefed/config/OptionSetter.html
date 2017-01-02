@@ -1,0 +1,1982 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<link rel="shortcut icon" type="image/x-icon" href="../../../../../favicon.ico" />
+<title>OptionSetter | Android Open Source Project</title>
+
+<!-- STYLESHEETS -->
+<link rel="stylesheet"
+href="https://fonts.googleapis.com/css?family=Roboto:regular,medium,thin,italic,mediumitalic,bold" title="roboto">
+<link href="../../../../../assets/css/default.css" rel="stylesheet" type="text/css">
+
+
+
+<!-- JAVASCRIPT -->
+<script src="https://www.google.com/jsapi" type="text/javascript"></script>
+<script src="../../../../../assets/js/android_3p-bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+  var toRoot = "/";
+  
+  var devsite = false;
+  
+</script>
+<script src="../../../../../assets/js/docs.js" type="text/javascript"></script>
+
+<script src="../../../../../navtree_data.js" type="text/javascript"></script>
+
+
+<script type="text/javascript" src="https://www.gstatic.com/feedback/api.js"></script>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-45455297-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</head>
+
+<body class="gc-documentation 
+  develop" itemscope itemtype="http://schema.org/Article">
+  <div id="doc-api-level" class="" style="display:none"></div>
+  <a name="top"></a>
+
+  
+    <!-- Header -->
+    <div id="header">
+        <div class="wrap" id="header-wrap">
+          <div class="col-3 saclogo">
+          <a href="../../../../../index.html">
+            <img src="../../../../../assets/images/sac_logo.png"
+                srcset="/assets/images/sac_logo@2x.png 2x"
+                width="123" height="25" alt="Android Open Source Project" />
+          </a>
+          </div>
+            <ul class="nav-x col-9">
+                <li class="source">
+                  <a href="../../../../../source/index.html" 
+                  >Source</a></li>
+                <li class="devices"><a href="../../../../../devices/index.html" class="selected"
+                  >Devices</a></li>
+                <li class="security"><a href="../../../../../security/index.html" 
+                  >Security</a></li>
+                <li class="compatibility last"><a href="../../../../../compatibility/index.html" 
+                  >Compatibility</a></li>
+            </ul>
+            <!-- New Search -->
+            <div class="menu-container">
+            <div class="moremenu">
+    <div id="more-btn"></div>
+  </div>
+  <div class="morehover" id="moremenu">
+    <div class="top"></div>
+    <div class="mid">
+      <div class="header">Android Sites</div>
+      <ul>
+        <li class="active"><a>Android Open Source Project</a></li>
+        <li><a href="http://www.android.com">Android.com</a></li>
+        <li><a href="http://developer.android.com">Android Developers</a></li>
+      </ul>
+      <!-- <div class="header">Support</div>
+      <ul>
+        <li><a href="/support.html">Developer Support</a></li>
+      </ul> -->
+      <br class="clearfix" />
+    </div>
+    <div class="bottom"></div>
+  </div>
+
+  <div class="search" id="search-container">
+    <div class="search-inner">
+      <div id="search-btn"></div>
+      <div class="left"></div>
+      <form onsubmit="return submit_search()">
+        <input id="search_autocomplete" type="text" value="" autocomplete="off" name="q"
+onfocus="search_focus_changed(this, true)" onblur="search_focus_changed(this, false)"
+onkeydown="return search_changed(event, true, '/')"
+onkeyup="return search_changed(event, false, '/')" />
+      </form>
+      <div class="right"></div>
+        <a class="close hide">close</a>
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+  </div>
+  <div id="search_filtered_wrapper">
+    <div id="search_filtered_div" class="no-display">
+        <ul id="search_filtered">
+        </ul>
+    </div>
+  </div>
+
+  </div>
+  <!-- /New Search> -->
+        </div>
+    </div>
+    <!-- /Header -->
+
+  <div id="searchResults" class="wrap" style="display:none;">
+          <h2 id="searchTitle">Results</h2>
+          <div id="leftSearchControl" class="search-control">Loading...</div>
+  </div>
+
+  
+  
+  
+    
+  <div class="wrap clearfix" id="body-content">
+    <div class="col-4" id="side-nav" itemscope itemtype="http://schema.org/SiteNavigationElement">
+      <div id="devdoc-nav" class="scroll-pane">
+<a class="totop" href="OptionSetter.html#top" data-g-event="left-nav-top">to top</a>
+
+<!--
+    Copyright 2015 The Android Open Source Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<ul id="nav">
+  <li class="nav-section">  <!-- Begin nav section, Device Interfaces -->
+    <div class="nav-section-header">
+      <a href="../../../../../devices/index.html">
+        <span class="en">Interfaces</span>
+      </a>
+    </div>
+    <ul>
+  <li class="nav-section">
+  <div class="nav-section-header">
+      <a href="../../../../../devices/accessories/index.html">
+        <span class="en">Accessories</span>
+      </a>
+    </div>
+    <ul>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../../../../../devices/accessories/audio.html">
+            <span class="en">Audio Accessories</span>
+          </a>
+        </div>
+        <ul>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../../../../../devices/accessories/headset/index.html">
+            <span class="en">Headset</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../../../../../devices/accessories/headset/specification.html">Specification</a></li>
+          <li><a href="../../../../../devices/accessories/headset/requirements.html">Requirements</a></li>
+          <li><a href="../../../../../devices/accessories/headset/testing.html">Testing</a></li>
+        </ul>
+      </li>
+        </ul>
+      </li>
+  <li class="nav-section">
+  <div class="nav-section-header">
+      <a href="../../../../../devices/accessories/custom.html">
+        <span class="en">Custom Accessories</span>
+      </a>
+    </div>
+    <ul>
+      <li class="nav-section">
+        <div class="nav-section-header"><a href="../../../../../devices/accessories/protocol.html"><span class="en">AOA</span>
+        </a>
+        </div>
+        <ul>
+          <li><a href="../../../../../devices/accessories/aoa2.html">AOA 2.0</a></li>
+          <li><a href="../../../../../devices/accessories/aoa.html">AOA 1.0</a></li>
+        </ul>
+        </li>
+        <div class="nav-section-header"><a href="../../../../../devices/accessories/stylus.html"><span class="en">Stylus</span>
+        </a>
+        </div>
+       </ul>
+     </li>
+    </ul>
+      <li class="nav-section">
+      <div class="nav-section-header">
+        <a href="../../../../../devices/audio/index.html">
+          <span class="en">Audio</span>
+        </a>
+      </div>
+        <ul>
+          <li><a href="../../../../../devices/audio/terminology.html">Terminology</a></li>
+          <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="../../../../../devices/audio/implement.html">
+                <span class="en">Implementation</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="../../../../../devices/audio/implement-policy.html">Policy Configuration</a></li>
+              <li><a href="../../../../../devices/audio/implement-shared-library.html">Shared Library</a></li>
+              <li><a href="../../../../../devices/audio/implement-pre-processing.html">Pre-processing Effects</a></li>
+            </ul>
+         </li>
+          <li><a href="../../../../../devices/audio/data_formats.html">Data Formats</a></li>
+          <li><a href="../../../../../devices/audio/attributes.html">Attributes</a></li>
+          <li><a href="../../../../../devices/audio/warmup.html">Warmup</a></li>
+          <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="../../../../../devices/audio/latency.html">
+                <span class="en">Latency</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="../../../../../devices/audio/latency_contrib.html">Contributors</a></li>
+              <li><a href="../../../../../devices/audio/latency_design.html">Design</a></li>
+              <li><a href="../../../../../devices/audio/latency_measure.html">Measure</a></li>
+              <li><a href="../../../../../devices/audio/testing_circuit.html">Light Testing Circuit</a></li>
+              <li><a href="../../../../../devices/audio/loopback.html">Audio Loopback Dongle</a></li>
+              <li><a href="../../../../../devices/audio/latency_measurements.html">Measurements</a></li>
+              <li><a href="../../../../../devices/audio/latency_app.html">Applications</a></li>
+            </ul>
+          </li>
+          <li><a href="../../../../../devices/audio/avoiding_pi.html">Priority Inversion</a></li>
+          <li><a href="../../../../../devices/audio/src.html">Sample Rate Conversion</a></li>
+          <li><a href="../../../../../devices/audio/debugging.html">Debugging</a></li>
+          <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="../../../../../devices/audio/midi.html">
+                <span class="em">MIDI</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="../../../../../devices/audio/midi_arch.html">MIDI Architecture</a></li>
+              <li><a href="../../../../../devices/audio/midi_test.html">MIDI Test Procedure</a></li>
+            </ul>
+          <li><a href="../../../../../devices/audio/usb.html">USB Digital Audio</a></li>
+          <li><a href="../../../../../devices/audio/tv.html">TV Audio</a></li>
+        </ul>
+      </li>
+      <li><a href="../../../../../devices/automotive.html">Automotive</a></li>
+      <li><a href="../../../../../devices/bluetooth.html">Bluetooth</a></li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../../../../../devices/camera/index.html">
+            <span class="en">Camera</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../../../../../devices/camera/camera3.html">Camera HAL3</a></li>
+          <li><a href="../../../../../devices/camera/camera3_requests_hal.html">HAL Subsystem</a></li>
+          <li><a href="../../../../../devices/camera/camera3_metadata.html">Metadata and Controls</a></li>
+          <li><a href="../../../../../devices/camera/camera3_3Amodes.html">3A Modes and State</a></li>
+          <li><a href="../../../../../devices/camera/camera3_crop_reprocess.html">Output and Cropping</a></li>
+          <li><a href="../../../../../devices/camera/camera3_error_stream.html">Errors and Streams</a></li>
+          <li><a href="../../../../../devices/camera/camera3_requests_methods.html">Request Creation</a></li>
+          <li><a href="../../../../../devices/camera/versioning.html">Version Support</a></li>
+        </ul>
+      </li>
+
+      <li><a href="../../../../../devices/drm.html">DRM</a></li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../../../../../devices/graphics/index.html">
+            <span class="en">Graphics</span>
+          </a>
+        </div>
+        <ul>
+         <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="../../../../../devices/graphics/architecture.html">
+                <span class="en">Architecture</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="../../../../../devices/graphics/arch-bq-gralloc.html">BufferQueue</a></li>
+              <li><a href="../../../../../devices/graphics/arch-sf-hwc.html">SurfaceFlinger and HWC</a></li>
+              <li><a href="../../../../../devices/graphics/arch-sh.html">Surface and SurfaceHolder</a></li>
+              <li><a href="../../../../../devices/graphics/arch-egl-opengl.html">OpenGL ES</a></li>
+              <li><a href="../../../../../devices/graphics/arch-vulkan.html">Vulkan</a></li>
+              <li><a href="../../../../../devices/graphics/arch-sv-glsv.html">SurfaceView</a></li>
+              <li><a href="../../../../../devices/graphics/arch-st.html">SurfaceTexture</a></li>
+              <li><a href="../../../../../devices/graphics/arch-tv.html">TextureView</a></li>
+              <li><a href="../../../../../devices/graphics/arch-gameloops.html">Game Loops</a></li>
+            </ul>
+         </li>
+         <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="../../../../../devices/graphics/implement.html">
+                <span class="en">Implementing</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="../../../../../devices/graphics/implement-hwc.html">Hardware Composer HAL</a></li>
+              <li><a href="../../../../../devices/graphics/implement-vsync.html">VSYNC</a></li>
+              <li><a href="../../../../../devices/graphics/implement-vulkan.html">Vulkan</a></li>
+              <li><a href="../../../../../devices/graphics/implement-vdisplays.html">Virtual Displays</a></li>
+            </ul>
+         </li>
+         <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="../../../../../devices/graphics/testing.html">
+                <span class="en">OpenGL ES Testing</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="../../../../../devices/graphics/build-tests.html">Building test programs</a></li>
+              <li><a href="../../../../../devices/graphics/port-tests.html">Porting the test framework</a></li>
+              <li><a href="../../../../../devices/graphics/run-tests.html">Running the tests</a></li>
+              <li><a href="../../../../../devices/graphics/automate-tests.html">Automating the tests</a></li>
+              <li><a href="../../../../../devices/graphics/test-groups.html">Using special test groups</a></li>
+              <li><a href="../../../../../devices/graphics/cts-integration.html">Integrating with Android CTS</a></li>
+            </ul>
+         </li>
+        </ul> </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../../../../../devices/input/index.html">
+            <span class="en">Input</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../../../../../devices/input/overview.html">Overview</a></li>
+          <li><a href="../../../../../devices/input/key-layout-files.html">Key Layout Files</a></li>
+          <li><a href="../../../../../devices/input/key-character-map-files.html">Key Character Map Files</a></li>
+          <li><a href="../../../../../devices/input/input-device-configuration-files.html">Input Device Configuration Files</a></li>
+          <li><a href="../../../../../devices/input/migration-guide.html">Migration Guide</a></li>
+          <li><a href="../../../../../devices/input/keyboard-devices.html">Keyboard Devices</a></li>
+          <li><a href="../../../../../devices/tech/input/touch-devices.html">Touch Devices</a></li>
+          <li><a href="../../../../../devices/tech/input/dumpsys.html">Diagnostics</a></li>
+          <li><a href="../../../../../devices/input/getevent.html">Getevent</a></li>
+          <li><a href="../../../../../devices/input/validate-keymaps.html">Validate Keymaps</a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../../../../../devices/media.html">
+            <span class="en">Media</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../../../../../devices/media/framework-hardening.html">Framework
+          Hardening</a></li>
+          <li><a href="../../../../../devices/media/soc.html">SoC Dependencies</a></li>
+          <li><a href="../../../../../devices/media/oem.html">OEM Dependencies</a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../../../../../devices/sensors/index.html">
+            <span class="en">Sensors</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../../../../../devices/sensors/sensor-stack.html">Sensor stack</a></li>
+          <li><a href="../../../../../devices/sensors/report-modes.html">Reporting modes</a></li>
+          <li><a href="../../../../../devices/sensors/suspend-mode.html">Suspend mode</a></li>
+          <li><a href="../../../../../devices/sensors/power-use.html">Power consumption</a></li>
+          <li><a href="../../../../../devices/sensors/interaction.html">Interaction</span></a></li>
+          <li><a href="../../../../../devices/sensors/hal-interface.html">HAL interface</a></li>
+          <li><a href="../../../../../devices/sensors/batching.html">Batching</a></li>
+          <li><a href="../../../../../devices/sensors/sensor-types.html">Sensor types</a></li>
+          <li><a href="../../../../../devices/sensors/versioning.html">Version deprecation</a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="https://source.android.com/devices/storage/index.html">
+            <span class="en">Storage</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../../../../../devices/storage/traditional.html">Traditional Storage</a></li>
+          <li><a href="../../../../../devices/storage/adoptable.html">Adoptable Storage</a></li>
+          <li><a href="../../../../../devices/storage/config.html">Device Configuration</a></li>
+          <li><a href="../../../../../devices/storage/config-example.html">Configuration Examples</a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../../../../../devices/tv/index.html">
+            <span class="en">TV</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../../../../../devices/tv/HDMI-CEC.html">HDMI-CEC control service</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li> <!-- End nav-section, Device Interfaces-->
+
+
+  <li class="nav-section"> <!--Begin nav-section, Core Technologies-->
+    <div class="nav-section-header">
+      <a href="../../../../../devices/tech/index.html">
+        <span class="en">Core Technologies</span>
+      </a>
+    </div>
+
+    <ul>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../../../../../devices/tech/dalvik/index.html">
+          <span class="en">ART and Dalvik</span></a>
+        </div>
+        <ul>
+          <li><a href="../../../../../devices/tech/dalvik/dalvik-bytecode.html">Bytecode Format</a></li>
+          <li><a href="../../../../../devices/tech/dalvik/dex-format.html">.Dex Format</a></li>
+          <li><a href="../../../../../devices/tech/dalvik/instruction-formats.html">Instruction Formats</a></li>
+          <li><a href="../../../../../devices/tech/dalvik/constraints.html">Constraints</a></li>
+          <li><a href="../../../../../devices/tech/dalvik/configure.html">Configuration</a></li>
+          <li><a href="../../../../../devices/tech/dalvik/gc-debug.html">Garbage Collection</a></li>
+          <li><a href="../../../../../devices/tech/dalvik/jit-compiler.html">JIT Compilation</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+            <a href="../../../../../devices/tech/config/index.html">
+              <span class="en">Configuration</span>
+            </a>
+        </div>
+        <ul>
+          <li><a href="../../../../../devices/tech/config/carrier.html">Carrier Customization</a></li>
+          <li><a href="../../../../../devices/tech/config/filesystem.html">File System</a></li>
+          <li><a href="../../../../../devices/tech/kernel.html">Kernel Configuration</a></li>
+          <li><a href="../../../../../devices/tech/config/kernel_network_tests.html">Kernel Network Tests</a></li>
+          <li><a href="../../../../../devices/tech/config/low-ram.html">Low RAM</a></li>
+          <li><a href="../../../../../devices/tech/config/namespaces_libraries.html">Namespaces for Libraries</a></li>
+          <li><a href="../../../../../devices/tech/config/renderer.html">OpenGLRenderer</a></li>
+          <li><a href="../../../../../devices/tech/config/runtime_perms.html">Runtime Permissions</a></li>
+          <li><a href="../../../../../devices/tech/config/uicc.html">UICC</a></li>
+          <li><a href="../../../../../devices/tech/config/voicemail.html">Visual Voicemail</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+            <a href="../../../../../devices/tech/connect/index.html">
+              <span class="en">Connectivity</span>
+            </a>
+        </div>
+        <ul>
+          <li><a href="../../../../../devices/tech/connect/block-numbers.html">Block Phone Numbers</a></li>
+          <li><a href="../../../../../devices/tech/connect/call-notification.html">Call Notifications</a></li>
+          <li><a href="../../../../../devices/tech/connect/data-saver.html">Data Saver Mode</a></li>
+          <li><a href="../../../../../devices/tech/connect/felica.html">Host Card Emulation of FeliCa</a></li>
+          <li><a href="../../../../../devices/tech/connect/ril.html">Radio Interface Layer (RIL)</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../../../../../devices/tech/datausage/index.html">
+            <span class="en">Data Usage</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../../../../../devices/tech/datausage/iface-overview.html">Network interface statistics overview</a></li>
+          <li><a href="../../../../../devices/tech/datausage/excluding-network-types.html">Excluding Network Types from Data Usage</a></li>
+          <li><a href="../../../../../devices/tech/datausage/tethering-data.html">Tethering Data</a></li>
+          <li><a href="../../../../../devices/tech/datausage/usage-cycle-resets-dates.html">Usage Cycle Reset Dates</a></li>
+          <li><a href="../../../../../devices/tech/datausage/kernel-overview.html">Kernel Overview</a></li>
+          <li><a href="../../../../../devices/tech/datausage/tags-explained.html">Data Usage Tags Explained</a></li>
+          <li><a href="../../../../../devices/tech/datausage/kernel-changes.html">Kernel Changes</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../../../../../devices/tech/debug/index.html">
+            <span class="en">Debugging</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../../../../../devices/tech/debug/asan.html">AddressSanitizer</a></li>
+          <li><a href="../../../../../devices/tech/debug/dumpsys.html">Dumpsys</a></li>
+          <li><a href="../../../../../devices/tech/debug/native-memory.html">Native Memory Use</a></li>
+          <li><a href="../../../../../devices/tech/debug/netstats.html">Network Use</a></li>
+          <li><a href="../../../../../devices/tech/debug/procstats.html">RAM Use</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../../../../../devices/tech/admin/index.html">
+          <span class="en">Device Administration</span></a>
+        </div>
+        <ul>
+          <li><a href="../../../../../devices/tech/admin/implement.html">Implementation</a></li>
+          <li><a href="../../../../../devices/tech/admin/multi-user.html">Multiple Users</a></li>
+          <li><a href="../../../../../devices/tech/admin/managed-profiles.html">Managed Profiles</a></li>
+          <li><a href="../../../../../devices/tech/admin/provision.html">Provisioning</a></li>
+          <li><a href="../../../../../devices/tech/admin/multiuser-apps.html">Multiuser Apps</a></li>
+          <li><a href="../../../../../devices/tech/admin/enterprise-telephony.html">Enterprise Telephony</a></li>
+          <li><a href="../../../../../devices/tech/admin/testing-provision.html">Testing Device Provisioning</a></li>
+          <li><a href="../../../../../devices/tech/admin/testing-setup.html">Testing Device Administration</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+            <a href="../../../../../devices/tech/display/index.html">
+              <span class="en">Display Settings</span></a>
+        </div>
+        <ul>
+          <li><a href="../../../../../devices/tech/display/dnd.html">Do Not Disturb</a></li>
+          <li><a href="../../../../../devices/tech/display/multi-window.html">Multi-Window</a></li>
+          <li><a href="../../../../../devices/tech/display/hdr.html">HDR Video</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header empty">
+          <a href="../../../../../devices/halref/index.html">
+            <span class="en">HAL File Reference</span>
+          </a>
+        </div>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+            <a href="../../../../../devices/tech/ota/index.html">
+              <span class="en">OTA Updates</span>
+            </a>
+        </div>
+        <ul>
+          <li><a href="../../../../../devices/tech/ota/tools.html">OTA Tools</a></li>
+          <li><a href="../../../../../devices/tech/ota/block.html">Block-based OTA</a></li>
+          <li><a href="../../../../../devices/tech/ota/inside_packages.html">Inside OTA Packages</a></li>
+          <li><a href="../../../../../devices/tech/ota/device_code.html">Device-Specific Code</a></li>
+          <li><a href="../../../../../devices/tech/ota/sign_builds.html">Signing Builds for Release</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../../../../../devices/tech/power/index.html"><span class="en">Power</span></a>
+        </div>
+        <ul>
+          <li><a href="../../../../../devices/tech/power/mgmt.html">Power Management</a>
+          </li>
+          <li><a href="../../../../../devices/tech/power/component.html">Component Power</a></li>
+          <li><a href="../../../../../devices/tech/power/device.html">Device Power</a>
+          </li>
+          <li><a href="../../../../../devices/tech/power/values.html">Power Values</a></li>
+          <li><a href="../../../../../devices/tech/power/batterystats.html">Battery Use</a>
+          </li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../../../../../devices/tech/test_infra/tradefed/index.html">
+            <span class="en">Testing Infrastructure</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../../../../../devices/tech/test_infra/tradefed/fundamentals/index.html">Start Here</a></li>
+          <li><a href="../../../../../devices/tech/test_infra/tradefed/fundamentals/machine_setup.html">Machine Setup</a></li>
+          <li><a href="../../../../../devices/tech/test_infra/tradefed/fundamentals/devices.html">Working with Devices</a></li>
+          <li><a href="../../../../../devices/tech/test_infra/tradefed/fundamentals/lifecycle.html">Test Lifecycle</a></li>
+          <li><a href="../../../../../devices/tech/test_infra/tradefed/fundamentals/options.html">Option Handling</a></li>
+          <li><a href="../../../../../devices/tech/test_infra/tradefed/full_example.html">An End-to-End Example</a></li>
+          <li id="tradefed-tree-list" class="nav-section">
+            <div class="nav-section-header">
+              <a href="../../../../packages.html">
+                <span class="en">Package Index</span>
+              </a>
+            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li> <!-- End nav-section, Core Technologies -->
+</ul> 
+
+
+      </div>
+      <script type="text/javascript">
+        showTradefedRefTree();
+      </script>
+    </div> <!-- end side-nav -->
+    <script>
+      $(document).ready(function() {
+        scrollIntoView("devdoc-nav");
+        });
+    </script>
+
+  
+
+
+
+
+<div class="col-12"  id="doc-col">
+
+<div id="api-info-block">
+
+
+
+  
+   
+  
+  
+  
+  
+
+
+<div class="sum-details-links">
+
+Summary:
+
+  <a href="OptionSetter.html#nestedclasses">Nested Classes</a>
+  
+
+
+
+
+
+  &#124; <a href="OptionSetter.html#constants">Constants</a>
+  
+
+
+
+
+
+  &#124; <a href="OptionSetter.html#pubctors">Ctors</a>
+  
+
+
+
+  &#124; <a href="OptionSetter.html#pubmethods">Methods</a>
+  
+
+
+  &#124; <a href="OptionSetter.html#promethods">Protected Methods</a>
+  
+
+
+  &#124; <a href="OptionSetter.html#inhmethods">Inherited Methods</a>
+
+&#124; <a href="OptionSetter.html#" onclick="return toggleAllClassInherited()" id="toggleAllClassInherited">[Expand All]</a>
+
+</div><!-- end sum-details-links -->
+<div class="api-level">
+  
+  
+  
+
+</div>
+</div><!-- end api-info-block -->
+
+
+<!-- ======== START OF CLASS DATA ======== -->
+
+<div id="jd-header">
+    public
+     
+     
+    
+    class
+<h1 itemprop="name">OptionSetter</h1>
+
+
+
+  
+    extends Object<br/>
+  
+  
+  
+
+  
+  
+  
+
+
+
+</div><!-- end header -->
+
+<div id="naMessage"></div>
+
+<div id="jd-content" class="api apilevel-">
+<table class="jd-inheritance-table">
+
+
+    <tr>
+         	
+        <td colspan="2" class="jd-inheritance-class-cell">java.lang.Object</td>
+    </tr>
+    
+
+    <tr>
+        
+            <td class="jd-inheritance-space">&nbsp;&nbsp;&nbsp;&#x21b3;</td>
+         	
+        <td colspan="1" class="jd-inheritance-class-cell">com.android.tradefed.config.OptionSetter</td>
+    </tr>
+    
+
+</table>
+
+
+
+
+<table class="jd-sumtable jd-sumtable-subclasses"><tr><td colspan="12" style="border:none;margin:0;padding:0;">
+
+  <a href="OptionSetter.html#" onclick="return toggleInherited(this, null)" id="subclasses-direct" class="jd-expando-trigger closed"
+          ><img height="34" id="subclasses-direct-trigger"
+          src="../../../../../assets/images/styles/disclosure_down.png"
+          class="jd-expando-trigger-img" /></a>Known Direct Subclasses
+
+  <div id="subclasses-direct">
+      <div id="subclasses-direct-list"
+              class="jd-inheritedlinks"
+              
+              >
+          
+            
+              <a href="https://source.android.com/reference/com/android/tradefed/config/ArgsOptionParser.html">ArgsOptionParser</a>
+            
+          
+      </div>
+      <div id="subclasses-direct-summary"
+              style="display: none;"
+              >
+  <table class="jd-sumtable-expando">
+        <tr class="alt-color api apilevel-" >
+              <td><a href="https://source.android.com/reference/com/android/tradefed/config/ArgsOptionParser.html">ArgsOptionParser</a></td>
+              <td width="100%">Populates <code><a href="https://source.android.com/reference/com/android/tradefed/config/Option.html">Option</a></code> fields from parsed command line arguments.&nbsp;</td>
+          </tr>
+  </table>
+      </div>
+  </div>
+</td></tr></table>
+
+
+
+
+<div class="jd-descr">
+
+
+<h2>Class Overview</h2>
+<p itemprop="articleBody">Populates <code><a href="https://source.android.com/reference/com/android/tradefed/config/Option.html">Option</a></code> fields.
+ <p/>
+ Setting of numeric fields such byte, short, int, long, float, and double fields is supported.
+ This includes both unboxed and boxed versions (e.g. int vs Integer). If there is a problem
+ setting the argument to match the desired type, a <code><a href="https://source.android.com/reference/com/android/tradefed/config/ConfigurationException.html">ConfigurationException</a></code> is thrown.
+ <p/>
+ File option fields are supported by simply wrapping the string argument in a File object without
+ testing for the existence of the file.
+ <p/>
+ Parameterized Collection fields such as List&lt;File&gt; and Set&lt;String&gt; are supported as
+ long as the parameter type is otherwise supported by the option setter. The collection field
+ should be initialized with an appropriate collection instance.
+ <p/>
+ All fields will be processed, including public, protected, default (package) access, private and
+ inherited fields.
+ <p/>
+
+ ported from dalvik.runner.OptionParser</p>
+
+
+
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code><a href="../../../../../index.html">ERROR(ArgsOptionParser}
+/{@link ArgsOptionParser})</a></code></li>
+      </ul>
+  </div>
+
+
+</div><!-- jd-descr -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="jd-descr">
+
+
+<h2>Summary</h2>
+
+
+
+<!-- ======== NESTED CLASS SUMMARY ======== -->
+<table id="nestedclasses" class="jd-sumtable"><tr><th colspan="12">Nested Classes</th></tr>
+
+
+  
+    <tr class="alt-color api apilevel-" >
+      <td class="jd-typecol"><nobr>
+        
+         
+         
+        
+        class</nobr></td>
+      <td class="jd-linkcol"><a href="https://source.android.com/reference/com/android/tradefed/config/OptionSetter.FieldDef.html">OptionSetter.FieldDef</a></td>
+      <td class="jd-descrcol" width="100%">&nbsp;</td>
+    </tr>
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- =========== ENUM CONSTANT SUMMARY =========== -->
+<table id="constants" class="jd-sumtable"><tr><th colspan="12">Constants</th></tr>
+
+
+    
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">String</td>
+        <td class="jd-linkcol"><a href="OptionSetter.html#BOOL_FALSE_PREFIX">BOOL_FALSE_PREFIX</a></td>
+        <td class="jd-descrcol" width="100%"></td>
+    </tr>
+    
+    
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">char</td>
+        <td class="jd-linkcol"><a href="OptionSetter.html#NAMESPACE_SEPARATOR">NAMESPACE_SEPARATOR</a></td>
+        <td class="jd-descrcol" width="100%"></td>
+    </tr>
+    
+    
+
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ======== CONSTRUCTOR SUMMARY ======== -->
+<table id="pubctors" class="jd-sumtable"><tr><th colspan="12">Public Constructors</th></tr>
+
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            </nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="OptionSetter.html#OptionSetter(java.lang.Object...)">OptionSetter</a></span>(Object... optionSources)</nobr>
+        
+        <div class="jd-descrdiv">Constructs a new OptionParser for setting the @Option fields of 'optionSources'.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            </nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="OptionSetter.html#OptionSetter(java.util.Collection<java.lang.Object>)">OptionSetter</a></span>(Collection&lt;Object&gt; optionSources)</nobr>
+        
+        <div class="jd-descrdiv">Constructs a new OptionParser for setting the @Option fields of 'optionSources'.</div>
+  
+  </td></tr>
+
+
+
+</table>
+
+
+
+
+
+
+<!-- ========== METHOD SUMMARY =========== -->
+<table id="pubmethods" class="jd-sumtable"><tr><th colspan="12">Public Methods</th></tr>
+
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="OptionSetter.html#getTypeForOption(java.lang.String)">getTypeForOption</a></span>(String name)</nobr>
+        
+        <div class="jd-descrdiv">Returns a string describing the type of the field with given name.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            boolean</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="OptionSetter.html#isBooleanOption(java.lang.String)">isBooleanOption</a></span>(String name)</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            boolean</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="OptionSetter.html#isMapOption(java.lang.String)">isMapOption</a></span>(String name)</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            List&lt;<a href="https://source.android.com/reference/com/android/tradefed/config/OptionSetter.FieldDef.html">OptionSetter.FieldDef</a>&gt;</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="OptionSetter.html#setOptionValue(java.lang.String, java.lang.String)">setOptionValue</a></span>(String optionName, String valueText)</nobr>
+        
+        <div class="jd-descrdiv">Sets the value for a non-map option.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            List&lt;<a href="https://source.android.com/reference/com/android/tradefed/config/OptionSetter.FieldDef.html">OptionSetter.FieldDef</a>&gt;</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="OptionSetter.html#setOptionValue(java.lang.String, java.lang.String, java.lang.String)">setOptionValue</a></span>(String optionName, String keyText, String valueText)</nobr>
+        
+        <div class="jd-descrdiv">Sets the value for an option.</div>
+  
+  </td></tr>
+
+
+
+</table>
+
+
+
+
+<!-- ========== METHOD SUMMARY =========== -->
+<table id="promethods" class="jd-sumtable"><tr><th colspan="12">Protected Methods</th></tr>
+
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            Collection&lt;String&gt;</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="OptionSetter.html#getUnsetMandatoryOptions()">getUnsetMandatoryOptions</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Returns the names of all of the <code><a href="https://source.android.com/reference/com/android/tradefed/config/Option.html">Option</a></code>s that are marked as <code>mandatory</code> but
+ remain unset.</div>
+  
+  </td></tr>
+
+
+
+</table>
+
+
+
+
+
+<!-- ========== METHOD SUMMARY =========== -->
+<table id="inhmethods" class="jd-sumtable"><tr><th>
+  <a href="OptionSetter.html#" class="toggle-all" onclick="return toggleAllInherited(this, null)">[Expand]</a>
+  <div style="clear:left;">Inherited Methods</div></th></tr>
+
+
+<tr class="api apilevel-" >
+<td colspan="12">
+  <a href="OptionSetter.html#" onclick="return toggleInherited(this, null)" id="inherited-methods-java.lang.Object" class="jd-expando-trigger closed"
+          ><img height="34" id="inherited-methods-java.lang.Object-trigger"
+          src="../../../../../assets/images/styles/disclosure_down.png"
+          class="jd-expando-trigger-img" /></a>
+From class
+
+  java.lang.Object
+
+<div id="inherited-methods-java.lang.Object">
+  <div id="inherited-methods-java.lang.Object-list"
+        class="jd-inheritedlinks">
+  </div>
+  <div id="inherited-methods-java.lang.Object-summary" style="display: none;">
+    <table class="jd-sumtable-expando">
+    
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            Object</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">clone</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            boolean</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">equals</span>(Object arg0)</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">finalize</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            final
+            
+            Class&lt;?&gt;</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">getClass</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            int</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">hashCode</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            final
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">notify</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            final
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">notifyAll</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">toString</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            final
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">wait</span>(long arg0, int arg1)</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            final
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">wait</span>(long arg0)</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            final
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">wait</span>()</nobr>
+        
+  </td></tr>
+
+
+</table>
+  </div>
+</div>
+</td></tr>
+
+
+</table>
+
+
+</div><!-- jd-descr (summary) -->
+
+<!-- Details -->
+
+
+
+
+
+
+
+
+<!-- XML Attributes -->
+
+
+<!-- Enum Values -->
+
+
+<!-- Constants -->
+
+
+<!-- ========= ENUM CONSTANTS DETAIL ======== -->
+<h2>Constants</h2>
+
+
+
+
+<A NAME="BOOL_FALSE_PREFIX"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+         
+        static 
+        final 
+        String
+      </span>
+        BOOL_FALSE_PREFIX
+    </h4>
+      <div class="api-level">
+        
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p></p>
+
+    
+        <div class="jd-tagdata">
+        <span class="jd-tagtitle">Constant Value: </span>
+        <span>
+            
+                "no-"
+            
+        </span>
+        </div>
+    
+    </div>
+</div>
+
+
+
+<A NAME="NAMESPACE_SEPARATOR"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+         
+        static 
+        final 
+        char
+      </span>
+        NAMESPACE_SEPARATOR
+    </h4>
+      <div class="api-level">
+        
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p></p>
+
+    
+        <div class="jd-tagdata">
+        <span class="jd-tagtitle">Constant Value: </span>
+        <span>
+            
+                58
+                (0x0000003a)
+            
+        </span>
+        </div>
+    
+    </div>
+</div>
+
+
+
+
+<!-- Fields -->
+
+
+<!-- Public ctors -->
+
+
+<!-- ========= CONSTRUCTOR DETAIL ======== -->
+<h2>Public Constructors</h2>
+
+
+
+<A NAME="OptionSetter(java.lang.Object...)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        
+        
+        
+        
+        
+      </span>
+      <span class="sympad">OptionSetter</span>
+      <span class="normal">(Object... optionSources)</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Constructs a new OptionParser for setting the @Option fields of 'optionSources'.</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>optionSources</code></td>
+        <td width="100%">
+          <code>Object</code>
+          <!-- no parameter comment --></td>
+      </tr>
+    </table>
+      <table class="responsive">
+      <tr><th colspan=2>Throws</th></tr>
+        <tr>
+          <td><code><a href="https://source.android.com/reference/com/android/tradefed/config/ConfigurationException.html">ConfigurationException</a></code></td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+  
+
+    </div>
+</div>
+
+
+<A NAME="OptionSetter(java.util.Collection<java.lang.Object>)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        
+        
+        
+        
+        
+      </span>
+      <span class="sympad">OptionSetter</span>
+      <span class="normal">(Collection&lt;Object&gt; optionSources)</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Constructs a new OptionParser for setting the @Option fields of 'optionSources'.</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>optionSources</code></td>
+        <td width="100%">
+          <code>Collection</code>
+          <!-- no parameter comment --></td>
+      </tr>
+    </table>
+      <table class="responsive">
+      <tr><th colspan=2>Throws</th></tr>
+        <tr>
+          <td><code><a href="https://source.android.com/reference/com/android/tradefed/config/ConfigurationException.html">ConfigurationException</a></code></td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+  
+
+    </div>
+</div>
+
+
+
+
+
+<!-- ========= CONSTRUCTOR DETAIL ======== -->
+<!-- Protected ctors -->
+
+
+
+<!-- ========= METHOD DETAIL ======== -->
+<!-- Public methdos -->
+
+<h2>Public Methods</h2>
+
+
+
+<A NAME="getTypeForOption(java.lang.String)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        
+        
+        
+        
+        String
+      </span>
+      <span class="sympad">getTypeForOption</span>
+      <span class="normal">(String name)</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Returns a string describing the type of the field with given name.</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>name</code></td>
+        <td width="100%">
+          <code>String</code>:
+          the <code><a href="https://source.android.com/reference/com/android/tradefed/config/Option.html">Option</a></code> field name</td>
+      </tr>
+    </table>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code>String</code></td>
+        <td width="100%">a <code><a href="https://source.android.com/reference/java/lang/String.html">String</a></code> describing the field's type</td>
+      </tr>
+    </table>
+      <table class="responsive">
+      <tr><th colspan=2>Throws</th></tr>
+        <tr>
+          <td><code><a href="https://source.android.com/reference/com/android/tradefed/config/ConfigurationException.html">ConfigurationException</a></code></td>
+          <td width="100%">if field could not be found
+</td>
+        </tr>
+      </table>
+  
+
+    </div>
+</div>
+
+
+<A NAME="isBooleanOption(java.lang.String)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        
+        
+        
+        
+        boolean
+      </span>
+      <span class="sympad">isBooleanOption</span>
+      <span class="normal">(String name)</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p></p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>name</code></td>
+        <td width="100%">
+          <code>String</code>
+          <!-- no parameter comment --></td>
+      </tr>
+    </table>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code>boolean</code></td>
+        <td width="100%"><!-- no returns description in source --></td>
+      </tr>
+    </table>
+      <table class="responsive">
+      <tr><th colspan=2>Throws</th></tr>
+        <tr>
+          <td><code><a href="https://source.android.com/reference/com/android/tradefed/config/ConfigurationException.html">ConfigurationException</a></code></td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+  
+
+    </div>
+</div>
+
+
+<A NAME="isMapOption(java.lang.String)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        
+        
+        
+        
+        boolean
+      </span>
+      <span class="sympad">isMapOption</span>
+      <span class="normal">(String name)</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p></p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>name</code></td>
+        <td width="100%">
+          <code>String</code>
+          <!-- no parameter comment --></td>
+      </tr>
+    </table>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code>boolean</code></td>
+        <td width="100%"><!-- no returns description in source --></td>
+      </tr>
+    </table>
+      <table class="responsive">
+      <tr><th colspan=2>Throws</th></tr>
+        <tr>
+          <td><code><a href="https://source.android.com/reference/com/android/tradefed/config/ConfigurationException.html">ConfigurationException</a></code></td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+  
+
+    </div>
+</div>
+
+
+<A NAME="setOptionValue(java.lang.String, java.lang.String)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        
+        
+        
+        
+        List&lt;<a href="https://source.android.com/reference/com/android/tradefed/config/OptionSetter.FieldDef.html">OptionSetter.FieldDef</a>&gt;
+      </span>
+      <span class="sympad">setOptionValue</span>
+      <span class="normal">(String optionName, String valueText)</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Sets the value for a non-map option.</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>optionName</code></td>
+        <td width="100%">
+          <code>String</code>:
+          the name of Option to set</td>
+      </tr>
+      <tr>
+        <td><code>valueText</code></td>
+        <td width="100%">
+          <code>String</code>:
+          the value</td>
+      </tr>
+    </table>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code>List&lt;<a href="https://source.android.com/reference/com/android/tradefed/config/OptionSetter.FieldDef.html">OptionSetter.FieldDef</a>&gt;</code></td>
+        <td width="100%">A list of <code><a href="https://source.android.com/reference/com/android/tradefed/config/OptionSetter.FieldDef.html">OptionSetter.FieldDef</a></code>s corresponding to each object field that was modified.</td>
+      </tr>
+    </table>
+      <table class="responsive">
+      <tr><th colspan=2>Throws</th></tr>
+        <tr>
+          <td><code><a href="https://source.android.com/reference/com/android/tradefed/config/ConfigurationException.html">ConfigurationException</a></code></td>
+          <td width="100%">if Option cannot be found or valueText is wrong type
+</td>
+        </tr>
+      </table>
+  
+
+    </div>
+</div>
+
+
+<A NAME="setOptionValue(java.lang.String, java.lang.String, java.lang.String)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        
+        
+        
+        
+        List&lt;<a href="https://source.android.com/reference/com/android/tradefed/config/OptionSetter.FieldDef.html">OptionSetter.FieldDef</a>&gt;
+      </span>
+      <span class="sympad">setOptionValue</span>
+      <span class="normal">(String optionName, String keyText, String valueText)</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Sets the value for an option.</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>optionName</code></td>
+        <td width="100%">
+          <code>String</code>:
+          the name of Option to set</td>
+      </tr>
+      <tr>
+        <td><code>keyText</code></td>
+        <td width="100%">
+          <code>String</code>:
+          the key for Map options, or null.</td>
+      </tr>
+      <tr>
+        <td><code>valueText</code></td>
+        <td width="100%">
+          <code>String</code>:
+          the value</td>
+      </tr>
+    </table>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code>List&lt;<a href="https://source.android.com/reference/com/android/tradefed/config/OptionSetter.FieldDef.html">OptionSetter.FieldDef</a>&gt;</code></td>
+        <td width="100%">A list of <code><a href="https://source.android.com/reference/com/android/tradefed/config/OptionSetter.FieldDef.html">OptionSetter.FieldDef</a></code>s corresponding to each object field that was modified.</td>
+      </tr>
+    </table>
+      <table class="responsive">
+      <tr><th colspan=2>Throws</th></tr>
+        <tr>
+          <td><code><a href="https://source.android.com/reference/com/android/tradefed/config/ConfigurationException.html">ConfigurationException</a></code></td>
+          <td width="100%">if Option cannot be found or valueText is wrong type
+</td>
+        </tr>
+      </table>
+  
+
+    </div>
+</div>
+
+
+
+
+
+<!-- ========= METHOD DETAIL ======== -->
+
+<h2>Protected Methods</h2>
+
+
+
+<A NAME="getUnsetMandatoryOptions()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected
+        
+        
+        
+        
+        Collection&lt;String&gt;
+      </span>
+      <span class="sympad">getUnsetMandatoryOptions</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Returns the names of all of the <code><a href="https://source.android.com/reference/com/android/tradefed/config/Option.html">Option</a></code>s that are marked as <code>mandatory</code> but
+ remain unset.</p>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code>Collection&lt;String&gt;</code></td>
+        <td width="100%">A <code><a href="https://source.android.com/reference/java/util/Collection.html">Collection</a></code> of <code><a href="https://source.android.com/reference/java/lang/String.html">String</a></code>s containing the (unqualified) names of unset
+         mandatory options.</td>
+      </tr>
+    </table>
+      <table class="responsive">
+      <tr><th colspan=2>Throws</th></tr>
+        <tr>
+          <td><code><a href="https://source.android.com/reference/com/android/tradefed/config/ConfigurationException.html">ConfigurationException</a></code></td>
+          <td width="100%">if a field to be checked is inaccessible
+</td>
+        </tr>
+      </table>
+  
+
+    </div>
+</div>
+
+
+
+
+
+<!-- ========= END OF CLASS DATA ========= -->
+<A NAME="navbar_top"></A>
+
+<div id="footer" class="wrap" >
+  <style>.feedback { float: right !Important }</style>
+  <div class="feedback">
+    <a href="OptionSetter.html#" class="button" onclick=" try {
+      userfeedback.api.startFeedback({'productId':'715571','authuser':'1'});return false;}catch(e){}">Site Feedback</a>
+  </div>
+  <div id="copyright">
+    
+  Except as noted, this content is 
+  licensed under <a href="http://creativecommons.org/licenses/by/2.5/">
+  Creative Commons Attribution 2.5</a>. For details and 
+  restrictions, see the <a href="../../../../../license.html">Content 
+  License</a>.
+  </div>
+    <div id="footerlinks">
+    
+  <p>
+    <a href="../../../../../source/index.html">About Android</a>&nbsp;&nbsp;|&nbsp;
+    <a href="../../../../../source/community.html">Community</a>&nbsp;&nbsp;|&nbsp;
+    <a href="../../../../../legal.html">Legal</a>&nbsp;&nbsp;|&nbsp;
+  </p>
+  </div>
+
+</div> <!-- jd-content -->
+
+</div><!-- end doc-content -->
+
+</div> <!-- end body-content --> 
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<meta name="Description" content="The following instructions to build the Android source tree apply to all branches, including master . The basic sequence of build commands is as follows: AOSP cannot be used from pure source code only and requires additional hardware-related proprietary…">
+
+<link rel="shortcut icon" type="image/x-icon" href="../favicon.ico" />
+<title>Preparing to Build | Android Open Source Project</title>
+
+<!-- STYLESHEETS -->
+<link rel="stylesheet"
+href="https://fonts.googleapis.com/css?family=Roboto:regular,medium,thin,italic,mediumitalic,bold" title="roboto">
+<link href="../assets/css/default.css" rel="stylesheet" type="text/css">
+
+
+
+<!-- JAVASCRIPT -->
+<script src="https://www.google.com/jsapi" type="text/javascript"></script>
+<script src="../assets/js/android_3p-bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+  var toRoot = "/";
+  
+  var devsite = false;
+  
+</script>
+<script src="../assets/js/docs.js" type="text/javascript"></script>
+
+
+<script type="text/javascript" src="https://www.gstatic.com/feedback/api.js"></script>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-45455297-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</head>
+
+<body class="gc-documentation 
+  " itemscope itemtype="http://schema.org/Article">
+<a name="top"></a>
+
+  
+    <!-- Header -->
+    <div id="header">
+        <div class="wrap" id="header-wrap">
+          <div class="col-3 saclogo">
+          <a href="../index.html">
+            <img src="../assets/images/sac_logo.png"
+                srcset="/assets/images/sac_logo@2x.png 2x"
+                width="123" height="25" alt="Android Open Source Project" />
+          </a>
+          </div>
+            <ul class="nav-x col-9">
+                <li class="source">
+                  <a href="index.html" class="selected"
+                  >Source</a></li>
+                <li class="devices"><a href="../devices/index.html" 
+                  >Devices</a></li>
+                <li class="security"><a href="../security/index.html" 
+                  >Security</a></li>
+                <li class="compatibility last"><a href="../compatibility/index.html" 
+                  >Compatibility</a></li>
+            </ul>
+            <!-- New Search -->
+            <div class="menu-container">
+            <div class="moremenu">
+    <div id="more-btn"></div>
+  </div>
+  <div class="morehover" id="moremenu">
+    <div class="top"></div>
+    <div class="mid">
+      <div class="header">Android Sites</div>
+      <ul>
+        <li class="active"><a>Android Open Source Project</a></li>
+        <li><a href="http://www.android.com">Android.com</a></li>
+        <li><a href="http://developer.android.com">Android Developers</a></li>
+      </ul>
+      <!-- <div class="header">Support</div>
+      <ul>
+        <li><a href="/support.html">Developer Support</a></li>
+      </ul> -->
+      <br class="clearfix" />
+    </div>
+    <div class="bottom"></div>
+  </div>
+
+  <div class="search" id="search-container">
+    <div class="search-inner">
+      <div id="search-btn"></div>
+      <div class="left"></div>
+      <form onsubmit="return submit_search()">
+        <input id="search_autocomplete" type="text" value="" autocomplete="off" name="q"
+onfocus="search_focus_changed(this, true)" onblur="search_focus_changed(this, false)"
+onkeydown="return search_changed(event, true, '/')"
+onkeyup="return search_changed(event, false, '/')" />
+      </form>
+      <div class="right"></div>
+        <a class="close hide">close</a>
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+  </div>
+  <div id="search_filtered_wrapper">
+    <div id="search_filtered_div" class="no-display">
+        <ul id="search_filtered">
+        </ul>
+    </div>
+  </div>
+
+  </div>
+  <!-- /New Search> -->
+        </div>
+    </div>
+    <!-- /Header -->
+
+  <div id="searchResults" class="wrap" style="display:none;">
+          <h2 id="searchTitle">Results</h2>
+          <div id="leftSearchControl" class="search-control">Loading...</div>
+  </div>
+
+  
+  
+  
+    
+  <div class="wrap clearfix" id="body-content">
+    <div class="col-4" id="side-nav" itemscope itemtype="http://schema.org/SiteNavigationElement">
+      <div id="devdoc-nav" class="scroll-pane">
+<a class="totop" href="building.html#top" data-g-event="left-nav-top">to top</a>
+
+<!--
+    Copyright 2015 The Android Open Source Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<ul id="nav">
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="index.html">
+        <span class="en">Overview</span>
+      </a>
+    </div>
+    <ul>
+      <li><a href="code-lines.html">Codelines, Branches, and Releases</a></li>
+      <li><a href="build-numbers.html">Codenames, Tags, and Build Numbers</a></li>
+      <li><a href="roles.html">Project Roles</a></li>
+      <li><a href="brands.html">Brand Guidelines</a></li>
+      <li><a href="licenses.html">Licenses</a></li>
+      <li><a href="faqs.html">FAQ</a></li>
+    </ul>
+  </li>
+
+
+  <li class="nav-section">
+      <div class="nav-section-header">
+        <a href="requirements.html">
+          <span class="en">Downloading and Building</span>
+        </a>
+      </div>
+       <ul>
+        <li><a href="initializing.html">Establishing a Build Environment</a></li>
+        <li><a href="downloading.html">Downloading the Source</a></li>
+        <li><a href="building.html">Preparing to Build</a></li>
+        <li><a href="jack.html">Compiling with Jack</a></li>
+        <li><a href="devices.html">Selecting Devices</a></li>
+        <li><a href="running.html">Running Builds</a></li>
+        <li><a href="building-kernels.html">Building Kernels</a></li>
+        <li><a href="known-issues.html">Known Issues</a></li>
+      </ul>
+  </li>
+  <li class="nav-section">
+          <div class="nav-section-header">
+            <a href="developing.html">
+              <span class="en">Developing</span>
+            </a>
+          </div>
+          <ul>
+            <li><a href="using-repo.html">Using Repo</a></li>
+            <li><a href="git-resources.html">Learning Git</a></li>
+            <li><a href="add-device.html">Adding a New Device</a></li>
+            <li><a href="64-bit-builds.html">Understanding 64-bit Builds</a></li>
+          </ul>
+  </li>
+
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="contributing.html">
+        <span class="en">Contributing</span>
+      </a>
+    </div>
+       <ul>
+        <li><a href="life-of-a-patch.html">Life of a Patch</a>
+        <li><a href="submit-patches.html">Submitting Patches</a></li>
+        <li><a href="http://android-review.googlesource.com">View Patches</a></li>
+        <li><a href="life-of-a-bug.html">Life of a Bug</a></li>
+        <li><a href="report-bugs.html">Reporting Bugs</a></li>
+        <li><a href="read-bug-reports.html">Reading Bug Reports</a></li>
+        <li><a href="code-style.html">Code Style Rules</a></li>
+      </ul>
+  </li>
+
+  <li class="nav-section">
+    <div class="nav-section-header empty">
+      <a href="community.html">
+        <span class="en">Community</span>
+      </a>
+    </div>
+  </li>
+
+</ul>
+
+
+      </div>
+    </div> <!-- end side-nav -->
+    <script>
+      $(document).ready(function() {
+        scrollIntoView("devdoc-nav");
+        });
+    </script>
+
+  
+
+
+
+
+<div class="col-12" id="doc-col" >
+
+
+  
+    
+      
+        <h1 itemprop="name" >Preparing to Build</h1>
+      
+    
+  
+
+
+  
+  <div id="jd-content">
+
+    <div class="jd-descr" itemprop="articleBody">
+    <!--
+    Copyright 2016 The Android Open Source Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<div id="qv-wrapper">
+  <div id="qv">
+    <h2>In this document</h2>
+    <ol id="auto-toc">
+    </ol>
+  </div>
+</div>
+
+<p>The following instructions to build the Android source tree apply to all
+branches, including <code>master</code>. The basic sequence of build commands
+is as follows:</p>
+
+<p class="note"><strong>Note:</strong> If you're building Android 6.0 or later,
+please see <a href="jack.html">Compiling with Jack</a> for information on this
+new default toolchain.</p>
+
+<h2 id="obtaining-proprietary-binaries">Obtain proprietary binaries</h2>
+
+<p>AOSP cannot be used from pure source code only and requires additional
+hardware-related proprietary libraries to run, such as for hardware
+graphics acceleration. See the sections below for download links and <a
+href="requirements.html#binaries">Device binaries requirements</a> for
+additional resources.</p>
+
+<h3 id="downloading-proprietary-binaries">Download proprietary binaries</h3>
+
+<p>You can download official binaries for the supported devices running tagged
+AOSP release branches from <a
+href="https://developers.google.com/android/nexus/drivers">Google's Nexus
+driver page</a>. These binaries add access to additional hardware capabilities
+with non-open source code. To instead build the AOSP master branch, use the
+<a href="https://developers.google.com/android/nexus/blobs-preview">Binaries
+Preview for Nexus Devices</a>. When building the master branch for a device, use
+the binaries for the <a href="build-numbers.html">most recent
+numbered release</a> or with the most recent date.</p>
+
+<h3 id="extracting-proprietary-binaries">Extract proprietary binaries</h3>
+
+<p>Each set of binaries comes as a self-extracting script in a compressed
+archive. Uncompress each archive, run the included self-extracting script from
+the root of the source tree, then confirm that you agree to the terms
+of the enclosed license agreement. The binaries and their matching makefiles
+will be installed in the <code>vendor/</code> hierarchy of the source tree.</p>
+
+<h3 id="cleaning-up">Clean up</h3>
+
+<p>To ensure the newly installed binaries are properly taken into account after
+being extracted, delete the existing output of any previous build using:</p>
+<pre><code>$ make clobber
+</code></pre>
+
+<h2 id="initialize">Set up environment</h2>
+<p>Initialize the environment with the <code>envsetup.sh</code> script. Note
+that replacing <code>source</code> with <code>.</code> (a single dot) saves a few characters,
+and the short form is more commonly used in documentation.</p>
+<pre><code>$ source build/envsetup.sh
+</code></pre>
+<p>or</p>
+<pre><code>$ . build/envsetup.sh
+</code></pre>
+
+<h2 id="choose-a-target">Choose a target</h2>
+<p>Choose which target to build with <code>lunch</code>.  The exact configuration can be passed as
+an argument. For example, the following command:</p>
+<pre><code>$ lunch aosp_arm-eng
+</code></pre>
+<p>refers to a complete build for the emulator, with all debugging enabled.</p>
+<p>If run with no arguments <code>lunch</code> will prompt you to choose a
+target from the menu.</p>
+<p>All build targets take the form <code>BUILD-BUILDTYPE</code>, where the
+<code>BUILD</code> is a codename referring to the particular feature combination.</p>
+
+<p>The BUILDTYPE is one of the following:</p>
+<table>
+<thead>
+<tr>
+<th>Buildtype</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>user</td>
+<td>limited access; suited for production</td>
+</tr>
+<tr>
+<td>userdebug</td>
+<td>like "user" but with root access and debuggability; preferred for debugging</td>
+</tr>
+<tr>
+<td>eng</td>
+<td>development configuration with additional debugging tools</td>
+</tr>
+</tbody>
+</table>
+<p>For more information about building for and running on actual hardware, see
+<a href="running.html">Running Builds</a>.</p>
+
+<h2 id="build-the-code">Build the code</h2>
+
+<p>Please note, this section is merely a summary to ensure setup is complete. See
+<a href="running.html">Running Builds</a> for detailed instructions on building
+Android.</p>
+
+<p>Build everything with <code>make</code>. GNU make can handle parallel
+tasks with a <code>-jN</code> argument, and it's common to use a number of
+tasks N that's between 1 and 2 times the number of hardware
+threads on the computer being used for the build. For example, on a
+dual-E5520 machine (2 CPUs, 4 cores per CPU, 2 threads per core),
+the fastest builds are made with commands between <code>make -j16</code> and
+<code>make -j32</code>.</p>
+
+<pre>
+$ make -j4
+</pre>
+
+<h2 id="run-it">Run it!</h2>
+
+<p>You can either run your build on an emulator or flash it on a device. Please
+note that you have already selected your build target with <code>lunch</code>,
+and it is unlikely at best to run on a different target than it was built
+for.</p>
+
+<p class="note"><strong>Note:</strong> Remember to <a
+href="building.html#obtaining-proprietary-binaries">obtain proprietary binaries</a> or your
+build will not boot successfully on your target hardware. If you obtain binary
+blobs at this point you will need to unpack them, <code>make clobber</code> and
+rebuild.</p>
+
+<h3 id="flash-a-device">Flash with fastboot</h3>
+
+<p>To flash a device, you will need to use <code>fastboot</code>, which should
+be included in your path after a successful build. See <a
+href="running.html#flashing-a-device">Flashing a device</a> for
+instructions.</p>
+
+<h3 id="emulate-an-android-device">Emulate an Android Device</h3>
+
+<p>The emulator is added to your path automatically by the build process. To
+run the emulator, type:</p>
+
+<pre>
+$ emulator
+</pre>
+
+<h2 id="troubleshooting-common-build-errors">Troubleshooting Common Build Errors</h2>
+
+<h3 id="wrong-java-version">Wrong Java Version</h3>
+
+<p>If you are attempting to build a version of Android inconsistent with your
+version of Java, <code>make</code> will abort with a message such as</p>
+<pre>
+************************************************************
+You are attempting to build with the incorrect version
+of java.
+
+Your version is: WRONG_VERSION.
+The correct version is: RIGHT_VERSION.
+
+Please follow the machine setup instructions at
+    https://source.android.com/source/initializing.html
+************************************************************
+</pre>
+
+<p>This may be caused by:</p>
+
+<ul>
+<li>Failing to install the correct JDK as specified in <a
+href="requirements.html#jdk">JDK Requirements</a>.</li>
+<li>Another JDK previously installed appearing in your path. Prepend the
+correct JDK to the beginning of your PATH or remove the problematic JDK.</li>
+</ul>
+
+<h3 id="python-version-3">Python Version 3</h3>
+
+<p>Repo is built on particular functionality from Python 2.x and is
+unfortunately incompatible with Python 3.  In order to use repo, please install
+Python 2.x:</p>
+
+<pre>
+$ apt-get install python
+</pre>
+
+<h3 id="case-insensitive-filesystem">Case Insensitive Filesystem</h3>
+
+<p>If you are building on an HFS filesystem on Mac OS, you may encounter an error such as</p>
+<pre>
+************************************************************
+You are building on a case-insensitive filesystem.
+Please move your source tree to a case-sensitive filesystem.
+************************************************************
+</pre>
+<p>Please follow the instructions in <a href="initializing.html">Initializing
+the Build Environment</a> for creating a case-sensitive disk image.</p>
+
+<h3 id="no-usb-permission">No USB Permission</h3>
+
+<p>On most Linux systems, unprivileged users cannot access USB ports by
+default. If you see a permission denied error, follow the instructions
+<a href="initializing.html">Initializing the Build Environment</a> for
+configuring USB access.</p>
+
+<p>If adb was already running and cannot connect to the device after
+getting those rules set up, it can be killed with <code>adb kill-server</code>.
+That will cause adb to restart with the new configuration.</p>
+
+    </div>
+
+      <div class="content-footer-sac"
+                    itemscope itemtype="http://schema.org/SiteNavigationElement">
+        <div class="layout-content-col col-9" style="padding-top:4px">
+        </div>
+        
+        <div class="paging-links layout-content-col col-4">
+          
+        </div>
+        
+      </div>
+      
+      
+    </div> <!-- end jd-content -->
+  <div id="footer" class="wrap" >
+  <style>.feedback { float: right !Important }</style>
+  <div class="feedback">
+    <a href="building.html#" class="button" onclick=" try {
+      userfeedback.api.startFeedback({'productId':'715571','authuser':'1'});return false;}catch(e){}">Site Feedback</a>
+  </div>
+  <div id="copyright">
+    
+  Except as noted, this content is 
+  licensed under <a href="http://creativecommons.org/licenses/by/2.5/">
+  Creative Commons Attribution 2.5</a>. For details and 
+  restrictions, see the <a href="../license.html">Content 
+  License</a>.
+  </div>
+    <div id="footerlinks">
+    
+  <p>
+    <a href="index.html">About Android</a>&nbsp;&nbsp;|&nbsp;
+    <a href="community.html">Community</a>&nbsp;&nbsp;|&nbsp;
+    <a href="../legal.html">Legal</a>&nbsp;&nbsp;|&nbsp;
+  </p>
+  </div>
+
+</div><!-- end doc-content -->
+
+</div> <!-- end body-content --> 
+
+
+
+
+
+
+</body>
+</html>
+
+
+

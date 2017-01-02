@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<meta name="Description" content="This page provides details for running builds on specific devices and is designed to complement the information in Building the System . If you don&#39;t already have fastboot and adb, you can build them with the regular build system. Use the instructions…">
+
+<link rel="shortcut icon" type="image/x-icon" href="../favicon.ico" />
+<title>Running Builds | Android Open Source Project</title>
+
+<!-- STYLESHEETS -->
+<link rel="stylesheet"
+href="https://fonts.googleapis.com/css?family=Roboto:regular,medium,thin,italic,mediumitalic,bold" title="roboto">
+<link href="../assets/css/default.css" rel="stylesheet" type="text/css">
+
+
+
+<!-- JAVASCRIPT -->
+<script src="https://www.google.com/jsapi" type="text/javascript"></script>
+<script src="../assets/js/android_3p-bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+  var toRoot = "/";
+  
+  var devsite = false;
+  
+</script>
+<script src="../assets/js/docs.js" type="text/javascript"></script>
+
+
+<script type="text/javascript" src="https://www.gstatic.com/feedback/api.js"></script>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-45455297-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</head>
+
+<body class="gc-documentation 
+  " itemscope itemtype="http://schema.org/Article">
+<a name="top"></a>
+
+  
+    <!-- Header -->
+    <div id="header">
+        <div class="wrap" id="header-wrap">
+          <div class="col-3 saclogo">
+          <a href="../index.html">
+            <img src="../assets/images/sac_logo.png"
+                srcset="/assets/images/sac_logo@2x.png 2x"
+                width="123" height="25" alt="Android Open Source Project" />
+          </a>
+          </div>
+            <ul class="nav-x col-9">
+                <li class="source">
+                  <a href="index.html" class="selected"
+                  >Source</a></li>
+                <li class="devices"><a href="../devices/index.html" 
+                  >Devices</a></li>
+                <li class="security"><a href="../security/index.html" 
+                  >Security</a></li>
+                <li class="compatibility last"><a href="../compatibility/index.html" 
+                  >Compatibility</a></li>
+            </ul>
+            <!-- New Search -->
+            <div class="menu-container">
+            <div class="moremenu">
+    <div id="more-btn"></div>
+  </div>
+  <div class="morehover" id="moremenu">
+    <div class="top"></div>
+    <div class="mid">
+      <div class="header">Android Sites</div>
+      <ul>
+        <li class="active"><a>Android Open Source Project</a></li>
+        <li><a href="http://www.android.com">Android.com</a></li>
+        <li><a href="http://developer.android.com">Android Developers</a></li>
+      </ul>
+      <!-- <div class="header">Support</div>
+      <ul>
+        <li><a href="/support.html">Developer Support</a></li>
+      </ul> -->
+      <br class="clearfix" />
+    </div>
+    <div class="bottom"></div>
+  </div>
+
+  <div class="search" id="search-container">
+    <div class="search-inner">
+      <div id="search-btn"></div>
+      <div class="left"></div>
+      <form onsubmit="return submit_search()">
+        <input id="search_autocomplete" type="text" value="" autocomplete="off" name="q"
+onfocus="search_focus_changed(this, true)" onblur="search_focus_changed(this, false)"
+onkeydown="return search_changed(event, true, '/')"
+onkeyup="return search_changed(event, false, '/')" />
+      </form>
+      <div class="right"></div>
+        <a class="close hide">close</a>
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+  </div>
+  <div id="search_filtered_wrapper">
+    <div id="search_filtered_div" class="no-display">
+        <ul id="search_filtered">
+        </ul>
+    </div>
+  </div>
+
+  </div>
+  <!-- /New Search> -->
+        </div>
+    </div>
+    <!-- /Header -->
+
+  <div id="searchResults" class="wrap" style="display:none;">
+          <h2 id="searchTitle">Results</h2>
+          <div id="leftSearchControl" class="search-control">Loading...</div>
+  </div>
+
+  
+  
+  
+    
+  <div class="wrap clearfix" id="body-content">
+    <div class="col-4" id="side-nav" itemscope itemtype="http://schema.org/SiteNavigationElement">
+      <div id="devdoc-nav" class="scroll-pane">
+<a class="totop" href="running.html#top" data-g-event="left-nav-top">to top</a>
+
+<!--
+    Copyright 2015 The Android Open Source Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<ul id="nav">
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="index.html">
+        <span class="en">Overview</span>
+      </a>
+    </div>
+    <ul>
+      <li><a href="code-lines.html">Codelines, Branches, and Releases</a></li>
+      <li><a href="build-numbers.html">Codenames, Tags, and Build Numbers</a></li>
+      <li><a href="roles.html">Project Roles</a></li>
+      <li><a href="brands.html">Brand Guidelines</a></li>
+      <li><a href="licenses.html">Licenses</a></li>
+      <li><a href="faqs.html">FAQ</a></li>
+    </ul>
+  </li>
+
+
+  <li class="nav-section">
+      <div class="nav-section-header">
+        <a href="requirements.html">
+          <span class="en">Downloading and Building</span>
+        </a>
+      </div>
+       <ul>
+        <li><a href="initializing.html">Establishing a Build Environment</a></li>
+        <li><a href="downloading.html">Downloading the Source</a></li>
+        <li><a href="building.html">Preparing to Build</a></li>
+        <li><a href="jack.html">Compiling with Jack</a></li>
+        <li><a href="devices.html">Selecting Devices</a></li>
+        <li><a href="running.html">Running Builds</a></li>
+        <li><a href="building-kernels.html">Building Kernels</a></li>
+        <li><a href="known-issues.html">Known Issues</a></li>
+      </ul>
+  </li>
+  <li class="nav-section">
+          <div class="nav-section-header">
+            <a href="developing.html">
+              <span class="en">Developing</span>
+            </a>
+          </div>
+          <ul>
+            <li><a href="using-repo.html">Using Repo</a></li>
+            <li><a href="git-resources.html">Learning Git</a></li>
+            <li><a href="add-device.html">Adding a New Device</a></li>
+            <li><a href="64-bit-builds.html">Understanding 64-bit Builds</a></li>
+          </ul>
+  </li>
+
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="contributing.html">
+        <span class="en">Contributing</span>
+      </a>
+    </div>
+       <ul>
+        <li><a href="life-of-a-patch.html">Life of a Patch</a>
+        <li><a href="submit-patches.html">Submitting Patches</a></li>
+        <li><a href="http://android-review.googlesource.com">View Patches</a></li>
+        <li><a href="life-of-a-bug.html">Life of a Bug</a></li>
+        <li><a href="report-bugs.html">Reporting Bugs</a></li>
+        <li><a href="read-bug-reports.html">Reading Bug Reports</a></li>
+        <li><a href="code-style.html">Code Style Rules</a></li>
+      </ul>
+  </li>
+
+  <li class="nav-section">
+    <div class="nav-section-header empty">
+      <a href="community.html">
+        <span class="en">Community</span>
+      </a>
+    </div>
+  </li>
+
+</ul>
+
+
+      </div>
+    </div> <!-- end side-nav -->
+    <script>
+      $(document).ready(function() {
+        scrollIntoView("devdoc-nav");
+        });
+    </script>
+
+  
+
+
+
+
+<div class="col-12" id="doc-col" >
+
+
+  
+    
+      
+        <h1 itemprop="name" >Running Builds</h1>
+      
+    
+  
+
+
+  
+  <div id="jd-content">
+
+    <div class="jd-descr" itemprop="articleBody">
+    <!--
+    Copyright 2015 The Android Open Source Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<div id="qv-wrapper">
+  <div id="qv">
+    <h2>In this document</h2>
+    <ol id="auto-toc">
+    </ol>
+  </div>
+</div>
+
+<p>This page provides details for running builds on specific devices and is
+designed to complement the information in
+<a href="building.html">Building the System</a>.</p>
+
+<h2 id="building-fastboot-and-adb">Building fastboot and adb</h2>
+<p>If you don't already have fastboot and adb, you can build them with the
+regular build system. Use the instructions in
+<a href="building.html">Building a System</a> and replace the
+main <code>make</code> command with:</p>
+<pre><code>$ make fastboot adb
+</code></pre>
+
+<h2 id="booting-into-fastboot-mode">Booting into fastboot mode</h2>
+<p>During a cold boot of a device, use the following key combinations to boot
+into fastboot mode, which is a mode in the bootloader that can be used to flash
+the device:</p>
+<table>
+<thead>
+<tr>
+<th>Device</th>
+<th>Keys</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>hikey</td>
+<td>Link pins 1 - 2 and 5 - 6 of J15</td>
+</tr>
+<tr>
+<td>angler</td>
+<td>Press and hold <em>Volume Down</em>, then press and hold <em>Power</em></td>
+</tr>
+<tr>
+<td>bullhead</td>
+<td>Press and hold <em>Volume Down</em>, then press and hold <em>Power</em></td>
+</tr>
+<tr>
+<td>shamu</td>
+<td>Press and hold <em>Volume Down</em>, then press and hold <em>Power</em></td>
+</tr>
+<tr>
+<td>fugu</td>
+<td>Press and hold <em>Power</em></td>
+</tr>
+<tr>
+<td>volantis</td>
+<td>Press and hold <em>Volume Down</em>, then press and hold <em>Power</em></td>
+</tr>
+<tr>
+<td>hammerhead</td>
+<td>Press and hold both <em>Volume Up</em> and <em>Volume Down</em>, then press
+and hold <em>Power</em></td>
+</tr>
+<tr>
+<td>flo</td>
+<td>Press and hold <em>Volume Down</em>, then press and hold <em>Power</em></td>
+</tr>
+<tr>
+<td>deb</td>
+<td>Press and hold <em>Volume Down</em>, then press and hold <em>Power</em></td>
+</tr>
+<tr>
+<td>manta</td>
+<td>Press and hold both <em>Volume Up</em> and <em>Volume Down</em>, then press
+and hold <em>Power</em></td>
+</tr>
+<tr>
+<td>mako</td>
+<td>Press and hold <em>Volume Down</em>, then press and hold <em>Power</em></td>
+</tr>
+<tr>
+<td>grouper</td>
+<td>Press and hold <em>Volume Down</em>, then press and hold <em>Power</em></td>
+</tr>
+<tr>
+<td>tilapia</td>
+<td>Press and hold <em>Volume Down</em>, then press and hold <em>Power</em></td>
+</tr>
+<tr>
+<td>phantasm</td>
+<td>Power the device, cover it with one hand after the LEDs light up and until
+they turn red</td>
+</tr>
+<tr>
+<td>maguro</td>
+<td>Press and hold both <em>Volume Up</em> and <em>Volume Down</em>, then press
+and hold <em>Power</em></td>
+</tr>
+<tr>
+<td>toro</td>
+<td>Press and hold both <em>Volume Up</em> and <em>Volume Down</em>, then press
+and hold <em>Power</em></td>
+</tr>
+<tr>
+<td>toroplus</td>
+<td>Press and hold both <em>Volume Up</em> and <em>Volume Down</em>, then press
+and hold <em>Power</em></td>
+</tr>
+<tr>
+<td>panda</td>
+<td>Press and hold <em>Input</em>, then press <em>Power</em></td>
+</tr>
+<tr>
+<td>wingray</td>
+<td>Press and hold <em>Volume Down</em>, then press and hold <em>Power</em></td>
+</tr>
+<tr>
+<td>crespo</td>
+<td>Press and hold <em>Volume Up</em>, then press and hold <em>Power</em></td>
+</tr>
+<tr>
+<td>crespo4g</td>
+<td>Press and hold <em>Volume Up</em>, then press and hold <em>Power</em></td>
+</tr>
+</tbody>
+</table>
+<p>You can also use the command <code>adb reboot bootloader</code> to reboot
+from Android directly into the bootloader with no key combinations.</p>
+
+<h2 id="unlocking-the-bootloader">Unlocking the bootloader</h2>
+
+<p>It's possible to flash a custom system only if the bootloader allows it, and
+the bootloader is locked by default. You can unlock the bootloader, but be aware
+that doing so deletes the user data for privacy reasons (the unlock operation
+needs to run only once). After unlocking, all data on the device is erased, i.e.
+both the applications' private data and the shared data that is accessible over
+USB, including photos and movies. Be sure to back up any precious files before
+unlocking the bootloader.</p>
+
+<p>With the device in fastboot mode, unlock the bootloader using:</p>
+
+<pre>
+$ fastboot oem unlock
+</pre>
+
+<p>The procedure must be confirmed on-screen.</p>
+
+<p>On Nexus 10, after unlocking the bootloader, the internal storage remains
+unformatted. You can format the device using:</p>
+
+<pre>
+$ fastboot format cache
+$ fastboot format userdata
+</pre>
+
+<p>To re-lock the bootloader, use:</p>
+
+<pre>$ fastboot oem lock
+</pre>
+
+<p class="note"><strong>Note</strong>: Re-locking the bootloading on a Motorola Xoom
+erases user data (including the shared USB data).</p>
+
+<h2 id="flash-unlock">Using Flash Unlock</h2>
+
+<p>
+Android 7.0 introduces a new system API, <code>getFlashLockState()</code>, to
+transmit bootloader state.
+</p>
+
+<p>
+Android 7.0 added the following system API that returns the bootloader’s lock
+status on compliant devices:
+</p>
+
+<pre>
+PersistentDataBlockManager.getFlashLockState()
+</pre>
+
+<table>
+  <tr>
+   <th>Return value</th>
+   <th>Conditions</th>
+  </tr>
+  <tr>
+   <td><code>FLASH_LOCK_UNKNOWN</code>
+   </td>
+   <td>Returned only by devices upgrading to Android 7.0 that have not supported
+bootloader changes required to get the flash lock status if they support
+flashing lock/unlock capability.
+<p>
+New Android 7.0 devices must be in either <code>FLASH_LOCK_LOCKED</code> or <code>FLASH_LOCK_UNLOCKED</code> state.
+If a device is upgrading to Android 7.0 and does not support flashing unlock/lock
+capability, then it should simply return <code>FLASH_LOCK_LOCKED</code> state.
+   </td>
+  </tr>
+  <tr>
+   <td><code>FLASH_LOCK_LOCKED</code>
+   </td>
+   <td>Should be returned by any device that does not support flashing
+lock/unlock (i.e. the device is always locked), or any device that does support
+flashing lock/unlock and is in the locked state.
+   </td>
+  </tr>
+  <tr>
+   <td><code>FLASH_LOCK_UNLOCKED</code>
+   </td>
+   <td>Returned by any device that supports flashing lock/unlock and is
+currently in the unlocked state.
+   </td>
+  </tr>
+</table>
+
+<h3 id="examples-and-source">Examples and source</h3>
+
+<p>
+In the Android 7.0 release, the Android Open Source Project (AOSP) contains a reference
+implementation that returns a value based on the <code>ro.boot.flash.locked
+</code>boot property.
+</p>
+
+<p>
+The code lives in:
+</p>
+
+<pre>
+frameworks/base/services/core/java/com/android/server/PersistentDataBlockService.java
+frameworks/base/core/java/android/service/persistentdata/PersistentDataBlockManager.java
+</pre>
+
+<h3 id="validation">Validation</h3>
+<p>
+Manufacturers should test the values returned by devices with locked and
+unlocked bootloaders.
+</p>
+
+<h2 id="selecting-device-build">Selecting a device build</h2>
+
+<p>The recommended builds for devices are available from the lunch menu,
+accessed when running the <code>lunch</code> command with no arguments. You can
+download factory images and binaries for Nexus devices from developers.google.com:</p>
+
+<ul>
+<li><a href="https://developers.google.com/android/nexus/blobs-preview">Preview binaries (blobs)</a></li>
+<li><a href="https://developers.google.com/android/nexus/images">Factory images for released devices</a></li>
+<li><a href="https://developers.google.com/android/nexus/drivers">Support binaries (drivers) for release devices</a></li>
+</ul>
+
+<p>See <a href="building.html#obtaining-proprietary-binaries">Obtaining
+proprietary binaries</a> for more details and <a
+href="requirements.html#binaries">Device binaries requirements</a> for other
+resources.</p>
+
+<table>
+<thead>
+<tr>
+  <th>Device</th>
+<th>Code name</th>
+<th>Build configuration</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>HiKey</td>
+<td>hikey</td>
+<td>hikey-userdebug</td>
+</tr>
+<tr>
+  <td>Nexus 6P</td>
+<td>angler</td>
+<td>aosp_angler-userdebug</td>
+</tr>
+<tr>
+  <td>Nexus 5X</td>
+<td>bullhead</td>
+<td>aosp_bullhead-userdebug</td>
+</tr>
+<tr>
+  <td>Nexus 6</td>
+<td>shamu</td>
+<td>aosp_shamu-userdebug</td>
+</tr>
+<tr>
+  <td>Nexus Player</td>
+<td>fugu</td>
+<td>aosp_fugu-userdebug</td>
+</tr>
+<tr>
+  <td>Nexus 9</td>
+<td>volantis (flounder)</td>
+<td>aosp_flounder-userdebug</td>
+</tr>
+<tr>
+  <td>Nexus 5 (GSM/LTE)</td>
+<td>hammerhead</td>
+<td>aosp_hammerhead-userdebug</td>
+</tr>
+<tr>
+  <td>Nexus 7 (Wi-Fi)</td>
+<td>razor (flo)</td>
+<td>aosp_flo-userdebug</td>
+</tr>
+<tr>
+  <td>Nexus 7 (Mobile)</td>
+<td>razorg (deb)</td>
+<td>aosp_deb-userdebug</td>
+</tr>
+<tr>
+  <td>Nexus 10</td>
+<td>mantaray (manta)</td>
+<td>full_manta-userdebug</td>
+</tr>
+<tr>
+  <td>Nexus 4</td>
+<td>occam (mako)</td>
+<td>full_mako-userdebug</td>
+</tr>
+<tr>
+  <td>Nexus 7 (Wi-Fi)</td>
+<td>nakasi (grouper)</td>
+<td>full_grouper-userdebug</td>
+</tr>
+<tr>
+  <td>Nexus 7 (Mobile)</td>
+<td>nakasig (tilapia)</td>
+<td>full_tilapia-userdebug</td>
+</tr>
+<tr>
+  <td>Galaxy Nexus (GSM/HSPA+)</td>
+<td>yakju (maguro)</td>
+<td>full_maguro-userdebug</td>
+</tr>
+<tr>
+  <td>Galaxy Nexus (Verizon)</td>
+<td>mysid (toro)</td>
+<td>aosp_toro-userdebug</td>
+</tr>
+<tr>
+  <td>Galaxy Nexus (Experimental)</td>
+<td>mysidspr (toroplus)</td>
+<td>aosp_toroplus-userdebug</td>
+</tr>
+<tr>
+  <td>PandaBoard (Archived)</td>
+<td>panda</td>
+<td>aosp_panda-userdebug</td>
+</tr>
+<tr>
+  <td>Motorola Xoom (U.S. Wi-Fi)</td>
+<td>wingray</td>
+<td>full_wingray-userdebug</td>
+</tr>
+<tr>
+  <td>Nexus S</td>
+<td>soju (crespo)</td>
+<td>full_crespo-userdebug</td>
+</tr>
+<tr>
+  <td>Nexus S 4G</td>
+<td>sojus (crespo4g)</td>
+<td>full_crespo4g-userdebug</td>
+</tr>
+</tbody>
+</table>
+<p class="note"><b>Note</b>: Do not use Android 4.1.1 on a Nexus 7 originally
+sold with Android 4.1.2 or newer.</p>
+
+<h2 id="flashing-a-device">Flashing a device</h2>
+
+<p>You can flash an entire Android system in a single command; doing so verifies
+the system being flashed is compatible with the installed bootloader and radio,
+writes the boot, recovery, and system partitions together, and then reboots the
+system. Flashing also erases all user data, similarly to <code>fastboot oem
+unlock</code>.</p>
+
+<p>Place the device in fastboot mode either manually by holding the appropriate
+key combination at boot, or from the shell with:</p>
+
+<pre>
+$ adb reboot bootloader
+</pre>
+
+<p>Once the device is in fastboot mode, run:</p>
+
+<pre>
+$ fastboot flashall -w
+</pre>
+
+<p>The <code>-w</code> option wipes the <code>/data</code> partition on the
+device; this is useful for your first time flashing a particular device but is
+otherwise unnecessary.</p>
+
+<p class="note"><strong>Note</strong>: Filesystems created via fastboot on Motorola Xoom
+do not function optimally. We recommend re-creating filesystems through
+recovery, using: <code>$ adb reboot recovery</code>. While in recovery, open the
+menu (press Power + Volume Up), wipe the cache partition, then wipe data.</p>
+
+
+<h2 id="restoring-devices-to-factory-state">Restoring devices to
+factory state</h2>
+
+<p>Factory images for Nexus 5, Nexus 10, Nexus 4, Nexus Q, Nexus 7, Galaxy Nexus
+(GSM/HSPA+ "yakju" and "takju", and CDMA/LTE "mysid" and "mysidspr"), Nexus S,
+and Nexus S 4G are available from
+<a href="https://developers.google.com/android/nexus/images">Google's factory
+image</a> page.</p>
+
+<p>Factory images for the Motorola Xoom are distributed directly by Motorola.</p>
+
+    </div>
+
+      <div class="content-footer-sac"
+                    itemscope itemtype="http://schema.org/SiteNavigationElement">
+        <div class="layout-content-col col-9" style="padding-top:4px">
+        </div>
+        
+        <div class="paging-links layout-content-col col-4">
+          
+        </div>
+        
+      </div>
+      
+      
+    </div> <!-- end jd-content -->
+  <div id="footer" class="wrap" >
+  <style>.feedback { float: right !Important }</style>
+  <div class="feedback">
+    <a href="running.html#" class="button" onclick=" try {
+      userfeedback.api.startFeedback({'productId':'715571','authuser':'1'});return false;}catch(e){}">Site Feedback</a>
+  </div>
+  <div id="copyright">
+    
+  Except as noted, this content is 
+  licensed under <a href="http://creativecommons.org/licenses/by/2.5/">
+  Creative Commons Attribution 2.5</a>. For details and 
+  restrictions, see the <a href="../license.html">Content 
+  License</a>.
+  </div>
+    <div id="footerlinks">
+    
+  <p>
+    <a href="index.html">About Android</a>&nbsp;&nbsp;|&nbsp;
+    <a href="community.html">Community</a>&nbsp;&nbsp;|&nbsp;
+    <a href="../legal.html">Legal</a>&nbsp;&nbsp;|&nbsp;
+  </p>
+  </div>
+
+</div><!-- end doc-content -->
+
+</div> <!-- end body-content --> 
+
+
+
+
+
+
+</body>
+</html>
+
+
+

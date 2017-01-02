@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<meta name="Description" content="A common problem with Android over-the-air updates (OTAs) is that they contain changed files that do not correspond to code changes, but instead are artifacts of the build system. This happens whenever the same code, built at different times, from different…">
+
+<link rel="shortcut icon" type="image/x-icon" href="../../../favicon.ico" />
+<title>Reducing OTA Size | Android Open Source Project</title>
+
+<!-- STYLESHEETS -->
+<link rel="stylesheet"
+href="https://fonts.googleapis.com/css?family=Roboto:regular,medium,thin,italic,mediumitalic,bold" title="roboto">
+<link href="../../../assets/css/default.css" rel="stylesheet" type="text/css">
+
+
+
+<!-- JAVASCRIPT -->
+<script src="https://www.google.com/jsapi" type="text/javascript"></script>
+<script src="../../../assets/js/android_3p-bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+  var toRoot = "/";
+  
+  var devsite = false;
+  
+</script>
+<script src="../../../assets/js/docs.js" type="text/javascript"></script>
+
+<script src="../../../navtree_data.js" type="text/javascript"></script>
+
+
+<script type="text/javascript" src="https://www.gstatic.com/feedback/api.js"></script>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-45455297-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</head>
+
+<body class="gc-documentation 
+  " itemscope itemtype="http://schema.org/Article">
+<a name="top"></a>
+
+  
+    <!-- Header -->
+    <div id="header">
+        <div class="wrap" id="header-wrap">
+          <div class="col-3 saclogo">
+          <a href="../../../index.html">
+            <img src="../../../assets/images/sac_logo.png"
+                srcset="/assets/images/sac_logo@2x.png 2x"
+                width="123" height="25" alt="Android Open Source Project" />
+          </a>
+          </div>
+            <ul class="nav-x col-9">
+                <li class="source">
+                  <a href="../../../source/index.html" 
+                  >Source</a></li>
+                <li class="devices"><a href="../../index.html" class="selected"
+                  >Devices</a></li>
+                <li class="security"><a href="../../../security/index.html" 
+                  >Security</a></li>
+                <li class="compatibility last"><a href="../../../compatibility/index.html" 
+                  >Compatibility</a></li>
+            </ul>
+            <!-- New Search -->
+            <div class="menu-container">
+            <div class="moremenu">
+    <div id="more-btn"></div>
+  </div>
+  <div class="morehover" id="moremenu">
+    <div class="top"></div>
+    <div class="mid">
+      <div class="header">Android Sites</div>
+      <ul>
+        <li class="active"><a>Android Open Source Project</a></li>
+        <li><a href="http://www.android.com">Android.com</a></li>
+        <li><a href="http://developer.android.com">Android Developers</a></li>
+      </ul>
+      <!-- <div class="header">Support</div>
+      <ul>
+        <li><a href="/support.html">Developer Support</a></li>
+      </ul> -->
+      <br class="clearfix" />
+    </div>
+    <div class="bottom"></div>
+  </div>
+
+  <div class="search" id="search-container">
+    <div class="search-inner">
+      <div id="search-btn"></div>
+      <div class="left"></div>
+      <form onsubmit="return submit_search()">
+        <input id="search_autocomplete" type="text" value="" autocomplete="off" name="q"
+onfocus="search_focus_changed(this, true)" onblur="search_focus_changed(this, false)"
+onkeydown="return search_changed(event, true, '/')"
+onkeyup="return search_changed(event, false, '/')" />
+      </form>
+      <div class="right"></div>
+        <a class="close hide">close</a>
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+  </div>
+  <div id="search_filtered_wrapper">
+    <div id="search_filtered_div" class="no-display">
+        <ul id="search_filtered">
+        </ul>
+    </div>
+  </div>
+
+  </div>
+  <!-- /New Search> -->
+        </div>
+    </div>
+    <!-- /Header -->
+
+  <div id="searchResults" class="wrap" style="display:none;">
+          <h2 id="searchTitle">Results</h2>
+          <div id="leftSearchControl" class="search-control">Loading...</div>
+  </div>
+
+  
+  
+  
+    
+  <div class="wrap clearfix" id="body-content">
+    <div class="col-4" id="side-nav" itemscope itemtype="http://schema.org/SiteNavigationElement">
+      <div id="devdoc-nav" class="scroll-pane">
+<a class="totop" href="reduce_size.html#top" data-g-event="left-nav-top">to top</a>
+
+<!--
+    Copyright 2015 The Android Open Source Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<ul id="nav">
+  <li class="nav-section">  <!-- Begin nav section, Device Interfaces -->
+    <div class="nav-section-header">
+      <a href="../../index.html">
+        <span class="en">Interfaces</span>
+      </a>
+    </div>
+    <ul>
+  <li class="nav-section">
+  <div class="nav-section-header">
+      <a href="../../accessories/index.html">
+        <span class="en">Accessories</span>
+      </a>
+    </div>
+    <ul>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../../accessories/audio.html">
+            <span class="en">Audio Accessories</span>
+          </a>
+        </div>
+        <ul>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../../accessories/headset/index.html">
+            <span class="en">Headset</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../../accessories/headset/specification.html">Specification</a></li>
+          <li><a href="../../accessories/headset/requirements.html">Requirements</a></li>
+          <li><a href="../../accessories/headset/testing.html">Testing</a></li>
+        </ul>
+      </li>
+        </ul>
+      </li>
+  <li class="nav-section">
+  <div class="nav-section-header">
+      <a href="../../accessories/custom.html">
+        <span class="en">Custom Accessories</span>
+      </a>
+    </div>
+    <ul>
+      <li class="nav-section">
+        <div class="nav-section-header"><a href="../../accessories/protocol.html"><span class="en">AOA</span>
+        </a>
+        </div>
+        <ul>
+          <li><a href="../../accessories/aoa2.html">AOA 2.0</a></li>
+          <li><a href="../../accessories/aoa.html">AOA 1.0</a></li>
+        </ul>
+        </li>
+        <div class="nav-section-header"><a href="../../accessories/stylus.html"><span class="en">Stylus</span>
+        </a>
+        </div>
+       </ul>
+     </li>
+    </ul>
+      <li class="nav-section">
+      <div class="nav-section-header">
+        <a href="../../audio/index.html">
+          <span class="en">Audio</span>
+        </a>
+      </div>
+        <ul>
+          <li><a href="../../audio/terminology.html">Terminology</a></li>
+          <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="../../audio/implement.html">
+                <span class="en">Implementation</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="../../audio/implement-policy.html">Policy Configuration</a></li>
+              <li><a href="../../audio/implement-shared-library.html">Shared Library</a></li>
+              <li><a href="../../audio/implement-pre-processing.html">Pre-processing Effects</a></li>
+            </ul>
+         </li>
+          <li><a href="../../audio/data_formats.html">Data Formats</a></li>
+          <li><a href="../../audio/attributes.html">Attributes</a></li>
+          <li><a href="../../audio/warmup.html">Warmup</a></li>
+          <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="../../audio/latency.html">
+                <span class="en">Latency</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="../../audio/latency_contrib.html">Contributors</a></li>
+              <li><a href="../../audio/latency_design.html">Design</a></li>
+              <li><a href="../../audio/latency_measure.html">Measure</a></li>
+              <li><a href="../../audio/testing_circuit.html">Light Testing Circuit</a></li>
+              <li><a href="../../audio/loopback.html">Audio Loopback Dongle</a></li>
+              <li><a href="../../audio/latency_measurements.html">Measurements</a></li>
+              <li><a href="../../audio/latency_app.html">Applications</a></li>
+            </ul>
+          </li>
+          <li><a href="../../audio/avoiding_pi.html">Priority Inversion</a></li>
+          <li><a href="../../audio/src.html">Sample Rate Conversion</a></li>
+          <li><a href="../../audio/debugging.html">Debugging</a></li>
+          <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="../../audio/midi.html">
+                <span class="em">MIDI</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="../../audio/midi_arch.html">MIDI Architecture</a></li>
+              <li><a href="../../audio/midi_test.html">MIDI Test Procedure</a></li>
+            </ul>
+          <li><a href="../../audio/usb.html">USB Digital Audio</a></li>
+          <li><a href="../../audio/tv.html">TV Audio</a></li>
+        </ul>
+      </li>
+      <li><a href="../../automotive.html">Automotive</a></li>
+      <li><a href="../../bluetooth.html">Bluetooth</a></li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../../camera/index.html">
+            <span class="en">Camera</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../../camera/camera3.html">Camera HAL3</a></li>
+          <li><a href="../../camera/camera3_requests_hal.html">HAL Subsystem</a></li>
+          <li><a href="../../camera/camera3_metadata.html">Metadata and Controls</a></li>
+          <li><a href="../../camera/camera3_3Amodes.html">3A Modes and State</a></li>
+          <li><a href="../../camera/camera3_crop_reprocess.html">Output and Cropping</a></li>
+          <li><a href="../../camera/camera3_error_stream.html">Errors and Streams</a></li>
+          <li><a href="../../camera/camera3_requests_methods.html">Request Creation</a></li>
+          <li><a href="../../camera/versioning.html">Version Support</a></li>
+        </ul>
+      </li>
+
+      <li><a href="../../drm.html">DRM</a></li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../../graphics/index.html">
+            <span class="en">Graphics</span>
+          </a>
+        </div>
+        <ul>
+         <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="../../graphics/architecture.html">
+                <span class="en">Architecture</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="../../graphics/arch-bq-gralloc.html">BufferQueue</a></li>
+              <li><a href="../../graphics/arch-sf-hwc.html">SurfaceFlinger and HWC</a></li>
+              <li><a href="../../graphics/arch-sh.html">Surface and SurfaceHolder</a></li>
+              <li><a href="../../graphics/arch-egl-opengl.html">OpenGL ES</a></li>
+              <li><a href="../../graphics/arch-vulkan.html">Vulkan</a></li>
+              <li><a href="../../graphics/arch-sv-glsv.html">SurfaceView</a></li>
+              <li><a href="../../graphics/arch-st.html">SurfaceTexture</a></li>
+              <li><a href="../../graphics/arch-tv.html">TextureView</a></li>
+              <li><a href="../../graphics/arch-gameloops.html">Game Loops</a></li>
+            </ul>
+         </li>
+         <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="../../graphics/implement.html">
+                <span class="en">Implementing</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="../../graphics/implement-hwc.html">Hardware Composer HAL</a></li>
+              <li><a href="../../graphics/implement-vsync.html">VSYNC</a></li>
+              <li><a href="../../graphics/implement-vulkan.html">Vulkan</a></li>
+              <li><a href="../../graphics/implement-vdisplays.html">Virtual Displays</a></li>
+            </ul>
+         </li>
+         <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="../../graphics/testing.html">
+                <span class="en">OpenGL ES Testing</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="../../graphics/build-tests.html">Building test programs</a></li>
+              <li><a href="../../graphics/port-tests.html">Porting the test framework</a></li>
+              <li><a href="../../graphics/run-tests.html">Running the tests</a></li>
+              <li><a href="../../graphics/automate-tests.html">Automating the tests</a></li>
+              <li><a href="../../graphics/test-groups.html">Using special test groups</a></li>
+              <li><a href="../../graphics/cts-integration.html">Integrating with Android CTS</a></li>
+            </ul>
+         </li>
+        </ul> </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../../input/index.html">
+            <span class="en">Input</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../../input/overview.html">Overview</a></li>
+          <li><a href="../../input/key-layout-files.html">Key Layout Files</a></li>
+          <li><a href="../../input/key-character-map-files.html">Key Character Map Files</a></li>
+          <li><a href="../../input/input-device-configuration-files.html">Input Device Configuration Files</a></li>
+          <li><a href="../../input/migration-guide.html">Migration Guide</a></li>
+          <li><a href="../../input/keyboard-devices.html">Keyboard Devices</a></li>
+          <li><a href="../input/touch-devices.html">Touch Devices</a></li>
+          <li><a href="../input/dumpsys.html">Diagnostics</a></li>
+          <li><a href="../../input/getevent.html">Getevent</a></li>
+          <li><a href="../../input/validate-keymaps.html">Validate Keymaps</a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../../media.html">
+            <span class="en">Media</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../../media/framework-hardening.html">Framework
+          Hardening</a></li>
+          <li><a href="../../media/soc.html">SoC Dependencies</a></li>
+          <li><a href="../../media/oem.html">OEM Dependencies</a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../../sensors/index.html">
+            <span class="en">Sensors</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../../sensors/sensor-stack.html">Sensor stack</a></li>
+          <li><a href="../../sensors/report-modes.html">Reporting modes</a></li>
+          <li><a href="../../sensors/suspend-mode.html">Suspend mode</a></li>
+          <li><a href="../../sensors/power-use.html">Power consumption</a></li>
+          <li><a href="../../sensors/interaction.html">Interaction</span></a></li>
+          <li><a href="../../sensors/hal-interface.html">HAL interface</a></li>
+          <li><a href="../../sensors/batching.html">Batching</a></li>
+          <li><a href="../../sensors/sensor-types.html">Sensor types</a></li>
+          <li><a href="../../sensors/versioning.html">Version deprecation</a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="https://source.android.com/devices/storage/index.html">
+            <span class="en">Storage</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../../storage/traditional.html">Traditional Storage</a></li>
+          <li><a href="../../storage/adoptable.html">Adoptable Storage</a></li>
+          <li><a href="../../storage/config.html">Device Configuration</a></li>
+          <li><a href="../../storage/config-example.html">Configuration Examples</a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../../tv/index.html">
+            <span class="en">TV</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../../tv/HDMI-CEC.html">HDMI-CEC control service</a></li>
+          <li><a href="../../tv/reference-tv-app.html">Reference TV App</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li> <!-- End nav-section, Device Interfaces-->
+
+
+  <li class="nav-section"> <!--Begin nav-section, Core Technologies-->
+    <div class="nav-section-header">
+      <a href="../index.html">
+        <span class="en">Core Technologies</span>
+      </a>
+    </div>
+
+    <ul>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../dalvik/index.html">
+          <span class="en">ART and Dalvik</span></a>
+        </div>
+        <ul>
+          <li><a href="../dalvik/dalvik-bytecode.html">Bytecode Format</a></li>
+          <li><a href="../dalvik/dex-format.html">.Dex Format</a></li>
+          <li><a href="../dalvik/instruction-formats.html">Instruction Formats</a></li>
+          <li><a href="../dalvik/constraints.html">Constraints</a></li>
+          <li><a href="../dalvik/configure.html">Configuration</a></li>
+          <li><a href="../dalvik/gc-debug.html">Garbage Collection</a></li>
+          <li><a href="../dalvik/jit-compiler.html">JIT Compilation</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+            <a href="../config/index.html">
+              <span class="en">Configuration</span>
+            </a>
+        </div>
+        <ul>
+          <li><a href="../config/carrier.html">Carrier Customization</a></li>
+          <li><a href="../config/connect_tests.html">Connectivity Tests</a></li>
+          <li><a href="../config/filesystem.html">File System</a></li>
+          <li><a href="../kernel.html">Kernel Configuration</a></li>
+          <li><a href="../config/kernel_network_tests.html">Kernel Network Tests</a></li>
+          <li><a href="../config/low-ram.html">Low RAM</a></li>
+          <li><a href="../config/namespaces_libraries.html">Namespaces for Libraries</a></li>
+          <li><a href="../config/renderer.html">OpenGLRenderer</a></li>
+          <li><a href="../config/runtime_perms.html">Runtime Permissions</a></li>
+          <li><a href="../config/uicc.html">UICC</a></li>
+          <li><a href="../config/voicemail.html">Visual Voicemail</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+            <a href="../connect/index.html">
+              <span class="en">Connectivity</span>
+            </a>
+        </div>
+        <ul>
+          <li><a href="../connect/block-numbers.html">Block Phone Numbers</a></li>
+          <li><a href="../connect/call-notification.html">Call Notifications</a></li>
+          <li><a href="../connect/data-saver.html">Data Saver Mode</a></li>
+          <li><a href="../connect/emergency-affordance.html">Emergency Affordance</a></li>
+          <li><a href="../connect/felica.html">Host Card Emulation of FeliCa</a></li>
+          <li><a href="../connect/ril.html">Radio Interface Layer (RIL)</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../datausage/index.html">
+            <span class="en">Data Usage</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../datausage/iface-overview.html">Network interface statistics overview</a></li>
+          <li><a href="../datausage/excluding-network-types.html">Excluding Network Types from Data Usage</a></li>
+          <li><a href="../datausage/tethering-data.html">Tethering Data</a></li>
+          <li><a href="../datausage/usage-cycle-resets-dates.html">Usage Cycle Reset Dates</a></li>
+          <li><a href="../datausage/kernel-overview.html">Kernel Overview</a></li>
+          <li><a href="../datausage/tags-explained.html">Data Usage Tags Explained</a></li>
+          <li><a href="../datausage/kernel-changes.html">Kernel Changes</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../debug/index.html">
+            <span class="en">Debugging</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../debug/asan.html">AddressSanitizer</a></li>
+          <li><a href="../debug/dumpsys.html">Dumpsys</a></li>
+          <li><a href="../debug/native-memory.html">Native Memory Use</a></li>
+          <li><a href="../debug/netstats.html">Network Use</a></li>
+          <li><a href="../debug/procstats.html">RAM Use</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../admin/index.html">
+          <span class="en">Device Administration</span></a>
+        </div>
+        <ul>
+          <li><a href="../admin/implement.html">Implementation</a></li>
+          <li><a href="../admin/multi-user.html">Multiple Users</a></li>
+          <li><a href="../admin/managed-profiles.html">Managed Profiles</a></li>
+          <li><a href="../admin/provision.html">Provisioning</a></li>
+          <li><a href="../admin/multiuser-apps.html">Multiuser Apps</a></li>
+          <li><a href="../admin/enterprise-telephony.html">Enterprise Telephony</a></li>
+          <li><a href="../admin/testing-provision.html">Testing Device Provisioning</a></li>
+          <li><a href="../admin/testing-setup.html">Testing Device Administration</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+            <a href="../display/index.html">
+              <span class="en">Display Settings</span></a>
+        </div>
+        <ul>
+          <li><a href="../display/dnd.html">Do Not Disturb</a></li>
+          <li><a href="../display/multi-window.html">Multi-Window</a></li>
+          <li><a href="../display/hdr.html">HDR Video</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header empty">
+          <a href="../../halref/index.html">
+            <span class="en">HAL File Reference</span>
+          </a>
+        </div>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+            <a href="index.html">
+              <span class="en">OTA Updates</span>
+            </a>
+        </div>
+        <ul>
+          <li><a href="tools.html">OTA Tools</a></li>
+          <li><a href="block.html">Block-based OTA</a></li>
+          <li><a href="inside_packages.html">Inside OTA Packages</a></li>
+          <li><a href="device_code.html">Device-Specific Code</a></li>
+          <li><a href="reduce_size.html">Reducing OTA Size</a></li>
+          <li><a href="sign_builds.html">Signing Builds for Release</a></li>
+          <li><a href="ab_updates.html">A/B System Updates</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../power/index.html"><span class="en">Power</span></a>
+        </div>
+        <ul>
+          <li><a href="../power/mgmt.html">Power Management</a></li>
+          <li><a href="../power/performance.html">Performance Management</a></li>
+          <li><a href="../power/component.html">Component Power</a></li>
+          <li><a href="../power/device.html">Device Power</a></li>
+          <li><a href="../power/values.html">Power Values</a></li>
+          <li><a href="../power/batterystats.html">Battery Use</a>
+          </li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../test_infra/tradefed/index.html">
+            <span class="en">Testing Infrastructure</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../test_infra/tradefed/fundamentals/index.html">Start Here</a></li>
+          <li><a href="../test_infra/tradefed/fundamentals/machine_setup.html">Machine Setup</a></li>
+          <li><a href="../test_infra/tradefed/fundamentals/devices.html">Working with Devices</a></li>
+          <li><a href="../test_infra/tradefed/fundamentals/lifecycle.html">Test Lifecycle</a></li>
+          <li><a href="../test_infra/tradefed/fundamentals/options.html">Option Handling</a></li>
+          <li><a href="../test_infra/tradefed/full_example.html">An End-to-End Example</a></li>
+          <li id="tradefed-tree-list" class="nav-section">
+            <div class="nav-section-header">
+              <a href="../../../reference/packages.html">
+                <span class="en">Package Index</span>
+              </a>
+            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li> <!-- End nav-section, Core Technologies -->
+</ul> 
+
+
+      </div>
+      <script type="text/javascript">
+        showTradefedRefTree();
+      </script>
+    </div> <!-- end side-nav -->
+    <script>
+      $(document).ready(function() {
+        scrollIntoView("devdoc-nav");
+        });
+    </script>
+
+  
+
+
+
+
+<div class="col-12" id="doc-col" >
+
+
+  
+    
+      
+        <h1 itemprop="name" >Reducing OTA Size</h1>
+      
+    
+  
+
+
+  
+  <div id="jd-content">
+
+    <div class="jd-descr" itemprop="articleBody">
+    <!--
+    Copyright 2016 The Android Open Source Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<div id="qv-wrapper">
+  <div id="qv">
+    <h2>In this document</h2>
+    <ol id="auto-toc">
+    </ol>
+  </div>
+</div>
+
+<p>A common problem with Android over-the-air updates (OTAs) is that they contain
+changed files that do not correspond to code changes, but instead are artifacts
+of the build system. This happens whenever the same code, built at different
+times, from different directories, or on different machines, produces a large
+number of changed files.  The excess files not only increase the size of an
+OTA, but make it difficult to determine which code is changed in the OTA.</p>
+
+<p>To make the contents of an OTA more transparent, we have added a number of
+build system changes that reduce the size of an OTA by eliminating unnecessary
+file changes between builds. The aim is to reduce the size of OTAs to include
+only the files that relate to the patches contained in the OTA.  We have also
+introduced a build diff tool that filters out common build-related file changes
+and provides a cleaner build file diff (see below).</p>
+
+<p>This document provides an explanation of some of the build changes that have
+been added to AOSP to reduce unnecessary file changes between builds.  For
+device implementers who maintain their own build system,  it provides a guide
+to some of the changes that need to be made to reduce OTA size.</p>
+
+<h3 id=the_build_diff_tool>The build diff tool</h3>
+
+
+<p>Since there are cases where it is not possible to eliminate build-related file
+changes, we have supplied a build diff tool, <code><a href="https://android.googlesource.com/platform/build/+/master/tools/releasetools/target_files_diff.py">target_files_diff.py</a></code>, that can be used to compare two target file packages. </p>
+
+<p>The build diff  tool does a recursive diff between two builds, excluding common
+build-related file changes.  Excluded changes include the following:</p>
+
+<ul>
+  <li> Expected changes in the build output (for example, due to build number
+changing).
+  <li> Changes due to known issues in the current build system.
+</ul>
+
+<p>To use the build diff tool, run the following command:</p>
+
+<pre class=prettyprint>
+$ target_files_diff.py dir1 dir2
+</pre>
+
+
+<p>where <code>dir1</code> and <code>dir2</code> are base directories that contain the extracted target files for each build.</p>
+
+<h2 id=changes_to_reduce_ota_size>Changes to reduce OTA size</h2>
+
+
+<p>There are several ways that the build system can create unnecessary file diffs.
+ In the following sections, we discuss some of these issues, discuss solutions,
+ and, where possible,  show examples of the fixes in AOSP.</p>
+
+<h3 id=file_order>File Order</h3>
+
+
+<p><strong>Problem</strong>: Filesystems don’t guarantee a file order when asked for a list of files in a
+directory, though it’s commonly the same for the same checkout. Tools such as <code>ls </code>sort the results by default, but the wildcard function used by commands such as <code>find</code> and <code>make </code>do not. So when any of these tools are used, you need to sort the outputs
+before using them.</p>
+
+<p><strong>Solution</strong>: Users of tools such as <code>find</code> and <code>make</code> with wildcard need to sort the output of these commands before using them.  In
+fact, any uses of $(wildcard ) or $(shell find ) in Android.mk files should be
+sorted. (Some tools (like java) will sort their inputs, so in some cases it may
+not actually necessary.)</p>
+
+<p><strong>Examples:</strong> Many instances of this were fixed in the core build system, especially when
+you use the builtin <code>all-*-files-under</code> macros (and <code>all-cpp-files-under</code> was added, since there were several definitions spread out in other
+makefiles):</p>
+
+<ul>
+  <li> <a href="https://android.googlesource.com/platform/build/+/4d66adfd0e6d599d8502007e4ea9aaf82e95569f">https://android.googlesource.com/platform/build/+/4d66adfd0e6d599d8502007e4ea9aaf82e95569f</a>
+  <li> <a href="https://android.googlesource.com/platform/build/+/379f9f9cec4fe1c66b6d60a6c19fecb81b9eb410">https://android.googlesource.com/platform/build/+/379f9f9cec4fe1c66b6d60a6c19fecb81b9eb410</a>
+  <li> <a href="https://android.googlesource.com/platform/build/+/7c3e3f8314eec2c053012dd97d2ae649ebeb5653">https://android.googlesource.com/platform/build/+/7c3e3f8314eec2c053012dd97d2ae649ebeb5653</a>
+  <li> <a href="https://android.googlesource.com/platform/build/+/5c64b4e81c1331cab56d8a8c201f26bb263b630c">https://android.googlesource.com/platform/build/+/5c64b4e81c1331cab56d8a8c201f26bb263b630c</a>
+</ul>
+
+<h3 id=build_directory>Build Directory</h3>
+
+
+<p><strong>Problem: </strong>Changing the directory in which things are built can cause the binaries to be
+different. Most paths in the android build are relative paths, so <code>__FILE__</code> in C/C++ isn’t a problem. </p>
+
+<p>But the debug symbols encode the full pathname by default. Then the <code>.note.gnu.build-id</code> is generated from hashing the pre-stripped binary, so it will change if the
+debug symbols change. </p>
+
+<p><strong>Solution:  </strong>To fix this, AOSP master has been changed to make the debug paths relative, as
+shown here: </p>
+
+<ul>
+  <li> <a href="https://android.googlesource.com/platform/build/+/6a66a887baadc9eb3d0d60e26f748b8453e27a02">https://android.googlesource.com/platform/build/+/6a66a887baadc9eb3d0d60e26f748b8453e27a02</a>
+</ul>
+
+<h3 id=timestamps>Timestamps</h3>
+
+
+<p><strong>Problem:  </strong>Timestamps in the build output result in unnecessary file changes.  Two places
+this is likely to happen are the following:</p>
+
+<ul>
+  <li> <code> __DATE__/__TIME__/__TIMESTAMP__ </code> macros in  C or C++ code.
+  <li> Timestamps embedded in zip-based archives.
+</ul>
+
+<p><strong>Solutions/Examples:</strong></p>
+
+<p>To remove timestamps from the build output in each of these instances, see the
+instructions in the sections below.</p>
+
+<h4 id=date_time_timestamp_in_c_c>__DATE__/__TIME__/__TIMESTAMP__ in C/C++</h4>
+
+
+<p>These macros always produce different outputs for different builds, so they
+shouldn’t be used. </p>
+
+<p>Here are a few options on how to eliminate these macros:</p>
+
+<ul>
+  <li> Just remove them, they often aren’t necessary.<br>
+Example:<br><a href="https://android.googlesource.com/platform/system/core/+/30622bbb209db187f6851e4cf0cdaa147c2fca9f">https://android.googlesource.com/platform/system/core/+/30622bbb209db187f6851e4cf0cdaa147c2fca9f</a>
+  <li> If you just need to be able to uniquely identify the running binary, read the
+build-id from the ELF header. (No example, we didn’t run into this problem.)
+  <li> If you just want to know when the OS was built, you can read the ro.build.date
+-- this should work for everything except incremental builds, which may not
+update this date.<br>
+Example:<br><a href="https://android.googlesource.com/platform/external/libchrome/+/8b7977eccc94f6b3a3896cd13b4aeacbfa1e0f84">https://android.googlesource.com/platform/external/libchrome/+/8b7977eccc94f6b3a3896cd13b4aeacbfa1e0f84</a>
+</ul>
+
+<p>We have turned on <code>-Werror=date-time</code>, so that using timestamps is a build error.</p>
+
+<h4 id=embedded_timestamps_in_zip-based_archives_zip_jar>Embedded Timestamps in Zip-based archives (zip, jar)</h4>
+
+
+<p>We fixed the problem of embedded timestamps in zip archives by adding <code>-X</code> to all uses of the <code>zip</code> command, so that the UID/GID of the builder, and the extended Unix timestamp
+weren’t embedded in the zip file. </p>
+
+<p>A new tool, <code>ziptime</code>, resets the normal timestamps in the zip headers:</p>
+
+<ul>
+  <li> <a href="https://android.googlesource.com/platform/build/+/master/tools/ziptime/">https://android.googlesource.com/platform/build/+/master/tools/ziptime/</a>
+</ul>
+
+<p>For more information, see the <a href="https://android.googlesource.com/platform/build/+/master/tools/ziptime/README.txt">README file</a>.</p>
+
+<p>The <code>signapk</code> tool sets timestamps for the APK files that may vary depending on the server
+timezone.  This problems was fixed in the following CL:</p>
+
+<ul>
+  <li> <a href="https://android.googlesource.com/platform/build/+/6c41036bcf35fe39162b50d27533f0f3bfab3028">https://android.googlesource.com/platform/build/+/6c41036bcf35fe39162b50d27533f0f3bfab3028</a>
+</ul>
+
+<h3 id=version_strings>Version Strings</h3>
+
+
+<p><strong>Problem:</strong> APK version strings often had the BUILD_NUMBER appended to the hardcoded
+version. So even if nothing else changed in the APK, the APK would still be
+different. </p>
+
+<p><strong>Solution:</strong> Remove the build number from the APK version string.</p>
+
+<p><strong>Examples: </strong></p>
+
+<ul>
+  <li> <a href="https://android.googlesource.com/platform/packages/apps/Camera2/+/5e0f4cf699a4c7c95e2c38ae3babe6f20c258d27">https://android.googlesource.com/platform/packages/apps/Camera2/+/5e0f4cf699a4c7c95e2c38ae3babe6f20c258d27</a>
+  <li> <a href="https://android.googlesource.com/platform/build/+/d75d893da8f97a5c7781142aaa7a16cf1dbb669c">https://android.googlesource.com/platform/build/+/d75d893da8f97a5c7781142aaa7a16cf1dbb669c</a>
+</ul>
+
+<h3 id=consistent_build_tools>Consistent build tools</h3>
+
+
+<p><strong>Problem:</strong> Any tools that generate installed files need to be consistent, that is, the
+same input should always produce the same output. </p>
+
+<p><strong>Solutions/Examples: </strong>Changes were required in the following build tools:</p>
+
+<ul>
+  <li> <strong>NOTICE file creator </strong><br>
+The NOTICE file creator needed the following changes:
+  <ul>
+    <li> <a href="https://android.googlesource.com/platform/build/+/8ae4984c2c8009e7a08e2a76b1762c2837ad4f64">https://android.googlesource.com/platform/build/+/8ae4984c2c8009e7a08e2a76b1762c2837ad4f64</a>
+  </ul>
+  <li> <strong>Java Android Compiler Kit (Jack) </strong><br>
+The Jack toolchain required an update to handle an occasional change in
+generated constructor ordering:
+  <ul>
+    <li> <a href="https://android.googlesource.com/toolchain/jack/+/056a5425b3ef57935206c19ecb198a89221ca64b">https://android.googlesource.com/toolchain/jack/+/056a5425b3ef57935206c19ecb198a89221ca64b</a>
+  </ul>
+  <li><strong>ART AOT compiler (dex2oat)</strong><br>The ART compiler binary required an update to create a deterministic image:
+  <ul>
+    <li> <a href="https://android.googlesource.com/platform/art/+/ace0dc1dd5480ad458e622085e51583653853fb9">https://android.googlesource.com/platform/art/+/ace0dc1dd5480ad458e622085e51583653853fb9</a>
+  </ul>
+  <li> <strong>The libpac.so file (V8)</strong><br>
+Every build creates a different /system/lib/libpac.so file, because the V8
+snapshot changes for each build. The solution is to remove the snapshot:</p>
+  <ul>
+    <li> <a href="https://android.googlesource.com/platform/external/v8/+/e537f38c36600fd0f3026adba6b3f4cbcee1fb29">https://android.googlesource.com/platform/external/v8/+/e537f38c36600fd0f3026adba6b3f4cbcee1fb29</a>
+  </ul>
+  <li> <strong>Application pre-dexopt’d (.odex) files
+</strong><br>The pre-dexopt’d (.odex) files contained uninitialized padding on 64-bit
+systems, requiring the following fix:</p>
+  <ul>
+    <li> <a href="https://android.googlesource.com/platform/art/+/34ed3afc41820c72a3c0ab9770be66b6668aa029">https://android.googlesource.com/platform/art/+/34ed3afc41820c72a3c0ab9770be66b6668aa029</a>
+  </ul>
+</ul>
+
+    </div>
+
+      <div class="content-footer-sac"
+                    itemscope itemtype="http://schema.org/SiteNavigationElement">
+        <div class="layout-content-col col-9" style="padding-top:4px">
+        </div>
+        
+        <div class="paging-links layout-content-col col-4">
+          
+        </div>
+        
+      </div>
+      
+      
+    </div> <!-- end jd-content -->
+  <div id="footer" class="wrap" >
+  <style>.feedback { float: right !Important }</style>
+  <div class="feedback">
+    <a href="reduce_size.html#" class="button" onclick=" try {
+      userfeedback.api.startFeedback({'productId':'715571','authuser':'1'});return false;}catch(e){}">Site Feedback</a>
+  </div>
+  <div id="copyright">
+    
+  Except as noted, this content is 
+  licensed under <a href="http://creativecommons.org/licenses/by/2.5/">
+  Creative Commons Attribution 2.5</a>. For details and 
+  restrictions, see the <a href="../../../license.html">Content 
+  License</a>.
+  </div>
+    <div id="footerlinks">
+    
+  <p>
+    <a href="../../../source/index.html">About Android</a>&nbsp;&nbsp;|&nbsp;
+    <a href="../../../source/community.html">Community</a>&nbsp;&nbsp;|&nbsp;
+    <a href="../../../legal.html">Legal</a>&nbsp;&nbsp;|&nbsp;
+  </p>
+  </div>
+
+</div><!-- end doc-content -->
+
+</div> <!-- end body-content --> 
+
+
+
+
+
+
+</body>
+</html>
+
+
+

@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<meta name="Description" content="The Android Compatibility Test Suite Verifier (CTS Verifier) is a supplement to the Compatibility Test Suite (CTS). While CTS checks those APIs and functions that can be automated, CTS Verifier provides tests for those APIs and functions that cannot be…">
+
+<link rel="shortcut icon" type="image/x-icon" href="../../favicon.ico" />
+<title>Using CTS Verifier | Android Open Source Project</title>
+
+<!-- STYLESHEETS -->
+<link rel="stylesheet"
+href="https://fonts.googleapis.com/css?family=Roboto:regular,medium,thin,italic,mediumitalic,bold" title="roboto">
+<link href="../../assets/css/default.css" rel="stylesheet" type="text/css">
+
+
+
+<!-- JAVASCRIPT -->
+<script src="https://www.google.com/jsapi" type="text/javascript"></script>
+<script src="../../assets/js/android_3p-bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+  var toRoot = "/";
+  
+  var devsite = false;
+  
+</script>
+<script src="../../assets/js/docs.js" type="text/javascript"></script>
+
+
+<script type="text/javascript" src="https://www.gstatic.com/feedback/api.js"></script>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-45455297-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</head>
+
+<body class="gc-documentation 
+  " itemscope itemtype="http://schema.org/Article">
+<a name="top"></a>
+
+  
+    <!-- Header -->
+    <div id="header">
+        <div class="wrap" id="header-wrap">
+          <div class="col-3 saclogo">
+          <a href="../../index.html">
+            <img src="../../assets/images/sac_logo.png"
+                srcset="/assets/images/sac_logo@2x.png 2x"
+                width="123" height="25" alt="Android Open Source Project" />
+          </a>
+          </div>
+            <ul class="nav-x col-9">
+                <li class="source">
+                  <a href="../../source/index.html" 
+                  >Source</a></li>
+                <li class="devices"><a href="../../devices/index.html" 
+                  >Devices</a></li>
+                <li class="security"><a href="../../security/index.html" 
+                  >Security</a></li>
+                <li class="compatibility last"><a href="../index.html" class="selected"
+                  >Compatibility</a></li>
+            </ul>
+            <!-- New Search -->
+            <div class="menu-container">
+            <div class="moremenu">
+    <div id="more-btn"></div>
+  </div>
+  <div class="morehover" id="moremenu">
+    <div class="top"></div>
+    <div class="mid">
+      <div class="header">Android Sites</div>
+      <ul>
+        <li class="active"><a>Android Open Source Project</a></li>
+        <li><a href="http://www.android.com">Android.com</a></li>
+        <li><a href="http://developer.android.com">Android Developers</a></li>
+      </ul>
+      <!-- <div class="header">Support</div>
+      <ul>
+        <li><a href="/support.html">Developer Support</a></li>
+      </ul> -->
+      <br class="clearfix" />
+    </div>
+    <div class="bottom"></div>
+  </div>
+
+  <div class="search" id="search-container">
+    <div class="search-inner">
+      <div id="search-btn"></div>
+      <div class="left"></div>
+      <form onsubmit="return submit_search()">
+        <input id="search_autocomplete" type="text" value="" autocomplete="off" name="q"
+onfocus="search_focus_changed(this, true)" onblur="search_focus_changed(this, false)"
+onkeydown="return search_changed(event, true, '/')"
+onkeyup="return search_changed(event, false, '/')" />
+      </form>
+      <div class="right"></div>
+        <a class="close hide">close</a>
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+  </div>
+  <div id="search_filtered_wrapper">
+    <div id="search_filtered_div" class="no-display">
+        <ul id="search_filtered">
+        </ul>
+    </div>
+  </div>
+
+  </div>
+  <!-- /New Search> -->
+        </div>
+    </div>
+    <!-- /Header -->
+
+  <div id="searchResults" class="wrap" style="display:none;">
+          <h2 id="searchTitle">Results</h2>
+          <div id="leftSearchControl" class="search-control">Loading...</div>
+  </div>
+
+  
+  
+  
+    
+  <div class="wrap clearfix" id="body-content">
+    <div class="col-4" id="side-nav" itemscope itemtype="http://schema.org/SiteNavigationElement">
+      <div id="devdoc-nav" class="scroll-pane">
+<a class="totop" href="verifier.html#top" data-g-event="left-nav-top">to top</a>
+
+<!--
+    Copyright 2013 The Android Open Source Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<ul id="nav">
+<!-- Compatibility -->
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="../index.html">
+        <span class="en">Compatibility</span>
+      </a>
+    </div>
+    <ul>
+      <li><a href="../overview.html">Overview</a></li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../cdd.html">
+            <span class="en">Compatibility Definition</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../android-cdd.html">CDD in HTML</a></li>
+          <li><a href="../android-cdd.pdf">CDD in PDF</a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../cts-intro.html">
+            <span class="en">Compatibility Test Suite</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="setup.html">Set up CTS</a></li>
+          <li><a href="run.html">Run CTS</a></li>
+          <li class="nav-section">
+            <div class="nav-section-header">
+            <a href="verifier.html">
+              <span class="en">Run CTS Verifier</span>
+            </a>
+            </div>
+           <ul>
+            <li><a href="audio-framework.html">Audio Framework</a></li>
+            <li><a href="camera-hal.html">Camera HAL Testing</a></li>
+            <li><a href="near-ultrasound.html">Near Ultrasound Tests</a></li>
+            <li><a href="rotation-vector.html">Rotation Vector Crosscheck</a></li>
+           </ul>
+          </li>
+          <li><a href="interpret.html">Interpret Results</a></li>
+          <li><a href="development.html">Develop CTS</a></li>
+          <li><a href="downloads.html">Downloads</a></li>
+        </ul>
+      </li>
+      <li><a href="../contact-us.html">Contact Us</a></li>
+    </ul>
+<!-- End Compatibility -->
+  </li>
+
+
+</ul>
+
+
+      </div>
+    </div> <!-- end side-nav -->
+    <script>
+      $(document).ready(function() {
+        scrollIntoView("devdoc-nav");
+        });
+    </script>
+
+  
+
+
+
+
+<div class="col-12" id="doc-col" >
+
+
+  
+    
+      
+        <h1 itemprop="name" >Using CTS Verifier</h1>
+      
+    
+  
+
+
+  
+  <div id="jd-content">
+
+    <div class="jd-descr" itemprop="articleBody">
+    <!--
+    Copyright 2015 The Android Open Source Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<div id="qv-wrapper">
+  <div id="qv">
+    <h2>In this document</h2>
+    <ol id="auto-toc">
+    </ol>
+  </div>
+</div>
+
+<p>The Android Compatibility Test Suite Verifier (CTS Verifier) is a supplement to
+  the Compatibility Test Suite (CTS). While CTS checks those APIs and functions
+  that can be automated, CTS Verifier provides tests for those APIs and functions
+  that cannot be tested on a stationary device without manual input, like audio
+  quality, touchscreen, accelerometer, camera, etc.</p>
+<h2 id=test_preparation>Test preparation</h2>
+<p>The device must have verified Android API compatibility by successfully passing
+  the Compatibility Test Suite.</p>
+<h3 id=hardware_requirements>Hardware requirements</h3>
+<ul>
+  <li> A Linux computer with USB 2.0 compatible port
+  <li> A second Android device with a known compatible Bluetooth, Wi-Fi direct, and
+    NFC Host Card Emulation (HCE) implementation
+</ul>
+<h3 id=setup>Setup</h3>
+<ul>
+  <li>Install the <a href="http://developer.android.com/sdk/index.html">Android
+SDK</a> on the Linux computer <li>Download the appropriate <a
+href="downloads.html">CTS Verifier.apk</a> for the
+version of Android under test.
+  <li>Install CTS Verifier.apk to the <em>Device Under Test</em> (DUT). <br>
+    <code>adb install -r -g CtsVerifier.apk</code>
+  <li>Ensure that the device has its system data and time set correctly.
+</ul>
+<h2 id=cts_test_procedure>CTS Verifier test procedure</h2>
+<ol>
+  <li>After the CTS Verifier.apk has been installed, launch the CTS Verifier
+    application:
+
+<img src="images/cts-verifier-icon.png" alt="CTS Verifier icon in launcher" id="figure1" />
+<p class="img-caption">
+  <strong>Figure 1.</strong> CTS Verifier icon
+</p>
+
+  <li>Once opened, the CTS Verifier displays a list of all test sets available for
+    manual verification:
+
+<img src="images/cts-verifier-menu.png" alt="CTS Verifier menu of tests" id="figure2" />
+<p class="img-caption">
+  <strong>Figure 2.</strong> CTS Verifier menu of tests
+</p>
+
+  <li>Each test contains a set of common elements (in some tests, Pass/Fail is
+    determined automatically):
+    <ul>
+      <li><em>Info</em>—a set of instructions to run the test. This will appear as a popup the first
+        time each test is opened or whenever the <strong>Info</strong> button (？) is pressed.
+      <li><em>Pass</em>—If the DUT meets the test requirements per the instructions from Info, press
+        the <strong>Pass</strong> button (✓).
+      <li><em>Fail</em>—If the DUT does not meet the test requirements per the instructions from Info,
+        press the <strong>Fail</strong> button (！).
+    </ul>
+
+<img src="images/video-verifier.png" alt="Streaming video quality verifier" id="figure3" />
+<p class="img-caption">
+  <strong>Figure 3.</strong> Video quality verifier
+</p>
+
+</ol>
+
+<h2 id=specific_test_requirements>Specific test requirements</h2>
+<h3 id=usb_accessory>USB Accessory</h3>
+<p>In order to run the USB Accessory test, you need a Linux computer to run the
+  USB desktop machine (host) program.</p>
+<ol>
+  <li>Connect the DUT to a computer.
+  <li>Execute the cts-usb-accessory program on the computer found in the CTS Verifier
+    package.
+  <li>A popup message will appear on the DUT. Select <strong>OK</strong> and go into the USB Accessory Test in the CTS Verifier application.
+<br>
+<img src="images/screen-lock-test.png" alt="CTS Verifier screen lock test" id="figure4" />
+<p class="img-caption">
+  <strong>Figure 4.</strong> Screen lock test
+</p>
+
+  <li>Output similar to below will appear on the computer’s console. 
+</ol>
+<pre>
+out/host/linux-x86/cts-verifier/android-cts-verifier$ <strong>./cts-usb-accessory</strong>
+CTS USB Accessory Tester
+Found possible Android device (413c:2106) - attempting to switch to accessory
+mode...
+Failed to read protocol version
+Found Android device in accessory mode (18d1:2d01)...
+[RECV] Message from Android device #0
+[SENT] Message from Android accessory #0
+[RECV] Message from Android device #1
+[SENT] Message from Android accessory #1
+[RECV] Message from Android device #2
+[SENT] Message from Android accessory #2
+[RECV] Message from Android device #3
+[SENT] Message from Android accessory #3
+[RECV] Message from Android device #4
+[SENT] Message from Android accessory #4
+[RECV] Message from Android device #5
+[SENT] Message from Android accessory #5
+[RECV] Message from Android device #6
+[SENT] Message from Android accessory #6
+[RECV] Message from Android device #7
+[SENT] Message from Android accessory #7
+[RECV] Message from Android device #8
+[SENT] Message from Android accessory #8
+[RECV] Message from Android device #9
+[SENT] Message from Android accessory #9
+[RECV] Message from Android device #10
+[SENT] Message from Android accessory #10
+</pre>
+<h3 id=camera_field_of_view_calibration>Camera field of view calibration</h3>
+<p>This field of view calibration procedure is designed to be a quick way to
+  determine the device field of view with moderate accuracy.
+<p><strong>Setup</strong> - Print the <a
+href="../calibration-pattern.pdf">calibration-pattern.pdf</a>
+target file and mount it on a rigid backing. Print on 11” x 17” or A3. Orient
+the camera device and the printed target as shown in the diagram below:</p>
+
+<img src="images/camera-printed-target.png" alt="Camera printed target" id="figure5" />
+<p class="img-caption">
+  <strong>Figure 5.</strong> Camera printed target
+</p>
+
+<p><strong>Setting the target width</strong> - Measure the distance between the
+solid lines on the target pattern in centimeters to account for printing
+inaccuracies (~38 cm).</p>
+<ol>
+  <li>Start the calibration application.
+  <li>Press the setup button and select “Marker distance” to enter the distance.
+  <li>Measure and enter the distance to the target pattern (~100 cm).
+  <li>Press the back button to return to the calibration preview.
+</ol>
+<p><strong>Calibration process</strong> - Verify that the device and target are
+placed as shown in the figure and the correct distances have been entered into
+the setup dialog.The preview will display the image with a vertical line
+overlaid onto it. This line should align with the center line of the target
+pattern. The transparent grid can be used with the other vertical lines to
+ensure that the optical axis is orthogonal to the target.</p>
+<ol>
+  <li>Select an image resolution to test from the selector at the bottom left.
+  <li>Tap the screen to take a photo and enter the calibration mode (described
+    below).
+  <li>Hit the back button and repeat for all supported image resolutions.
+</ol>
+<p><strong>Calibration test (per resolution)</strong> In the calibration mode, the photo will be displayed with two vertical lines
+  overlaid onto the image.These lines should align with the vertical lines on the target pattern within a
+  few pixels. If they do not, then the reported field of view for that mode is
+  inaccurate (assuming the setup is correct).Adjust the slider at the bottom of the screen until the overlay aligns with the
+  target pattern as closely as possible. The displayed field of view will be a
+  close approximation to the correct value when the overlay and the target
+  pattern image are aligned. The reported field of view should be within +/-1
+  degree of the calibration value.</p>
+<h2 id=exporting_test_reports>Exporting test reports</h2>
+<ol>
+  <li>After all tests are completed, tap the <strong>Save (disk)</strong> icon.
+<br>
+<img src="images/verifier-save-icon.png" alt="CTS Verifier Save icon" id="figure6" />
+<p class="img-caption">
+  <strong>Figure 6.</strong> CTS Verifier Save icon
+</p>
+
+  <li>A path to the saved report will be displayed in pop-up (e.g.
+<code>/mnt/sdcard/ctsVerifierReports/ctsVerifierReport-date-time.zip</code>).
+Record the path.
+<br>
+<img src="images/path-saved-report.png" alt="CTS Verifier path to saved report " id="figure7" />
+<p class="img-caption">
+  <strong>Figure 7.</strong> CTS Verifier path to saved report
+</p>
+
+  <li>Connect the device via USB to a computer with the SDK installed.
+  <li>From the computer’s SDK installation, run <code>adb pull
+    <CTS Verifier report path>
+    </code> to download the report from the device.
+    <ul>
+  <li>To download all reports run : <code>adb pull /mnt/sdcard/ctsVerifierReports/ .</code>
+  <li>The name of the reports are time-stamped based on the DUT’s system time.
+  <li>To clear results after they have been selected, select <strong>Menu > Clear</strong>. This will
+    clear the Pass/Fail results.
+</ol>
+
+    </div>
+
+      <div class="content-footer-sac"
+                    itemscope itemtype="http://schema.org/SiteNavigationElement">
+        <div class="layout-content-col col-9" style="padding-top:4px">
+        </div>
+        
+        <div class="paging-links layout-content-col col-4">
+          
+        </div>
+        
+      </div>
+      
+      
+    </div> <!-- end jd-content -->
+  <div id="footer" class="wrap" >
+  <style>.feedback { float: right !Important }</style>
+  <div class="feedback">
+    <a href="verifier.html#" class="button" onclick=" try {
+      userfeedback.api.startFeedback({'productId':'715571','authuser':'1'});return false;}catch(e){}">Site Feedback</a>
+  </div>
+  <div id="copyright">
+    
+  Except as noted, this content is 
+  licensed under <a href="http://creativecommons.org/licenses/by/2.5/">
+  Creative Commons Attribution 2.5</a>. For details and 
+  restrictions, see the <a href="../../license.html">Content 
+  License</a>.
+  </div>
+    <div id="footerlinks">
+    
+  <p>
+    <a href="../../source/index.html">About Android</a>&nbsp;&nbsp;|&nbsp;
+    <a href="../../source/community.html">Community</a>&nbsp;&nbsp;|&nbsp;
+    <a href="../../legal.html">Legal</a>&nbsp;&nbsp;|&nbsp;
+  </p>
+  </div>
+
+</div><!-- end doc-content -->
+
+</div> <!-- end body-content --> 
+
+
+
+
+
+
+</body>
+</html>
+
+
+

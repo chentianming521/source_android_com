@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<meta name="Description" content="The Android security team is responsible for managing security vulnerabilities discovered in the Android platform and many of the core Android apps bundled with Android devices. The Android security team finds security vulnerabilities through internal…">
+
+<link rel="shortcut icon" type="image/x-icon" href="../../favicon.ico" />
+<title> Security updates and resources | Android Open Source Project</title>
+
+<!-- STYLESHEETS -->
+<link rel="stylesheet"
+href="https://fonts.googleapis.com/css?family=Roboto:regular,medium,thin,italic,mediumitalic,bold" title="roboto">
+<link href="../../assets/css/default.css" rel="stylesheet" type="text/css">
+
+
+
+<!-- JAVASCRIPT -->
+<script src="https://www.google.com/jsapi" type="text/javascript"></script>
+<script src="../../assets/js/android_3p-bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+  var toRoot = "/";
+  
+  var devsite = false;
+  
+</script>
+<script src="../../assets/js/docs.js" type="text/javascript"></script>
+
+
+<script type="text/javascript" src="https://www.gstatic.com/feedback/api.js"></script>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-45455297-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</head>
+
+<body class="gc-documentation 
+  " itemscope itemtype="http://schema.org/Article">
+<a name="top"></a>
+
+  
+    <!-- Header -->
+    <div id="header">
+        <div class="wrap" id="header-wrap">
+          <div class="col-3 saclogo">
+          <a href="../../index.html">
+            <img src="../../assets/images/sac_logo.png"
+                srcset="/assets/images/sac_logo@2x.png 2x"
+                width="123" height="25" alt="Android Open Source Project" />
+          </a>
+          </div>
+            <ul class="nav-x col-9">
+                <li class="source">
+                  <a href="../../source/index.html" 
+                  >Source</a></li>
+                <li class="devices"><a href="../../devices/index.html" 
+                  >Devices</a></li>
+                <li class="security"><a href="../index.html" class="selected"
+                  >Security</a></li>
+                <li class="compatibility last"><a href="../../compatibility/index.html" 
+                  >Compatibility</a></li>
+            </ul>
+            <!-- New Search -->
+            <div class="menu-container">
+            <div class="moremenu">
+    <div id="more-btn"></div>
+  </div>
+  <div class="morehover" id="moremenu">
+    <div class="top"></div>
+    <div class="mid">
+      <div class="header">Android Sites</div>
+      <ul>
+        <li class="active"><a>Android Open Source Project</a></li>
+        <li><a href="http://www.android.com">Android.com</a></li>
+        <li><a href="http://developer.android.com">Android Developers</a></li>
+      </ul>
+      <!-- <div class="header">Support</div>
+      <ul>
+        <li><a href="/support.html">Developer Support</a></li>
+      </ul> -->
+      <br class="clearfix" />
+    </div>
+    <div class="bottom"></div>
+  </div>
+
+  <div class="search" id="search-container">
+    <div class="search-inner">
+      <div id="search-btn"></div>
+      <div class="left"></div>
+      <form onsubmit="return submit_search()">
+        <input id="search_autocomplete" type="text" value="" autocomplete="off" name="q"
+onfocus="search_focus_changed(this, true)" onblur="search_focus_changed(this, false)"
+onkeydown="return search_changed(event, true, '/')"
+onkeyup="return search_changed(event, false, '/')" />
+      </form>
+      <div class="right"></div>
+        <a class="close hide">close</a>
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+  </div>
+  <div id="search_filtered_wrapper">
+    <div id="search_filtered_div" class="no-display">
+        <ul id="search_filtered">
+        </ul>
+    </div>
+  </div>
+
+  </div>
+  <!-- /New Search> -->
+        </div>
+    </div>
+    <!-- /Header -->
+
+  <div id="searchResults" class="wrap" style="display:none;">
+          <h2 id="searchTitle">Results</h2>
+          <div id="leftSearchControl" class="search-control">Loading...</div>
+  </div>
+
+  
+  
+  
+    
+  <div class="wrap clearfix" id="body-content">
+    <div class="col-4" id="side-nav" itemscope itemtype="http://schema.org/SiteNavigationElement">
+      <div id="devdoc-nav" class="scroll-pane">
+<a class="totop" href="updates-resources.html#top" data-g-event="left-nav-top">to top</a>
+
+<!--
+    Copyright 2015 The Android Open Source Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<ul id="nav">
+  <li class="nav-section">
+    <div class="nav-section-header">
+        <a href="../index.html">
+          <span class="en">Overview</span>
+        </a>
+    </div>
+    <ul>
+      <li><a href="kernel-security.html">Kernel Security</a></li>
+      <li><a href="app-security.html">App Security</a></li>
+      <li><a href="implement.html">Implementing Security</a></li>
+      <li><a href="updates-resources.html">Updates and Resources</a></li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../enhancements/index.html">
+            <span class="en">Enhancements</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../enhancements/enhancements70.html">Android 7.0</a></li>
+          <li><a href="../enhancements/enhancements60.html">Android 6.0</a></li>
+          <li><a href="../enhancements/enhancements50.html">Android 5.0</a></li>
+          <li><a href="../enhancements/enhancements44.html">Android 4.4</a></li>
+          <li><a href="../enhancements/enhancements43.html">Android 4.3</a></li>
+          <li><a href="../enhancements/enhancements42.html">Android 4.2</a></li>
+          <li><a href="../enhancements/enhancements41.html">Android 4.1</a></li>
+        </ul>
+      </li>
+      <li><a href="acknowledgements.html">Acknowledgements</a></li>
+    </ul>
+  </li>
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="../bulletin/index.html">
+        <span class="en">Bulletins</span>
+      </a>
+    </div>
+    <ul>
+      <li class="nav-section">
+         <div class="nav-section-header">
+           <a href="../advisory/index.html">
+         <span class="en">Advisories</span>
+        </a>
+       </div>
+         <ul>
+           <li><a href="../advisory/2016-03-18.html">2016-03-18</a></li>
+         </ul>
+      </li>
+      <li><a href="../bulletin/2016-11-01.html">November 2016</a></li>
+      <li><a href="../bulletin/2016-10-01.html">October 2016</a></li>
+      <li><a href="../bulletin/2016-09-01.html">September 2016</a></li>
+      <li><a href="../bulletin/2016-08-01.html">August 2016</a></li>
+      <li><a href="../bulletin/2016-07-01.html">July 2016</a></li>
+      <li><a href="../bulletin/2016-06-01.html">June 2016</a></li>
+      <li><a href="../bulletin/2016-05-01.html">May 2016</a></li>
+      <li><a href="../bulletin/2016-04-02.html">April 2016</a></li>
+      <li><a href="../bulletin/2016-03-01.html">March 2016</a></li>
+      <li><a href="../bulletin/2016-02-01.html">February 2016</a></li>
+      <li><a href="../bulletin/2016-01-01.html">January 2016</a></li>
+      <li class="nav-section">
+         <div class="nav-section-header">
+           <a href="../bulletin/2015.html">
+         <span class="en">2015 Bulletins</span>
+        </a>
+       </div>
+         <ul>
+           <li><a href="../bulletin/2015-12-01.html">December 2015</a></li>
+           <li><a href="../bulletin/2015-11-01.html">November 2015</a></li>
+           <li><a href="../bulletin/2015-10-01.html">October 2015</a></li>
+           <li><a href="../bulletin/2015-09-01.html">September 2015</a></li>
+           <li><a href="../bulletin/2015-08-01.html">August 2015</a></li>
+         </ul>
+      </li>
+    </ul>
+  </li>
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="../apksigning/index.html">
+        <span class="en">Application Signing</span>
+      </a>
+    </div>
+    <ul>
+      <li><a href="../apksigning/v2.html">APK Signature Scheme v2</a></li>
+    </ul>
+  </li>
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="../authentication/index.html">
+        <span class="en">Authentication</span>
+      </a>
+    </div>
+    <ul>
+      <li><a href="../../devices/tech/security/authentication/fingerprint-hal.html">Fingerprint HAL</a></li>
+      <li><a href="../../devices/tech/security/authentication/gatekeeper.html">Gatekeeper</a></li>
+    </ul>
+  </li>
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="../keystore/index.html">
+        <span class="en">Keystore</span>
+      </a>
+    </div>
+    <ul>
+      <li><a href="../keystore/features.html">Features</a></li>
+      <li><a href="../keystore/implementer-ref.html">Implementer's Reference</a></li>
+    </ul>
+  </li>
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="../trusty/index.html">
+        <span class="en">Trusty TEE</span>
+      </a>
+    </div>
+    <ul>
+      <li><a href="../trusty/trusty-ref.html">Trusty API Reference</a></li>
+    </ul>
+  </li>
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="../../devices/tech/encryption/index.html">
+        <span class="en">Encryption</span>
+      </a>
+    </div>
+    <ul>
+      <li><a href="../encryption/file-based.html">File-Based Encryption</a></li>
+      <li><a href="../encryption/full-disk.html">Full-Disk Encryption</a></li>
+    </ul>
+  </li>
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="../../devices/tech/security/selinux/index.html">
+        <span class="en">SELinux</span>
+      </a>
+    </div>
+    <ul>
+      <li><a href="../selinux/concepts.html">Concepts</a></li>
+      <li><a href="../selinux/implement.html">Implementation</a></li>
+      <li><a href="../selinux/customize.html">Customization</a></li>
+      <li><a href="../selinux/validate.html">Validation</a></li>
+      <li><a href="../selinux/device-policy.html">Writing Policy</a></li>
+    </ul>
+  </li>
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="../verifiedboot/index.html">
+        <span class="en">Verified Boot</span>
+      </a>
+    </div>
+    <ul>
+      <li><a href="../verifiedboot/verified-boot.html">Verifying Boot</a></li>
+      <li><a href="../verifiedboot/dm-verity.html">Implementing dm-verity</a></li>
+    </ul>
+  </li>
+</ul>
+
+
+      </div>
+    </div> <!-- end side-nav -->
+    <script>
+      $(document).ready(function() {
+        scrollIntoView("devdoc-nav");
+        });
+    </script>
+
+  
+
+
+
+
+<div class="col-12" id="doc-col" >
+
+
+  
+    
+      
+        <h1 itemprop="name" > Security updates and resources</h1>
+      
+    
+  
+
+
+  
+  <div id="jd-content">
+
+    <div class="jd-descr" itemprop="articleBody">
+    <!--
+    Copyright 2015 The Android Open Source Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<div id="qv-wrapper">
+  <div id="qv">
+    <h2>In this document</h2>
+    <ol id="auto-toc"></ol>
+  </div>
+</div>
+
+<h2 id=android_security_bug_lifecycle>Android security bug lifecycle</h2>
+
+<p>The Android security team is responsible for managing security vulnerabilities
+discovered in the Android platform and many of the core Android apps bundled
+with Android devices.</p>
+
+<p>The Android security team finds security vulnerabilities through internal
+research and also responds to bugs reported by third parties. Sources of
+external bugs include issues reported through the Android Open Source
+Project (AOSP) <a
+href="https://code.google.com/p/android/issues/entry?template=Security%20bug%20report">Security
+bug report</a> template, published and pre-published academic research,
+upstream open source project maintainers, notifications from our device
+manufacturer partners, and publicly disclosed issues posted on blogs or social
+media.</p>
+
+<h2 id=report-issues>Reporting security issues</h2>
+
+<p>Any developer, Android user, or security researcher can notify the Android
+security team of potential security issues through the AOSP bug tracker <a
+href="https://code.google.com/p/android/issues/entry?template=Security%20bug%20report">Security
+bug report</a> template.</p>
+
+<p>Bugs marked as security issues are not externally visible, but they may
+eventually be made visible after the issue is evaluated or resolved. If you
+plan to submit a patch or Compatibility Test Suite (CTS) test to resolve a
+security issue, please attach it to the bug report and wait for a response
+before uploading the code to AOSP.</p>
+
+<h2 id=triaging_bugs>Triaging bugs</h2>
+
+<p>The first task in handling a security vulnerability is to identify the severity
+of the bug and which component of Android is affected. The severity determines
+how the issue is prioritized, and the component determines who fixes the bug,
+who is notified, and how the fix gets deployed to users.</p>
+
+<h3 id=process_types>Process types</h3>
+<p>This table covers the definitions of process types. The process type can be
+defined by the type of application or process or the area in which it runs.
+This table is ordered from least to most privileged.</p>
+<table>
+ <tr>
+    <th>Process type</th>
+    <th>Type definition</th>
+ </tr>
+ <tr>
+    <td>Constrained process</td>
+    <td>A process that runs in a highly limited SELinux domain.<br />
+           OR<br />
+           A process that is significantly more limited than a normal application.</td>
+ </tr>
+ <tr>
+    <td>Unprivileged process</td>
+    <td>A third-party application or process.<br />
+           OR<br />
+          An application or process that runs in the SELinux <code>untrusted_app</code> domain.</td>
+ </tr>
+ <tr>
+    <td>Privileged process</td>
+    <td>An application or process with capabilities that are restricted by SELinux
+        <code>untrusted_app</code> domain.<br />
+         OR<br />
+         An application or process with important privileges that a third-party
+         application cannot obtain.</td>
+ </tr>
+ <tr>
+    <td>Kernel</td>
+    <td>Functionality that is either part of the kernel or runs in the same CPU context
+        as the kernel (like device drivers).</td>
+ </tr>
+ <tr>
+    <td>Trusted Execution Environment (TEE)</td>
+    <td> A component that is designed to be protected from even a hostile kernel.</td>
+ </tr>
+</table>
+
+
+<h3 id=severity>Severity</h3>
+
+
+<p>The severity of a bug generally reflects the potential harm that could occur if
+a bug was successfully exploited. Use the following criteria to determine the
+severity:</p>
+<table>
+ <tr>
+    <th>Rating</th>
+    <th>Consequence of successful exploitation</th>
+ </tr>
+ <tr>
+    <td><strong>Critical</strong></td>
+    <td>
+          <ul>
+             <li> Remote arbitrary code execution in a privileged process
+             <li> Permanent device compromise (device cannot be repaired without re-flashing the
+                  entire operating system)
+             <li> Unauthorized access to data secured by the TEE
+             <li> Remote permanent denial of service (device inoperability: completely permanent
+                  or requiring re-flashing the entire operating system)
+          </ul>
+    </td>
+ </tr>
+ <tr>
+     <td><strong>High</strong></td>
+     <td>
+          <ul>
+             <li> Remote arbitrary code execution in an unprivileged process
+             <li> Remote access to protected data (data normally accessible only to locally
+                  installed apps that request permission, or that is limited to a privileged
+                  process)
+             <li> Remote bypass of user interaction requirements (access to functionality that
+                  would normally require either user initiation or user permission)
+             <li> Local arbitrary code execution in a privileged process
+             <li> Local permanent denial of service (device inoperability: completely permanent
+                  or requiring re-flashing the entire operating system)
+             <li> A general bypass for a kernel level defense in depth or exploit mitigation
+                  technology
+             <li> Remote temporary device denial of service (remote hang or reboot)
+             <li> Local bypass of user interaction requirements for any developer or security
+                  settings modifications
+             <li> A general bypass for operating system protections that isolate application data
+                  from other applications
+             <li> Lockscreen bypass
+        </ul>
+    </td>
+ </tr>
+ <tr>
+     <td><strong>Moderate</strong></td>
+     <td>
+          <ul>
+             <li> Remote arbitrary code execution in a constrained process
+             <li> Local bypass of user interaction requirements (access to functionality that
+                  would normally require either user initiation or user permission)
+             <li> Local temporary denial of service (device requires a factory reset)
+             <li> A general bypass for a user level defense in depth or exploit mitigation
+                  technology in a privileged process
+             <li> Remote access to unprotected data (data normally accessible to any locally
+                  installed app)
+             <li> Bypass of Device Protection/ Factory Reset Protection
+        </ul>
+    </td>
+ </tr>
+ <tr>
+     <td><strong>Low</strong></td>
+     <td>
+          <ul>
+             <li> A general bypass for a user level defense in depth or exploit mitigation
+                  technology in an unprivileged process
+             <li> Local temporary denial of service (can be resolved by booting the device into
+                  Safe Mode and removing the problematic application, or by a factory reset if
+                  the device does not support Safe Mode)
+          </ul>
+     </td>
+ </tr>
+</table>
+
+
+<h4 id=local_vs_remote>Local vs. remote</h4>
+
+<p>A remote attack vector indicates the bug could be exploited without installing
+an app or without physical access to the device. This includes bugs that could
+be triggered by browsing to a web page, reading an email, receiving an SMS
+message, or connecting to a hostile network. For the purpose of our severity
+ratings, the Android security team also considers "proximal" attack vectors as
+remote. These include bugs that can be exploited only by an attacker who is
+physically near the target device, for example a bug that requires sending
+malformed Wi-Fi or Bluetooth packets.</p>
+
+<p>Local attacks require the victim to install an app. For the purpose of severity
+ratings, the Android security team also considers physical attack vectors as
+local. These include bugs that can be exploited only by an attacker who has
+physical access to the device, for example a bug in a lock screen or one that
+requires plugging in a USB cable. The Android security team also considers
+NFC-based attacks as local.</p>
+
+<h3 id=rating_modifiers>Rating modifiers</h3>
+<p>While the severity of security vulnerabilities is often easy to identify,
+ratings may change based on circumstances.  </p>
+<table>
+ <tr>
+    <th>Reason</th>
+    <th>Effect</th>
+ </tr>
+ <tr>
+    <td>Requires running as a privileged process to execute the attack</td>
+    <td>-1 Severity</td>
+ </tr>
+ <tr>
+    <td>Vulnerability-specific details limit the impact of the issue </td>
+    <td>-1 Severity</td>
+ </tr>
+</table>
+
+
+<h3 id=affected_component>Affected component</h3>
+
+<p>The development team responsible for fixing the bug depends on which component
+the bug is in. It could be a core component of the Android platform, a kernel
+driver supplied by an original equipment manufacturer (OEM), or one of the
+pre-loaded apps on Nexus devices.</p>
+
+<p>Bugs in AOSP code are fixed by the Android engineering team. Low-severity bugs,
+bugs in certain components, or bugs that are already publicly known may be
+fixed directly in the publicly available AOSP master branch; otherwise they're
+fixed in our internal repositories first.</p>
+
+<p>The component is also a factor in how users get updates. A bug in the framework
+or kernel will require an over-the-air (OTA) firmware update that each OEM will
+need to push. A bug in an app or library published in Google Play (e.g., Gmail,
+Google Play Services, WebView in Lollipop and later versions) can be sent to
+Android users as an update from Google Play. </p>
+
+<h2 id=notifying_partners>Notifying partners</h2>
+
+<p>When a moderate or higher severity security vulnerability in AOSP is fixed,
+we'll notify Android partners of issue details and provide patches for a minimum
+of the most recent three Android releases. The Android security team currently
+provides patches for Android versions 4.4 (KitKat), 5.0 (Lollipop), 5.1
+(Lollipop MR1), and 6.0 (Marshmallow). This list of backport-supported versions
+changes with each new Android release.</p>
+
+<h2 id=releasing_code_to_aosp>Releasing code to AOSP</h2>
+
+<p>If the security bug is in an AOSP component, the fix will be pushed out to AOSP
+after the OTA is released to users. Fixes for low-severity issues may be
+submitted directly to the AOSP master branch before a fix is available.</p>
+
+<h2 id=android_updates>Receiving Android updates</h2>
+
+<p>Updates to the Android system are generally delivered to devices through
+OTA update packages. These updates may come from the OEM who
+produced the device or the carrier who provides service to the device. Google
+Nexus device updates come from the Google Nexus team after going through a
+carrier technical acceptance (TA) testing procedure. Google also publishes <a
+href="https://developers.google.com/android/nexus/images">Nexus factory
+images</a> that can be side-loaded to devices.</p>
+
+<h2 id=updating_google_services>Updating Google services</h2>
+
+<p>In addition to providing patches for security bugs, the Android security team
+also review security bugs to determine if there are other ways to protect
+users. For example, Google Play scans all applications and will remove any
+application that attempts to exploit a security bug. For applications installed
+from outside of Google Play, devices with Google Play Services may also use the
+<a href="https://support.google.com/accounts/answer/2812853">Verify Apps</a>
+feature to warn users about applications that may be potentially harmful.</p>
+
+<h2 id=other_resources>Other resources</h2>
+
+<p>Information for Android application developers: <a
+href="https://developer.android.com">https://developer.android.com</a></p>
+
+<p>Security information exists throughout the Android Open Source and Developer
+sites. Good places to start:<br>
+<a href="../index.html">https://source.android.com/security/index.html</a><br>
+<a href="https://developer.android.com/training/articles/security-tips.html">https://developer.android.com/training/articles/security-tips.html</a></p>
+
+<h3 id=reports>Reports</h3>
+<p>Sometimes the Android Security team publishes reports or whitepapers. Here are some of the most recent.</p>
+<ul>
+  <li><a href="http://static.googleusercontent.com/media/source.android.com/en//security/reports/Google_Android_Security_2015_Report_Final.pdf">
+      Android Security 2015 Year In Review</a></li>
+  <li><a href="http://static.googleusercontent.com/media/source.android.com/en//security/reports/Google_Android_Security_2014_Report_Final.pdf">
+      Android Security 2014 Year In Review</a></li>
+  <li><a href="http://static.googleusercontent.com/media/source.android.com/en//security/reports/Android_WhitePaper_Final_02092016.pdf">
+      Android Security white paper</a></li>
+  <li><a href="http://static.googleusercontent.com/media/source.android.com/en//security/reports/Google_Android_Security_PHA_classifications.pdf">
+      Classifications for Potentially Harmful Applications</a></li>
+</ul>
+
+<h3 id=slides>Android Bootcamp 2016 slides</h3>
+<p>The Android Security team has published their Android Bootcamp 2016 slides that cover new security features.</p>
+<ul>
+  <li><a href="http://static.googleusercontent.com/media/source.android.com/en//security/reports/Android-Bootcamp-2016-Verified-Boot-and-Encryption.pdf">
+      Verified boot and encryption</a></li>
+  <li><a href="http://static.googleusercontent.com/media/source.android.com/en//security/reports/Android-Bootcamp-2016-SafetyNet.pdf">
+      SafetyNet</a></li>
+  <li><a href="http://static.googleusercontent.com/media/source.android.com/en//security/reports/Android-Bootcamp-2016-New-App-Lifecycle-for-Encryption.pdf">
+      New app life cycle for encryption</a></li>
+  <li><a href="http://static.googleusercontent.com/media/source.android.com/en//security/reports/Android-Bootcamp-2016-Keeping-Google-Play-safe.pdf">
+      Keeping Google Play safe</a></li>
+  <li><a href="http://static.googleusercontent.com/media/source.android.com/en//security/reports/Android-Bootcamp-2016-Defense-in-depth-efforts.pdf">
+      Defense in depth efforts</a></li>
+  <li><a href="http://static.googleusercontent.com/media/source.android.com/en//security/reports/Android-Bootcamp-2016-Android-Keystore-Attestation.pdf">
+      Keystore attestation</a></li>
+  <li><a href="http://static.googleusercontent.com/media/source.android.com/en//security/reports/Android-Bootcamp-2016-Android-Attack-Team.pdf">
+      Android attack team</a></li>
+</ul>
+
+
+    </div>
+
+      <div class="content-footer-sac"
+                    itemscope itemtype="http://schema.org/SiteNavigationElement">
+        <div class="layout-content-col col-9" style="padding-top:4px">
+        </div>
+        
+        <div class="paging-links layout-content-col col-4">
+          
+        </div>
+        
+      </div>
+      
+      
+    </div> <!-- end jd-content -->
+  <div id="footer" class="wrap" >
+  <style>.feedback { float: right !Important }</style>
+  <div class="feedback">
+    <a href="updates-resources.html#" class="button" onclick=" try {
+      userfeedback.api.startFeedback({'productId':'715571','authuser':'1'});return false;}catch(e){}">Site Feedback</a>
+  </div>
+  <div id="copyright">
+    
+  Except as noted, this content is 
+  licensed under <a href="http://creativecommons.org/licenses/by/2.5/">
+  Creative Commons Attribution 2.5</a>. For details and 
+  restrictions, see the <a href="../../license.html">Content 
+  License</a>.
+  </div>
+    <div id="footerlinks">
+    
+  <p>
+    <a href="../../source/index.html">About Android</a>&nbsp;&nbsp;|&nbsp;
+    <a href="../../source/community.html">Community</a>&nbsp;&nbsp;|&nbsp;
+    <a href="../../legal.html">Legal</a>&nbsp;&nbsp;|&nbsp;
+  </p>
+  </div>
+
+</div><!-- end doc-content -->
+
+</div> <!-- end body-content --> 
+
+
+
+
+
+
+</body>
+</html>
+
+
+

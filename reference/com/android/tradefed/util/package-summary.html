@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<link rel="shortcut icon" type="image/x-icon" href="../../../../../favicon.ico" />
+<title>com.android.tradefed.util | Android Open Source Project</title>
+
+<!-- STYLESHEETS -->
+<link rel="stylesheet"
+href="https://fonts.googleapis.com/css?family=Roboto:regular,medium,thin,italic,mediumitalic,bold" title="roboto">
+<link href="../../../../../assets/css/default.css" rel="stylesheet" type="text/css">
+
+
+
+<!-- JAVASCRIPT -->
+<script src="https://www.google.com/jsapi" type="text/javascript"></script>
+<script src="../../../../../assets/js/android_3p-bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+  var toRoot = "/";
+  
+  var devsite = false;
+  
+</script>
+<script src="../../../../../assets/js/docs.js" type="text/javascript"></script>
+
+<script src="../../../../../navtree_data.js" type="text/javascript"></script>
+
+
+<script type="text/javascript" src="https://www.gstatic.com/feedback/api.js"></script>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-45455297-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</head>
+
+
+<body class="gc-documentation 
+  develop">
+  <div id="doc-api-level" class="" style="display:none"></div>
+  <a name="top"></a>
+
+  
+    <!-- Header -->
+    <div id="header">
+        <div class="wrap" id="header-wrap">
+          <div class="col-3 saclogo">
+          <a href="../../../../../index.html">
+            <img src="../../../../../assets/images/sac_logo.png"
+                srcset="/assets/images/sac_logo@2x.png 2x"
+                width="123" height="25" alt="Android Open Source Project" />
+          </a>
+          </div>
+            <ul class="nav-x col-9">
+                <li class="source">
+                  <a href="../../../../../source/index.html" 
+                  >Source</a></li>
+                <li class="devices"><a href="../../../../../devices/index.html" class="selected"
+                  >Devices</a></li>
+                <li class="security"><a href="../../../../../security/index.html" 
+                  >Security</a></li>
+                <li class="compatibility last"><a href="../../../../../compatibility/index.html" 
+                  >Compatibility</a></li>
+            </ul>
+            <!-- New Search -->
+            <div class="menu-container">
+            <div class="moremenu">
+    <div id="more-btn"></div>
+  </div>
+  <div class="morehover" id="moremenu">
+    <div class="top"></div>
+    <div class="mid">
+      <div class="header">Android Sites</div>
+      <ul>
+        <li class="active"><a>Android Open Source Project</a></li>
+        <li><a href="http://www.android.com">Android.com</a></li>
+        <li><a href="http://developer.android.com">Android Developers</a></li>
+      </ul>
+      <!-- <div class="header">Support</div>
+      <ul>
+        <li><a href="/support.html">Developer Support</a></li>
+      </ul> -->
+      <br class="clearfix" />
+    </div>
+    <div class="bottom"></div>
+  </div>
+
+  <div class="search" id="search-container">
+    <div class="search-inner">
+      <div id="search-btn"></div>
+      <div class="left"></div>
+      <form onsubmit="return submit_search()">
+        <input id="search_autocomplete" type="text" value="" autocomplete="off" name="q"
+onfocus="search_focus_changed(this, true)" onblur="search_focus_changed(this, false)"
+onkeydown="return search_changed(event, true, '/')"
+onkeyup="return search_changed(event, false, '/')" />
+      </form>
+      <div class="right"></div>
+        <a class="close hide">close</a>
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+  </div>
+  <div id="search_filtered_wrapper">
+    <div id="search_filtered_div" class="no-display">
+        <ul id="search_filtered">
+        </ul>
+    </div>
+  </div>
+
+  </div>
+  <!-- /New Search> -->
+        </div>
+    </div>
+    <!-- /Header -->
+
+  <div id="searchResults" class="wrap" style="display:none;">
+          <h2 id="searchTitle">Results</h2>
+          <div id="leftSearchControl" class="search-control">Loading...</div>
+  </div>
+
+  
+  
+  
+    
+  <div class="wrap clearfix" id="body-content">
+    <div class="col-4" id="side-nav" itemscope itemtype="http://schema.org/SiteNavigationElement">
+      <div id="devdoc-nav" class="scroll-pane">
+<a class="totop" href="package-summary.html#top" data-g-event="left-nav-top">to top</a>
+
+<!--
+    Copyright 2015 The Android Open Source Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<ul id="nav">
+  <li class="nav-section">  <!-- Begin nav section, Device Interfaces -->
+    <div class="nav-section-header">
+      <a href="../../../../../devices/index.html">
+        <span class="en">Interfaces</span>
+      </a>
+    </div>
+    <ul>
+  <li class="nav-section">
+  <div class="nav-section-header">
+      <a href="../../../../../devices/accessories/index.html">
+        <span class="en">Accessories</span>
+      </a>
+    </div>
+    <ul>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../../../../../devices/accessories/audio.html">
+            <span class="en">Audio Accessories</span>
+          </a>
+        </div>
+        <ul>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../../../../../devices/accessories/headset/index.html">
+            <span class="en">Headset</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../../../../../devices/accessories/headset/specification.html">Specification</a></li>
+          <li><a href="../../../../../devices/accessories/headset/requirements.html">Requirements</a></li>
+          <li><a href="../../../../../devices/accessories/headset/testing.html">Testing</a></li>
+        </ul>
+      </li>
+        </ul>
+      </li>
+  <li class="nav-section">
+  <div class="nav-section-header">
+      <a href="../../../../../devices/accessories/custom.html">
+        <span class="en">Custom Accessories</span>
+      </a>
+    </div>
+    <ul>
+      <li class="nav-section">
+        <div class="nav-section-header"><a href="../../../../../devices/accessories/protocol.html"><span class="en">AOA</span>
+        </a>
+        </div>
+        <ul>
+          <li><a href="../../../../../devices/accessories/aoa2.html">AOA 2.0</a></li>
+          <li><a href="../../../../../devices/accessories/aoa.html">AOA 1.0</a></li>
+        </ul>
+        </li>
+        <div class="nav-section-header"><a href="../../../../../devices/accessories/stylus.html"><span class="en">Stylus</span>
+        </a>
+        </div>
+       </ul>
+     </li>
+    </ul>
+      <li class="nav-section">
+      <div class="nav-section-header">
+        <a href="../../../../../devices/audio/index.html">
+          <span class="en">Audio</span>
+        </a>
+      </div>
+        <ul>
+          <li><a href="../../../../../devices/audio/terminology.html">Terminology</a></li>
+          <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="../../../../../devices/audio/implement.html">
+                <span class="en">Implementation</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="../../../../../devices/audio/implement-policy.html">Policy Configuration</a></li>
+              <li><a href="../../../../../devices/audio/implement-shared-library.html">Shared Library</a></li>
+              <li><a href="../../../../../devices/audio/implement-pre-processing.html">Pre-processing Effects</a></li>
+            </ul>
+         </li>
+          <li><a href="../../../../../devices/audio/data_formats.html">Data Formats</a></li>
+          <li><a href="../../../../../devices/audio/attributes.html">Attributes</a></li>
+          <li><a href="../../../../../devices/audio/warmup.html">Warmup</a></li>
+          <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="../../../../../devices/audio/latency.html">
+                <span class="en">Latency</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="../../../../../devices/audio/latency_contrib.html">Contributors</a></li>
+              <li><a href="../../../../../devices/audio/latency_design.html">Design</a></li>
+              <li><a href="../../../../../devices/audio/latency_measure.html">Measure</a></li>
+              <li><a href="../../../../../devices/audio/testing_circuit.html">Light Testing Circuit</a></li>
+              <li><a href="../../../../../devices/audio/loopback.html">Audio Loopback Dongle</a></li>
+              <li><a href="../../../../../devices/audio/latency_measurements.html">Measurements</a></li>
+              <li><a href="../../../../../devices/audio/latency_app.html">Applications</a></li>
+            </ul>
+          </li>
+          <li><a href="../../../../../devices/audio/avoiding_pi.html">Priority Inversion</a></li>
+          <li><a href="../../../../../devices/audio/src.html">Sample Rate Conversion</a></li>
+          <li><a href="../../../../../devices/audio/debugging.html">Debugging</a></li>
+          <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="../../../../../devices/audio/midi.html">
+                <span class="em">MIDI</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="../../../../../devices/audio/midi_arch.html">MIDI Architecture</a></li>
+              <li><a href="../../../../../devices/audio/midi_test.html">MIDI Test Procedure</a></li>
+            </ul>
+          <li><a href="../../../../../devices/audio/usb.html">USB Digital Audio</a></li>
+          <li><a href="../../../../../devices/audio/tv.html">TV Audio</a></li>
+        </ul>
+      </li>
+      <li><a href="../../../../../devices/automotive.html">Automotive</a></li>
+      <li><a href="../../../../../devices/bluetooth.html">Bluetooth</a></li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../../../../../devices/camera/index.html">
+            <span class="en">Camera</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../../../../../devices/camera/camera3.html">Camera HAL3</a></li>
+          <li><a href="../../../../../devices/camera/camera3_requests_hal.html">HAL Subsystem</a></li>
+          <li><a href="../../../../../devices/camera/camera3_metadata.html">Metadata and Controls</a></li>
+          <li><a href="../../../../../devices/camera/camera3_3Amodes.html">3A Modes and State</a></li>
+          <li><a href="../../../../../devices/camera/camera3_crop_reprocess.html">Output and Cropping</a></li>
+          <li><a href="../../../../../devices/camera/camera3_error_stream.html">Errors and Streams</a></li>
+          <li><a href="../../../../../devices/camera/camera3_requests_methods.html">Request Creation</a></li>
+          <li><a href="../../../../../devices/camera/versioning.html">Version Support</a></li>
+        </ul>
+      </li>
+
+      <li><a href="../../../../../devices/drm.html">DRM</a></li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../../../../../devices/graphics/index.html">
+            <span class="en">Graphics</span>
+          </a>
+        </div>
+        <ul>
+         <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="../../../../../devices/graphics/architecture.html">
+                <span class="en">Architecture</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="../../../../../devices/graphics/arch-bq-gralloc.html">BufferQueue</a></li>
+              <li><a href="../../../../../devices/graphics/arch-sf-hwc.html">SurfaceFlinger and HWC</a></li>
+              <li><a href="../../../../../devices/graphics/arch-sh.html">Surface and SurfaceHolder</a></li>
+              <li><a href="../../../../../devices/graphics/arch-egl-opengl.html">OpenGL ES</a></li>
+              <li><a href="../../../../../devices/graphics/arch-vulkan.html">Vulkan</a></li>
+              <li><a href="../../../../../devices/graphics/arch-sv-glsv.html">SurfaceView</a></li>
+              <li><a href="../../../../../devices/graphics/arch-st.html">SurfaceTexture</a></li>
+              <li><a href="../../../../../devices/graphics/arch-tv.html">TextureView</a></li>
+              <li><a href="../../../../../devices/graphics/arch-gameloops.html">Game Loops</a></li>
+            </ul>
+         </li>
+         <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="../../../../../devices/graphics/implement.html">
+                <span class="en">Implementing</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="../../../../../devices/graphics/implement-hwc.html">Hardware Composer HAL</a></li>
+              <li><a href="../../../../../devices/graphics/implement-vsync.html">VSYNC</a></li>
+              <li><a href="../../../../../devices/graphics/implement-vulkan.html">Vulkan</a></li>
+              <li><a href="../../../../../devices/graphics/implement-vdisplays.html">Virtual Displays</a></li>
+            </ul>
+         </li>
+         <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="../../../../../devices/graphics/testing.html">
+                <span class="en">OpenGL ES Testing</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="../../../../../devices/graphics/build-tests.html">Building test programs</a></li>
+              <li><a href="../../../../../devices/graphics/port-tests.html">Porting the test framework</a></li>
+              <li><a href="../../../../../devices/graphics/run-tests.html">Running the tests</a></li>
+              <li><a href="../../../../../devices/graphics/automate-tests.html">Automating the tests</a></li>
+              <li><a href="../../../../../devices/graphics/test-groups.html">Using special test groups</a></li>
+              <li><a href="../../../../../devices/graphics/cts-integration.html">Integrating with Android CTS</a></li>
+            </ul>
+         </li>
+        </ul> </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../../../../../devices/input/index.html">
+            <span class="en">Input</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../../../../../devices/input/overview.html">Overview</a></li>
+          <li><a href="../../../../../devices/input/key-layout-files.html">Key Layout Files</a></li>
+          <li><a href="../../../../../devices/input/key-character-map-files.html">Key Character Map Files</a></li>
+          <li><a href="../../../../../devices/input/input-device-configuration-files.html">Input Device Configuration Files</a></li>
+          <li><a href="../../../../../devices/input/migration-guide.html">Migration Guide</a></li>
+          <li><a href="../../../../../devices/input/keyboard-devices.html">Keyboard Devices</a></li>
+          <li><a href="../../../../../devices/tech/input/touch-devices.html">Touch Devices</a></li>
+          <li><a href="../../../../../devices/tech/input/dumpsys.html">Diagnostics</a></li>
+          <li><a href="../../../../../devices/input/getevent.html">Getevent</a></li>
+          <li><a href="../../../../../devices/input/validate-keymaps.html">Validate Keymaps</a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../../../../../devices/media.html">
+            <span class="en">Media</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../../../../../devices/media/framework-hardening.html">Framework
+          Hardening</a></li>
+          <li><a href="../../../../../devices/media/soc.html">SoC Dependencies</a></li>
+          <li><a href="../../../../../devices/media/oem.html">OEM Dependencies</a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../../../../../devices/sensors/index.html">
+            <span class="en">Sensors</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../../../../../devices/sensors/sensor-stack.html">Sensor stack</a></li>
+          <li><a href="../../../../../devices/sensors/report-modes.html">Reporting modes</a></li>
+          <li><a href="../../../../../devices/sensors/suspend-mode.html">Suspend mode</a></li>
+          <li><a href="../../../../../devices/sensors/power-use.html">Power consumption</a></li>
+          <li><a href="../../../../../devices/sensors/interaction.html">Interaction</span></a></li>
+          <li><a href="../../../../../devices/sensors/hal-interface.html">HAL interface</a></li>
+          <li><a href="../../../../../devices/sensors/batching.html">Batching</a></li>
+          <li><a href="../../../../../devices/sensors/sensor-types.html">Sensor types</a></li>
+          <li><a href="../../../../../devices/sensors/versioning.html">Version deprecation</a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="https://source.android.com/devices/storage/index.html">
+            <span class="en">Storage</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../../../../../devices/storage/traditional.html">Traditional Storage</a></li>
+          <li><a href="../../../../../devices/storage/adoptable.html">Adoptable Storage</a></li>
+          <li><a href="../../../../../devices/storage/config.html">Device Configuration</a></li>
+          <li><a href="../../../../../devices/storage/config-example.html">Configuration Examples</a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../../../../../devices/tv/index.html">
+            <span class="en">TV</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../../../../../devices/tv/HDMI-CEC.html">HDMI-CEC control service</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li> <!-- End nav-section, Device Interfaces-->
+
+
+  <li class="nav-section"> <!--Begin nav-section, Core Technologies-->
+    <div class="nav-section-header">
+      <a href="../../../../../devices/tech/index.html">
+        <span class="en">Core Technologies</span>
+      </a>
+    </div>
+
+    <ul>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../../../../../devices/tech/dalvik/index.html">
+          <span class="en">ART and Dalvik</span></a>
+        </div>
+        <ul>
+          <li><a href="../../../../../devices/tech/dalvik/dalvik-bytecode.html">Bytecode Format</a></li>
+          <li><a href="../../../../../devices/tech/dalvik/dex-format.html">.Dex Format</a></li>
+          <li><a href="../../../../../devices/tech/dalvik/instruction-formats.html">Instruction Formats</a></li>
+          <li><a href="../../../../../devices/tech/dalvik/constraints.html">Constraints</a></li>
+          <li><a href="../../../../../devices/tech/dalvik/configure.html">Configuration</a></li>
+          <li><a href="../../../../../devices/tech/dalvik/gc-debug.html">Garbage Collection</a></li>
+          <li><a href="../../../../../devices/tech/dalvik/jit-compiler.html">JIT Compilation</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+            <a href="../../../../../devices/tech/config/index.html">
+              <span class="en">Configuration</span>
+            </a>
+        </div>
+        <ul>
+          <li><a href="../../../../../devices/tech/config/carrier.html">Carrier Customization</a></li>
+          <li><a href="../../../../../devices/tech/config/filesystem.html">File System</a></li>
+          <li><a href="../../../../../devices/tech/kernel.html">Kernel Configuration</a></li>
+          <li><a href="../../../../../devices/tech/config/kernel_network_tests.html">Kernel Network Tests</a></li>
+          <li><a href="../../../../../devices/tech/config/low-ram.html">Low RAM</a></li>
+          <li><a href="../../../../../devices/tech/config/namespaces_libraries.html">Namespaces for Libraries</a></li>
+          <li><a href="../../../../../devices/tech/config/renderer.html">OpenGLRenderer</a></li>
+          <li><a href="../../../../../devices/tech/config/runtime_perms.html">Runtime Permissions</a></li>
+          <li><a href="../../../../../devices/tech/config/uicc.html">UICC</a></li>
+          <li><a href="../../../../../devices/tech/config/voicemail.html">Visual Voicemail</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+            <a href="../../../../../devices/tech/connect/index.html">
+              <span class="en">Connectivity</span>
+            </a>
+        </div>
+        <ul>
+          <li><a href="../../../../../devices/tech/connect/block-numbers.html">Block Phone Numbers</a></li>
+          <li><a href="../../../../../devices/tech/connect/call-notification.html">Call Notifications</a></li>
+          <li><a href="../../../../../devices/tech/connect/data-saver.html">Data Saver Mode</a></li>
+          <li><a href="../../../../../devices/tech/connect/felica.html">Host Card Emulation of FeliCa</a></li>
+          <li><a href="../../../../../devices/tech/connect/ril.html">Radio Interface Layer (RIL)</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../../../../../devices/tech/datausage/index.html">
+            <span class="en">Data Usage</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../../../../../devices/tech/datausage/iface-overview.html">Network interface statistics overview</a></li>
+          <li><a href="../../../../../devices/tech/datausage/excluding-network-types.html">Excluding Network Types from Data Usage</a></li>
+          <li><a href="../../../../../devices/tech/datausage/tethering-data.html">Tethering Data</a></li>
+          <li><a href="../../../../../devices/tech/datausage/usage-cycle-resets-dates.html">Usage Cycle Reset Dates</a></li>
+          <li><a href="../../../../../devices/tech/datausage/kernel-overview.html">Kernel Overview</a></li>
+          <li><a href="../../../../../devices/tech/datausage/tags-explained.html">Data Usage Tags Explained</a></li>
+          <li><a href="../../../../../devices/tech/datausage/kernel-changes.html">Kernel Changes</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../../../../../devices/tech/debug/index.html">
+            <span class="en">Debugging</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../../../../../devices/tech/debug/asan.html">AddressSanitizer</a></li>
+          <li><a href="../../../../../devices/tech/debug/dumpsys.html">Dumpsys</a></li>
+          <li><a href="../../../../../devices/tech/debug/native-memory.html">Native Memory Use</a></li>
+          <li><a href="../../../../../devices/tech/debug/netstats.html">Network Use</a></li>
+          <li><a href="../../../../../devices/tech/debug/procstats.html">RAM Use</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../../../../../devices/tech/admin/index.html">
+          <span class="en">Device Administration</span></a>
+        </div>
+        <ul>
+          <li><a href="../../../../../devices/tech/admin/implement.html">Implementation</a></li>
+          <li><a href="../../../../../devices/tech/admin/multi-user.html">Multiple Users</a></li>
+          <li><a href="../../../../../devices/tech/admin/managed-profiles.html">Managed Profiles</a></li>
+          <li><a href="../../../../../devices/tech/admin/provision.html">Provisioning</a></li>
+          <li><a href="../../../../../devices/tech/admin/multiuser-apps.html">Multiuser Apps</a></li>
+          <li><a href="../../../../../devices/tech/admin/enterprise-telephony.html">Enterprise Telephony</a></li>
+          <li><a href="../../../../../devices/tech/admin/testing-provision.html">Testing Device Provisioning</a></li>
+          <li><a href="../../../../../devices/tech/admin/testing-setup.html">Testing Device Administration</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+            <a href="../../../../../devices/tech/display/index.html">
+              <span class="en">Display Settings</span></a>
+        </div>
+        <ul>
+          <li><a href="../../../../../devices/tech/display/dnd.html">Do Not Disturb</a></li>
+          <li><a href="../../../../../devices/tech/display/multi-window.html">Multi-Window</a></li>
+          <li><a href="../../../../../devices/tech/display/hdr.html">HDR Video</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header empty">
+          <a href="../../../../../devices/halref/index.html">
+            <span class="en">HAL File Reference</span>
+          </a>
+        </div>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+            <a href="../../../../../devices/tech/ota/index.html">
+              <span class="en">OTA Updates</span>
+            </a>
+        </div>
+        <ul>
+          <li><a href="../../../../../devices/tech/ota/tools.html">OTA Tools</a></li>
+          <li><a href="../../../../../devices/tech/ota/block.html">Block-based OTA</a></li>
+          <li><a href="../../../../../devices/tech/ota/inside_packages.html">Inside OTA Packages</a></li>
+          <li><a href="../../../../../devices/tech/ota/device_code.html">Device-Specific Code</a></li>
+          <li><a href="../../../../../devices/tech/ota/sign_builds.html">Signing Builds for Release</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../../../../../devices/tech/power/index.html"><span class="en">Power</span></a>
+        </div>
+        <ul>
+          <li><a href="../../../../../devices/tech/power/mgmt.html">Power Management</a>
+          </li>
+          <li><a href="../../../../../devices/tech/power/component.html">Component Power</a></li>
+          <li><a href="../../../../../devices/tech/power/device.html">Device Power</a>
+          </li>
+          <li><a href="../../../../../devices/tech/power/values.html">Power Values</a></li>
+          <li><a href="../../../../../devices/tech/power/batterystats.html">Battery Use</a>
+          </li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../../../../../devices/tech/test_infra/tradefed/index.html">
+            <span class="en">Testing Infrastructure</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../../../../../devices/tech/test_infra/tradefed/fundamentals/index.html">Start Here</a></li>
+          <li><a href="../../../../../devices/tech/test_infra/tradefed/fundamentals/machine_setup.html">Machine Setup</a></li>
+          <li><a href="../../../../../devices/tech/test_infra/tradefed/fundamentals/devices.html">Working with Devices</a></li>
+          <li><a href="../../../../../devices/tech/test_infra/tradefed/fundamentals/lifecycle.html">Test Lifecycle</a></li>
+          <li><a href="../../../../../devices/tech/test_infra/tradefed/fundamentals/options.html">Option Handling</a></li>
+          <li><a href="../../../../../devices/tech/test_infra/tradefed/full_example.html">An End-to-End Example</a></li>
+          <li id="tradefed-tree-list" class="nav-section">
+            <div class="nav-section-header">
+              <a href="../../../../packages.html">
+                <span class="en">Package Index</span>
+              </a>
+            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li> <!-- End nav-section, Core Technologies -->
+</ul> 
+
+
+      </div>
+      <script type="text/javascript">
+        showTradefedRefTree();
+      </script>
+    </div> <!-- end side-nav -->
+    <script>
+      $(document).ready(function() {
+        scrollIntoView("devdoc-nav");
+        });
+    </script>
+
+  
+
+
+
+
+<div class="col-12" id="doc-col">
+
+<div id="api-info-block">
+<div class="api-level">
+  
+  
+  
+
+</div>
+</div>
+
+<div id="jd-header">
+  package
+  <h1>com.android.tradefed.util</h1>
+</div><!-- end header -->
+
+<div id="naMessage"></div>
+
+<div id="jd-content" class="api apilevel-">
+
+
+
+
+
+
+  
+
+
+  
+    <h2>Interfaces</h2>
+    <div class="jd-sumtable">
+    
+  <table class="jd-sumtable-expando">
+        <tr class="alt-color api apilevel-" >
+              <td><a href="https://source.android.com/reference/com/android/tradefed/util/ClassPathScanner.IClassPathFilter.html">ClassPathScanner.IClassPathFilter</a></td>
+              <td width="100%">A filter for classpath entry paths
+ <p/>
+ Patterned after <code><a href="https://source.android.com/reference/java/io/FileFilter.html">FileFilter</a></code>
+&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td><a href="https://source.android.com/reference/com/android/tradefed/util/ConditionPriorityBlockingQueue.IMatcher.html">ConditionPriorityBlockingQueue.IMatcher</a>&lt;T&gt;</td>
+              <td width="100%">An interface for determining if elements match some sort of condition.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td><a href="https://source.android.com/reference/com/android/tradefed/util/IEmail.html">IEmail</a></td>
+              <td width="100%">Interface for sending email.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td><a href="https://source.android.com/reference/com/android/tradefed/util/IRunUtil.html">IRunUtil</a></td>
+              <td width="100%">Interface for running timed operations and system commands.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td><a href="https://source.android.com/reference/com/android/tradefed/util/IRunUtil.IRunnableResult.html">IRunUtil.IRunnableResult</a></td>
+              <td width="100%">An interface for asynchronously executing an operation that returns a boolean status.&nbsp;</td>
+          </tr>
+  </table>
+    </div>
+  
+
+
+  
+    <h2>Classes</h2>
+    <div class="jd-sumtable">
+    
+  <table class="jd-sumtable-expando">
+        <tr class="alt-color api apilevel-" >
+              <td><a href="https://source.android.com/reference/com/android/tradefed/util/AaptParser.html">AaptParser</a></td>
+              <td width="100%">Class that extracts info from apk by parsing output of 'aapt dump badging'.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td><a href="https://source.android.com/reference/com/android/tradefed/util/AbiFormatter.html">AbiFormatter</a></td>
+              <td width="100%">Utility class for abi.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td><a href="https://source.android.com/reference/com/android/tradefed/util/Alarm.html">Alarm</a></td>
+              <td width="100%">A thread which waits for a period of time and then interrupts a specific other thread.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td><a href="https://source.android.com/reference/com/android/tradefed/util/ArrayUtil.html">ArrayUtil</a></td>
+              <td width="100%">Utility methods for arrays
+&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td><a href="https://source.android.com/reference/com/android/tradefed/util/AttenuatorUtil.html">AttenuatorUtil</a></td>
+              <td width="100%">An utility used to control WiFi/bluetooth attenuator through its ip network connection
+ Designed for Mini-circuit USB/ETHERNET programmable attenuator
+&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td><a href="https://source.android.com/reference/com/android/tradefed/util/BluetoothUtils.html">BluetoothUtils</a></td>
+              <td width="100%">Utility functions for calling BluetoothInstrumentation on device
+ <p>
+ Device side BluetoothInstrumentation code can be found in AOSP at:
+ <code>frameworks/base/core/tests/bluetoothtests</code>
+
+&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td><a href="https://source.android.com/reference/com/android/tradefed/util/BuildTestsZipUtils.html">BuildTestsZipUtils</a></td>
+              <td width="100%">A helper class for operations related to tests zip generated by Android build system
+&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td><a href="https://source.android.com/reference/com/android/tradefed/util/BulkEmailer.html">BulkEmailer</a></td>
+              <td width="100%">A email sender utility that allows the following configuration:
+  sent interval,initial burst size, recipients and the total number messages.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td><a href="https://source.android.com/reference/com/android/tradefed/util/ByteArrayList.html">ByteArrayList</a></td>
+              <td width="100%">A class to represent a lightweight byte array.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td><a href="https://source.android.com/reference/com/android/tradefed/util/CircularAtraceUtil.html">CircularAtraceUtil</a></td>
+              <td width="100%">An atrace utility developed primarily for identifying the root causes of ANRs during Monkey
+ testing.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td><a href="https://source.android.com/reference/com/android/tradefed/util/CircularByteArray.html">CircularByteArray</a></td>
+              <td width="100%">Data structure for holding a fixed size array that operates as a circular buffer,
+ and tracks the total sum of all values in the array.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td><a href="https://source.android.com/reference/com/android/tradefed/util/ClassPathScanner.html">ClassPathScanner</a></td>
+              <td width="100%">Finds entries on classpath.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td><a href="https://source.android.com/reference/com/android/tradefed/util/ClassPathScanner.ClassNameFilter.html">ClassPathScanner.ClassNameFilter</a></td>
+              <td width="100%">A <code><a href="https://source.android.com/reference/com/android/tradefed/util/ClassPathScanner.IClassPathFilter.html">ClassPathScanner.IClassPathFilter</a></code> that filters and transforms java class names.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td><a href="https://source.android.com/reference/com/android/tradefed/util/ClassPathScanner.ExternalClassNameFilter.html">ClassPathScanner.ExternalClassNameFilter</a></td>
+              <td width="100%">A <code><a href="https://source.android.com/reference/com/android/tradefed/util/ClassPathScanner.ClassNameFilter.html">ClassPathScanner.ClassNameFilter</a></code> that rejects inner classes
+&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td><a href="https://source.android.com/reference/com/android/tradefed/util/CommandResult.html">CommandResult</a></td>
+              <td width="100%">Contains the result of a command.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td><a href="https://source.android.com/reference/com/android/tradefed/util/ConditionPriorityBlockingQueue.html">ConditionPriorityBlockingQueue</a>&lt;T&gt;</td>
+              <td width="100%">A thread-safe class with <code><a href="https://source.android.com/reference/java/util/concurrent/PriorityBlockingQueue.html">PriorityBlockingQueue</a></code>-like operations that can retrieve objects
+ that match a certain condition.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td><a href="https://source.android.com/reference/com/android/tradefed/util/ConditionPriorityBlockingQueue.AlwaysMatch.html">ConditionPriorityBlockingQueue.AlwaysMatch</a>&lt;T&gt;</td>
+              <td width="100%">A <code><a href="https://source.android.com/reference/com/android/tradefed/util/ConditionPriorityBlockingQueue.IMatcher.html">ConditionPriorityBlockingQueue.IMatcher</a></code> that matches any object.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td><a href="https://source.android.com/reference/com/android/tradefed/util/DeviceConcurrentUtil.html">DeviceConcurrentUtil</a></td>
+              <td width="100%">Contains utility methods and classes for concurrent device side command execution
+ <p>
+ Use <code><a href="https://source.android.com/reference/java/util/concurrent/ExecutorService.html">ExecutorService</a></code> to run commands implemented as <code><a href="https://source.android.com/reference/com/android/tradefed/util/DeviceConcurrentUtil.ShellCommandCallable.html">DeviceConcurrentUtil.ShellCommandCallable</a></code>, and use
+ <code><a href="https://source.android.com/reference/com/android/tradefed/util/DeviceConcurrentUtil.html#joinFuture(java.lang.String, java.util.concurrent.Future<T>, long)">joinFuture(String, Future, long)</a></code> for synchronization against the <code><a href="https://source.android.com/reference/java/util/concurrent/Future.html">Future</a></code> as
+ returned by <code><a href="https://source.android.com/reference/java/util/concurrent/ExecutorService.html">ExecutorService</a></code> for the command execution.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td><a href="https://source.android.com/reference/com/android/tradefed/util/DeviceConcurrentUtil.ShellCommandCallable.html">DeviceConcurrentUtil.ShellCommandCallable</a>&lt;V&gt;</td>
+              <td width="100%">A <code><a href="https://source.android.com/reference/java/util/concurrent/Callable.html">Callable</a></code> that wraps the details of executing shell command on
+ an <code><a href="../device/ITestDevice.html">ITestDevice</a></code>.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td><a href="https://source.android.com/reference/com/android/tradefed/util/Email.html">Email</a></td>
+              <td width="100%">A helper class to send an email.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td><a href="https://source.android.com/reference/com/android/tradefed/util/FakeTestsZipFolder.html">FakeTestsZipFolder</a></td>
+              <td width="100%">A testing fixture that creates a fake unzipped tests folder based on a list of content.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td><a href="https://source.android.com/reference/com/android/tradefed/util/FileUtil.html">FileUtil</a></td>
+              <td width="100%">A helper class for file related operations
+&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td><a href="https://source.android.com/reference/com/android/tradefed/util/FixedByteArrayOutputStream.html">FixedByteArrayOutputStream</a></td>
+              <td width="100%">An in-memory <code><a href="https://source.android.com/reference/java/io/OutputStream.html">OutputStream</a></code> that only keeps a maximum amount of data.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td><a href="https://source.android.com/reference/com/android/tradefed/util/IEmail.Message.html">IEmail.Message</a></td>
+              <td width="100%">Container for email message data.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td><a href="https://source.android.com/reference/com/android/tradefed/util/JUnitXmlParser.html">JUnitXmlParser</a></td>
+              <td width="100%">Parser that extracts test result data from JUnit results stored in ant's XMLJUnitResultFormatter
+ and forwards it to a ITestInvocationListener.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td><a href="https://source.android.com/reference/com/android/tradefed/util/ListInstrumentationParser.html">ListInstrumentationParser</a></td>
+              <td width="100%">A <code><a href="../../../../../index.html">ERROR(/IShellOutputReceiver)</a></code> that parses the output of a 'pm list instrumentation' query
+&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td><a href="https://source.android.com/reference/com/android/tradefed/util/ListInstrumentationParser.InstrumentationTarget.html">ListInstrumentationParser.InstrumentationTarget</a></td>
+              <td width="100%">&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td><a href="https://source.android.com/reference/com/android/tradefed/util/LogcatUpdaterEventParser.html">LogcatUpdaterEventParser</a></td>
+              <td width="100%">Parse logcat input for system updater related events.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td><a href="https://source.android.com/reference/com/android/tradefed/util/LogcatUpdaterEventParser.AsyncUpdaterEvent.html">LogcatUpdaterEventParser.AsyncUpdaterEvent</a></td>
+              <td width="100%">A monitor object which allows callers to receive events asynchronously.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td><a href="https://source.android.com/reference/com/android/tradefed/util/MultiMap.html">MultiMap</a>&lt;K,&nbsp;V&gt;</td>
+              <td width="100%">A <code><a href="https://source.android.com/reference/java/util/Map.html">Map</a></code> that supports multiple values per key.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td><a href="https://source.android.com/reference/com/android/tradefed/util/NullUtil.html">NullUtil</a></td>
+              <td width="100%">A class with utility functions to help with dealing with <code>null</code>
+&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td><a href="https://source.android.com/reference/com/android/tradefed/util/Pair.html">Pair</a>&lt;A,&nbsp;B&gt;</td>
+              <td width="100%">Define our own Pair class which contains two objects.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td><a href="https://source.android.com/reference/com/android/tradefed/util/PropertyChanger.html">PropertyChanger</a></td>
+              <td width="100%">A utility class for changing (or adding) items in an Android property file
+
+&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td><a href="https://source.android.com/reference/com/android/tradefed/util/QuotationAwareTokenizer.html">QuotationAwareTokenizer</a></td>
+              <td width="100%">&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td><a href="https://source.android.com/reference/com/android/tradefed/util/RegexTrie.html">RegexTrie</a>&lt;V&gt;</td>
+              <td width="100%">The RegexTrie is a trie where each <emph>stored</emph> segment of the key is a regex
+ <code><a href="https://source.android.com/reference/java/util/regex/Pattern.html">Pattern</a></code>.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td><a href="https://source.android.com/reference/com/android/tradefed/util/RegexTrie.CompPattern.html">RegexTrie.CompPattern</a></td>
+              <td width="100%">Patterns aren't comparable by default, which prevents you from retrieving them from a
+ HashTable.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td><a href="https://source.android.com/reference/com/android/tradefed/util/RunUtil.html">RunUtil</a></td>
+              <td width="100%">A collection of helper methods for executing operations.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td><a href="https://source.android.com/reference/com/android/tradefed/util/SimpleStats.html">SimpleStats</a></td>
+              <td width="100%">A small utility class that calculates a few statistical measures given a numerical dataset.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td><a href="https://source.android.com/reference/com/android/tradefed/util/SizeLimitedOutputStream.html">SizeLimitedOutputStream</a></td>
+              <td width="100%">A thread safe file backed <code><a href="https://source.android.com/reference/java/io/OutputStream.html">OutputStream</a></code> that limits the maximum amount of data that can be
+ written.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td><a href="https://source.android.com/reference/com/android/tradefed/util/StreamUtil.html">StreamUtil</a></td>
+              <td width="100%">Utility class for managing input streams.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td><a href="https://source.android.com/reference/com/android/tradefed/util/StringEscapeUtils.html">StringEscapeUtils</a></td>
+              <td width="100%">Utility class for escaping strings for specific formats.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td><a href="https://source.android.com/reference/com/android/tradefed/util/TableFormatter.html">TableFormatter</a></td>
+              <td width="100%">Helper class to display a matrix of String elements so each element column is lined up
+&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td><a href="https://source.android.com/reference/com/android/tradefed/util/TestLoader.html">TestLoader</a></td>
+              <td width="100%">A class for loading all JUnit3 tests in a jar file
+&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td><a href="https://source.android.com/reference/com/android/tradefed/util/TimeUtil.html">TimeUtil</a></td>
+              <td width="100%">Contains time related utility methods.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td><a href="https://source.android.com/reference/com/android/tradefed/util/TimeVal.html">TimeVal</a></td>
+              <td width="100%">This is a sentinel type which wraps a <code>Long</code>.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td><a href="https://source.android.com/reference/com/android/tradefed/util/UniqueMultiMap.html">UniqueMultiMap</a>&lt;K,&nbsp;V&gt;</td>
+              <td width="100%">A <code><a href="https://source.android.com/reference/com/android/tradefed/util/MultiMap.html">MultiMap</a></code> that ensures unique values for each key.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td><a href="https://source.android.com/reference/com/android/tradefed/util/VersionParser.html">VersionParser</a></td>
+              <td width="100%">&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td><a href="https://source.android.com/reference/com/android/tradefed/util/ZipUtil.html">ZipUtil</a></td>
+              <td width="100%">A helper class for compression-related operations
+&nbsp;</td>
+          </tr>
+  </table>
+    </div>
+  
+
+
+  
+    <h2>Enums</h2>
+    <div class="jd-sumtable">
+    
+  <table class="jd-sumtable-expando">
+        <tr class="alt-color api apilevel-" >
+              <td><a href="https://source.android.com/reference/com/android/tradefed/util/BinaryState.html">BinaryState</a></td>
+              <td width="100%">Enum used to record ON/OFF state with a IGNORE no-op state.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td><a href="https://source.android.com/reference/com/android/tradefed/util/CommandStatus.html">CommandStatus</a></td>
+              <td width="100%">Represents the status of an timed operation.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td><a href="https://source.android.com/reference/com/android/tradefed/util/FakeTestsZipFolder.ItemType.html">FakeTestsZipFolder.ItemType</a></td>
+              <td width="100%">&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td><a href="https://source.android.com/reference/com/android/tradefed/util/UpdaterEventType.html">UpdaterEventType</a></td>
+              <td width="100%">Event types for <code><a href="https://source.android.com/reference/com/android/tradefed/util/LogcatUpdaterEventParser.html">LogcatUpdaterEventParser</a></code>.&nbsp;</td>
+          </tr>
+  </table>
+    </div>
+  
+
+
+  
+    <h2>Exceptions</h2>
+    <div class="jd-sumtable">
+    
+  <table class="jd-sumtable-expando">
+        <tr class="alt-color api apilevel-" >
+              <td><a href="https://source.android.com/reference/com/android/tradefed/util/FileUtil.LowDiskSpaceException.html">FileUtil.LowDiskSpaceException</a></td>
+              <td width="100%">Thrown if usable disk space is below minimum threshold.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td><a href="https://source.android.com/reference/com/android/tradefed/util/RunInterruptedException.html">RunInterruptedException</a></td>
+              <td width="100%">Thrown when a run operation is interrupted by an external request.&nbsp;</td>
+          </tr>
+  </table>
+    </div>
+  
+
+
+  
+
+
+<div id="footer" class="wrap" >
+  <style>.feedback { float: right !Important }</style>
+  <div class="feedback">
+    <a href="package-summary.html#" class="button" onclick=" try {
+      userfeedback.api.startFeedback({'productId':'715571','authuser':'1'});return false;}catch(e){}">Site Feedback</a>
+  </div>
+  <div id="copyright">
+    
+  Except as noted, this content is 
+  licensed under <a href="http://creativecommons.org/licenses/by/2.5/">
+  Creative Commons Attribution 2.5</a>. For details and 
+  restrictions, see the <a href="../../../../../license.html">Content 
+  License</a>.
+  </div>
+    <div id="footerlinks">
+    
+  <p>
+    <a href="../../../../../source/index.html">About Android</a>&nbsp;&nbsp;|&nbsp;
+    <a href="../../../../../source/community.html">Community</a>&nbsp;&nbsp;|&nbsp;
+    <a href="../../../../../legal.html">Legal</a>&nbsp;&nbsp;|&nbsp;
+  </p>
+  </div>
+
+</div><!-- end jd-content -->
+</div><!-- doc-content -->
+
+</div> <!-- end body-content --> 
+
+
+
+
+
+
+</body>
+</html>

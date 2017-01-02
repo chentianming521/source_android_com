@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<meta name="Description" content="At the operating system level, the Android platform provides the security of the Linux kernel, as well as a secure inter-process communication (IPC) facility to enable secure communication between applications running in different processes. These security…">
+
+<link rel="shortcut icon" type="image/x-icon" href="../../favicon.ico" />
+<title>System and kernel security | Android Open Source Project</title>
+
+<!-- STYLESHEETS -->
+<link rel="stylesheet"
+href="https://fonts.googleapis.com/css?family=Roboto:regular,medium,thin,italic,mediumitalic,bold" title="roboto">
+<link href="../../assets/css/default.css" rel="stylesheet" type="text/css">
+
+
+
+<!-- JAVASCRIPT -->
+<script src="https://www.google.com/jsapi" type="text/javascript"></script>
+<script src="../../assets/js/android_3p-bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+  var toRoot = "/";
+  
+  var devsite = false;
+  
+</script>
+<script src="../../assets/js/docs.js" type="text/javascript"></script>
+
+
+<script type="text/javascript" src="https://www.gstatic.com/feedback/api.js"></script>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-45455297-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</head>
+
+<body class="gc-documentation 
+  " itemscope itemtype="http://schema.org/Article">
+<a name="top"></a>
+
+  
+    <!-- Header -->
+    <div id="header">
+        <div class="wrap" id="header-wrap">
+          <div class="col-3 saclogo">
+          <a href="../../index.html">
+            <img src="../../assets/images/sac_logo.png"
+                srcset="/assets/images/sac_logo@2x.png 2x"
+                width="123" height="25" alt="Android Open Source Project" />
+          </a>
+          </div>
+            <ul class="nav-x col-9">
+                <li class="source">
+                  <a href="../../source/index.html" 
+                  >Source</a></li>
+                <li class="devices"><a href="../../devices/index.html" 
+                  >Devices</a></li>
+                <li class="security"><a href="../index.html" class="selected"
+                  >Security</a></li>
+                <li class="compatibility last"><a href="../../compatibility/index.html" 
+                  >Compatibility</a></li>
+            </ul>
+            <!-- New Search -->
+            <div class="menu-container">
+            <div class="moremenu">
+    <div id="more-btn"></div>
+  </div>
+  <div class="morehover" id="moremenu">
+    <div class="top"></div>
+    <div class="mid">
+      <div class="header">Android Sites</div>
+      <ul>
+        <li class="active"><a>Android Open Source Project</a></li>
+        <li><a href="http://www.android.com">Android.com</a></li>
+        <li><a href="http://developer.android.com">Android Developers</a></li>
+      </ul>
+      <!-- <div class="header">Support</div>
+      <ul>
+        <li><a href="/support.html">Developer Support</a></li>
+      </ul> -->
+      <br class="clearfix" />
+    </div>
+    <div class="bottom"></div>
+  </div>
+
+  <div class="search" id="search-container">
+    <div class="search-inner">
+      <div id="search-btn"></div>
+      <div class="left"></div>
+      <form onsubmit="return submit_search()">
+        <input id="search_autocomplete" type="text" value="" autocomplete="off" name="q"
+onfocus="search_focus_changed(this, true)" onblur="search_focus_changed(this, false)"
+onkeydown="return search_changed(event, true, '/')"
+onkeyup="return search_changed(event, false, '/')" />
+      </form>
+      <div class="right"></div>
+        <a class="close hide">close</a>
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+  </div>
+  <div id="search_filtered_wrapper">
+    <div id="search_filtered_div" class="no-display">
+        <ul id="search_filtered">
+        </ul>
+    </div>
+  </div>
+
+  </div>
+  <!-- /New Search> -->
+        </div>
+    </div>
+    <!-- /Header -->
+
+  <div id="searchResults" class="wrap" style="display:none;">
+          <h2 id="searchTitle">Results</h2>
+          <div id="leftSearchControl" class="search-control">Loading...</div>
+  </div>
+
+  
+  
+  
+    
+  <div class="wrap clearfix" id="body-content">
+    <div class="col-4" id="side-nav" itemscope itemtype="http://schema.org/SiteNavigationElement">
+      <div id="devdoc-nav" class="scroll-pane">
+<a class="totop" href="kernel-security.html#top" data-g-event="left-nav-top">to top</a>
+
+<!--
+    Copyright 2015 The Android Open Source Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<ul id="nav">
+  <li class="nav-section">
+    <div class="nav-section-header">
+        <a href="../index.html">
+          <span class="en">Overview</span>
+        </a>
+    </div>
+    <ul>
+      <li><a href="kernel-security.html">Kernel Security</a></li>
+      <li><a href="app-security.html">App Security</a></li>
+      <li><a href="implement.html">Implementing Security</a></li>
+      <li><a href="updates-resources.html">Updates and Resources</a></li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../enhancements/index.html">
+            <span class="en">Enhancements</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../enhancements/enhancements70.html">Android 7.0</a></li>
+          <li><a href="../enhancements/enhancements60.html">Android 6.0</a></li>
+          <li><a href="../enhancements/enhancements50.html">Android 5.0</a></li>
+          <li><a href="../enhancements/enhancements44.html">Android 4.4</a></li>
+          <li><a href="../enhancements/enhancements43.html">Android 4.3</a></li>
+          <li><a href="../enhancements/enhancements42.html">Android 4.2</a></li>
+          <li><a href="../enhancements/enhancements41.html">Android 4.1</a></li>
+        </ul>
+      </li>
+      <li><a href="acknowledgements.html">Acknowledgements</a></li>
+    </ul>
+  </li>
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="../bulletin/index.html">
+        <span class="en">Bulletins</span>
+      </a>
+    </div>
+    <ul>
+      <li class="nav-section">
+         <div class="nav-section-header">
+           <a href="../advisory/index.html">
+         <span class="en">Advisories</span>
+        </a>
+       </div>
+         <ul>
+           <li><a href="../advisory/2016-03-18.html">2016-03-18</a></li>
+         </ul>
+      </li>
+      <li><a href="../bulletin/2016-10-01.html">October 2016</a></li>
+      <li><a href="../bulletin/2016-09-01.html">September 2016</a></li>
+      <li><a href="../bulletin/2016-08-01.html">August 2016</a></li>
+      <li><a href="../bulletin/2016-07-01.html">July 2016</a></li>
+      <li><a href="../bulletin/2016-06-01.html">June 2016</a></li>
+      <li><a href="../bulletin/2016-05-01.html">May 2016</a></li>
+      <li><a href="../bulletin/2016-04-02.html">April 2016</a></li>
+      <li><a href="../bulletin/2016-03-01.html">March 2016</a></li>
+      <li><a href="../bulletin/2016-02-01.html">February 2016</a></li>
+      <li><a href="../bulletin/2016-01-01.html">January 2016</a></li>
+      <li class="nav-section">
+         <div class="nav-section-header">
+           <a href="../bulletin/2015.html">
+         <span class="en">2015 Bulletins</span>
+        </a>
+       </div>
+         <ul>
+           <li><a href="../bulletin/2015-12-01.html">December 2015</a></li>
+           <li><a href="../bulletin/2015-11-01.html">November 2015</a></li>
+           <li><a href="../bulletin/2015-10-01.html">October 2015</a></li>
+           <li><a href="../bulletin/2015-09-01.html">September 2015</a></li>
+           <li><a href="../bulletin/2015-08-01.html">August 2015</a></li>
+         </ul>
+      </li>
+    </ul>
+  </li>
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="../apksigning/index.html">
+        <span class="en">Application Signing</span>
+      </a>
+    </div>
+    <ul>
+      <li><a href="../apksigning/v2.html">APK Signature Scheme v2</a></li>
+    </ul>
+  </li>
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="../authentication/index.html">
+        <span class="en">Authentication</span>
+      </a>
+    </div>
+    <ul>
+      <li><a href="../../devices/tech/security/authentication/fingerprint-hal.html">Fingerprint HAL</a></li>
+      <li><a href="../../devices/tech/security/authentication/gatekeeper.html">Gatekeeper</a></li>
+    </ul>
+  </li>
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="../keystore/index.html">
+        <span class="en">Keystore</span>
+      </a>
+    </div>
+    <ul>
+      <li><a href="../keystore/features.html">Features</a></li>
+      <li><a href="../keystore/implementer-ref.html">Implementer's Reference</a></li>
+    </ul>
+  </li>
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="../trusty/index.html">
+        <span class="en">Trusty TEE</span>
+      </a>
+    </div>
+    <ul>
+      <li><a href="../trusty/trusty-ref.html">Trusty API Reference</a></li>
+    </ul>
+  </li>
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="../../devices/tech/encryption/index.html">
+        <span class="en">Encryption</span>
+      </a>
+    </div>
+    <ul>
+      <li><a href="../encryption/file-based.html">File-Based Encryption</a></li>
+      <li><a href="../encryption/full-disk.html">Full-Disk Encryption</a></li>
+    </ul>
+  </li>
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="../../devices/tech/security/selinux/index.html">
+        <span class="en">SELinux</span>
+      </a>
+    </div>
+    <ul>
+      <li><a href="../selinux/concepts.html">Concepts</a></li>
+      <li><a href="../selinux/implement.html">Implementation</a></li>
+      <li><a href="../selinux/customize.html">Customization</a></li>
+      <li><a href="../selinux/validate.html">Validation</a></li>
+      <li><a href="../selinux/device-policy.html">Writing Policy</a></li>
+    </ul>
+  </li>
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="../verifiedboot/index.html">
+        <span class="en">Verified Boot</span>
+      </a>
+    </div>
+    <ul>
+      <li><a href="../verifiedboot/verified-boot.html">Verifying Boot</a></li>
+      <li><a href="../verifiedboot/dm-verity.html">Implementing dm-verity</a></li>
+    </ul>
+  </li>
+</ul>
+
+
+      </div>
+    </div> <!-- end side-nav -->
+    <script>
+      $(document).ready(function() {
+        scrollIntoView("devdoc-nav");
+        });
+    </script>
+
+  
+
+
+
+
+<div class="col-12" id="doc-col" >
+
+
+  
+    
+      
+        <h1 itemprop="name" >System and kernel security</h1>
+      
+    
+  
+
+
+  
+  <div id="jd-content">
+
+    <div class="jd-descr" itemprop="articleBody">
+    <!--
+    Copyright 2014 The Android Open Source Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<div id="qv-wrapper">
+  <div id="qv">
+    <h2>In this document</h2>
+    <ol id="auto-toc"></ol>
+  </div>
+</div>
+
+<p>At the operating system level, the Android platform provides the security of
+  the Linux kernel, as well as a secure inter-process communication (IPC)
+  facility to enable secure communication between applications running in
+  different processes. These security features at the OS level ensure that even
+  native code is constrained by the Application Sandbox. Whether that code is
+  the result of included application behavior or an exploitation of an
+  application vulnerability, the system is designed to prevent the rogue
+  application from harming other applications, the Android system, or the device
+  itself. See
+  <a href="../../devices/tech/kernel.html">Kernel Configuration</a>
+  for measures you can take to strengthen the kernel on your devices. See the
+  <a href="../../compatibility/cdd.html">Android Compatibility Definition
+  Document (CDD)</a> for required settings.</p>
+<h2 id="linux-security">Linux Security</h2>
+<p>The foundation of the Android platform is the Linux kernel. The Linux kernel
+  has been in widespread use for years, and is used in millions of
+  security-sensitive environments. Through its history of constantly being
+  researched, attacked, and fixed by thousands of developers, Linux has become a
+  stable and secure kernel trusted by many corporations and security
+  professionals.</p>
+<p>As the base for a mobile computing environment, the Linux kernel provides
+  Android with several key security features, including:</p>
+<ul>
+  <li>A user-based permissions model</li>
+  <li>Process isolation</li>
+  <li>Extensible mechanism for secure IPC</li>
+  <li>The ability to remove unnecessary and potentially insecure parts of the kernel</li>
+</ul>
+<p>As a multiuser operating system, a fundamental security objective of the Linux
+  kernel is to isolate user resources from one another. The Linux security
+  philosophy is to protect user resources from one another. Thus, Linux:</p>
+<ul>
+  <li>Prevents user A from reading user B's files</li>
+  <li>Ensures that user A does not exhaust user B's memory</li>
+  <li>Ensures that user A does not exhaust user B's CPU resources</li>
+  <li>Ensures that user A does not exhaust user B's devices (e.g. telephony, GPS,
+    Bluetooth)</li>
+</ul>
+<h2 id="the-application-sandbox">The Application Sandbox</h2>
+<p>The Android platform takes advantage of the Linux user-based protection as a
+  means of identifying and isolating application resources. The Android system
+  assigns a unique user ID (UID) to each Android application and runs it as that user
+  in a separate process. This approach is different from other operating systems
+  (including the traditional Linux configuration), where multiple applications
+  run with the same user permissions.</p>
+<p>This sets up a kernel-level Application Sandbox. The kernel enforces security
+  between applications and the system at the process level through standard Linux
+  facilities, such as user and group IDs that are assigned to applications. By
+  default, applications cannot interact with each other and applications have
+  limited access to the operating system. If application A tries to do something
+  malicious like read application B's data or dial the phone without permission
+  (which is a separate application), then the operating system protects against
+  this because application A does not have the appropriate user privileges. The
+  sandbox is simple, auditable, and based on decades-old UNIX-style user
+  separation of processes and file permissions.</p>
+<p>Because the Application Sandbox is in the kernel, this security model extends to
+  native code and to operating system applications. All of the software above the
+  kernel, such as operating system libraries, application
+  framework, application runtime, and all applications, run within the Application
+  Sandbox. On some platforms, developers are constrained to a specific
+  development framework, set of APIs, or language in order to enforce security.
+  On Android, there are no restrictions on how an application can be written that
+  are required to enforce security; in this respect, native code is just as
+  secure as interpreted code.</p>
+<p>In some operating systems, memory corruption errors in one application may
+  lead to corruption in other applications housed in the same memory space,
+  resulting in a complete compromise of the security of the device. Because all
+  applications and their resources are sandboxed at the OS level, a memory
+  corruption error will allow arbitrary code execution only in
+  the context of that particular application, with the permissions established by
+  the operating system.</p>
+<p>Like all security features, the Application Sandbox is not unbreakable.
+  However, to break out of the Application Sandbox in a properly configured
+  device, one must compromise the security of the Linux kernel.</p>
+<h2 id="system-partition-and-safe-mode">System Partition and Safe Mode</h2>
+<p>The system partition contains Android's kernel as well as the operating system
+  libraries, application runtime, application framework, and applications. This
+  partition is set to read-only. When a user boots the device into Safe Mode,
+  third-party applications may be launched manually by the device owner but are
+  not launched by default.</p>
+<h2 id="filesystem-permissions">Filesystem Permissions</h2>
+<p>In a UNIX-style environment, filesystem permissions ensure that one user cannot
+  alter or read another user's files. In the case of Android, each application
+  runs as its own user. Unless the developer explicitly shares files with other
+  applications, files created by one application cannot be read or altered by
+  another application.</p>
+<h2 id="se-linux">Security-Enhanced Linux</h2>
+<p>Android uses Security-Enhanced
+  Linux (SELinux) to apply access control policies and establish
+  mandatory access control (mac) on processes. See
+  <a href="../../devices/tech/security/selinux/index.html">Security-Enhanced Linux in
+  Android</a> for details.</p>
+<h2 id="verified-boot">Verified boot</h2>
+<p>
+ Android 6.0 and later supports verified boot and device-mapper-verity. Verified
+ boot guarantees the integrity of the device software starting from a hardware
+ root of trust up to the system partition. During boot, each stage
+ cryptographically verifies the integrity and authenticity of the next stage
+ before executing it.
+</p>
+<p>
+ Android 7.0 and later supports strictly enforced verified boot, which means
+ compromised devices cannot boot.
+</p>
+<p>
+ See <a href="../verifiedboot/index.html">Verified boot</a> for
+ more details.
+</p>
+
+<h2 id="crypto">Cryptography</h2>
+<p> Android provides a set of cryptographic APIs for use by applications. These
+  include implementations of standard and commonly used cryptographic primitives
+  such as AES, RSA, DSA, and SHA. Additionally, APIs are provided for higher level
+  protocols such as SSL and HTTPS. </p>
+<p> Android 4.0 introduced the
+  <a href="http://developer.android.com/reference/android/security/KeyChain.html">KeyChain</a>
+  class to allow applications to use the system credential storage for private
+  keys and certificate chains. </p>
+<h2 id="rooting-devices">Rooting of Devices</h2>
+<p>By default, on Android only the kernel and a small subset of the core
+  applications run with root permissions. Android does not prevent a user or
+  application with root permissions from modifying the operating system, kernel,
+  or any other application. In general, root has full access to all
+  applications and all application data. Users that change the permissions on an
+  Android device to grant root access to applications increase the security
+  exposure to malicious applications and potential application flaws. </p>
+<p>The ability to modify an Android device they own is important to developers
+  working with the Android platform. On many Android devices users have the
+  ability to unlock the bootloader in order to allow installation of an alternate
+  operating system. These alternate operating systems may allow an owner to gain
+  root access for purposes of debugging applications and system components or to
+  access features not presented to applications by Android APIs. </p>
+<p>On some devices, a person with physical control of a device and a USB cable is
+  able to install a new operating system that provides root privileges to the
+  user. To protect any existing user data from compromise the bootloader unlock
+  mechanism requires that the bootloader erase any existing user data as part of
+  the unlock step. Root access gained via exploiting a kernel bug or security
+  hole can bypass this protection. </p>
+<p>Encrypting data with a key stored on-device does not protect the application
+  data from root users. Applications can add a layer of data protection using
+  encryption with a key stored off-device, such as on a server or a user
+  password. This approach can provide temporary protection while the key is not
+  present, but at some point the key must be provided to the application and it
+  then becomes accessible to root users. </p>
+<p>A more robust approach to protecting data from root users is through the use of
+  hardware solutions. OEMs may choose to implement hardware solutions that limit
+  access to specific types of content such as DRM for video playback, or the
+  NFC-related trusted storage for Google wallet. </p>
+<p>In the case of a lost or stolen device, full filesystem encryption on Android
+  devices uses the device password to protect the encryption key, so modifying
+  the bootloader or operating system is not sufficient to access user data
+  without the user’s device password. </p>
+<h2 id="user-security">User Security Features</h2>
+<h3 id="filesystem-encryption">Filesystem Encryption</h3>
+<p>Android 3.0 and later provides full filesystem encryption, so all user data can
+  be encrypted in the kernel.</p>
+<p>
+  Android 5.0 and later supports
+  <a href="../encryption/full-disk.html">full-disk encryption</a>.
+  Full-disk encryption uses a single key—protected with the user’s device
+  password—to protect the whole of a device’s userdata partition. Upon boot,
+  users must provide their credentials before any part of the disk is accessible.
+</p>
+<p>
+  Android 7.0 and later supports
+  <a href="../encryption/file-based.html">file-based encryption</a>.
+  File-based encryption allows different files to be encrypted with different
+  keys that can be unlocked independently.
+</p>
+
+<p>More details on implementation of filesystem encryption are available in the
+ <a href="../../devices/tech/encryption/index.html">Encryption</a> section.</p>
+<h3 id="password-protection">Password Protection</h3>
+<p>Android can be configured to verify a user-supplied password prior to providing
+  access to a device. In addition to preventing unauthorized use of the device,
+  this password protects the cryptographic key for full filesystem encryption.</p>
+<p>Use of a password and/or password complexity rules can be required by a device
+  administrator.</p>
+<h2 id="device-administration">Device Administration</h2>
+<p>Android 2.2 and later provide the Android Device Administration API, which
+  provides device administration features at the system level. For example, the
+  built-in Android Email application uses the APIs to improve Exchange support.
+  Through the Email application, Exchange administrators can enforce password
+  policies — including alphanumeric passwords or numeric PINs — across
+  devices. Administrators can also remotely wipe (that is, restore factory
+  defaults on) lost or stolen handsets.</p>
+<p>In addition to use in applications included with the Android system, these APIs
+  are available to third-party providers of Device Management solutions. Details
+  on the API are provided at <a
+href="https://developer.android.com/guide/topics/admin/device-admin.html">Device
+Administration</a>.</p>
+
+    </div>
+
+      <div class="content-footer-sac"
+                    itemscope itemtype="http://schema.org/SiteNavigationElement">
+        <div class="layout-content-col col-9" style="padding-top:4px">
+        </div>
+        
+        <div class="paging-links layout-content-col col-4">
+          
+        </div>
+        
+      </div>
+      
+      
+    </div> <!-- end jd-content -->
+  <div id="footer" class="wrap" >
+  <style>.feedback { float: right !Important }</style>
+  <div class="feedback">
+    <a href="kernel-security.html#" class="button" onclick=" try {
+      userfeedback.api.startFeedback({'productId':'715571','authuser':'1'});return false;}catch(e){}">Site Feedback</a>
+  </div>
+  <div id="copyright">
+    
+  Except as noted, this content is 
+  licensed under <a href="http://creativecommons.org/licenses/by/2.5/">
+  Creative Commons Attribution 2.5</a>. For details and 
+  restrictions, see the <a href="../../license.html">Content 
+  License</a>.
+  </div>
+    <div id="footerlinks">
+    
+  <p>
+    <a href="../../source/index.html">About Android</a>&nbsp;&nbsp;|&nbsp;
+    <a href="../../source/community.html">Community</a>&nbsp;&nbsp;|&nbsp;
+    <a href="../../legal.html">Legal</a>&nbsp;&nbsp;|&nbsp;
+  </p>
+  </div>
+
+</div><!-- end doc-content -->
+
+</div> <!-- end body-content --> 
+
+
+
+
+
+
+</body>
+</html>
+
+
+

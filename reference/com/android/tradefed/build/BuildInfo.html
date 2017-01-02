@@ -1,0 +1,3238 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<link rel="shortcut icon" type="image/x-icon" href="http://source.android.com/favicon.ico" />
+<title>BuildInfo | Android Open Source Project</title>
+
+<!-- STYLESHEETS -->
+<link rel="stylesheet"
+href="http://fonts.googleapis.com/css?family=Roboto:regular,medium,thin,italic,mediumitalic,bold" title="roboto">
+<link href="http://source.android.com/assets/css/default.css" rel="stylesheet" type="text/css">
+
+
+
+<!-- JAVASCRIPT -->
+<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+<script src="http://source.android.com/assets/js/android_3p-bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+  var toRoot = "/";
+  
+  var devsite = false;
+  
+</script>
+<script src="http://source.android.com/assets/js/docs.js" type="text/javascript"></script>
+
+<script src="http://source.android.com/navtree_data.js" type="text/javascript"></script>
+
+
+<script type="text/javascript" src="http://www.gstatic.com/feedback/api.js"></script>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-45455297-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</head>
+
+<body class="gc-documentation 
+  develop" itemscope itemtype="http://schema.org/Article">
+  <div id="doc-api-level" class="" style="display:none"></div>
+  <a name="top"></a>
+
+  
+    <!-- Header -->
+    <div id="header">
+        <div class="wrap" id="header-wrap">
+          <div class="col-3 saclogo">
+          <a href="http://source.android.com/index.html">
+            <img src="http://source.android.com/assets/images/sac_logo.png"
+                srcset="/assets/images/sac_logo@2x.png 2x"
+                width="123" height="25" alt="Android Open Source Project" />
+          </a>
+          </div>
+            <ul class="nav-x col-9">
+                <li class="source">
+                  <a href="http://source.android.com/source/index.html" 
+                  >Source</a></li>
+                <li class="devices"><a href="http://source.android.com/devices/index.html" class="selected"
+                  >Devices</a></li>
+                <li class="security"><a href="http://source.android.com/security/index.html" 
+                  >Security</a></li>
+                <li class="compatibility last"><a href="http://source.android.com/compatibility/index.html" 
+                  >Compatibility</a></li>
+            </ul>
+            <!-- New Search -->
+            <div class="menu-container">
+            <div class="moremenu">
+    <div id="more-btn"></div>
+  </div>
+  <div class="morehover" id="moremenu">
+    <div class="top"></div>
+    <div class="mid">
+      <div class="header">Android Sites</div>
+      <ul>
+        <li class="active"><a>Android Open Source Project</a></li>
+        <li><a href="http://www.android.com">Android.com</a></li>
+        <li><a href="http://developer.android.com">Android Developers</a></li>
+      </ul>
+      <!-- <div class="header">Support</div>
+      <ul>
+        <li><a href="/support.html">Developer Support</a></li>
+      </ul> -->
+      <br class="clearfix" />
+    </div>
+    <div class="bottom"></div>
+  </div>
+
+  <div class="search" id="search-container">
+    <div class="search-inner">
+      <div id="search-btn"></div>
+      <div class="left"></div>
+      <form onsubmit="return submit_search()">
+        <input id="search_autocomplete" type="text" value="" autocomplete="off" name="q"
+onfocus="search_focus_changed(this, true)" onblur="search_focus_changed(this, false)"
+onkeydown="return search_changed(event, true, '/')"
+onkeyup="return search_changed(event, false, '/')" />
+      </form>
+      <div class="right"></div>
+        <a class="close hide">close</a>
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+  </div>
+  <div id="search_filtered_wrapper">
+    <div id="search_filtered_div" class="no-display">
+        <ul id="search_filtered">
+        </ul>
+    </div>
+  </div>
+
+  </div>
+  <!-- /New Search> -->
+        </div>
+    </div>
+    <!-- /Header -->
+
+  <div id="searchResults" class="wrap" style="display:none;">
+          <h2 id="searchTitle">Results</h2>
+          <div id="leftSearchControl" class="search-control">Loading...</div>
+  </div>
+
+  
+  
+  
+    
+  <div class="wrap clearfix" id="body-content">
+    <div class="col-4" id="side-nav" itemscope itemtype="http://schema.org/SiteNavigationElement">
+      <div id="devdoc-nav" class="scroll-pane">
+<a class="totop" href="BuildInfo.html#top" data-g-event="left-nav-top">to top</a>
+
+<!--
+    Copyright 2015 The Android Open Source Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<ul id="nav">
+  <li class="nav-section">  <!-- Begin nav section, Device Interfaces -->
+    <div class="nav-section-header">
+      <a href="http://source.android.com/devices/index.html">
+        <span class="en">Interfaces</span>
+      </a>
+    </div>
+    <ul>
+  <li class="nav-section">
+  <div class="nav-section-header">
+      <a href="http://source.android.com/devices/accessories/index.html">
+        <span class="en">Accessories</span>
+      </a>
+    </div>
+    <ul>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="http://source.android.com/devices/accessories/audio.html">
+            <span class="en">Audio Accessories</span>
+          </a>
+        </div>
+        <ul>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="http://source.android.com/devices/accessories/headset/index.html">
+            <span class="en">Headset</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="http://source.android.com/devices/accessories/headset/specification.html">Specification</a></li>
+          <li><a href="http://source.android.com/devices/accessories/headset/requirements.html">Requirements</a></li>
+          <li><a href="http://source.android.com/devices/accessories/headset/testing.html">Testing</a></li>
+        </ul>
+      </li>
+        </ul>
+      </li>
+  <li class="nav-section">
+  <div class="nav-section-header">
+      <a href="http://source.android.com/devices/accessories/custom.html">
+        <span class="en">Custom Accessories</span>
+      </a>
+    </div>
+    <ul>
+      <li class="nav-section">
+        <div class="nav-section-header"><a href="http://source.android.com/devices/accessories/protocol.html"><span class="en">AOA</span>
+        </a>
+        </div>
+        <ul>
+          <li><a href="http://source.android.com/devices/accessories/aoa2.html">AOA 2.0</a></li>
+          <li><a href="http://source.android.com/devices/accessories/aoa.html">AOA 1.0</a></li>
+        </ul>
+        </li>
+        <div class="nav-section-header"><a href="http://source.android.com/devices/accessories/stylus.html"><span class="en">Stylus</span>
+        </a>
+        </div>
+       </ul>
+     </li>
+    </ul>
+      <li class="nav-section">
+      <div class="nav-section-header">
+        <a href="http://source.android.com/devices/audio/index.html">
+          <span class="en">Audio</span>
+        </a>
+      </div>
+        <ul>
+          <li><a href="http://source.android.com/devices/audio/terminology.html">Terminology</a></li>
+          <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="http://source.android.com/devices/audio/implement.html">
+                <span class="en">Implementation</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="http://source.android.com/devices/audio/implement-policy.html">Policy Configuration</a></li>
+              <li><a href="http://source.android.com/devices/audio/implement-shared-library.html">Shared Library</a></li>
+              <li><a href="http://source.android.com/devices/audio/implement-pre-processing.html">Pre-processing Effects</a></li>
+            </ul>
+         </li>
+          <li><a href="http://source.android.com/devices/audio/data_formats.html">Data Formats</a></li>
+          <li><a href="http://source.android.com/devices/audio/attributes.html">Attributes</a></li>
+          <li><a href="http://source.android.com/devices/audio/warmup.html">Warmup</a></li>
+          <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="http://source.android.com/devices/audio/latency.html">
+                <span class="en">Latency</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="http://source.android.com/devices/audio/latency_contrib.html">Contributors</a></li>
+              <li><a href="http://source.android.com/devices/audio/latency_design.html">Design</a></li>
+              <li><a href="http://source.android.com/devices/audio/latency_measure.html">Measure</a></li>
+              <li><a href="http://source.android.com/devices/audio/testing_circuit.html">Light Testing Circuit</a></li>
+              <li><a href="http://source.android.com/devices/audio/loopback.html">Audio Loopback Dongle</a></li>
+              <li><a href="http://source.android.com/devices/audio/latency_measurements.html">Measurements</a></li>
+              <li><a href="http://source.android.com/devices/audio/latency_app.html">Applications</a></li>
+            </ul>
+          </li>
+          <li><a href="http://source.android.com/devices/audio/avoiding_pi.html">Priority Inversion</a></li>
+          <li><a href="http://source.android.com/devices/audio/src.html">Sample Rate Conversion</a></li>
+          <li><a href="http://source.android.com/devices/audio/debugging.html">Debugging</a></li>
+          <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="http://source.android.com/devices/audio/midi.html">
+                <span class="em">MIDI</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="http://source.android.com/devices/audio/midi_arch.html">MIDI Architecture</a></li>
+              <li><a href="http://source.android.com/devices/audio/midi_test.html">MIDI Test Procedure</a></li>
+            </ul>
+          <li><a href="http://source.android.com/devices/audio/usb.html">USB Digital Audio</a></li>
+          <li><a href="http://source.android.com/devices/audio/tv.html">TV Audio</a></li>
+        </ul>
+      </li>
+      <li><a href="http://source.android.com/devices/automotive.html">Automotive</a></li>
+      <li><a href="http://source.android.com/devices/bluetooth.html">Bluetooth</a></li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="http://source.android.com/devices/camera/index.html">
+            <span class="en">Camera</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="http://source.android.com/devices/camera/camera3.html">Camera HAL3</a></li>
+          <li><a href="http://source.android.com/devices/camera/camera3_requests_hal.html">HAL Subsystem</a></li>
+          <li><a href="http://source.android.com/devices/camera/camera3_metadata.html">Metadata and Controls</a></li>
+          <li><a href="http://source.android.com/devices/camera/camera3_3Amodes.html">3A Modes and State</a></li>
+          <li><a href="http://source.android.com/devices/camera/camera3_crop_reprocess.html">Output and Cropping</a></li>
+          <li><a href="http://source.android.com/devices/camera/camera3_error_stream.html">Errors and Streams</a></li>
+          <li><a href="http://source.android.com/devices/camera/camera3_requests_methods.html">Request Creation</a></li>
+          <li><a href="http://source.android.com/devices/camera/versioning.html">Version Support</a></li>
+        </ul>
+      </li>
+
+      <li><a href="http://source.android.com/devices/drm.html">DRM</a></li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="http://source.android.com/devices/graphics/index.html">
+            <span class="en">Graphics</span>
+          </a>
+        </div>
+        <ul>
+         <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="http://source.android.com/devices/graphics/architecture.html">
+                <span class="en">Architecture</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="http://source.android.com/devices/graphics/arch-bq-gralloc.html">BufferQueue</a></li>
+              <li><a href="http://source.android.com/devices/graphics/arch-sf-hwc.html">SurfaceFlinger and HWC</a></li>
+              <li><a href="http://source.android.com/devices/graphics/arch-sh.html">Surface and SurfaceHolder</a></li>
+              <li><a href="http://source.android.com/devices/graphics/arch-egl-opengl.html">OpenGL ES</a></li>
+              <li><a href="http://source.android.com/devices/graphics/arch-vulkan.html">Vulkan</a></li>
+              <li><a href="http://source.android.com/devices/graphics/arch-sv-glsv.html">SurfaceView</a></li>
+              <li><a href="http://source.android.com/devices/graphics/arch-st.html">SurfaceTexture</a></li>
+              <li><a href="http://source.android.com/devices/graphics/arch-tv.html">TextureView</a></li>
+              <li><a href="http://source.android.com/devices/graphics/arch-gameloops.html">Game Loops</a></li>
+            </ul>
+         </li>
+         <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="http://source.android.com/devices/graphics/implement.html">
+                <span class="en">Implementing</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="http://source.android.com/devices/graphics/implement-hwc.html">Hardware Composer HAL</a></li>
+              <li><a href="http://source.android.com/devices/graphics/implement-vsync.html">VSYNC</a></li>
+              <li><a href="http://source.android.com/devices/graphics/implement-vulkan.html">Vulkan</a></li>
+              <li><a href="http://source.android.com/devices/graphics/implement-vdisplays.html">Virtual Displays</a></li>
+            </ul>
+         </li>
+         <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="http://source.android.com/devices/graphics/testing.html">
+                <span class="en">OpenGL ES Testing</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="http://source.android.com/devices/graphics/build-tests.html">Building test programs</a></li>
+              <li><a href="http://source.android.com/devices/graphics/port-tests.html">Porting the test framework</a></li>
+              <li><a href="http://source.android.com/devices/graphics/run-tests.html">Running the tests</a></li>
+              <li><a href="http://source.android.com/devices/graphics/automate-tests.html">Automating the tests</a></li>
+              <li><a href="http://source.android.com/devices/graphics/test-groups.html">Using special test groups</a></li>
+              <li><a href="http://source.android.com/devices/graphics/cts-integration.html">Integrating with Android CTS</a></li>
+            </ul>
+         </li>
+        </ul> </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="http://source.android.com/devices/input/index.html">
+            <span class="en">Input</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="http://source.android.com/devices/input/overview.html">Overview</a></li>
+          <li><a href="http://source.android.com/devices/input/key-layout-files.html">Key Layout Files</a></li>
+          <li><a href="http://source.android.com/devices/input/key-character-map-files.html">Key Character Map Files</a></li>
+          <li><a href="http://source.android.com/devices/input/input-device-configuration-files.html">Input Device Configuration Files</a></li>
+          <li><a href="http://source.android.com/devices/input/migration-guide.html">Migration Guide</a></li>
+          <li><a href="http://source.android.com/devices/input/keyboard-devices.html">Keyboard Devices</a></li>
+          <li><a href="../../../../../devices/input/touch-devices.html">Touch Devices</a></li>
+          <li><a href="../../../../../devices/input/diagnostics.html">Diagnostics</a></li>
+          <li><a href="http://source.android.com/devices/input/getevent.html">Getevent</a></li>
+          <li><a href="http://source.android.com/devices/input/validate-keymaps.html">Validate Keymaps</a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../../../../../devices/media/index.html">
+            <span class="en">Media</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="http://source.android.com/devices/media/framework-hardening.html">Framework
+          Hardening</a></li>
+          <li><a href="http://source.android.com/devices/media/soc.html">SoC Dependencies</a></li>
+          <li><a href="http://source.android.com/devices/media/oem.html">OEM Dependencies</a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="http://source.android.com/devices/sensors/index.html">
+            <span class="en">Sensors</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="http://source.android.com/devices/sensors/sensor-stack.html">Sensor stack</a></li>
+          <li><a href="http://source.android.com/devices/sensors/report-modes.html">Reporting modes</a></li>
+          <li><a href="http://source.android.com/devices/sensors/suspend-mode.html">Suspend mode</a></li>
+          <li><a href="http://source.android.com/devices/sensors/power-use.html">Power consumption</a></li>
+          <li><a href="http://source.android.com/devices/sensors/interaction.html">Interaction</span></a></li>
+          <li><a href="http://source.android.com/devices/sensors/hal-interface.html">HAL interface</a></li>
+          <li><a href="http://source.android.com/devices/sensors/batching.html">Batching</a></li>
+          <li><a href="http://source.android.com/devices/sensors/sensor-types.html">Sensor types</a></li>
+          <li><a href="http://source.android.com/devices/sensors/versioning.html">Version deprecation</a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="http://source.android.com/devices/storage/index.html">
+            <span class="en">Storage</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="http://source.android.com/devices/storage/traditional.html">Traditional Storage</a></li>
+          <li><a href="http://source.android.com/devices/storage/adoptable.html">Adoptable Storage</a></li>
+          <li><a href="http://source.android.com/devices/storage/config.html">Device Configuration</a></li>
+          <li><a href="http://source.android.com/devices/storage/config-example.html">Configuration Examples</a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="http://source.android.com/devices/tv/index.html">
+            <span class="en">TV</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="http://source.android.com/devices/tv/HDMI-CEC.html">HDMI-CEC control service</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li> <!-- End nav-section, Device Interfaces-->
+
+
+  <li class="nav-section"> <!--Begin nav-section, Core Technologies-->
+    <div class="nav-section-header">
+      <a href="http://source.android.com/devices/tech/index.html">
+        <span class="en">Core Technologies</span>
+      </a>
+    </div>
+
+    <ul>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="http://source.android.com/devices/tech/dalvik/index.html">
+          <span class="en">ART and Dalvik</span></a>
+        </div>
+        <ul>
+          <li><a href="http://source.android.com/devices/tech/dalvik/dalvik-bytecode.html">Bytecode Format</a></li>
+          <li><a href="http://source.android.com/devices/tech/dalvik/dex-format.html">.Dex Format</a></li>
+          <li><a href="http://source.android.com/devices/tech/dalvik/instruction-formats.html">Instruction Formats</a></li>
+          <li><a href="http://source.android.com/devices/tech/dalvik/constraints.html">Constraints</a></li>
+          <li><a href="http://source.android.com/devices/tech/dalvik/configure.html">Configuration</a></li>
+          <li><a href="http://source.android.com/devices/tech/dalvik/gc-debug.html">Garbage Collection</a></li>
+          <li><a href="http://source.android.com/devices/tech/dalvik/jit-compiler.html">JIT Compilation</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+            <a href="http://source.android.com/devices/tech/config/index.html">
+              <span class="en">Configuration</span>
+            </a>
+        </div>
+        <ul>
+          <li><a href="http://source.android.com/devices/tech/config/carrier.html">Carrier Customization</a></li>
+          <li><a href="http://source.android.com/devices/tech/config/filesystem.html">File System</a></li>
+          <li><a href="http://source.android.com/devices/tech/config/kernel.html">Kernel Configuration</a></li>
+          <li><a href="http://source.android.com/devices/tech/config/kernel_network_tests.html">Kernel Network Tests</a></li>
+          <li><a href="http://source.android.com/devices/tech/config/low-ram.html">Low RAM</a></li>
+          <li><a href="http://source.android.com/devices/tech/config/namespaces_libraries.html">Namespaces for Libraries</a></li>
+          <li><a href="http://source.android.com/devices/tech/config/renderer.html">OpenGLRenderer</a></li>
+          <li><a href="http://source.android.com/devices/tech/config/runtime_perms.html">Runtime Permissions</a></li>
+          <li><a href="http://source.android.com/devices/tech/config/uicc.html">UICC</a></li>
+          <li><a href="http://source.android.com/devices/tech/config/voicemail.html">Visual Voicemail</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+            <a href="http://source.android.com/devices/tech/connect/index.html">
+              <span class="en">Connectivity</span>
+            </a>
+        </div>
+        <ul>
+          <li><a href="http://source.android.com/devices/tech/connect/block-numbers.html">Block Phone Numbers</a></li>
+          <li><a href="http://source.android.com/devices/tech/connect/call-notification.html">Call Notifications</a></li>
+          <li><a href="http://source.android.com/devices/tech/connect/data-saver.html">Data Saver Mode</a></li>
+          <li><a href="http://source.android.com/devices/tech/connect/felica.html">Host Card Emulation of FeliCa</a></li>
+          <li><a href="http://source.android.com/devices/tech/connect/ril.html">Radio Interface Layer (RIL)</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="http://source.android.com/devices/tech/datausage/index.html">
+            <span class="en">Data Usage</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="http://source.android.com/devices/tech/datausage/iface-overview.html">Network interface statistics overview</a></li>
+          <li><a href="http://source.android.com/devices/tech/datausage/excluding-network-types.html">Excluding Network Types from Data Usage</a></li>
+          <li><a href="http://source.android.com/devices/tech/datausage/tethering-data.html">Tethering Data</a></li>
+          <li><a href="http://source.android.com/devices/tech/datausage/usage-cycle-resets-dates.html">Usage Cycle Reset Dates</a></li>
+          <li><a href="http://source.android.com/devices/tech/datausage/kernel-overview.html">Kernel Overview</a></li>
+          <li><a href="http://source.android.com/devices/tech/datausage/tags-explained.html">Data Usage Tags Explained</a></li>
+          <li><a href="http://source.android.com/devices/tech/datausage/kernel-changes.html">Kernel Changes</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="http://source.android.com/devices/tech/debug/index.html">
+            <span class="en">Debugging</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="http://source.android.com/devices/tech/debug/asan.html">AddressSanitizer</a></li>
+          <li><a href="http://source.android.com/devices/tech/debug/dumpsys.html">Dumpsys</a></li>
+          <li><a href="http://source.android.com/devices/tech/debug/native-memory.html">Native Memory Use</a></li>
+          <li><a href="http://source.android.com/devices/tech/debug/netstats.html">Network Use</a></li>
+          <li><a href="http://source.android.com/devices/tech/debug/procstats.html">RAM Use</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="http://source.android.com/devices/tech/admin/index.html">
+          <span class="en">Device Administration</span></a>
+        </div>
+        <ul>
+          <li><a href="http://source.android.com/devices/tech/admin/implement.html">Implementation</a></li>
+          <li><a href="http://source.android.com/devices/tech/admin/multi-user.html">Multiple Users</a></li>
+          <li><a href="http://source.android.com/devices/tech/admin/managed-profiles.html">Managed Profiles</a></li>
+          <li><a href="http://source.android.com/devices/tech/admin/provision.html">Provisioning</a></li>
+          <li><a href="http://source.android.com/devices/tech/admin/multiuser-apps.html">Multiuser Apps</a></li>
+          <li><a href="http://source.android.com/devices/tech/admin/enterprise-telephony.html">Enterprise Telephony</a></li>
+          <li><a href="http://source.android.com/devices/tech/admin/testing-provision.html">Testing Device Provisioning</a></li>
+          <li><a href="http://source.android.com/devices/tech/admin/testing-setup.html">Testing Device Administration</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+            <a href="http://source.android.com/devices/tech/display/index.html">
+              <span class="en">Display Settings</span></a>
+        </div>
+        <ul>
+          <li><a href="http://source.android.com/devices/tech/display/dnd.html">Do Not Disturb</a></li>
+          <li><a href="http://source.android.com/devices/tech/display/multi-window.html">Multi-Window</a></li>
+          <li><a href="http://source.android.com/devices/tech/display/hdr.html">HDR Video</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header empty">
+          <a href="http://source.android.com/devices/halref/index.html">
+            <span class="en">HAL File Reference</span>
+          </a>
+        </div>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+            <a href="http://source.android.com/devices/tech/ota/index.html">
+              <span class="en">OTA Updates</span>
+            </a>
+        </div>
+        <ul>
+          <li><a href="http://source.android.com/devices/tech/ota/tools.html">OTA Tools</a></li>
+          <li><a href="http://source.android.com/devices/tech/ota/block.html">Block-based OTA</a></li>
+          <li><a href="http://source.android.com/devices/tech/ota/inside_packages.html">Inside OTA Packages</a></li>
+          <li><a href="http://source.android.com/devices/tech/ota/device_code.html">Device-Specific Code</a></li>
+          <li><a href="http://source.android.com/devices/tech/ota/sign_builds.html">Signing Builds for Release</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="http://source.android.com/devices/tech/power/index.html"><span class="en">Power</span></a>
+        </div>
+        <ul>
+          <li><a href="http://source.android.com/devices/tech/power/mgmt.html">Power Management</a>
+          </li>
+          <li><a href="http://source.android.com/devices/tech/power/component.html">Component Power</a></li>
+          <li><a href="http://source.android.com/devices/tech/power/device.html">Device Power</a>
+          </li>
+          <li><a href="http://source.android.com/devices/tech/power/values.html">Power Values</a></li>
+          <li><a href="http://source.android.com/devices/tech/power/batterystats.html">Battery Use</a>
+          </li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="http://source.android.com/devices/tech/test_infra/tradefed/index.html">
+            <span class="en">Testing Infrastructure</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="http://source.android.com/devices/tech/test_infra/tradefed/fundamentals/index.html">Start Here</a></li>
+          <li><a href="http://source.android.com/devices/tech/test_infra/tradefed/fundamentals/machine_setup.html">Machine Setup</a></li>
+          <li><a href="http://source.android.com/devices/tech/test_infra/tradefed/fundamentals/devices.html">Working with Devices</a></li>
+          <li><a href="http://source.android.com/devices/tech/test_infra/tradefed/fundamentals/lifecycle.html">Test Lifecycle</a></li>
+          <li><a href="http://source.android.com/devices/tech/test_infra/tradefed/fundamentals/options.html">Option Handling</a></li>
+          <li><a href="http://source.android.com/devices/tech/test_infra/tradefed/full_example.html">An End-to-End Example</a></li>
+          <li id="tradefed-tree-list" class="nav-section">
+            <div class="nav-section-header">
+              <a href="http://source.android.com/reference/packages.html">
+                <span class="en">Package Index</span>
+              </a>
+            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li> <!-- End nav-section, Core Technologies -->
+</ul> 
+
+
+      </div>
+      <script type="text/javascript">
+        showTradefedRefTree();
+      </script>
+    </div> <!-- end side-nav -->
+    <script>
+      $(document).ready(function() {
+        scrollIntoView("devdoc-nav");
+        });
+    </script>
+
+  
+
+
+
+
+<div class="col-12"  id="doc-col">
+
+<div id="api-info-block">
+
+
+
+  
+   
+  
+  
+  
+  
+
+  
+   
+  
+  
+   
+  
+  
+  
+
+
+<div class="sum-details-links">
+
+Summary:
+
+
+
+
+
+
+  <a href="BuildInfo.html#inhconstants">Inherited Constants</a>
+  
+
+
+
+
+  &#124; <a href="BuildInfo.html#pubctors">Ctors</a>
+  
+
+
+
+  &#124; <a href="BuildInfo.html#pubmethods">Methods</a>
+  
+
+
+  &#124; <a href="BuildInfo.html#promethods">Protected Methods</a>
+  
+
+
+  &#124; <a href="BuildInfo.html#inhmethods">Inherited Methods</a>
+
+&#124; <a href="BuildInfo.html#" onclick="return toggleAllClassInherited()" id="toggleAllClassInherited">[Expand All]</a>
+
+</div><!-- end sum-details-links -->
+<div class="api-level">
+  
+  
+  
+
+</div>
+</div><!-- end api-info-block -->
+
+
+<!-- ======== START OF CLASS DATA ======== -->
+
+<div id="jd-header">
+    public
+     
+     
+    
+    class
+<h1 itemprop="name">BuildInfo</h1>
+
+
+
+  
+    extends Object<br/>
+  
+  
+  
+
+  
+  
+      implements 
+      
+        <a href="IBuildInfo.html">IBuildInfo</a> 
+      
+  
+  
+
+
+
+</div><!-- end header -->
+
+<div id="naMessage"></div>
+
+<div id="jd-content" class="api apilevel-">
+<table class="jd-inheritance-table">
+
+
+    <tr>
+         	
+        <td colspan="2" class="jd-inheritance-class-cell">java.lang.Object</td>
+    </tr>
+    
+
+    <tr>
+        
+            <td class="jd-inheritance-space">&nbsp;&nbsp;&nbsp;&#x21b3;</td>
+         	
+        <td colspan="1" class="jd-inheritance-class-cell">com.android.tradefed.build.BuildInfo</td>
+    </tr>
+    
+
+</table>
+
+
+
+
+<table class="jd-sumtable jd-sumtable-subclasses"><tr><td colspan="12" style="border:none;margin:0;padding:0;">
+
+  <a href="BuildInfo.html#" onclick="return toggleInherited(this, null)" id="subclasses-direct" class="jd-expando-trigger closed"
+          ><img height="34" id="subclasses-direct-trigger"
+          src="http://source.android.com/assets/images/styles/disclosure_down.png"
+          class="jd-expando-trigger-img" /></a>Known Direct Subclasses
+
+  <div id="subclasses-direct">
+      <div id="subclasses-direct-list"
+              class="jd-inheritedlinks"
+              
+              >
+          
+            
+              <a href="AppBuildInfo.html">AppBuildInfo</a>,
+            
+              <a href="AppDeviceBuildInfo.html">AppDeviceBuildInfo</a>,
+            
+              <a href="DeviceBuildInfo.html">DeviceBuildInfo</a>,
+            
+              <a href="DeviceFolderBuildInfo.html">DeviceFolderBuildInfo</a>,
+            
+              <a href="FolderBuildInfo.html">FolderBuildInfo</a>,
+            
+              <a href="KernelBuildInfo.html">KernelBuildInfo</a>,
+            
+              <a href="KernelDeviceBuildInfo.html">KernelDeviceBuildInfo</a>,
+            
+              <a href="SdkBuildInfo.html">SdkBuildInfo</a>,
+            
+              <a href="SdkFolderBuildInfo.html">SdkFolderBuildInfo</a>
+            
+          
+      </div>
+      <div id="subclasses-direct-summary"
+              style="display: none;"
+              >
+  <table class="jd-sumtable-expando">
+        <tr class="alt-color api apilevel-" >
+              <td><a href="AppBuildInfo.html">AppBuildInfo</a></td>
+              <td width="100%">A <code><a href="IBuildInfo.html">IBuildInfo</a></code> that represents an Android application and its test package(s).&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td><a href="AppDeviceBuildInfo.html">AppDeviceBuildInfo</a></td>
+              <td width="100%">A <code><a href="IDeviceBuildInfo.html">IDeviceBuildInfo</a></code> that also contains a <code><a href="IAppBuildInfo.html">IAppBuildInfo</a></code>.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td><a href="DeviceBuildInfo.html">DeviceBuildInfo</a></td>
+              <td width="100%">A <code><a href="IBuildInfo.html">IBuildInfo</a></code> that represents a complete Android device build and (optionally) its tests.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td><a href="DeviceFolderBuildInfo.html">DeviceFolderBuildInfo</a></td>
+              <td width="100%">A <code><a href="IDeviceBuildInfo.html">IDeviceBuildInfo</a></code> that also contains other build artifacts contained in a directory on
+ the local filesystem.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td><a href="FolderBuildInfo.html">FolderBuildInfo</a></td>
+              <td width="100%">Concrete implementation of a <code><a href="IFolderBuildInfo.html">IFolderBuildInfo</a></code>.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td><a href="KernelBuildInfo.html">KernelBuildInfo</a></td>
+              <td width="100%">A <code><a href="IBuildInfo.html">IBuildInfo</a></code> that represents a kernel build.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td><a href="KernelDeviceBuildInfo.html">KernelDeviceBuildInfo</a></td>
+              <td width="100%">A <code><a href="IBuildInfo.html">IBuildInfo</a></code> that represents a kernel build paired with a complete Android build.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td><a href="SdkBuildInfo.html">SdkBuildInfo</a></td>
+              <td width="100%">Implementation of a <code><a href="ISdkBuildInfo.html">ISdkBuildInfo</a></code>
+&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td><a href="SdkFolderBuildInfo.html">SdkFolderBuildInfo</a></td>
+              <td width="100%">A <code><a href="IBuildInfo.html">IBuildInfo</a></code> that represents an extracted Android SDK and tests and additional build
+  artifacts that are contained in a local file system directory.&nbsp;</td>
+          </tr>
+  </table>
+      </div>
+  </div>
+</td></tr></table>
+
+
+
+
+<div class="jd-descr">
+
+
+<h2>Class Overview</h2>
+<p itemprop="articleBody">Generic implementation of a <code><a href="IBuildInfo.html">IBuildInfo</a></code>.
+</p>
+
+
+
+
+
+</div><!-- jd-descr -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="jd-descr">
+
+
+<h2>Summary</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- =========== ENUM CONSTANT SUMMARY =========== -->
+<table id="inhconstants" class="jd-sumtable"><tr><th>
+  <a href="BuildInfo.html#" class="toggle-all" onclick="return toggleAllInherited(this, null)">[Expand]</a>
+  <div style="clear:left;">Inherited Constants</div></th></tr>
+
+
+
+
+<tr class="api apilevel-" >
+<td colspan="12">
+
+  <a href="BuildInfo.html#" onclick="return toggleInherited(this, null)" id="inherited-constants-com.android.tradefed.build.IBuildInfo" class="jd-expando-trigger closed"
+          ><img height="34" id="inherited-constants-com.android.tradefed.build.IBuildInfo-trigger"
+          src="http://source.android.com/assets/images/styles/disclosure_down.png"
+          class="jd-expando-trigger-img" /></a>From interface
+<a href="IBuildInfo.html">com.android.tradefed.build.IBuildInfo</a>
+<div id="inherited-constants-com.android.tradefed.build.IBuildInfo">
+  <div id="inherited-constants-com.android.tradefed.build.IBuildInfo-list"
+        class="jd-inheritedlinks">
+  </div>
+  <div id="inherited-constants-com.android.tradefed.build.IBuildInfo-summary" style="display: none;">
+    <table class="jd-sumtable-expando">
+    
+
+    
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">String</td>
+        <td class="jd-linkcol"><a href="IBuildInfo.html#UNKNOWN_BUILD_ID">UNKNOWN_BUILD_ID</a></td>
+        <td class="jd-descrcol" width="100%">Default value when build ID is unknown.</td>
+    </tr>
+    
+    
+</table>
+  </div>
+</div>
+</td></tr>
+
+
+</table>
+
+
+
+
+
+
+
+
+
+<!-- ======== CONSTRUCTOR SUMMARY ======== -->
+<table id="pubctors" class="jd-sumtable"><tr><th colspan="12">Public Constructors</th></tr>
+
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            </nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="BuildInfo.html#BuildInfo()">BuildInfo</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Creates a <code><a href="BuildInfo.html">BuildInfo</a></code> using default attribute values.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            </nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="BuildInfo.html#BuildInfo(java.lang.String, java.lang.String, java.lang.String)">BuildInfo</a></span>(String buildId, String testTag, String buildTargetName)</nobr>
+        
+        <div class="jd-descrdiv">Creates a <code><a href="BuildInfo.html">BuildInfo</a></code></div>
+  
+  </td></tr>
+
+
+
+</table>
+
+
+
+
+
+
+<!-- ========== METHOD SUMMARY =========== -->
+<table id="pubmethods" class="jd-sumtable"><tr><th colspan="12">Public Methods</th></tr>
+
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="BuildInfo.html#addBuildAttribute(java.lang.String, java.lang.String)">addBuildAttribute</a></span>(String attributeName, String attributeValue)</nobr>
+        
+        <div class="jd-descrdiv">Add a build attribute
+</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="BuildInfo.html#cleanUp()">cleanUp</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Clean up any temporary build files
+
+</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            <a href="IBuildInfo.html">IBuildInfo</a></nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="BuildInfo.html#clone()">clone</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">
+</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            boolean</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="BuildInfo.html#equals(java.lang.Object)">equals</a></span>(Object obj)</nobr>
+        
+        <div class="jd-descrdiv">
+</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            Map&lt;String,&nbsp;String&gt;</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="BuildInfo.html#getBuildAttributes()">getBuildAttributes</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Get a set of name-value pairs of additional attributes describing the build.
+</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="BuildInfo.html#getBuildBranch()">getBuildBranch</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Optional method to return the source control branch that the build being tested was
+ produced from.
+</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="BuildInfo.html#getBuildFlavor()">getBuildFlavor</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Optional method to return the type of build being tested.
+</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="BuildInfo.html#getBuildId()">getBuildId</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Returns the unique identifier of build under test.
+</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="BuildInfo.html#getBuildTargetName()">getBuildTargetName</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Return complete name for the build being tested.
+</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="BuildInfo.html#getDeviceSerial()">getDeviceSerial</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">
+</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            File</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="BuildInfo.html#getFile(java.lang.String)">getFile</a></span>(String name)</nobr>
+        
+        <div class="jd-descrdiv">Helper method to retrieve a file with given name.
+</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            Collection&lt;<a href="VersionedFile.html">VersionedFile</a>&gt;</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="BuildInfo.html#getFiles()">getFiles</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Returns all <code><a href="VersionedFile.html">VersionedFile</a></code>s stored in this <code><a href="BuildInfo.html">BuildInfo</a></code>.
+</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="BuildInfo.html#getTestTag()">getTestTag</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Return a unique name for the tests being run.
+</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="BuildInfo.html#getVersion(java.lang.String)">getVersion</a></span>(String name)</nobr>
+        
+        <div class="jd-descrdiv">Helper method to retrieve a file version with given name.
+</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            int</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="BuildInfo.html#hashCode()">hashCode</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">
+</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="BuildInfo.html#setBuildBranch(java.lang.String)">setBuildBranch</a></span>(String branch)</nobr>
+        
+        <div class="jd-descrdiv">Set the build branch
+</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="BuildInfo.html#setBuildFlavor(java.lang.String)">setBuildFlavor</a></span>(String buildFlavor)</nobr>
+        
+        <div class="jd-descrdiv">Set the build flavor.
+</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="BuildInfo.html#setBuildId(java.lang.String)">setBuildId</a></span>(String buildId)</nobr>
+        
+        <div class="jd-descrdiv">Sets the unique identifier of build under test.
+</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="BuildInfo.html#setDeviceSerial(java.lang.String)">setDeviceSerial</a></span>(String serial)</nobr>
+        
+        <div class="jd-descrdiv">Set the <code><a href="http://source.android.com/reference/com/android/tradefed/device/ITestDevice.html">ITestDevice</a></code> serial associated with this build.
+</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="BuildInfo.html#setFile(java.lang.String, java.io.File, java.lang.String)">setFile</a></span>(String name, File file, String version)</nobr>
+        
+        <div class="jd-descrdiv">Stores an file with given name in this build info.
+</div>
+  
+  </td></tr>
+
+
+
+</table>
+
+
+
+
+<!-- ========== METHOD SUMMARY =========== -->
+<table id="promethods" class="jd-sumtable"><tr><th colspan="12">Protected Methods</th></tr>
+
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="BuildInfo.html#addAllBuildAttributes(com.android.tradefed.build.BuildInfo)">addAllBuildAttributes</a></span>(<a href="BuildInfo.html">BuildInfo</a> build)</nobr>
+        
+        <div class="jd-descrdiv">Helper method to copy build attributes, branch, and flavor from other build.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="BuildInfo.html#addAllFiles(com.android.tradefed.build.BuildInfo)">addAllFiles</a></span>(<a href="BuildInfo.html">BuildInfo</a> build)</nobr>
+        
+        <div class="jd-descrdiv">Helper method to copy all files from the other build.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            <a href="../util/MultiMap.html">MultiMap</a>&lt;String,&nbsp;String&gt;</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="BuildInfo.html#getAttributesMultiMap()">getAttributesMultiMap</a></span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            Map&lt;String,&nbsp;<a href="VersionedFile.html">VersionedFile</a>&gt;</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="BuildInfo.html#getVersionedFileMap()">getVersionedFileMap</a></span>()</nobr>
+        
+  </td></tr>
+
+
+
+</table>
+
+
+
+
+
+<!-- ========== METHOD SUMMARY =========== -->
+<table id="inhmethods" class="jd-sumtable"><tr><th>
+  <a href="BuildInfo.html#" class="toggle-all" onclick="return toggleAllInherited(this, null)">[Expand]</a>
+  <div style="clear:left;">Inherited Methods</div></th></tr>
+
+
+<tr class="api apilevel-" >
+<td colspan="12">
+  <a href="BuildInfo.html#" onclick="return toggleInherited(this, null)" id="inherited-methods-java.lang.Object" class="jd-expando-trigger closed"
+          ><img height="34" id="inherited-methods-java.lang.Object-trigger"
+          src="http://source.android.com/assets/images/styles/disclosure_down.png"
+          class="jd-expando-trigger-img" /></a>
+From class
+
+  java.lang.Object
+
+<div id="inherited-methods-java.lang.Object">
+  <div id="inherited-methods-java.lang.Object-list"
+        class="jd-inheritedlinks">
+  </div>
+  <div id="inherited-methods-java.lang.Object-summary" style="display: none;">
+    <table class="jd-sumtable-expando">
+    
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            Object</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">clone</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            boolean</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">equals</span>(Object arg0)</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">finalize</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            final
+            
+            Class&lt;?&gt;</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">getClass</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            int</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">hashCode</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            final
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">notify</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            final
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">notifyAll</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">toString</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            final
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">wait</span>(long arg0, int arg1)</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            final
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">wait</span>(long arg0)</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            final
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">wait</span>()</nobr>
+        
+  </td></tr>
+
+
+</table>
+  </div>
+</div>
+</td></tr>
+
+
+
+<tr class="api apilevel-" >
+<td colspan="12">
+  <a href="BuildInfo.html#" onclick="return toggleInherited(this, null)" id="inherited-methods-com.android.tradefed.build.IBuildInfo" class="jd-expando-trigger closed"
+          ><img height="34" id="inherited-methods-com.android.tradefed.build.IBuildInfo-trigger"
+          src="http://source.android.com/assets/images/styles/disclosure_down.png"
+          class="jd-expando-trigger-img" /></a>
+From interface
+
+  <a href="IBuildInfo.html">com.android.tradefed.build.IBuildInfo</a>
+
+<div id="inherited-methods-com.android.tradefed.build.IBuildInfo">
+  <div id="inherited-methods-com.android.tradefed.build.IBuildInfo-list"
+        class="jd-inheritedlinks">
+  </div>
+  <div id="inherited-methods-com.android.tradefed.build.IBuildInfo-summary" style="display: none;">
+    <table class="jd-sumtable-expando">
+    
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="IBuildInfo.html#addBuildAttribute(java.lang.String, java.lang.String)">addBuildAttribute</a></span>(String attributeName, String attributeValue)</nobr>
+        
+        <div class="jd-descrdiv">Add a build attribute</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="IBuildInfo.html#cleanUp()">cleanUp</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Clean up any temporary build files
+</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            <a href="IBuildInfo.html">IBuildInfo</a></nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="IBuildInfo.html#clone()">clone</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Clones the <code><a href="IBuildInfo.html">IBuildInfo</a></code> object.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            Map&lt;String,&nbsp;String&gt;</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="IBuildInfo.html#getBuildAttributes()">getBuildAttributes</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Get a set of name-value pairs of additional attributes describing the build.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="IBuildInfo.html#getBuildBranch()">getBuildBranch</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Optional method to return the source control branch that the build being tested was
+ produced from.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="IBuildInfo.html#getBuildFlavor()">getBuildFlavor</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Optional method to return the type of build being tested.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="IBuildInfo.html#getBuildId()">getBuildId</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Returns the unique identifier of build under test.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="IBuildInfo.html#getBuildTargetName()">getBuildTargetName</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Return complete name for the build being tested.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="IBuildInfo.html#getDeviceSerial()">getDeviceSerial</a></span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            File</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="IBuildInfo.html#getFile(java.lang.String)">getFile</a></span>(String name)</nobr>
+        
+        <div class="jd-descrdiv">Helper method to retrieve a file with given name.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            Collection&lt;<a href="VersionedFile.html">VersionedFile</a>&gt;</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="IBuildInfo.html#getFiles()">getFiles</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Returns all <code><a href="VersionedFile.html">VersionedFile</a></code>s stored in this <code><a href="BuildInfo.html">BuildInfo</a></code>.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="IBuildInfo.html#getTestTag()">getTestTag</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Return a unique name for the tests being run.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="IBuildInfo.html#getVersion(java.lang.String)">getVersion</a></span>(String name)</nobr>
+        
+        <div class="jd-descrdiv">Helper method to retrieve a file version with given name.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="IBuildInfo.html#setBuildBranch(java.lang.String)">setBuildBranch</a></span>(String branch)</nobr>
+        
+        <div class="jd-descrdiv">Set the build branch</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="IBuildInfo.html#setBuildFlavor(java.lang.String)">setBuildFlavor</a></span>(String buildFlavor)</nobr>
+        
+        <div class="jd-descrdiv">Set the build flavor.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="IBuildInfo.html#setBuildId(java.lang.String)">setBuildId</a></span>(String buildId)</nobr>
+        
+        <div class="jd-descrdiv">Sets the unique identifier of build under test.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="IBuildInfo.html#setDeviceSerial(java.lang.String)">setDeviceSerial</a></span>(String serial)</nobr>
+        
+        <div class="jd-descrdiv">Set the <code><a href="http://source.android.com/reference/com/android/tradefed/device/ITestDevice.html">ITestDevice</a></code> serial associated with this build.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="IBuildInfo.html#setFile(java.lang.String, java.io.File, java.lang.String)">setFile</a></span>(String name, File file, String version)</nobr>
+        
+        <div class="jd-descrdiv">Stores an file with given name in this build info.</div>
+  
+  </td></tr>
+
+
+</table>
+  </div>
+</div>
+</td></tr>
+
+
+</table>
+
+
+</div><!-- jd-descr (summary) -->
+
+<!-- Details -->
+
+
+
+
+
+
+
+
+<!-- XML Attributes -->
+
+
+<!-- Enum Values -->
+
+
+<!-- Constants -->
+
+
+<!-- Fields -->
+
+
+<!-- Public ctors -->
+
+
+<!-- ========= CONSTRUCTOR DETAIL ======== -->
+<h2>Public Constructors</h2>
+
+
+
+<A NAME="BuildInfo()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        
+        
+        
+        
+        
+      </span>
+      <span class="sympad">BuildInfo</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Creates a <code><a href="BuildInfo.html">BuildInfo</a></code> using default attribute values.
+</p>
+
+    </div>
+</div>
+
+
+<A NAME="BuildInfo(java.lang.String, java.lang.String, java.lang.String)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        
+        
+        
+        
+        
+      </span>
+      <span class="sympad">BuildInfo</span>
+      <span class="normal">(String buildId, String testTag, String buildTargetName)</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Creates a <code><a href="BuildInfo.html">BuildInfo</a></code></p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>buildId</code></td>
+        <td width="100%">
+          <code>String</code>:
+          the build id</td>
+      </tr>
+      <tr>
+        <td><code>testTag</code></td>
+        <td width="100%">
+          <code>String</code>:
+          the test tag name</td>
+      </tr>
+      <tr>
+        <td><code>buildTargetName</code></td>
+        <td width="100%">
+          <code>String</code>:
+          the build target name
+</td>
+      </tr>
+    </table>
+
+    </div>
+</div>
+
+
+
+
+
+<!-- ========= CONSTRUCTOR DETAIL ======== -->
+<!-- Protected ctors -->
+
+
+
+<!-- ========= METHOD DETAIL ======== -->
+<!-- Public methdos -->
+
+<h2>Public Methods</h2>
+
+
+
+<A NAME="addBuildAttribute(java.lang.String, java.lang.String)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        
+        
+        
+        
+        void
+      </span>
+      <span class="sympad">addBuildAttribute</span>
+      <span class="normal">(String attributeName, String attributeValue)</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Add a build attribute
+</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>attributeName</code></td>
+        <td width="100%">
+          <code>String</code>:
+          the unique attribute name</td>
+      </tr>
+      <tr>
+        <td><code>attributeValue</code></td>
+        <td width="100%">
+          <code>String</code>:
+          the attribute value
+</td>
+      </tr>
+    </table>
+
+    </div>
+</div>
+
+
+<A NAME="cleanUp()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        
+        
+        
+        
+        void
+      </span>
+      <span class="sympad">cleanUp</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Clean up any temporary build files
+
+</p>
+
+    </div>
+</div>
+
+
+<A NAME="clone()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        
+        
+        
+        
+        <a href="IBuildInfo.html">IBuildInfo</a>
+      </span>
+      <span class="sympad">clone</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>
+</p>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code><a href="IBuildInfo.html">IBuildInfo</a></code></td>
+        <td width="100%"><!-- no returns description in source --></td>
+      </tr>
+    </table>
+
+    </div>
+</div>
+
+
+<A NAME="equals(java.lang.Object)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        
+        
+        
+        
+        boolean
+      </span>
+      <span class="sympad">equals</span>
+      <span class="normal">(Object obj)</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>
+</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>obj</code></td>
+        <td width="100%">
+          <code>Object</code>
+          <!-- no parameter comment --></td>
+      </tr>
+    </table>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code>boolean</code></td>
+        <td width="100%"><!-- no returns description in source --></td>
+      </tr>
+    </table>
+
+    </div>
+</div>
+
+
+<A NAME="getBuildAttributes()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        
+        
+        
+        
+        Map&lt;String,&nbsp;String&gt;
+      </span>
+      <span class="sympad">getBuildAttributes</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Get a set of name-value pairs of additional attributes describing the build.
+</p>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code>Map&lt;String,&nbsp;String&gt;</code></td>
+        <td width="100%">a <code><a href="../../../../java/util/Map.html">Map</a></code> of build attributes. Will not be <code>null</code>, but may be empty.
+</td>
+      </tr>
+    </table>
+
+    </div>
+</div>
+
+
+<A NAME="getBuildBranch()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        
+        
+        
+        
+        String
+      </span>
+      <span class="sympad">getBuildBranch</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Optional method to return the source control branch that the build being tested was
+ produced from.
+</p>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code>String</code></td>
+        <td width="100%">the build branch or <code>null</code> if unset/not applicable
+</td>
+      </tr>
+    </table>
+
+    </div>
+</div>
+
+
+<A NAME="getBuildFlavor()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        
+        
+        
+        
+        String
+      </span>
+      <span class="sympad">getBuildFlavor</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Optional method to return the type of build being tested.
+ <p/>
+ A common implementation for Android platform builds is to return
+ (build product)-(build os)-(build variant).
+ ie generic-linux-userdebug
+</p>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code>String</code></td>
+        <td width="100%">the build flavor or <code>null</code> if unset/not applicable
+</td>
+      </tr>
+    </table>
+
+    </div>
+</div>
+
+
+<A NAME="getBuildId()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        
+        
+        
+        
+        String
+      </span>
+      <span class="sympad">getBuildId</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Returns the unique identifier of build under test. Should never be null. Defaults to
+ <code><a href="IBuildInfo.html#UNKNOWN_BUILD_ID">UNKNOWN_BUILD_ID</a></code>.
+
+</p>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code>String</code></td>
+        <td width="100%"><!-- no returns description in source --></td>
+      </tr>
+    </table>
+
+    </div>
+</div>
+
+
+<A NAME="getBuildTargetName()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        
+        
+        
+        
+        String
+      </span>
+      <span class="sympad">getBuildTargetName</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Return complete name for the build being tested.
+ <p/>
+ A common implementation is to construct the build target name from a combination of
+ the build flavor and branch name. [ie (branch name)-(build flavor)]
+
+</p>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code>String</code></td>
+        <td width="100%"><!-- no returns description in source --></td>
+      </tr>
+    </table>
+
+    </div>
+</div>
+
+
+<A NAME="getDeviceSerial()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        
+        
+        
+        
+        String
+      </span>
+      <span class="sympad">getDeviceSerial</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>
+</p>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code>String</code></td>
+        <td width="100%"><!-- no returns description in source --></td>
+      </tr>
+    </table>
+
+    </div>
+</div>
+
+
+<A NAME="getFile(java.lang.String)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        
+        
+        
+        
+        File
+      </span>
+      <span class="sympad">getFile</span>
+      <span class="normal">(String name)</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Helper method to retrieve a file with given name.
+</p>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code>File</code></td>
+        <td width="100%">the image file or <code>null</code> if not found
+</td>
+      </tr>
+    </table>
+
+    </div>
+</div>
+
+
+<A NAME="getFiles()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        
+        
+        
+        
+        Collection&lt;<a href="VersionedFile.html">VersionedFile</a>&gt;
+      </span>
+      <span class="sympad">getFiles</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Returns all <code><a href="VersionedFile.html">VersionedFile</a></code>s stored in this <code><a href="BuildInfo.html">BuildInfo</a></code>.
+
+</p>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code>Collection&lt;<a href="VersionedFile.html">VersionedFile</a>&gt;</code></td>
+        <td width="100%"><!-- no returns description in source --></td>
+      </tr>
+    </table>
+
+    </div>
+</div>
+
+
+<A NAME="getTestTag()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        
+        
+        
+        
+        String
+      </span>
+      <span class="sympad">getTestTag</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Return a unique name for the tests being run.
+
+</p>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code>String</code></td>
+        <td width="100%"><!-- no returns description in source --></td>
+      </tr>
+    </table>
+
+    </div>
+</div>
+
+
+<A NAME="getVersion(java.lang.String)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        
+        
+        
+        
+        String
+      </span>
+      <span class="sympad">getVersion</span>
+      <span class="normal">(String name)</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Helper method to retrieve a file version with given name.
+</p>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code>String</code></td>
+        <td width="100%">the image version or <code>null</code> if not found
+</td>
+      </tr>
+    </table>
+
+    </div>
+</div>
+
+
+<A NAME="hashCode()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        
+        
+        
+        
+        int
+      </span>
+      <span class="sympad">hashCode</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>
+</p>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code>int</code></td>
+        <td width="100%"><!-- no returns description in source --></td>
+      </tr>
+    </table>
+
+    </div>
+</div>
+
+
+<A NAME="setBuildBranch(java.lang.String)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        
+        
+        
+        
+        void
+      </span>
+      <span class="sympad">setBuildBranch</span>
+      <span class="normal">(String branch)</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Set the build branch
+</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>branch</code></td>
+        <td width="100%">
+          <code>String</code>:
+          the branch name
+</td>
+      </tr>
+    </table>
+
+    </div>
+</div>
+
+
+<A NAME="setBuildFlavor(java.lang.String)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        
+        
+        
+        
+        void
+      </span>
+      <span class="sympad">setBuildFlavor</span>
+      <span class="normal">(String buildFlavor)</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Set the build flavor.
+</p>
+
+    </div>
+</div>
+
+
+<A NAME="setBuildId(java.lang.String)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        
+        
+        
+        
+        void
+      </span>
+      <span class="sympad">setBuildId</span>
+      <span class="normal">(String buildId)</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Sets the unique identifier of build under test. Should never be null.
+
+</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>buildId</code></td>
+        <td width="100%">
+          <code>String</code>
+          <!-- no parameter comment --></td>
+      </tr>
+    </table>
+
+    </div>
+</div>
+
+
+<A NAME="setDeviceSerial(java.lang.String)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        
+        
+        
+        
+        void
+      </span>
+      <span class="sympad">setDeviceSerial</span>
+      <span class="normal">(String serial)</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Set the <code><a href="http://source.android.com/reference/com/android/tradefed/device/ITestDevice.html">ITestDevice</a></code> serial associated with this build.
+</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>serial</code></td>
+        <td width="100%">
+          <code>String</code>:
+          the serial number of the <code><a href="http://source.android.com/">ERROR(/ITestDevice)</a></code> that this build was executed with.
+</td>
+      </tr>
+    </table>
+
+    </div>
+</div>
+
+
+<A NAME="setFile(java.lang.String, java.io.File, java.lang.String)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        
+        
+        
+        
+        void
+      </span>
+      <span class="sympad">setFile</span>
+      <span class="normal">(String name, File file, String version)</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Stores an file with given name in this build info.
+</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>name</code></td>
+        <td width="100%">
+          <code>String</code>:
+          the unique name of the file</td>
+      </tr>
+      <tr>
+        <td><code>file</code></td>
+        <td width="100%">
+          <code>File</code>:
+          the local <code><a href="../../../../java/io/File.html">File</a></code></td>
+      </tr>
+      <tr>
+        <td><code>version</code></td>
+        <td width="100%">
+          <code>String</code>:
+          the file version
+</td>
+      </tr>
+    </table>
+
+    </div>
+</div>
+
+
+
+
+
+<!-- ========= METHOD DETAIL ======== -->
+
+<h2>Protected Methods</h2>
+
+
+
+<A NAME="addAllBuildAttributes(com.android.tradefed.build.BuildInfo)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected
+        
+        
+        
+        
+        void
+      </span>
+      <span class="sympad">addAllBuildAttributes</span>
+      <span class="normal">(<a href="BuildInfo.html">BuildInfo</a> build)</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Helper method to copy build attributes, branch, and flavor from other build.
+</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>build</code></td>
+        <td width="100%">
+          <code>BuildInfo</code>
+          <!-- no parameter comment --></td>
+      </tr>
+    </table>
+
+    </div>
+</div>
+
+
+<A NAME="addAllFiles(com.android.tradefed.build.BuildInfo)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected
+        
+        
+        
+        
+        void
+      </span>
+      <span class="sympad">addAllFiles</span>
+      <span class="normal">(<a href="BuildInfo.html">BuildInfo</a> build)</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Helper method to copy all files from the other build.
+ <p>
+ Creates new hardlinks to the files so that each build will have a unique file path to the
+ file.
+ </p></p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>build</code></td>
+        <td width="100%">
+          <code>BuildInfo</code>
+          <!-- no parameter comment --></td>
+      </tr>
+    </table>
+      <table class="responsive">
+      <tr><th colspan=2>Throws</th></tr>
+        <tr>
+          <td><code>IOException</code></td>
+          <td width="100%">if an exception is thrown when creating the hardlinks.
+</td>
+        </tr>
+      </table>
+  
+
+    </div>
+</div>
+
+
+<A NAME="getAttributesMultiMap()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected
+        
+        
+        
+        
+        <a href="../util/MultiMap.html">MultiMap</a>&lt;String,&nbsp;String&gt;
+      </span>
+      <span class="sympad">getAttributesMultiMap</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p></p>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code><a href="../util/MultiMap.html">MultiMap</a>&lt;String,&nbsp;String&gt;</code></td>
+        <td width="100%"><!-- no returns description in source --></td>
+      </tr>
+    </table>
+
+    </div>
+</div>
+
+
+<A NAME="getVersionedFileMap()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected
+        
+        
+        
+        
+        Map&lt;String,&nbsp;<a href="VersionedFile.html">VersionedFile</a>&gt;
+      </span>
+      <span class="sympad">getVersionedFileMap</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p></p>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code>Map&lt;String,&nbsp;<a href="VersionedFile.html">VersionedFile</a>&gt;</code></td>
+        <td width="100%"><!-- no returns description in source --></td>
+      </tr>
+    </table>
+
+    </div>
+</div>
+
+
+
+
+
+<!-- ========= END OF CLASS DATA ========= -->
+<A NAME="navbar_top"></A>
+
+<div id="footer" class="wrap" >
+  <style>.feedback { float: right !Important }</style>
+  <div class="feedback">
+    <a href="BuildInfo.html#" class="button" onclick=" try {
+      userfeedback.api.startFeedback({'productId':'715571','authuser':'1'});return false;}catch(e){}">Site Feedback</a>
+  </div>
+  <div id="copyright">
+    
+  Except as noted, this content is 
+  licensed under <a href="http://creativecommons.org/licenses/by/2.5/">
+  Creative Commons Attribution 2.5</a>. For details and 
+  restrictions, see the <a href="http://source.android.com/license.html">Content 
+  License</a>.
+  </div>
+    <div id="footerlinks">
+    
+  <p>
+    <a href="http://source.android.com/source/index.html">About Android</a>&nbsp;&nbsp;|&nbsp;
+    <a href="http://source.android.com/source/community.html">Community</a>&nbsp;&nbsp;|&nbsp;
+    <a href="http://source.android.com/legal.html">Legal</a>&nbsp;&nbsp;|&nbsp;
+  </p>
+  </div>
+
+</div> <!-- jd-content -->
+
+</div><!-- end doc-content -->
+
+</div> <!-- end body-content --> 
+
+
+
+
+
+
+</body>
+</html>

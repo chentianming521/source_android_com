@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<meta name="Description" content="APK Signature Scheme v2 is a whole-file signature scheme that increases verification speed and strengthens integrity guarantees by detecting any changes to the protected parts of the APK. Signing using APK Signature Scheme v2 inserts an APK Signing Block…">
+
+<link rel="shortcut icon" type="image/x-icon" href="../../favicon.ico" />
+<title>APK Signature Scheme v2 | Android Open Source Project</title>
+
+<!-- STYLESHEETS -->
+<link rel="stylesheet"
+href="https://fonts.googleapis.com/css?family=Roboto:regular,medium,thin,italic,mediumitalic,bold" title="roboto">
+<link href="../../assets/css/default.css" rel="stylesheet" type="text/css">
+
+
+
+<!-- JAVASCRIPT -->
+<script src="https://www.google.com/jsapi" type="text/javascript"></script>
+<script src="../../assets/js/android_3p-bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+  var toRoot = "/";
+  
+  var devsite = false;
+  
+</script>
+<script src="../../assets/js/docs.js" type="text/javascript"></script>
+
+
+<script type="text/javascript" src="https://www.gstatic.com/feedback/api.js"></script>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-45455297-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</head>
+
+<body class="gc-documentation 
+  " itemscope itemtype="http://schema.org/Article">
+<a name="top"></a>
+
+  
+    <!-- Header -->
+    <div id="header">
+        <div class="wrap" id="header-wrap">
+          <div class="col-3 saclogo">
+          <a href="../../index.html">
+            <img src="../../assets/images/sac_logo.png"
+                srcset="/assets/images/sac_logo@2x.png 2x"
+                width="123" height="25" alt="Android Open Source Project" />
+          </a>
+          </div>
+            <ul class="nav-x col-9">
+                <li class="source">
+                  <a href="../../source/index.html" 
+                  >Source</a></li>
+                <li class="devices"><a href="../../devices/index.html" 
+                  >Devices</a></li>
+                <li class="security"><a href="../index.html" class="selected"
+                  >Security</a></li>
+                <li class="compatibility last"><a href="../../compatibility/index.html" 
+                  >Compatibility</a></li>
+            </ul>
+            <!-- New Search -->
+            <div class="menu-container">
+            <div class="moremenu">
+    <div id="more-btn"></div>
+  </div>
+  <div class="morehover" id="moremenu">
+    <div class="top"></div>
+    <div class="mid">
+      <div class="header">Android Sites</div>
+      <ul>
+        <li class="active"><a>Android Open Source Project</a></li>
+        <li><a href="http://www.android.com">Android.com</a></li>
+        <li><a href="http://developer.android.com">Android Developers</a></li>
+      </ul>
+      <!-- <div class="header">Support</div>
+      <ul>
+        <li><a href="/support.html">Developer Support</a></li>
+      </ul> -->
+      <br class="clearfix" />
+    </div>
+    <div class="bottom"></div>
+  </div>
+
+  <div class="search" id="search-container">
+    <div class="search-inner">
+      <div id="search-btn"></div>
+      <div class="left"></div>
+      <form onsubmit="return submit_search()">
+        <input id="search_autocomplete" type="text" value="" autocomplete="off" name="q"
+onfocus="search_focus_changed(this, true)" onblur="search_focus_changed(this, false)"
+onkeydown="return search_changed(event, true, '/')"
+onkeyup="return search_changed(event, false, '/')" />
+      </form>
+      <div class="right"></div>
+        <a class="close hide">close</a>
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+  </div>
+  <div id="search_filtered_wrapper">
+    <div id="search_filtered_div" class="no-display">
+        <ul id="search_filtered">
+        </ul>
+    </div>
+  </div>
+
+  </div>
+  <!-- /New Search> -->
+        </div>
+    </div>
+    <!-- /Header -->
+
+  <div id="searchResults" class="wrap" style="display:none;">
+          <h2 id="searchTitle">Results</h2>
+          <div id="leftSearchControl" class="search-control">Loading...</div>
+  </div>
+
+  
+  
+  
+    
+  <div class="wrap clearfix" id="body-content">
+    <div class="col-4" id="side-nav" itemscope itemtype="http://schema.org/SiteNavigationElement">
+      <div id="devdoc-nav" class="scroll-pane">
+<a class="totop" href="v2.html#top" data-g-event="left-nav-top">to top</a>
+
+<!--
+    Copyright 2015 The Android Open Source Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<ul id="nav">
+  <li class="nav-section">
+    <div class="nav-section-header">
+        <a href="../index.html">
+          <span class="en">Overview</span>
+        </a>
+    </div>
+    <ul>
+      <li><a href="../overview/kernel-security.html">Kernel Security</a></li>
+      <li><a href="../overview/app-security.html">App Security</a></li>
+      <li><a href="../overview/implement.html">Implementing Security</a></li>
+      <li><a href="../overview/updates-resources.html">Updates and Resources</a></li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../enhancements/index.html">
+            <span class="en">Enhancements</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../enhancements/enhancements70.html">Android 7.0</a></li>
+          <li><a href="../enhancements/enhancements60.html">Android 6.0</a></li>
+          <li><a href="../enhancements/enhancements50.html">Android 5.0</a></li>
+          <li><a href="../enhancements/enhancements44.html">Android 4.4</a></li>
+          <li><a href="../enhancements/enhancements43.html">Android 4.3</a></li>
+          <li><a href="../enhancements/enhancements42.html">Android 4.2</a></li>
+          <li><a href="../enhancements/enhancements41.html">Android 4.1</a></li>
+        </ul>
+      </li>
+      <li><a href="../overview/acknowledgements.html">Acknowledgements</a></li>
+    </ul>
+  </li>
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="../bulletin/index.html">
+        <span class="en">Bulletins</span>
+      </a>
+    </div>
+    <ul>
+      <li class="nav-section">
+         <div class="nav-section-header">
+           <a href="../advisory/index.html">
+         <span class="en">Advisories</span>
+        </a>
+       </div>
+         <ul>
+           <li><a href="../advisory/2016-03-18.html">2016-03-18</a></li>
+         </ul>
+      </li>
+      <li><a href="../bulletin/2016-08-01.html">August 2016</a></li>
+      <li><a href="../bulletin/2016-07-01.html">July 2016</a></li>
+      <li><a href="../bulletin/2016-06-01.html">June 2016</a></li>
+      <li><a href="../bulletin/2016-05-01.html">May 2016</a></li>
+      <li><a href="../bulletin/2016-04-02.html">April 2016</a></li>
+      <li><a href="../bulletin/2016-03-01.html">March 2016</a></li>
+      <li><a href="../bulletin/2016-02-01.html">February 2016</a></li>
+      <li><a href="../bulletin/2016-01-01.html">January 2016</a></li>
+      <li class="nav-section">
+         <div class="nav-section-header">
+           <a href="../bulletin/2015.html">
+         <span class="en">2015 Bulletins</span>
+        </a>
+       </div>
+         <ul>
+           <li><a href="../bulletin/2015-12-01.html">December 2015</a></li>
+           <li><a href="../bulletin/2015-11-01.html">November 2015</a></li>
+           <li><a href="../bulletin/2015-10-01.html">October 2015</a></li>
+           <li><a href="../bulletin/2015-09-01.html">September 2015</a></li>
+           <li><a href="../bulletin/2015-08-01.html">August 2015</a></li>
+         </ul>
+      </li>
+    </ul>
+  </li>
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="index.html">
+        <span class="en">Application Signing</span>
+      </a>
+    </div>
+    <ul>
+      <li><a href="v2.html">APK Signature Scheme v2</a></li>
+    </ul>
+  </li>
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="../authentication/index.html">
+        <span class="en">Authentication</span>
+      </a>
+    </div>
+    <ul>
+      <li><a href="../../devices/tech/security/authentication/fingerprint-hal.html">Fingerprint HAL</a></li>
+      <li><a href="../../devices/tech/security/authentication/gatekeeper.html">Gatekeeper</a></li>
+    </ul>
+  </li>
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="../keystore/index.html">
+        <span class="en">Keystore</span>
+      </a>
+    </div>
+    <ul>
+      <li><a href="../keystore/features.html">Features</a></li>
+      <li><a href="../keystore/implementer-ref.html">Implementer's Reference</a></li>
+    </ul>
+  </li>
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="../trusty/index.html">
+        <span class="en">Trusty TEE</span>
+      </a>
+    </div>
+    <ul>
+      <li><a href="../trusty/trusty-ref.html">Trusty API Reference</a></li>
+    </ul>
+  </li>
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="../../devices/tech/encryption/index.html">
+        <span class="en">Encryption</span>
+      </a>
+    </div>
+    <ul>
+      <li><a href="../encryption/file-based.html">File-Based Encryption</a></li>
+      <li><a href="../encryption/full-disk.html">Full-Disk Encryption</a></li>
+    </ul>
+  </li>
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="../../devices/tech/security/selinux/index.html">
+        <span class="en">SELinux</span>
+      </a>
+    </div>
+    <ul>
+      <li><a href="../selinux/concepts.html">Concepts</a></li>
+      <li><a href="../selinux/implement.html">Implementation</a></li>
+      <li><a href="../selinux/customize.html">Customization</a></li>
+      <li><a href="../selinux/validate.html">Validation</a></li>
+      <li><a href="../selinux/device-policy.html">Writing Policy</a></li>
+    </ul>
+  </li>
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="../verifiedboot/index.html">
+        <span class="en">Verified Boot</span>
+      </a>
+    </div>
+    <ul>
+      <li><a href="../verifiedboot/verified-boot.html">Verifying Boot</a></li>
+      <li><a href="../verifiedboot/dm-verity.html">Implementing dm-verity</a></li>
+    </ul>
+  </li>
+</ul>
+
+
+      </div>
+    </div> <!-- end side-nav -->
+    <script>
+      $(document).ready(function() {
+        scrollIntoView("devdoc-nav");
+        });
+    </script>
+
+  
+
+
+
+
+<div class="col-12" id="doc-col" >
+
+
+  
+    
+      
+        <h1 itemprop="name" >APK Signature Scheme v2</h1>
+      
+    
+  
+
+
+  
+  <div id="jd-content">
+
+    <div class="jd-descr" itemprop="articleBody">
+    <!--
+    Copyright 2016 The Android Open Source Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<div id="qv-wrapper">
+  <div id="qv">
+    <h2>In this document</h2>
+    <ol id="auto-toc">
+   </ol>
+  </div>
+</div>
+
+<p>
+APK Signature Scheme v2 is a whole-file signature scheme that increases
+verification speed and <a
+href="v2.html#integrity-protected-contents">strengthens integrity guarantees</a> by
+detecting any changes to the protected parts of the APK.
+</p>
+
+<p>
+Signing using APK Signature Scheme v2 inserts an <a
+href="v2.html#apk-signing-block">APK Signing Block</a> into the APK file immediately
+before the ZIP Central Directory section. Inside the APK Signing Block, v2
+signatures and signer identity information are stored in an <a
+href="v2.html#apk-signature-scheme-v2-block">APK Signature Scheme v2 Block</a>.
+</p>
+
+<p>
+  <img src="../images/apk-before-after-signing.png" alt="APK before and after signing" id="figure1" />
+</p>
+<p class="img-caption"><strong>Figure 1.</strong> APK before and after signing</p>
+
+<p>
+APK Signature Scheme v2 was introduced in Android 7.0 (Nougat). To make
+a APK installable on Android 6.0 (Marshmallow) and older devices, the
+APK should be signed using <a href="index.html#v1">JAR signing</a> before being
+signed with the v2 scheme.
+</p>
+
+
+<h2 id="apk-signing-block">APK Signing Block</h2>
+<p>
+To maintain backward-compatibility with the current APK format, v2 and newer APK
+signatures are stored inside an APK Signing Block, a new container introduced to
+support APK Signature Scheme v2. In an APK file, the APK Signing Block is located
+immediately before the ZIP Central Directory, which is located at the end of the file.
+</p>
+
+<p>
+The block contains ID-value pairs wrapped in a way that makes it easier to
+locate the block in the APK. The v2 signature of the APK is stored as an ID-value
+pair with ID 0x7109871a.
+</p>
+
+<h3 id="apk-signing-block-format">Format</h3>
+<p>
+The format of the APK Signing Block is as follows (all numeric fields are
+little-endian):
+</p>
+
+<ul>
+  <li><code>size of block</code> in bytes (excluding this field) (uint64)</li>
+  <li>Sequence of uint64-length-prefixed ID-value pairs:
+    <ul>
+      <li><code>ID</code> (uint32)</li>
+      <li><code>value</code> (variable-length: length of the pair - 4 bytes)</li>
+    </ul>
+  </li>
+  <li><code>size of block</code> in bytes—same as the very first field (uint64)</li>
+  <li><code>magic</code> “APK Sig Block 42” (16 bytes)</li>
+</ul>
+
+<p>
+APK is parsed by first finding the start of the ZIP Central Directory (by
+finding the ZIP End of Central Directory record at the end of the file, then
+reading the start offset of the Central Directory from the record). The
+<code>magic</code> value provides a quick way to establish that what precedes
+Central Directory is likely the APK Signing Block. The <code>size of
+block</code> value then efficiently points to the start of the block in the
+file.
+</p>
+
+<p>
+ID-value pairs with unknown IDs should be ignored when interpreting the
+block.
+</p>
+
+
+<h2 id="apk-signature-scheme-v2-block">APK Signature Scheme v2 Block</h2>
+<p>
+APK is signed by one or more signers/identities, each represented by a signing
+key. This information is stored as an APK Signature Scheme v2 Block. For each
+signer, the following information is stored:
+</p>
+
+<ul>
+  <li>(signature algorithm, digest, signature) tuples. The digest is stored to
+decouple  signature verification from integrity checking of the APK’s contents.</li>
+  <li>X.509 certificate chain representing the signer’s identity.</li>
+  <li>Additional attributes as key-value pairs.</li>
+</ul>
+
+<p>
+For each signer, the APK is verified using a supported signature from the
+provided list. Signatures with unknown signature algorithms are ignored. It is
+up to each implementation to choose which signature to use when multiple
+supported signatures are encountered. This enables the introduction of stronger
+signing methods in the future in a backward-compatible way. The suggested
+approach is to verify the strongest signature.
+</p>
+
+<h3 id="apk-signature-scheme-v2-block-format">Format</h3>
+<p>
+APK Signature Scheme v2 Block is stored inside the APK Signing Block under ID
+<code>0x7109871a</code>.
+</p>
+
+<p>
+The format of the APK Signature Scheme v2 Block is as follows (all numeric
+values are little-endian, all length-prefixed fields use uint32 for length):
+</p>
+<ul>
+  <li>length-prefixed sequence of length-prefixed <code>signer</code>:
+    <ul>
+      <li>length-prefixed <code>signed data</code>:
+        <ul>
+          <li>length-prefixed sequence of length-prefixed <code>digests</code>:
+            <ul>
+              <li><code>signature algorithm ID</code> (uint32)</li>
+              <li>(length-prefixed) <code>digest</code>—see
+              <a href="v2.html#integrity-protected-contents">Integrity-protected Contents</a></li>
+            </ul>
+          </li>
+          <li>length-prefixed sequence of X.509 <code>certificates</code>:
+            <ul>
+              <li>length-prefixed X.509 <code>certificate</code> (ASN.1 DER form)</li>
+            </ul>
+          </li>
+          <li>length-prefixed sequence of length-prefixed <code>additional attributes</code>:
+            <ul>
+              <li><code>ID</code> (uint32)</li>
+              <li><code>value</code> (variable-length: length of the additional
+              attribute - 4 bytes)</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>length-prefixed sequence of length-prefixed <code>signatures</code>:
+        <ul>
+          <li><code>signature algorithm ID</code> (uint32)</li>
+          <li>length-prefixed <code>signature</code> over <code>signed data</code></li>
+        </ul>
+      </li>
+      <li>length-prefixed <code>public key</code> (SubjectPublicKeyInfo, ASN.1 DER form)</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="signature-algorithm-ids">Signature Algorithm IDs</h4>
+<ul>
+  <li>0x0101—RSASSA-PSS with SHA2-256 digest, SHA2-256 MGF1, 32 bytes of salt,
+      trailer: 0xbc</li>
+  <li>0x0102—RSASSA-PSS with SHA2-512 digest, SHA2-512 MGF1, 64 bytes of salt,
+      trailer: 0xbc</li>
+  <li>0x0103—RSASSA-PKCS1-v1_5 with SHA2-256 digest. This is for build systems
+      which require deterministic signatures.</li>
+  <li>0x0104—RSASSA-PKCS1-v1_5 with SHA2-512 digest. This is for build systems
+      which require deterministic signatures.</li>
+  <li>0x0201—ECDSA with SHA2-256 digest</li>
+  <li>0x0202—ECDSA with SHA2-512 digest</li>
+  <li>0x0301—DSA with SHA2-256 digest</li>
+</ul>
+
+<p>
+All of the above signature algorithms are supported by the Android platform.
+Signing tools may support a subset of the algorithms.
+</p>
+
+<p>
+<strong>Supported keys sizes and EC curves:</strong>
+</p>
+
+<ul>
+  <li>RSA: 1024, 2048, 4096, 8192, 16384</li>
+  <li>EC: NIST P-256, P-384, P-521</li>
+  <li>DSA: 1024, 2048, 3072</li>
+</ul>
+
+<h2 id="integrity-protected-contents">Integrity-protected contents</h2>
+
+<p>
+For the purposes of protecting APK contents, an APK consists of four sections:
+</p>
+
+<ol>
+  <li>Contents of ZIP entries (from offset 0 until the start of APK Signing Block)</li>
+  <li>APK Signing Block</li>
+  <li>ZIP Central Directory</li>
+  <li>ZIP End of Central Directory</li>
+</ol>
+
+<p>
+  <img src="../images/apk-sections.png" alt="APK sections after signing" id="figure2" />
+</p>
+<p class="img-caption"><strong>Figure 2.</strong> APK sections after signing</p>
+
+<p>
+APK Signature Scheme v2 protects the integrity of sections 1, 3, 4, and the
+<code>signed data</code> blocks of the APK Signature Scheme v2 Block contained
+inside section 2.
+</p>
+
+<p>
+The integrity of sections 1, 3, and 4 is protected by one or more digests of
+their contents stored in <code>signed data</code> blocks which are, in
+turn, protected by one or more signatures.
+</p>
+
+<p>
+The digest over sections 1, 3, and 4 is computed as follows, similar to a
+two-level <a href="https://en.wikipedia.org/wiki/Merkle_tree">Merkle tree</a>.
+Each section is split into consecutive 1 MB (2<sup>20</sup> bytes) chunks. The last chunk
+in each section may be shorter. The digest of each chunk is computed over the
+concatenation of byte <code>0xa5</code>, the chunk’s length in bytes
+(little-endian uint32), and the chunk’s contents. The top-level digest is
+computed over the concatenation of byte <code>0x5a</code>, the number of chunks
+(little-endian uint32), and the concatenation of digests of the chunks in the
+order the chunks appear in the APK. The digest is computed in chunked fashion to
+enable to speed up the computation by parallelizing it.
+</p>
+
+<p>
+  <img src="../images/apk-integrity-protection.png" alt="APK digest" id="figure3" />
+</p>
+<p class="img-caption"><strong>Figure 3.</strong> APK digest</p>
+
+<p>
+Protection of section 4 (ZIP End of Central Directory) is complicated by the
+section containing the offset of ZIP Central Directory. The offset changes when
+the size of the APK Signing Block changes, for instance, when a new signature is
+added. Thus, when computing digest over the ZIP End of Central Directory, the
+field containing the offset of ZIP Central Directory must be treated as
+containing the offset of the APK Signing Block.
+</p>
+
+<h2 id="rollback-protections">Rollback Protections</h2>
+<p>
+An attacker could attempt to have a v2-signed APK verified as a v1-signed APK on
+Android platforms that support verifying v2-signed APK. To mitigate this attack,
+v2-signed APKs that are also v1-signed must contain an X-Android-APK-Signed
+attribute in the main section of their META-INF/*.SF files. The value of the
+attribute is a comma-separated set of APK signature scheme IDs (the ID of this
+scheme is 2). When verifying the v1 signature, APK verifier is required to
+reject APKs which do not have a signature for the APK signature scheme the
+verifier prefers from this set (e.g., v2 scheme). This protection relies on the
+fact that contents META-INF/*.SF files are protected by v1 signatures. See the
+section on
+<a href="v2.html#v1-verification">JAR signed APK verification</a>.
+</p>
+
+<p>
+An attacker could attempt to strip stronger signatures from the APK Signature
+Scheme v2 Block. To mitigate this attack, the list of signature algorithm IDs
+with which the APK was being signed is stored in the <code>signed data</code>
+block which is protected by each signature.
+</p>
+
+<h2 id="verification">Verification</h2>
+
+In Android 7.0, APKs can be verified according to the APK Signature Scheme v2
+(v2 scheme) or JAR signing (v1 scheme). Older platforms ignore v2 signatures
+and only verify v1 signatures.
+</p>
+
+<p>
+  <img src="../images/apk-validation-process.png" alt="APK signature verification process" id="figure4" />
+</p>
+<p class="img-caption"><strong>Figure 4.</strong> APK signature verification
+process (new steps in red)</p>
+
+<h3 id="v2-verification">APK Signature Scheme v2 verification</h3>
+<ol>
+  <li>Locate the APK Signing Block and verify that:
+    <ol>
+      <li>Two size fields of APK Signing Block contain the same value.</li>
+      <li>ZIP Central Directory is immediately followed by ZIP End of Central
+          Directory record.</li>
+      <li>ZIP End of Central Directory is not followed by more data.</li>
+    </ol>
+  </li>
+  <li>Locate the first APK Signature Scheme v2 Block inside the APK Signing Block.
+      If the v2 Block if present, proceed to step 3. Otherwise, fall back to
+      verifying the APK
+      <a href="v2.html#v1-verification">using v1 scheme</a>.</li>
+  <li>For each <code>signer</code> in the APK Signature Scheme v2 Block:
+    <ol>
+      <li>Choose the strongest supported <code>signature algorithm ID</code> from
+      <code>signatures</code>. The strength ordering is up to each
+      implementation/platform version.</li>
+      <li>Verify the corresponding <code>signature</code> from
+      <code>signatures</code> against <code>signed data</code> using <code>public
+      key</code>. (It is now safe to parse <code>signed data</code>.)</li>
+      <li>Verify that the ordered list of signature algorithm IDs in
+      <code>digests</code> and <code>signatures</code> is identical.  (This is to
+      prevent signature stripping/addition.)</li>
+      <li><a href="v2.html#integrity-protected-contents">Compute the digest of APK
+      contents</a> using the same digest algorithm as the digest algorithm used by the
+      signature algorithm.</li>
+      <li>Verify that the computed digest is identical to the corresponding
+      <code>digest</code> from <code>digests</code>.</li>
+      <li>Verify that SubjectPublicKeyInfo of the first <code>certificate</code> of
+      <code>certificates</code> is identical to <code>public key</code>.</li>
+    </ol>
+  </li>
+  <li>Verification succeeds if at least one <code>signer</code> was found and
+  step 3 succeeded for each found <code>signer</code>.</li>
+</ol>
+
+<p class="note"><strong>Note</strong>: APK must not be verified using
+the v1 scheme if a failure occurs in step 3 or 4.
+</p>
+
+<h3 id="v1-verification">JAR-signed APK verification (v1 scheme)</h3>
+<p>
+The JAR-signed APK is a
+<a href="https://docs.oracle.com/javase/8/docs/technotes/guides/jar/jar.html#Signed_JAR_File">standard
+signed JAR</a>, which must contain exactly the entries listed in
+META-INF/MANIFEST.MF and where all entries must be signed by the same set of
+signers. Its integrity is verified as follows:
+</p>
+
+<ol>
+  <li>Each signer is represented by a META-INF/&lt;signer&gt;.SF and
+  META-INF/&lt;signer&gt;.(RSA|DSA|EC) JAR entry.</li>
+  <li>&lt;signer&gt;.(RSA|DSA|EC) is a
+      <a href="https://tools.ietf.org/html/rfc5652">PKCS #7 CMS ContentInfo
+      with SignedData structure</a> whose signature is verified over the
+      &lt;signer&gt;.SF file.</li>
+  <li>&lt;signer&gt;.SF file contains a whole-file digest of the META-INF/MANIFEST.MF
+  and digests of each section of META-INF/MANIFEST.MF. The whole-file digest of
+  the MANIFEST.MF is verified. If that fails, the digest of each MANIFEST.MF
+  section is verified instead.</li>
+  <li>META-INF/MANIFEST.MF contains, for each integrity-protected JAR entry, a
+  correspondingly named section containing the digest of the entry’s uncompressed
+  contents. All these digests are verified.</li>
+  <li>APK verification fails if the APK contains JAR entries which are not listed
+  in the MANIFEST.MF and are not part of JAR signature.</li>
+</ol>
+
+<p>
+The protection chain is thus &lt;signer&gt;.(RSA|DSA|EC) -> &lt;signer&gt;.SF -> MANIFEST.MF
+-> contents of each integrity-protected JAR entry.
+</p>
+
+
+    </div>
+
+      <div class="content-footer-sac"
+                    itemscope itemtype="http://schema.org/SiteNavigationElement">
+        <div class="layout-content-col col-9" style="padding-top:4px">
+        </div>
+        
+        <div class="paging-links layout-content-col col-4">
+          
+        </div>
+        
+      </div>
+      
+      
+    </div> <!-- end jd-content -->
+  <div id="footer" class="wrap" >
+  <style>.feedback { float: right !Important }</style>
+  <div class="feedback">
+    <a href="v2.html#" class="button" onclick=" try {
+      userfeedback.api.startFeedback({'productId':'715571','authuser':'1'});return false;}catch(e){}">Site Feedback</a>
+  </div>
+  <div id="copyright">
+    
+  Except as noted, this content is 
+  licensed under <a href="http://creativecommons.org/licenses/by/2.5/">
+  Creative Commons Attribution 2.5</a>. For details and 
+  restrictions, see the <a href="../../license.html">Content 
+  License</a>.
+  </div>
+    <div id="footerlinks">
+    
+  <p>
+    <a href="../../source/index.html">About Android</a>&nbsp;&nbsp;|&nbsp;
+    <a href="../../source/community.html">Community</a>&nbsp;&nbsp;|&nbsp;
+    <a href="../../legal.html">Legal</a>&nbsp;&nbsp;|&nbsp;
+  </p>
+  </div>
+
+</div><!-- end doc-content -->
+
+</div> <!-- end body-content --> 
+
+
+
+
+
+
+</body>
+</html>
+
+
+

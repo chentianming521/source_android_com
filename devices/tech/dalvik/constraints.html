@@ -1,0 +1,1699 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<meta name="Description" content="A .dex file is the transport format for Dalvik Bytecode. There are certain syntactical and semantical constraints for a file to be a valid .dex file, and a runtime is required to support only valid .dex files. General integrity constraints are concerned…">
+
+<link rel="shortcut icon" type="image/x-icon" href="../../../favicon.ico" />
+<title>Constraints | Android Open Source Project</title>
+
+<!-- STYLESHEETS -->
+<link rel="stylesheet"
+href="https://fonts.googleapis.com/css?family=Roboto:regular,medium,thin,italic,mediumitalic,bold" title="roboto">
+<link href="../../../assets/css/default.css" rel="stylesheet" type="text/css">
+
+
+
+<!-- JAVASCRIPT -->
+<script src="https://www.google.com/jsapi" type="text/javascript"></script>
+<script src="../../../assets/js/android_3p-bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+  var toRoot = "/";
+  
+  var devsite = false;
+  
+</script>
+<script src="../../../assets/js/docs.js" type="text/javascript"></script>
+
+<script src="../../../navtree_data.js" type="text/javascript"></script>
+
+
+<script type="text/javascript" src="https://www.gstatic.com/feedback/api.js"></script>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-45455297-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</head>
+
+<body class="gc-documentation 
+  " itemscope itemtype="http://schema.org/Article">
+<a name="top"></a>
+
+  
+    <!-- Header -->
+    <div id="header">
+        <div class="wrap" id="header-wrap">
+          <div class="col-3 saclogo">
+          <a href="../../../index.html">
+            <img src="../../../assets/images/sac_logo.png"
+                srcset="/assets/images/sac_logo@2x.png 2x"
+                width="123" height="25" alt="Android Open Source Project" />
+          </a>
+          </div>
+            <ul class="nav-x col-9">
+                <li class="source">
+                  <a href="../../../source/index.html" 
+                  >Source</a></li>
+                <li class="devices"><a href="../../index.html" class="selected"
+                  >Devices</a></li>
+                <li class="security"><a href="../../../security/index.html" 
+                  >Security</a></li>
+                <li class="compatibility last"><a href="../../../compatibility/index.html" 
+                  >Compatibility</a></li>
+            </ul>
+            <!-- New Search -->
+            <div class="menu-container">
+            <div class="moremenu">
+    <div id="more-btn"></div>
+  </div>
+  <div class="morehover" id="moremenu">
+    <div class="top"></div>
+    <div class="mid">
+      <div class="header">Android Sites</div>
+      <ul>
+        <li class="active"><a>Android Open Source Project</a></li>
+        <li><a href="http://www.android.com">Android.com</a></li>
+        <li><a href="http://developer.android.com">Android Developers</a></li>
+      </ul>
+      <!-- <div class="header">Support</div>
+      <ul>
+        <li><a href="/support.html">Developer Support</a></li>
+      </ul> -->
+      <br class="clearfix" />
+    </div>
+    <div class="bottom"></div>
+  </div>
+
+  <div class="search" id="search-container">
+    <div class="search-inner">
+      <div id="search-btn"></div>
+      <div class="left"></div>
+      <form onsubmit="return submit_search()">
+        <input id="search_autocomplete" type="text" value="" autocomplete="off" name="q"
+onfocus="search_focus_changed(this, true)" onblur="search_focus_changed(this, false)"
+onkeydown="return search_changed(event, true, '/')"
+onkeyup="return search_changed(event, false, '/')" />
+      </form>
+      <div class="right"></div>
+        <a class="close hide">close</a>
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+  </div>
+  <div id="search_filtered_wrapper">
+    <div id="search_filtered_div" class="no-display">
+        <ul id="search_filtered">
+        </ul>
+    </div>
+  </div>
+
+  </div>
+  <!-- /New Search> -->
+        </div>
+    </div>
+    <!-- /Header -->
+
+  <div id="searchResults" class="wrap" style="display:none;">
+          <h2 id="searchTitle">Results</h2>
+          <div id="leftSearchControl" class="search-control">Loading...</div>
+  </div>
+
+  
+  
+  
+    
+  <div class="wrap clearfix" id="body-content">
+    <div class="col-4" id="side-nav" itemscope itemtype="http://schema.org/SiteNavigationElement">
+      <div id="devdoc-nav" class="scroll-pane">
+<a class="totop" href="constraints.html#top" data-g-event="left-nav-top">to top</a>
+
+<!--
+    Copyright 2015 The Android Open Source Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<ul id="nav">
+  <li class="nav-section">  <!-- Begin nav section, Device Interfaces -->
+    <div class="nav-section-header">
+      <a href="../../index.html">
+        <span class="en">Interfaces</span>
+      </a>
+    </div>
+    <ul>
+  <li class="nav-section">
+  <div class="nav-section-header">
+      <a href="../../accessories/index.html">
+        <span class="en">Accessories</span>
+      </a>
+    </div>
+    <ul>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../../accessories/audio.html">
+            <span class="en">Audio Accessories</span>
+          </a>
+        </div>
+        <ul>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../../accessories/headset/index.html">
+            <span class="en">Headset</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../../accessories/headset/specification.html">Specification</a></li>
+          <li><a href="../../accessories/headset/requirements.html">Requirements</a></li>
+          <li><a href="../../accessories/headset/testing.html">Testing</a></li>
+        </ul>
+      </li>
+        </ul>
+      </li>
+  <li class="nav-section">
+  <div class="nav-section-header">
+      <a href="../../accessories/custom.html">
+        <span class="en">Custom Accessories</span>
+      </a>
+    </div>
+    <ul>
+      <li class="nav-section">
+        <div class="nav-section-header"><a href="../../accessories/protocol.html"><span class="en">AOA</span>
+        </a>
+        </div>
+        <ul>
+          <li><a href="../../accessories/aoa2.html">AOA 2.0</a></li>
+          <li><a href="../../accessories/aoa.html">AOA 1.0</a></li>
+        </ul>
+        </li>
+        <div class="nav-section-header"><a href="../../accessories/stylus.html"><span class="en">Stylus</span>
+        </a>
+        </div>
+       </ul>
+     </li>
+    </ul>
+      <li class="nav-section">
+      <div class="nav-section-header">
+        <a href="../../audio/index.html">
+          <span class="en">Audio</span>
+        </a>
+      </div>
+        <ul>
+          <li><a href="../../audio/terminology.html">Terminology</a></li>
+          <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="../../audio/implement.html">
+                <span class="en">Implementation</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="../../audio/implement-policy.html">Policy Configuration</a></li>
+              <li><a href="../../audio/implement-shared-library.html">Shared Library</a></li>
+              <li><a href="../../audio/implement-pre-processing.html">Pre-processing Effects</a></li>
+            </ul>
+         </li>
+          <li><a href="../../audio/data_formats.html">Data Formats</a></li>
+          <li><a href="../../audio/attributes.html">Attributes</a></li>
+          <li><a href="../../audio/warmup.html">Warmup</a></li>
+          <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="../../audio/latency.html">
+                <span class="en">Latency</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="../../audio/latency_contrib.html">Contributors</a></li>
+              <li><a href="../../audio/latency_design.html">Design</a></li>
+              <li><a href="../../audio/latency_measure.html">Measure</a></li>
+              <li><a href="../../audio/testing_circuit.html">Light Testing Circuit</a></li>
+              <li><a href="../../audio/loopback.html">Audio Loopback Dongle</a></li>
+              <li><a href="../../audio/latency_measurements.html">Measurements</a></li>
+              <li><a href="../../audio/latency_app.html">Applications</a></li>
+            </ul>
+          </li>
+          <li><a href="../../audio/avoiding_pi.html">Priority Inversion</a></li>
+          <li><a href="../../audio/src.html">Sample Rate Conversion</a></li>
+          <li><a href="../../audio/debugging.html">Debugging</a></li>
+          <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="../../audio/midi.html">
+                <span class="em">MIDI</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="../../audio/midi_arch.html">MIDI Architecture</a></li>
+              <li><a href="../../audio/midi_test.html">MIDI Test Procedure</a></li>
+            </ul>
+          <li><a href="../../audio/usb.html">USB Digital Audio</a></li>
+          <li><a href="../../audio/tv.html">TV Audio</a></li>
+        </ul>
+      </li>
+      <li><a href="../../automotive.html">Automotive</a></li>
+      <li><a href="../../bluetooth.html">Bluetooth</a></li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../../camera/index.html">
+            <span class="en">Camera</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../../camera/camera3.html">Camera HAL3</a></li>
+          <li><a href="../../camera/camera3_requests_hal.html">HAL Subsystem</a></li>
+          <li><a href="../../camera/camera3_metadata.html">Metadata and Controls</a></li>
+          <li><a href="../../camera/camera3_3Amodes.html">3A Modes and State</a></li>
+          <li><a href="../../camera/camera3_crop_reprocess.html">Output and Cropping</a></li>
+          <li><a href="../../camera/camera3_error_stream.html">Errors and Streams</a></li>
+          <li><a href="../../camera/camera3_requests_methods.html">Request Creation</a></li>
+          <li><a href="../../camera/versioning.html">Version Support</a></li>
+        </ul>
+      </li>
+
+      <li><a href="../../drm.html">DRM</a></li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../../graphics/index.html">
+            <span class="en">Graphics</span>
+          </a>
+        </div>
+        <ul>
+         <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="../../graphics/architecture.html">
+                <span class="en">Architecture</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="../../graphics/arch-bq-gralloc.html">BufferQueue</a></li>
+              <li><a href="../../graphics/arch-sf-hwc.html">SurfaceFlinger and HWC</a></li>
+              <li><a href="../../graphics/arch-sh.html">Surface and SurfaceHolder</a></li>
+              <li><a href="../../graphics/arch-egl-opengl.html">OpenGL ES</a></li>
+              <li><a href="../../graphics/arch-vulkan.html">Vulkan</a></li>
+              <li><a href="../../graphics/arch-sv-glsv.html">SurfaceView</a></li>
+              <li><a href="../../graphics/arch-st.html">SurfaceTexture</a></li>
+              <li><a href="../../graphics/arch-tv.html">TextureView</a></li>
+              <li><a href="../../graphics/arch-gameloops.html">Game Loops</a></li>
+            </ul>
+         </li>
+         <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="../../graphics/implement.html">
+                <span class="en">Implementing</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="../../graphics/implement-hwc.html">Hardware Composer HAL</a></li>
+              <li><a href="../../graphics/implement-vsync.html">VSYNC</a></li>
+              <li><a href="../../graphics/implement-vulkan.html">Vulkan</a></li>
+              <li><a href="../../graphics/implement-vdisplays.html">Virtual Displays</a></li>
+            </ul>
+         </li>
+         <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="../../graphics/testing.html">
+                <span class="en">OpenGL ES Testing</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="../../graphics/build-tests.html">Building test programs</a></li>
+              <li><a href="../../graphics/port-tests.html">Porting the test framework</a></li>
+              <li><a href="../../graphics/run-tests.html">Running the tests</a></li>
+              <li><a href="../../graphics/automate-tests.html">Automating the tests</a></li>
+              <li><a href="../../graphics/test-groups.html">Using special test groups</a></li>
+              <li><a href="../../graphics/cts-integration.html">Integrating with Android CTS</a></li>
+            </ul>
+         </li>
+        </ul> </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../../input/index.html">
+            <span class="en">Input</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../../input/overview.html">Overview</a></li>
+          <li><a href="../../input/key-layout-files.html">Key Layout Files</a></li>
+          <li><a href="../../input/key-character-map-files.html">Key Character Map Files</a></li>
+          <li><a href="../../input/input-device-configuration-files.html">Input Device Configuration Files</a></li>
+          <li><a href="../../input/migration-guide.html">Migration Guide</a></li>
+          <li><a href="../../input/keyboard-devices.html">Keyboard Devices</a></li>
+          <li><a href="../input/touch-devices.html">Touch Devices</a></li>
+          <li><a href="../input/dumpsys.html">Diagnostics</a></li>
+          <li><a href="../../input/getevent.html">Getevent</a></li>
+          <li><a href="../../input/validate-keymaps.html">Validate Keymaps</a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../../media.html">
+            <span class="en">Media</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../../media/framework-hardening.html">Framework
+          Hardening</a></li>
+          <li><a href="../../media/soc.html">SoC Dependencies</a></li>
+          <li><a href="../../media/oem.html">OEM Dependencies</a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../../sensors/index.html">
+            <span class="en">Sensors</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../../sensors/sensor-stack.html">Sensor stack</a></li>
+          <li><a href="../../sensors/report-modes.html">Reporting modes</a></li>
+          <li><a href="../../sensors/suspend-mode.html">Suspend mode</a></li>
+          <li><a href="../../sensors/power-use.html">Power consumption</a></li>
+          <li><a href="../../sensors/interaction.html">Interaction</span></a></li>
+          <li><a href="../../sensors/hal-interface.html">HAL interface</a></li>
+          <li><a href="../../sensors/batching.html">Batching</a></li>
+          <li><a href="../../sensors/sensor-types.html">Sensor types</a></li>
+          <li><a href="../../sensors/versioning.html">Version deprecation</a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="https://source.android.com/devices/storage/index.html">
+            <span class="en">Storage</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../../storage/traditional.html">Traditional Storage</a></li>
+          <li><a href="../../storage/adoptable.html">Adoptable Storage</a></li>
+          <li><a href="../../storage/config.html">Device Configuration</a></li>
+          <li><a href="../../storage/config-example.html">Configuration Examples</a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../../tv/index.html">
+            <span class="en">TV</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../../tv/HDMI-CEC.html">HDMI-CEC control service</a></li>
+          <li><a href="../../tv/reference-tv-app.html">Reference TV App</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li> <!-- End nav-section, Device Interfaces-->
+
+
+  <li class="nav-section"> <!--Begin nav-section, Core Technologies-->
+    <div class="nav-section-header">
+      <a href="../index.html">
+        <span class="en">Core Technologies</span>
+      </a>
+    </div>
+
+    <ul>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="index.html">
+          <span class="en">ART and Dalvik</span></a>
+        </div>
+        <ul>
+          <li><a href="dalvik-bytecode.html">Bytecode Format</a></li>
+          <li><a href="dex-format.html">.Dex Format</a></li>
+          <li><a href="instruction-formats.html">Instruction Formats</a></li>
+          <li><a href="constraints.html">Constraints</a></li>
+          <li><a href="configure.html">Configuration</a></li>
+          <li><a href="gc-debug.html">Garbage Collection</a></li>
+          <li><a href="jit-compiler.html">JIT Compilation</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+            <a href="../config/index.html">
+              <span class="en">Configuration</span>
+            </a>
+        </div>
+        <ul>
+          <li><a href="../config/carrier.html">Carrier Customization</a></li>
+          <li><a href="../config/connect_tests.html">Connectivity Tests</a></li>
+          <li><a href="../config/filesystem.html">File System</a></li>
+          <li><a href="../kernel.html">Kernel Configuration</a></li>
+          <li><a href="../config/kernel_network_tests.html">Kernel Network Tests</a></li>
+          <li><a href="../config/low-ram.html">Low RAM</a></li>
+          <li><a href="../config/namespaces_libraries.html">Namespaces for Libraries</a></li>
+          <li><a href="../config/renderer.html">OpenGLRenderer</a></li>
+          <li><a href="../config/runtime_perms.html">Runtime Permissions</a></li>
+          <li><a href="../config/uicc.html">UICC</a></li>
+          <li><a href="../config/voicemail.html">Visual Voicemail</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+            <a href="../connect/index.html">
+              <span class="en">Connectivity</span>
+            </a>
+        </div>
+        <ul>
+          <li><a href="../connect/block-numbers.html">Block Phone Numbers</a></li>
+          <li><a href="../connect/call-notification.html">Call Notifications</a></li>
+          <li><a href="../connect/data-saver.html">Data Saver Mode</a></li>
+          <li><a href="../connect/felica.html">Host Card Emulation of FeliCa</a></li>
+          <li><a href="../connect/ril.html">Radio Interface Layer (RIL)</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../datausage/index.html">
+            <span class="en">Data Usage</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../datausage/iface-overview.html">Network interface statistics overview</a></li>
+          <li><a href="../datausage/excluding-network-types.html">Excluding Network Types from Data Usage</a></li>
+          <li><a href="../datausage/tethering-data.html">Tethering Data</a></li>
+          <li><a href="../datausage/usage-cycle-resets-dates.html">Usage Cycle Reset Dates</a></li>
+          <li><a href="../datausage/kernel-overview.html">Kernel Overview</a></li>
+          <li><a href="../datausage/tags-explained.html">Data Usage Tags Explained</a></li>
+          <li><a href="../datausage/kernel-changes.html">Kernel Changes</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../debug/index.html">
+            <span class="en">Debugging</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../debug/asan.html">AddressSanitizer</a></li>
+          <li><a href="../debug/dumpsys.html">Dumpsys</a></li>
+          <li><a href="../debug/native-memory.html">Native Memory Use</a></li>
+          <li><a href="../debug/netstats.html">Network Use</a></li>
+          <li><a href="../debug/procstats.html">RAM Use</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../admin/index.html">
+          <span class="en">Device Administration</span></a>
+        </div>
+        <ul>
+          <li><a href="../admin/implement.html">Implementation</a></li>
+          <li><a href="../admin/multi-user.html">Multiple Users</a></li>
+          <li><a href="../admin/managed-profiles.html">Managed Profiles</a></li>
+          <li><a href="../admin/provision.html">Provisioning</a></li>
+          <li><a href="../admin/multiuser-apps.html">Multiuser Apps</a></li>
+          <li><a href="../admin/enterprise-telephony.html">Enterprise Telephony</a></li>
+          <li><a href="../admin/testing-provision.html">Testing Device Provisioning</a></li>
+          <li><a href="../admin/testing-setup.html">Testing Device Administration</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+            <a href="../display/index.html">
+              <span class="en">Display Settings</span></a>
+        </div>
+        <ul>
+          <li><a href="../display/dnd.html">Do Not Disturb</a></li>
+          <li><a href="../display/multi-window.html">Multi-Window</a></li>
+          <li><a href="../display/hdr.html">HDR Video</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header empty">
+          <a href="../../halref/index.html">
+            <span class="en">HAL File Reference</span>
+          </a>
+        </div>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+            <a href="../ota/index.html">
+              <span class="en">OTA Updates</span>
+            </a>
+        </div>
+        <ul>
+          <li><a href="../ota/tools.html">OTA Tools</a></li>
+          <li><a href="../ota/block.html">Block-based OTA</a></li>
+          <li><a href="../ota/inside_packages.html">Inside OTA Packages</a></li>
+          <li><a href="../ota/device_code.html">Device-Specific Code</a></li>
+          <li><a href="../ota/reduce_size.html">Reducing OTA Size</a></li>
+          <li><a href="../ota/sign_builds.html">Signing Builds for Release</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../power/index.html"><span class="en">Power</span></a>
+        </div>
+        <ul>
+          <li><a href="../power/mgmt.html">Power Management</a></li>
+          <li><a href="../power/performance.html">Performance Management</a></li>
+          <li><a href="../power/component.html">Component Power</a></li>
+          <li><a href="../power/device.html">Device Power</a></li>
+          <li><a href="../power/values.html">Power Values</a></li>
+          <li><a href="../power/batterystats.html">Battery Use</a>
+          </li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../test_infra/tradefed/index.html">
+            <span class="en">Testing Infrastructure</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../test_infra/tradefed/fundamentals/index.html">Start Here</a></li>
+          <li><a href="../test_infra/tradefed/fundamentals/machine_setup.html">Machine Setup</a></li>
+          <li><a href="../test_infra/tradefed/fundamentals/devices.html">Working with Devices</a></li>
+          <li><a href="../test_infra/tradefed/fundamentals/lifecycle.html">Test Lifecycle</a></li>
+          <li><a href="../test_infra/tradefed/fundamentals/options.html">Option Handling</a></li>
+          <li><a href="../test_infra/tradefed/full_example.html">An End-to-End Example</a></li>
+          <li id="tradefed-tree-list" class="nav-section">
+            <div class="nav-section-header">
+              <a href="../../../reference/packages.html">
+                <span class="en">Package Index</span>
+              </a>
+            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li> <!-- End nav-section, Core Technologies -->
+</ul> 
+
+
+      </div>
+      <script type="text/javascript">
+        showTradefedRefTree();
+      </script>
+    </div> <!-- end side-nav -->
+    <script>
+      $(document).ready(function() {
+        scrollIntoView("devdoc-nav");
+        });
+    </script>
+
+  
+
+
+
+
+<div class="col-12" id="doc-col" >
+
+
+  
+    
+      
+        <h1 itemprop="name" >Constraints</h1>
+      
+    
+  
+
+
+  
+  <div id="jd-content">
+
+    <div class="jd-descr" itemprop="articleBody">
+    <!--
+    Copyright 2015 The Android Open Source Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+
+<div id="qv-wrapper">
+<div id="qv">
+  <h2 id="Contents">In this document</h2>
+  <ol id="auto-toc">
+  </ol>
+</div>
+</div>
+
+<p>A <code>.dex</code> file is the transport format for Dalvik Bytecode. There are certain
+syntactical and semantical constraints for a file to be a valid <code>.dex</code> file, and
+a runtime is required to support only valid .dex files.</p>
+
+    <h2 id="gen-constraints">General .dex integrity constraints</h2>
+
+    <p>General integrity constraints are concerned with the larger structure of a
+    <code>.dex</code> file, as described in detail in <a href="dex-format.html"><code>.dex</code>
+    format</a>.</p>
+
+    <table>
+      <tr>
+        <th>
+          Identifier
+        </th>
+
+        <th>
+          Description
+        </th>
+      </tr>
+
+      <tr>
+        <td>
+          G1
+        </td>
+
+        <td>
+          The <code>magic</code> number of the <code>.dex</code> file must be
+          <code>dex\n035\0</code> or <code>dex\n037\0</code>.
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          G2
+        </td>
+
+        <td>
+          The checksum must be an Adler-32 checksum of the whole file contents
+          except <code>magic</code> and <code>checksum</code> field.
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          G3
+        </td>
+
+        <td>
+          The signature must be a SHA-1 hash of the whole file contents except <code>magic</code>,
+          <code>checksum</code>, and <code>signature</code>.
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          G4
+        </td>
+
+        <td>
+          The <code>file_size</code> must match the actual file size in bytes.
+        </td>
+      </tr>
+
+
+      <tr>
+        <td>
+          G5
+        </td>
+
+        <td>
+          The <code>header_size</code> must have the value: <code>0x70</code>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          G6
+        </td>
+
+        <td>
+          The <code>endian_tag</code> must have either the value:
+          <code>ENDIAN_CONSTANT</code> or <code>REVERSE_ENDIAN_CONSTANT</code>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          G7
+        </td>
+
+        <td>
+          For each of the <code>link</code>, <code>string_ids</code>,
+          <code>type_ids</code>, <code>proto_ids</code>,
+          <code>field_ids</code>, <code>method_ids</code>, <code>class_defs</code>, and
+          <code>data</code> sections, the <code>offset</code> and <code>size</code> fields must be
+          either both zero or both non-zero. In the latter case, the offset must be
+          four-byte-aligned.
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          G8
+        </td>
+
+        <td>
+          All offset fields in the header except <code>map_off</code> must be four-byte-aligned.
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          G9
+        </td>
+
+        <td>
+          The <code>map_off</code> field must be either zero or point into the
+          data section. In the latter case, the <code>data</code> section must exist.
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          G10
+        </td>
+
+        <td>
+          None of the <code>link</code>, <code>string_ids</code>,
+          <code>type_ids</code>, <code>proto_ids</code>, <code>field_ids</code>,
+          <code>method_ids</code>, <code>class_defs</code> and <code>data</code> sections
+          must overlap each other or the header.
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          G11
+        </td>
+
+        <td>
+          If a map exists, then each map entry must have a valid type. Each type may appear at most once.
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          G12
+        </td>
+
+        <td>
+          If a map exists, then each map entry must have a non-zero offset and
+          size. The offset must point into the corresponding section of the file (i.e. a
+          <code>string_id_item</code> must point into the <code>string_ids</code> section) and the explicit or
+          implicit size of the item must match the actual contents and size of the
+          section.
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          G13
+        </td>
+
+        <td>
+          If a map exists, then the offset of map entry <code>n+1</code> must be greater or
+          equal to the offset of map entry <code>n plus than size of map entry n</code>. This implies
+          non-overlapping entries and low-to-high ordering.
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          G14
+        </td>
+
+        <td>
+          The following types of entries must have an offset that is
+          four-byte-aligned: <code>string_id_item</code>,
+          <code>type_id_item</code>, <code>proto_id_item</code>,
+          <code>field_id_item</code>,
+          <code>method_id_item</code>, <code>class_def_item</code>,
+          <code>type_list</code>, <code>code_item</code>,
+          <code>annotations_directory_item</code>.
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          G15
+        </td>
+
+        <td>
+          For each <code>string_id_item</code>, the <code>string_data_off</code> field must contain a
+          valid reference into the <code>data</code> section. For the referenced <code>string_data_item</code>, the
+          <code>data</code> field must contain a valid MUTF-8 string, and the <code>utf16_size</code> must match
+          the decoded length of the string.
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          G16
+        </td>
+
+        <td>
+          For each <code>type_id_item</code>, the <code>descriptor_idx</code> field must contain a valid
+          reference into the <code>string_ids</code> list. The referenced string must be a valid type
+          descriptor.
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          G17
+        </td>
+
+        <td>
+          For each <code>proto_id_item</code>, the <code>shorty_idx</code> field must contain a valid
+          reference into the <code>string_ids</code> list. The referenced string must be a valid
+          shorty descriptor. Also, the <code>return_type_idx</code> field must be a valid index into
+          the <code>type_ids</code> section, and the <code>parameters_off</code> field must be either zero or a
+          valid offset pointing into the <code>data</code> section. If non-zero, the parameter list
+          must not contain any void entries.
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          G18
+        </td>
+
+        <td>
+          For each <code>field_id_item</code>, both the <code>class_idx</code> and <code>type_idx</code> fields must
+          be valid indices into the <code>type_ids</code> list. The entry referenced by <code>class_idx</code>
+          must be a non-array reference type. In addition, the <code>name_idx</code> field must be a
+          valid reference into the <code>string_ids</code> section, and the contents of the referenced
+          entry must conform to the <code>MemberName</code> specification.
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          G19
+        </td>
+
+        <td>
+          For each <code>method_id_item</code>, the <code>class_idx</code> field must be a valid index
+          into the <code>type_ids</code> section, and the referenced entry must be a non-array
+          reference type. The <code>proto_id</code> field must be a valid reference into the <code>proto_ids</code>
+          list. The <code>name_idx</code> field must be a valid reference into the <code>string_ids</code> section,
+          and the contents of the referenced entry must conform to the <code>MemberName</code>
+          specification.
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          G20
+        </td>
+
+        <td>
+          For each <code>field_id_item</code>, the <code>class_idx</code> field must be a valid index
+          into the <code>type_ids</code> list. The referenced entry must be a non-array reference
+          type.
+        </td>
+      </tr>
+
+</table>
+
+<h2 id="static-constraints">
+      Static bytecode constraints
+    </h2>
+
+    <p>
+    Static constraints are constraints on individual elements of the bytecode.
+    They usually can be checked without employing control or data-flow analysis
+    techniques.
+    </p>
+
+    <table>
+      <tr>
+        <th>
+          Identifier
+        </th>
+
+        <th>
+          Description
+        </th>
+      </tr>
+
+      <tr>
+        <td>
+          A1
+        </td>
+
+        <td>
+          The <code>insns</code> array must not be empty.
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          A2
+        </td>
+
+        <td>
+          The first opcode in the <code>insns</code> array must have index zero.
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          A3
+        </td>
+
+        <td>
+          The <code>insns</code> array must contain only valid Dalvik opcodes.
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          A4
+        </td>
+
+        <td>
+          The index of instruction <code>n+1</code> must equal the index of
+          instruction <code>n</code> plus the length of instruction
+          <code>n</code>, taking into account possible operands.
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          A5
+        </td>
+
+        <td>
+          The last instruction in the <code>insns</code> array must end at index
+          <code>insns_size-1</code>.
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          A6
+        </td>
+
+        <td>
+          All <code>goto</code> and <code>if-&lt;kind&gt;</code> targets must
+          be opcodes within the same method.
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          A7
+        </td>
+
+        <td>
+          All targets of a <code>packed-switch</code> instruction must be
+          opcodes within the same method. The size and the list of targets
+          must be consistent.
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          A8
+        </td>
+
+        <td>
+          All targets of a <code>sparse-switch</code> instruction must be
+          opcodes within the same method. The corresponding table must be
+          consistent and sorted low-to-high.
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          A9
+        </td>
+
+        <td>
+          The <code>B</code> operand of the <code>const-string</code> and
+          <code>const-string/jumbo</code> instructions must be a valid index
+          into the string constant pool.
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          A10
+        </td>
+
+        <td>
+          The <code>C</code> operand of the <code>iget&lt;kind&gt;</code> and
+          <code>iput&lt;kind&gt;</code> instructions must be a valid index into
+          the field constant pool. The referenced entry must represent an
+          instance field.
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          A11
+        </td>
+
+        <td>
+          The <code>C</code> operand of the <code>sget&lt;kind&gt;</code> and
+          <code>sput&lt;kind&gt;</code> instructions must be a valid index into
+          the field constant pool. The referenced entry must represent a static
+          field.
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          A12
+        </td>
+
+        <td>
+          The <code>C</code> operand of the <code>invoke-virtual</code>,
+          <code>invoke-super</code>, <code>invoke-direct</code> and
+          <code>invoke-static</code> instructions must be a valid index into the
+          method constant pool.
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          A13
+        </td>
+
+        <td>
+          The <code>B</code> operand of the <code>invoke-virtual/range</code>,
+          <code>invoke-super/range</code>, <code>invoke-direct/range</code>, and
+          <code>invoke-static/range</code> instructions must be a valid index
+          into the method constant pool.
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          A14
+        </td>
+
+        <td>
+          A method the name of which starts with a '&lt;' must only be invoked
+          implicitly by the VM, not by code originating from a <code>.dex</code> file. The
+          only exception is the instance initializer, which may be invoked by
+          <code>invoke-direct</code>.
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          A15
+        </td>
+
+        <td>
+          The <code>C</code> operand of the <code>invoke-interface</code>
+          instruction must be a valid index into the method constant pool. The
+          referenced <code>method_id</code> must belong to an interface (not a
+          class).
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          A16
+        </td>
+
+        <td>
+          The <code>B</code> operand of the <code>invoke-interface/range</code>
+          instruction must be a valid index into the method constant pool.
+          The referenced <code>method_id</code> must belong to an interface (not
+          a class).
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          A17
+        </td>
+
+        <td>
+          The <code>B</code> operand of the <code>const-class</code>,
+          <code>check-cast</code>, <code>new-instance</code>, and
+          <code>filled-new-array/range</code> instructions must be a valid index
+          into the type constant pool.
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          A18
+        </td>
+
+        <td>
+          The <code>C</code> operand of the <code>instance-of</code>,
+          <code>new-array</code>, and <code>filled-new-array</code>
+          instructions must be a valid index into the type constant pool.
+        </td>
+      </tr>
+
+     <tr>
+        <td>
+          A19
+        </td>
+
+        <td>
+          The dimensions of an array created by a <code>new-array</code>
+          instruction must be less than <code>256</code>.
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          A20
+        </td>
+
+        <td>
+          The <code>new</code> instruction must not refer to array classes,
+          interfaces, or abstract classes.
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          A21
+        </td>
+
+        <td>
+          The type referred to by a <code>new-array</code> instruction must be
+          a valid, non-reference type.
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          A22
+        </td>
+
+        <td>
+          All registers referred to by an instruction in a single-width
+          (non-pair) fashion must be valid for the current method. That is,
+          their indices must be non-negative and smaller than
+          <code>registers_size</code>.
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          A23
+        </td>
+
+        <td>
+          All registers referred to by an instruction in a double-width (pair)
+          fashion must be valid for the current method. That is, their indices
+          must be non-negative and smaller than <code>registers_size-1</code>.
+        </td>
+      </tr>
+      <tr>
+        <td>
+          A24
+        </td>
+
+        <td>
+          The <code>method_id</code> operand of the <code>invoke-virtual</code>
+          and <code>invoke-direct</code> instructions must belong to a class
+          (not an interface). In Dex files prior to version <code>037</code>
+          the same must be true of <code>invoke-super</code> and
+          <code>invoke-static</code> instructions.
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          A25
+        </td>
+
+        <td>
+          The <code>method_id</code> operand of the
+          <code>invoke-virtual/range</code> and
+          <code>invoke-direct/range</code> instructions must belong to a class
+          (not an interface). In Dex files prior to version <code>037</code>
+          the same must be true of <code>invoke-super/range</code> and
+          <code>invoke-static/range</code> instructions.
+        </td>
+      </tr>
+    </table>
+
+    <h2 id="struct-constraints">
+      Structural bytecode constraints
+    </h2>
+
+    <p>
+    Structural constraints are constraints on relationships between several
+    elements of the bytecode. They usually can't be checked without employing
+    control or data-flow analysis techniques.
+    </p>
+
+    <table>
+      <tr>
+        <th>
+          Identifier
+        </th>
+
+        <th>
+          Description
+        </th>
+      </tr>
+
+      <tr>
+        <td>
+          B1
+        </td>
+
+        <td>
+          The number and types of arguments (registers and immediate values)
+          must always match the instruction.
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          B2
+        </td>
+
+        <td>
+          Register pairs must never be broken up.
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          B3
+        </td>
+
+        <td>
+          A register (or pair) has to be assigned first before it can be
+          read.
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          B4
+        </td>
+
+        <td>
+          An <code>invoke-direct</code> instruction must invoke an instance
+          initializer or a method only in the current class or one of its
+          superclasses.
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          B5
+        </td>
+
+        <td>
+          An instance initializer must be invoked only on an uninitialized
+          instance.
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          B6
+        </td>
+
+        <td>
+          Instance methods may be invoked only on and instance fields may only
+          be accessed on already initialized instances.
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          B7
+        </td>
+
+        <td>
+          A register that holds the result of a <code>new-instance</code>
+          instruction must not be used if the same
+          <code>new-instance</code> instruction is again executed before
+          the instance is initialized.
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          B8
+        </td>
+
+        <td>
+           An instance initializer must call another instance initializer (same
+           class or superclass) before any instance members can be accessed.
+           Exceptions are non-inherited instance fields, which can be assigned
+           before calling another initializer, and the <code>Object</code> class
+           in general.
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          B9
+        </td>
+
+        <td>
+           All actual method arguments must be assignment-compatible with their
+           respective formal arguments.
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          B10
+        </td>
+
+        <td>
+           For each instance method invocation, the actual instance must be
+           assignment-compatible with the class or interface specified in the
+           instruction.
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          B11
+        </td>
+
+        <td>
+           A <code>return&lt;kind&gt;</code> instruction must match its
+           method's return type.
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          B12
+        </td>
+
+        <td>
+           When accessing protected members of a superclass, the actual type of
+           the instance being accessed must be either the current class or one
+           of its subclasses.
+        </td>
+      </tr>
+
+     <tr>
+        <td>
+          B13
+        </td>
+
+        <td>
+           The type of a value stored into a static field must be
+           assignment-compatible with or convertible to the field's type.
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          B14
+        </td>
+
+        <td>
+           The type of a value stored into a field must be assignment-compatible
+           with or convertible to the field's type.
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          B15
+        </td>
+
+        <td>
+           The type of every value stored into an array must be
+           assignment-compatible with the array's component type.
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          B16
+        </td>
+
+        <td>
+           The <code>A</code> operand of a <code>throw</code> instruction must
+           be assignment-compatible with <code>java.lang.Throwable</code>.
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          B17
+        </td>
+
+        <td>
+           The last reachable instruction of a method must either be a backwards
+           <code>goto</code> or branch, a <code>return</code>, or a
+           <code>throw</code> instruction. It must not be possible to leave the
+           <code>insns</code> array at the bottom.
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          B18
+        </td>
+
+        <td>
+          The unassigned half of a former register pair may not be read (is
+          considered invalid) until it has been re-assigned by some other
+          instruction.
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          B19
+        </td>
+
+        <td>
+          A <code>move-result&lt;kind&gt;</code> instruction must be immediately
+          preceded (in the <code>insns</code> array) by an
+          <code>invoke-&lt;kind&gt;</code> instruction. The only exception is
+          the <code>move-result-object</code> instruction, which may also be
+          preceded by a <code>filled-new-array</code> instruction.
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          B20
+        </td>
+
+        <td>
+          A <code>move-result&lt;kind&gt;</code> instruction must be immediately
+          preceded (in actual control flow) by a matching
+          <code>return-&lt;kind&gt;</code> instruction (it must not be jumped
+          to). The only exception is the <code>move-result-object</code>
+          instruction, which may also be preceded by a
+          <code>filled-new-array</code> instruction.
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          B21
+        </td>
+
+        <td>
+          A <code>move-exception</code> instruction must appear only as the
+          first instruction in an exception handler.
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          B22
+        </td>
+
+        <td>
+          The <code>packed-switch-data</code>, <code>sparse-switch-data</code>,
+          and <code>fill-array-data</code> pseudo-instructions must not be
+          reachable by control flow.
+        </td>
+      </tr>
+    </table>
+
+    </div>
+
+      <div class="content-footer-sac"
+                    itemscope itemtype="http://schema.org/SiteNavigationElement">
+        <div class="layout-content-col col-9" style="padding-top:4px">
+        </div>
+        
+        <div class="paging-links layout-content-col col-4">
+          
+        </div>
+        
+      </div>
+      
+      
+    </div> <!-- end jd-content -->
+  <div id="footer" class="wrap" >
+  <style>.feedback { float: right !Important }</style>
+  <div class="feedback">
+    <a href="constraints.html#" class="button" onclick=" try {
+      userfeedback.api.startFeedback({'productId':'715571','authuser':'1'});return false;}catch(e){}">Site Feedback</a>
+  </div>
+  <div id="copyright">
+    
+  Except as noted, this content is 
+  licensed under <a href="http://creativecommons.org/licenses/by/2.5/">
+  Creative Commons Attribution 2.5</a>. For details and 
+  restrictions, see the <a href="../../../license.html">Content 
+  License</a>.
+  </div>
+    <div id="footerlinks">
+    
+  <p>
+    <a href="../../../source/index.html">About Android</a>&nbsp;&nbsp;|&nbsp;
+    <a href="../../../source/community.html">Community</a>&nbsp;&nbsp;|&nbsp;
+    <a href="../../../legal.html">Legal</a>&nbsp;&nbsp;|&nbsp;
+  </p>
+  </div>
+
+</div><!-- end doc-content -->
+
+</div> <!-- end body-content --> 
+
+
+
+
+
+
+</body>
+</html>
+
+
+

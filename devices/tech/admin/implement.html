@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<meta name="Description" content="This section describes how to enable and validate device administration features required to prepare devices for managed profiles. It also covers device owner user cases that are essential in a corporate environment. In addition to Android Open Source…">
+
+<link rel="shortcut icon" type="image/x-icon" href="../../../favicon.ico" />
+<title>Implementing Device Administration | Android Open Source Project</title>
+
+<!-- STYLESHEETS -->
+<link rel="stylesheet"
+href="https://fonts.googleapis.com/css?family=Roboto:regular,medium,thin,italic,mediumitalic,bold" title="roboto">
+<link href="../../../assets/css/default.css" rel="stylesheet" type="text/css">
+
+
+
+<!-- JAVASCRIPT -->
+<script src="https://www.google.com/jsapi" type="text/javascript"></script>
+<script src="../../../assets/js/android_3p-bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+  var toRoot = "/";
+  
+  var devsite = false;
+  
+</script>
+<script src="../../../assets/js/docs.js" type="text/javascript"></script>
+
+<script src="../../../navtree_data.js" type="text/javascript"></script>
+
+
+<script type="text/javascript" src="https://www.gstatic.com/feedback/api.js"></script>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-45455297-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</head>
+
+<body class="gc-documentation 
+  " itemscope itemtype="http://schema.org/Article">
+<a name="top"></a>
+
+  
+    <!-- Header -->
+    <div id="header">
+        <div class="wrap" id="header-wrap">
+          <div class="col-3 saclogo">
+          <a href="../../../index.html">
+            <img src="../../../assets/images/sac_logo.png"
+                srcset="/assets/images/sac_logo@2x.png 2x"
+                width="123" height="25" alt="Android Open Source Project" />
+          </a>
+          </div>
+            <ul class="nav-x col-9">
+                <li class="source">
+                  <a href="../../../source/index.html" 
+                  >Source</a></li>
+                <li class="devices"><a href="../../index.html" class="selected"
+                  >Devices</a></li>
+                <li class="security"><a href="../../../security/index.html" 
+                  >Security</a></li>
+                <li class="compatibility last"><a href="../../../compatibility/index.html" 
+                  >Compatibility</a></li>
+            </ul>
+            <!-- New Search -->
+            <div class="menu-container">
+            <div class="moremenu">
+    <div id="more-btn"></div>
+  </div>
+  <div class="morehover" id="moremenu">
+    <div class="top"></div>
+    <div class="mid">
+      <div class="header">Android Sites</div>
+      <ul>
+        <li class="active"><a>Android Open Source Project</a></li>
+        <li><a href="http://www.android.com">Android.com</a></li>
+        <li><a href="http://developer.android.com">Android Developers</a></li>
+      </ul>
+      <!-- <div class="header">Support</div>
+      <ul>
+        <li><a href="/support.html">Developer Support</a></li>
+      </ul> -->
+      <br class="clearfix" />
+    </div>
+    <div class="bottom"></div>
+  </div>
+
+  <div class="search" id="search-container">
+    <div class="search-inner">
+      <div id="search-btn"></div>
+      <div class="left"></div>
+      <form onsubmit="return submit_search()">
+        <input id="search_autocomplete" type="text" value="" autocomplete="off" name="q"
+onfocus="search_focus_changed(this, true)" onblur="search_focus_changed(this, false)"
+onkeydown="return search_changed(event, true, '/')"
+onkeyup="return search_changed(event, false, '/')" />
+      </form>
+      <div class="right"></div>
+        <a class="close hide">close</a>
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+  </div>
+  <div id="search_filtered_wrapper">
+    <div id="search_filtered_div" class="no-display">
+        <ul id="search_filtered">
+        </ul>
+    </div>
+  </div>
+
+  </div>
+  <!-- /New Search> -->
+        </div>
+    </div>
+    <!-- /Header -->
+
+  <div id="searchResults" class="wrap" style="display:none;">
+          <h2 id="searchTitle">Results</h2>
+          <div id="leftSearchControl" class="search-control">Loading...</div>
+  </div>
+
+  
+  
+  
+    
+  <div class="wrap clearfix" id="body-content">
+    <div class="col-4" id="side-nav" itemscope itemtype="http://schema.org/SiteNavigationElement">
+      <div id="devdoc-nav" class="scroll-pane">
+<a class="totop" href="implement.html#top" data-g-event="left-nav-top">to top</a>
+
+<!--
+    Copyright 2015 The Android Open Source Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<ul id="nav">
+  <li class="nav-section">  <!-- Begin nav section, Device Interfaces -->
+    <div class="nav-section-header">
+      <a href="../../index.html">
+        <span class="en">Interfaces</span>
+      </a>
+    </div>
+    <ul>
+  <li class="nav-section">
+  <div class="nav-section-header">
+      <a href="../../accessories/index.html">
+        <span class="en">Accessories</span>
+      </a>
+    </div>
+    <ul>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../../accessories/audio.html">
+            <span class="en">Audio Accessories</span>
+          </a>
+        </div>
+        <ul>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../../accessories/headset/index.html">
+            <span class="en">Headset</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../../accessories/headset/specification.html">Specification</a></li>
+          <li><a href="../../accessories/headset/requirements.html">Requirements</a></li>
+          <li><a href="../../accessories/headset/testing.html">Testing</a></li>
+        </ul>
+      </li>
+        </ul>
+      </li>
+  <li class="nav-section">
+  <div class="nav-section-header">
+      <a href="../../accessories/custom.html">
+        <span class="en">Custom Accessories</span>
+      </a>
+    </div>
+    <ul>
+      <li class="nav-section">
+        <div class="nav-section-header"><a href="../../accessories/protocol.html"><span class="en">AOA</span>
+        </a>
+        </div>
+        <ul>
+          <li><a href="../../accessories/aoa2.html">AOA 2.0</a></li>
+          <li><a href="../../accessories/aoa.html">AOA 1.0</a></li>
+        </ul>
+        </li>
+        <div class="nav-section-header"><a href="../../accessories/stylus.html"><span class="en">Stylus</span>
+        </a>
+        </div>
+       </ul>
+     </li>
+    </ul>
+      <li class="nav-section">
+      <div class="nav-section-header">
+        <a href="../../audio/index.html">
+          <span class="en">Audio</span>
+        </a>
+      </div>
+        <ul>
+          <li><a href="../../audio/terminology.html">Terminology</a></li>
+          <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="../../audio/implement.html">
+                <span class="en">Implementation</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="../../audio/implement-policy.html">Policy Configuration</a></li>
+              <li><a href="../../audio/implement-shared-library.html">Shared Library</a></li>
+              <li><a href="../../audio/implement-pre-processing.html">Pre-processing Effects</a></li>
+            </ul>
+         </li>
+          <li><a href="../../audio/data_formats.html">Data Formats</a></li>
+          <li><a href="../../audio/attributes.html">Attributes</a></li>
+          <li><a href="../../audio/warmup.html">Warmup</a></li>
+          <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="../../audio/latency.html">
+                <span class="en">Latency</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="../../audio/latency_contrib.html">Contributors</a></li>
+              <li><a href="../../audio/latency_design.html">Design</a></li>
+              <li><a href="../../audio/latency_measure.html">Measure</a></li>
+              <li><a href="../../audio/testing_circuit.html">Light Testing Circuit</a></li>
+              <li><a href="../../audio/loopback.html">Audio Loopback Dongle</a></li>
+              <li><a href="../../audio/latency_measurements.html">Measurements</a></li>
+              <li><a href="../../audio/latency_app.html">Applications</a></li>
+            </ul>
+          </li>
+          <li><a href="../../audio/avoiding_pi.html">Priority Inversion</a></li>
+          <li><a href="../../audio/src.html">Sample Rate Conversion</a></li>
+          <li><a href="../../audio/debugging.html">Debugging</a></li>
+          <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="../../audio/midi.html">
+                <span class="em">MIDI</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="../../audio/midi_arch.html">MIDI Architecture</a></li>
+              <li><a href="../../audio/midi_test.html">MIDI Test Procedure</a></li>
+            </ul>
+          <li><a href="../../audio/usb.html">USB Digital Audio</a></li>
+          <li><a href="../../audio/tv.html">TV Audio</a></li>
+        </ul>
+      </li>
+      <li><a href="../../automotive.html">Automotive</a></li>
+      <li><a href="../../bluetooth.html">Bluetooth</a></li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../../camera/index.html">
+            <span class="en">Camera</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../../camera/camera3.html">Camera HAL3</a></li>
+          <li><a href="../../camera/camera3_requests_hal.html">HAL Subsystem</a></li>
+          <li><a href="../../camera/camera3_metadata.html">Metadata and Controls</a></li>
+          <li><a href="../../camera/camera3_3Amodes.html">3A Modes and State</a></li>
+          <li><a href="../../camera/camera3_crop_reprocess.html">Output and Cropping</a></li>
+          <li><a href="../../camera/camera3_error_stream.html">Errors and Streams</a></li>
+          <li><a href="../../camera/camera3_requests_methods.html">Request Creation</a></li>
+          <li><a href="../../camera/versioning.html">Version Support</a></li>
+        </ul>
+      </li>
+
+      <li><a href="../../drm.html">DRM</a></li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../../graphics/index.html">
+            <span class="en">Graphics</span>
+          </a>
+        </div>
+        <ul>
+         <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="../../graphics/architecture.html">
+                <span class="en">Architecture</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="../../graphics/arch-bq-gralloc.html">BufferQueue</a></li>
+              <li><a href="../../graphics/arch-sf-hwc.html">SurfaceFlinger and HWC</a></li>
+              <li><a href="../../graphics/arch-sh.html">Surface and SurfaceHolder</a></li>
+              <li><a href="../../graphics/arch-egl-opengl.html">OpenGL ES</a></li>
+              <li><a href="../../graphics/arch-vulkan.html">Vulkan</a></li>
+              <li><a href="../../graphics/arch-sv-glsv.html">SurfaceView</a></li>
+              <li><a href="../../graphics/arch-st.html">SurfaceTexture</a></li>
+              <li><a href="../../graphics/arch-tv.html">TextureView</a></li>
+              <li><a href="../../graphics/arch-gameloops.html">Game Loops</a></li>
+            </ul>
+         </li>
+         <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="../../graphics/implement.html">
+                <span class="en">Implementing</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="../../graphics/implement-hwc.html">Hardware Composer HAL</a></li>
+              <li><a href="../../graphics/implement-vsync.html">VSYNC</a></li>
+              <li><a href="../../graphics/implement-vulkan.html">Vulkan</a></li>
+              <li><a href="../../graphics/implement-vdisplays.html">Virtual Displays</a></li>
+            </ul>
+         </li>
+         <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="../../graphics/testing.html">
+                <span class="en">OpenGL ES Testing</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="../../graphics/build-tests.html">Building test programs</a></li>
+              <li><a href="../../graphics/port-tests.html">Porting the test framework</a></li>
+              <li><a href="../../graphics/run-tests.html">Running the tests</a></li>
+              <li><a href="../../graphics/automate-tests.html">Automating the tests</a></li>
+              <li><a href="../../graphics/test-groups.html">Using special test groups</a></li>
+              <li><a href="../../graphics/cts-integration.html">Integrating with Android CTS</a></li>
+            </ul>
+         </li>
+        </ul> </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../../input/index.html">
+            <span class="en">Input</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../../input/overview.html">Overview</a></li>
+          <li><a href="../../input/key-layout-files.html">Key Layout Files</a></li>
+          <li><a href="../../input/key-character-map-files.html">Key Character Map Files</a></li>
+          <li><a href="../../input/input-device-configuration-files.html">Input Device Configuration Files</a></li>
+          <li><a href="../../input/migration-guide.html">Migration Guide</a></li>
+          <li><a href="../../input/keyboard-devices.html">Keyboard Devices</a></li>
+          <li><a href="../input/touch-devices.html">Touch Devices</a></li>
+          <li><a href="../input/dumpsys.html">Diagnostics</a></li>
+          <li><a href="../../input/getevent.html">Getevent</a></li>
+          <li><a href="../../input/validate-keymaps.html">Validate Keymaps</a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../../media.html">
+            <span class="en">Media</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../../media/framework-hardening.html">Framework
+          Hardening</a></li>
+          <li><a href="../../media/soc.html">SoC Dependencies</a></li>
+          <li><a href="../../media/oem.html">OEM Dependencies</a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../../sensors/index.html">
+            <span class="en">Sensors</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../../sensors/sensor-stack.html">Sensor stack</a></li>
+          <li><a href="../../sensors/report-modes.html">Reporting modes</a></li>
+          <li><a href="../../sensors/suspend-mode.html">Suspend mode</a></li>
+          <li><a href="../../sensors/power-use.html">Power consumption</a></li>
+          <li><a href="../../sensors/interaction.html">Interaction</span></a></li>
+          <li><a href="../../sensors/hal-interface.html">HAL interface</a></li>
+          <li><a href="../../sensors/batching.html">Batching</a></li>
+          <li><a href="../../sensors/sensor-types.html">Sensor types</a></li>
+          <li><a href="../../sensors/versioning.html">Version deprecation</a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="https://source.android.com/devices/storage/index.html">
+            <span class="en">Storage</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../../storage/traditional.html">Traditional Storage</a></li>
+          <li><a href="../../storage/adoptable.html">Adoptable Storage</a></li>
+          <li><a href="../../storage/config.html">Device Configuration</a></li>
+          <li><a href="../../storage/config-example.html">Configuration Examples</a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../../tv/index.html">
+            <span class="en">TV</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../../tv/HDMI-CEC.html">HDMI-CEC control service</a></li>
+          <li><a href="../../tv/reference-tv-app.html">Reference TV App</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li> <!-- End nav-section, Device Interfaces-->
+
+
+  <li class="nav-section"> <!--Begin nav-section, Core Technologies-->
+    <div class="nav-section-header">
+      <a href="../index.html">
+        <span class="en">Core Technologies</span>
+      </a>
+    </div>
+
+    <ul>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../dalvik/index.html">
+          <span class="en">ART and Dalvik</span></a>
+        </div>
+        <ul>
+          <li><a href="../dalvik/dalvik-bytecode.html">Bytecode Format</a></li>
+          <li><a href="../dalvik/dex-format.html">.Dex Format</a></li>
+          <li><a href="../dalvik/instruction-formats.html">Instruction Formats</a></li>
+          <li><a href="../dalvik/constraints.html">Constraints</a></li>
+          <li><a href="../dalvik/configure.html">Configuration</a></li>
+          <li><a href="../dalvik/gc-debug.html">Garbage Collection</a></li>
+          <li><a href="../dalvik/jit-compiler.html">JIT Compilation</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+            <a href="../config/index.html">
+              <span class="en">Configuration</span>
+            </a>
+        </div>
+        <ul>
+          <li><a href="../config/carrier.html">Carrier Customization</a></li>
+          <li><a href="../config/connect_tests.html">Connectivity Tests</a></li>
+          <li><a href="../config/filesystem.html">File System</a></li>
+          <li><a href="../kernel.html">Kernel Configuration</a></li>
+          <li><a href="../config/kernel_network_tests.html">Kernel Network Tests</a></li>
+          <li><a href="../config/low-ram.html">Low RAM</a></li>
+          <li><a href="../config/namespaces_libraries.html">Namespaces for Libraries</a></li>
+          <li><a href="../config/renderer.html">OpenGLRenderer</a></li>
+          <li><a href="../config/runtime_perms.html">Runtime Permissions</a></li>
+          <li><a href="../config/uicc.html">UICC</a></li>
+          <li><a href="../config/voicemail.html">Visual Voicemail</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+            <a href="../connect/index.html">
+              <span class="en">Connectivity</span>
+            </a>
+        </div>
+        <ul>
+          <li><a href="../connect/block-numbers.html">Block Phone Numbers</a></li>
+          <li><a href="../connect/call-notification.html">Call Notifications</a></li>
+          <li><a href="../connect/data-saver.html">Data Saver Mode</a></li>
+          <li><a href="../connect/felica.html">Host Card Emulation of FeliCa</a></li>
+          <li><a href="../connect/ril.html">Radio Interface Layer (RIL)</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../datausage/index.html">
+            <span class="en">Data Usage</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../datausage/iface-overview.html">Network interface statistics overview</a></li>
+          <li><a href="../datausage/excluding-network-types.html">Excluding Network Types from Data Usage</a></li>
+          <li><a href="../datausage/tethering-data.html">Tethering Data</a></li>
+          <li><a href="../datausage/usage-cycle-resets-dates.html">Usage Cycle Reset Dates</a></li>
+          <li><a href="../datausage/kernel-overview.html">Kernel Overview</a></li>
+          <li><a href="../datausage/tags-explained.html">Data Usage Tags Explained</a></li>
+          <li><a href="../datausage/kernel-changes.html">Kernel Changes</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../debug/index.html">
+            <span class="en">Debugging</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../debug/asan.html">AddressSanitizer</a></li>
+          <li><a href="../debug/dumpsys.html">Dumpsys</a></li>
+          <li><a href="../debug/native-memory.html">Native Memory Use</a></li>
+          <li><a href="../debug/netstats.html">Network Use</a></li>
+          <li><a href="../debug/procstats.html">RAM Use</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="index.html">
+          <span class="en">Device Administration</span></a>
+        </div>
+        <ul>
+          <li><a href="implement.html">Implementation</a></li>
+          <li><a href="multi-user.html">Multiple Users</a></li>
+          <li><a href="managed-profiles.html">Managed Profiles</a></li>
+          <li><a href="provision.html">Provisioning</a></li>
+          <li><a href="multiuser-apps.html">Multiuser Apps</a></li>
+          <li><a href="enterprise-telephony.html">Enterprise Telephony</a></li>
+          <li><a href="testing-provision.html">Testing Device Provisioning</a></li>
+          <li><a href="testing-setup.html">Testing Device Administration</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+            <a href="../display/index.html">
+              <span class="en">Display Settings</span></a>
+        </div>
+        <ul>
+          <li><a href="../display/dnd.html">Do Not Disturb</a></li>
+          <li><a href="../display/multi-window.html">Multi-Window</a></li>
+          <li><a href="../display/hdr.html">HDR Video</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header empty">
+          <a href="../../halref/index.html">
+            <span class="en">HAL File Reference</span>
+          </a>
+        </div>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+            <a href="../ota/index.html">
+              <span class="en">OTA Updates</span>
+            </a>
+        </div>
+        <ul>
+          <li><a href="../ota/tools.html">OTA Tools</a></li>
+          <li><a href="../ota/block.html">Block-based OTA</a></li>
+          <li><a href="../ota/inside_packages.html">Inside OTA Packages</a></li>
+          <li><a href="../ota/device_code.html">Device-Specific Code</a></li>
+          <li><a href="../ota/reduce_size.html">Reducing OTA Size</a></li>
+          <li><a href="../ota/sign_builds.html">Signing Builds for Release</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../power/index.html"><span class="en">Power</span></a>
+        </div>
+        <ul>
+          <li><a href="../power/mgmt.html">Power Management</a></li>
+          <li><a href="../power/performance.html">Performance Management</a></li>
+          <li><a href="../power/component.html">Component Power</a></li>
+          <li><a href="../power/device.html">Device Power</a></li>
+          <li><a href="../power/values.html">Power Values</a></li>
+          <li><a href="../power/batterystats.html">Battery Use</a>
+          </li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../test_infra/tradefed/index.html">
+            <span class="en">Testing Infrastructure</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../test_infra/tradefed/fundamentals/index.html">Start Here</a></li>
+          <li><a href="../test_infra/tradefed/fundamentals/machine_setup.html">Machine Setup</a></li>
+          <li><a href="../test_infra/tradefed/fundamentals/devices.html">Working with Devices</a></li>
+          <li><a href="../test_infra/tradefed/fundamentals/lifecycle.html">Test Lifecycle</a></li>
+          <li><a href="../test_infra/tradefed/fundamentals/options.html">Option Handling</a></li>
+          <li><a href="../test_infra/tradefed/full_example.html">An End-to-End Example</a></li>
+          <li id="tradefed-tree-list" class="nav-section">
+            <div class="nav-section-header">
+              <a href="../../../reference/packages.html">
+                <span class="en">Package Index</span>
+              </a>
+            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li> <!-- End nav-section, Core Technologies -->
+</ul> 
+
+
+      </div>
+      <script type="text/javascript">
+        showTradefedRefTree();
+      </script>
+    </div> <!-- end side-nav -->
+    <script>
+      $(document).ready(function() {
+        scrollIntoView("devdoc-nav");
+        });
+    </script>
+
+  
+
+
+
+
+<div class="col-12" id="doc-col" >
+
+
+  
+    
+      
+        <h1 itemprop="name" >Implementing Device Administration</h1>
+      
+    
+  
+
+
+  
+  <div id="jd-content">
+
+    <div class="jd-descr" itemprop="articleBody">
+    <!--
+    Copyright 2015 The Android Open Source Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<div id="qv-wrapper">
+  <div id="qv">
+    <h2>In this document</h2>
+    <ol id="auto-toc">
+    </ol>
+  </div>
+</div>
+
+<p>This section describes how to enable and validate device administration
+features required to prepare devices for managed profiles. It also covers device
+owner user cases that are essential in a corporate environment.</p>
+
+<p>In addition to Android Open Source Project (AOSP) code, a device requires the
+following components to function with managed profiles.</p>
+
+<h2 id=requirements>General requirements</h2>
+<p>Devices intending to support device administration must meet the following
+general requirements.</p>
+
+<h3 id=HAL_values>Thermal HAL values</h3>
+<p>Android 7.0 includes support for HardwarePropertiesManager API, a new device
+monitoring and health reporting API that enables applications to query the state
+of device hardware. This API is exposed via
+<code>android.os.HardwarePropertiesManager</code> and makes calls through
+<code>HardwarePropertiesManagerService</code> to the hardware thermal HAL
+(<code>hardware/libhardware/include/hardware/thermal.h</code>). It is a
+protected API, meaning only device/profile owner Device Policy Controller (DPC)
+applications and the current <code>VrListenerService</code> can call it.</p>
+
+<p>To support the HardwarePropertiesManager API, the device thermal HAL
+implementation must be able to report the following values:</p>
+
+<table>
+<tr>
+<th width="32%">Value</th>
+<th>Reporting Scale</th>
+<th>Enables</th>
+</tr>
+
+<tr>
+  <td>Temperature of [CPU|GPU|Battery|Device Skin]</td>
+  <td>Temperature of component in degrees Celsius</td>
+  <td>Apps can check device temperatures and component throttling/shutdown
+  temperatures</td>
+</tr>
+
+<tr>
+  <td>CPU active/total enabled times</td>
+  <td>Time in milliseconds</td>
+  <td>Apps can check CPU usage per core</td>
+</tr>
+
+<tr>
+  <td>Fan speed</td>
+  <td>RPM</td>
+  <td>Apps can check fan speed</td>
+</tr>
+
+</table>
+
+<p>Implementations should correctly handle reporting values situations when a
+core (or GPU, battery, fan) goes offline or is plugged/unplugged.</p>
+
+
+<h3 id=low_ram>No low-RAM</h3>
+<p>Device should not be a low-RAM device, meaning <code>ro.config.low_ram</code>
+should not be defined. The framework automatically limits the number of users
+to 1 when the <code>low_ram</code> flag is defined.</p>
+
+<h3 id=uses-feature>Uses-feature</h3>
+<p>Devices must define the following <code>uses-feature</code>:</p>
+
+<pre>
+android.software.managed_users
+android.software.device_admin
+</pre>
+
+<p>To confirm these <code>uses-feature</code> values have been defined on a
+device, run: <code>adb shell pm list features</code>.</p>
+
+<h3 id=required_apps>Essential apps only</h3>
+<p>By default, only applications essential for correct operation of the profile
+should be enabled as part of provisioning a managed device. OEMs must ensure the
+managed profile or device has all required applications by modifying:</p>
+
+<pre>vendor_required_apps_managed_profile.xml
+vendor_required_apps_managed_device.xml
+</pre>
+
+<p>Examples from a Nexus device:</p>
+
+<p><code>packages/apps/ManagedProvisioning/res/values/vendor_required_apps_managed_device.xml</code></p>
+
+<pre>&lt;resources&gt;
+  &lt;!-- A list of apps to be retained on the managed device --&gt;
+  &lt;string-array name="vendor_required_apps_managed_device"&gt;
+    &lt;item&gt;com.android.vending&lt;/item&gt; &lt;!--­Google Play --&gt;
+    &lt;item&gt;com.google.android.gms&lt;/item&gt; &lt;!--­Required by Play --&gt;
+    &lt;item&gt;com.google.android.contacts&lt;/item&gt; &lt;!--­Google or OEM Contacts­--&gt;
+    &lt;item&gt;com.google.android.googlequicksearchbox&lt;/item&gt; &lt;!--­Google Launcher --&gt;
+    &lt;item&gt;com.google.android.launcher&lt;/item&gt; &lt;!--­Google Launcher or OEM Launcher --&gt;
+    &lt;item&gt;com.google.android.dialer&lt;/item&gt; &lt;!--­Google or OEM dialer to enable making phone calls --&gt;
+  &lt;/string-array&gt;
+&lt;/resources&gt;
+</pre>
+
+<p><code>
+packages/apps/ManagedProvisioning/res/values/vendor_required_apps_managed_profile.xml
+</code></p>
+
+<pre>
+&lt;resources&gt;
+    &lt;!-- A list of apps to be retained in the managed profile. This includes any Google experience apps required. --&gt;
+    &lt;string-array name="vendor_required_apps_managed_profile"&gt;
+        &lt;item&gt;com.android.vending&lt;/item&gt; &lt;!-- Google Play --&gt;
+        &lt;item&gt;com.google.android.gms&lt;/item&gt; &lt;!-- Required by Play --&gt;
+        &lt;item&gt;com.google.android.contacts&lt;/item&gt; &lt;!-- Google or OEM Contacts --&gt;
+    &lt;/string-array&gt;
+&lt;/resources&gt;
+</pre>
+
+<h2 id=launcher>Launcher requirements</h2>
+
+<p>You must update the Launcher to support badging applications with the icon
+badge (provided in AOSP to represent the managed applications) and other badge
+user interface elements such as recents and notifications. If you use
+<a href="https://android.googlesource.com/platform/packages/apps/Launcher3/">launcher3</a>
+in AOSP without modifications, then you likely already support this badging
+feature.</p>
+
+<h2 id=nfc>NFC requirements</h2>
+
+<p>Devices with NFC must enable NFC during the out-of-the-box experience (i.e.,
+setup wizard) and be configured to accept managed provisioning intents:</p>
+
+<p><code>packages/apps/Nfc/res/values/provisioning.xml</code></p>
+<pre>&lt;bool name="enable_nfc_provisioning"&gt;true&lt;/bool&gt;
+&lt;item>application/com.android.managedprovisioning&lt;/item&gt;
+</pre>
+
+<h2 id=setup_wizard>Setup requirements</h2>
+
+<p>Devices that include an out-of-box experience (i.e., setup wizard)
+should implement device owner provisioning. When the out-of-box experience
+opens, it should check if another process (such as device owner provisioning)
+has already finished the user setup and, if so, it should fire a home intent
+and finish the setup. This intent is caught by the provisioning application,
+which then hands control to the newly-set device owner.</p>
+
+<p>To meet setup requirements, add the following code to the device setup's main
+activity:</p>
+
+<pre>&#64;Override
+   protected void onStart() {
+        super.onStart();
+
+        // When returning to a setup wizard activity, check to see if another setup process
+        // has intervened and, if so, complete an orderly exit
+        boolean completed = Settings.Secure.getInt(getContentResolver(),
+                Settings.Secure.USER_SETUP_COMPLETE, 0) != 0;
+        if (completed) {
+           startActivity(new Intent(Intent.ACTION_MAIN, null)
+                .addCategory(Intent.CATEGORY_HOME)
+                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+                        | Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED));
+           finish();
+       }
+
+       ...
+   }
+</pre>
+
+    </div>
+
+      <div class="content-footer-sac"
+                    itemscope itemtype="http://schema.org/SiteNavigationElement">
+        <div class="layout-content-col col-9" style="padding-top:4px">
+        </div>
+        
+        <div class="paging-links layout-content-col col-4">
+          
+        </div>
+        
+      </div>
+      
+      
+    </div> <!-- end jd-content -->
+  <div id="footer" class="wrap" >
+  <style>.feedback { float: right !Important }</style>
+  <div class="feedback">
+    <a href="implement.html#" class="button" onclick=" try {
+      userfeedback.api.startFeedback({'productId':'715571','authuser':'1'});return false;}catch(e){}">Site Feedback</a>
+  </div>
+  <div id="copyright">
+    
+  Except as noted, this content is 
+  licensed under <a href="http://creativecommons.org/licenses/by/2.5/">
+  Creative Commons Attribution 2.5</a>. For details and 
+  restrictions, see the <a href="../../../license.html">Content 
+  License</a>.
+  </div>
+    <div id="footerlinks">
+    
+  <p>
+    <a href="../../../source/index.html">About Android</a>&nbsp;&nbsp;|&nbsp;
+    <a href="../../../source/community.html">Community</a>&nbsp;&nbsp;|&nbsp;
+    <a href="../../../legal.html">Legal</a>&nbsp;&nbsp;|&nbsp;
+  </p>
+  </div>
+
+</div><!-- end doc-content -->
+
+</div> <!-- end body-content --> 
+
+
+
+
+
+
+</body>
+</html>
+
+
+

@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<meta name="Description" content="Review this page to become familar with the concepts at play within SELinux. Security Enhanced Linux (SELinux), is a mandatory access control (MAC) system for the Linux operating system. As a MAC system, it differs from Linux’s familiar discretionary …">
+
+<link rel="shortcut icon" type="image/x-icon" href="../../favicon.ico" />
+<title>SELinux concepts | Android Open Source Project</title>
+
+<!-- STYLESHEETS -->
+<link rel="stylesheet"
+href="https://fonts.googleapis.com/css?family=Roboto:regular,medium,thin,italic,mediumitalic,bold" title="roboto">
+<link href="../../assets/css/default.css" rel="stylesheet" type="text/css">
+
+
+
+<!-- JAVASCRIPT -->
+<script src="https://www.google.com/jsapi" type="text/javascript"></script>
+<script src="../../assets/js/android_3p-bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+  var toRoot = "/";
+  
+  var devsite = false;
+  
+</script>
+<script src="../../assets/js/docs.js" type="text/javascript"></script>
+
+
+<script type="text/javascript" src="https://www.gstatic.com/feedback/api.js"></script>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-45455297-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</head>
+
+<body class="gc-documentation 
+  " itemscope itemtype="http://schema.org/Article">
+<a name="top"></a>
+
+  
+    <!-- Header -->
+    <div id="header">
+        <div class="wrap" id="header-wrap">
+          <div class="col-3 saclogo">
+          <a href="../../index.html">
+            <img src="../../assets/images/sac_logo.png"
+                srcset="/assets/images/sac_logo@2x.png 2x"
+                width="123" height="25" alt="Android Open Source Project" />
+          </a>
+          </div>
+            <ul class="nav-x col-9">
+                <li class="source">
+                  <a href="../../source/index.html" 
+                  >Source</a></li>
+                <li class="devices"><a href="../../devices/index.html" 
+                  >Devices</a></li>
+                <li class="security"><a href="../index.html" class="selected"
+                  >Security</a></li>
+                <li class="compatibility last"><a href="../../compatibility/index.html" 
+                  >Compatibility</a></li>
+            </ul>
+            <!-- New Search -->
+            <div class="menu-container">
+            <div class="moremenu">
+    <div id="more-btn"></div>
+  </div>
+  <div class="morehover" id="moremenu">
+    <div class="top"></div>
+    <div class="mid">
+      <div class="header">Android Sites</div>
+      <ul>
+        <li class="active"><a>Android Open Source Project</a></li>
+        <li><a href="http://www.android.com">Android.com</a></li>
+        <li><a href="http://developer.android.com">Android Developers</a></li>
+      </ul>
+      <!-- <div class="header">Support</div>
+      <ul>
+        <li><a href="/support.html">Developer Support</a></li>
+      </ul> -->
+      <br class="clearfix" />
+    </div>
+    <div class="bottom"></div>
+  </div>
+
+  <div class="search" id="search-container">
+    <div class="search-inner">
+      <div id="search-btn"></div>
+      <div class="left"></div>
+      <form onsubmit="return submit_search()">
+        <input id="search_autocomplete" type="text" value="" autocomplete="off" name="q"
+onfocus="search_focus_changed(this, true)" onblur="search_focus_changed(this, false)"
+onkeydown="return search_changed(event, true, '/')"
+onkeyup="return search_changed(event, false, '/')" />
+      </form>
+      <div class="right"></div>
+        <a class="close hide">close</a>
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+  </div>
+  <div id="search_filtered_wrapper">
+    <div id="search_filtered_div" class="no-display">
+        <ul id="search_filtered">
+        </ul>
+    </div>
+  </div>
+
+  </div>
+  <!-- /New Search> -->
+        </div>
+    </div>
+    <!-- /Header -->
+
+  <div id="searchResults" class="wrap" style="display:none;">
+          <h2 id="searchTitle">Results</h2>
+          <div id="leftSearchControl" class="search-control">Loading...</div>
+  </div>
+
+  
+  
+  
+    
+  <div class="wrap clearfix" id="body-content">
+    <div class="col-4" id="side-nav" itemscope itemtype="http://schema.org/SiteNavigationElement">
+      <div id="devdoc-nav" class="scroll-pane">
+<a class="totop" href="concepts.html#top" data-g-event="left-nav-top">to top</a>
+
+<!--
+    Copyright 2015 The Android Open Source Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<ul id="nav">
+  <li class="nav-section">
+    <div class="nav-section-header">
+        <a href="../index.html">
+          <span class="en">Overview</span>
+        </a>
+    </div>
+    <ul>
+      <li><a href="../overview/kernel-security.html">Kernel Security</a></li>
+      <li><a href="../overview/app-security.html">App Security</a></li>
+      <li><a href="../overview/implement.html">Implementing Security</a></li>
+      <li><a href="../overview/updates-resources.html">Updates and Resources</a></li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../enhancements/index.html">
+            <span class="en">Enhancements</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../enhancements/enhancements70.html">Android 7.0</a></li>
+          <li><a href="../enhancements/enhancements60.html">Android 6.0</a></li>
+          <li><a href="../enhancements/enhancements50.html">Android 5.0</a></li>
+          <li><a href="../enhancements/enhancements44.html">Android 4.4</a></li>
+          <li><a href="../enhancements/enhancements43.html">Android 4.3</a></li>
+          <li><a href="../enhancements/enhancements42.html">Android 4.2</a></li>
+          <li><a href="../enhancements/enhancements41.html">Android 4.1</a></li>
+        </ul>
+      </li>
+      <li><a href="../overview/acknowledgements.html">Acknowledgements</a></li>
+    </ul>
+  </li>
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="../bulletin/index.html">
+        <span class="en">Bulletins</span>
+      </a>
+    </div>
+    <ul>
+      <li class="nav-section">
+         <div class="nav-section-header">
+           <a href="../advisory/index.html">
+         <span class="en">Advisories</span>
+        </a>
+       </div>
+         <ul>
+           <li><a href="../advisory/2016-03-18.html">2016-03-18</a></li>
+         </ul>
+      </li>
+      <li><a href="../bulletin/2016-08-01.html">August 2016</a></li>
+      <li><a href="../bulletin/2016-07-01.html">July 2016</a></li>
+      <li><a href="../bulletin/2016-06-01.html">June 2016</a></li>
+      <li><a href="../bulletin/2016-05-01.html">May 2016</a></li>
+      <li><a href="../bulletin/2016-04-02.html">April 2016</a></li>
+      <li><a href="../bulletin/2016-03-01.html">March 2016</a></li>
+      <li><a href="../bulletin/2016-02-01.html">February 2016</a></li>
+      <li><a href="../bulletin/2016-01-01.html">January 2016</a></li>
+      <li class="nav-section">
+         <div class="nav-section-header">
+           <a href="../bulletin/2015.html">
+         <span class="en">2015 Bulletins</span>
+        </a>
+       </div>
+         <ul>
+           <li><a href="../bulletin/2015-12-01.html">December 2015</a></li>
+           <li><a href="../bulletin/2015-11-01.html">November 2015</a></li>
+           <li><a href="../bulletin/2015-10-01.html">October 2015</a></li>
+           <li><a href="../bulletin/2015-09-01.html">September 2015</a></li>
+           <li><a href="../bulletin/2015-08-01.html">August 2015</a></li>
+         </ul>
+      </li>
+    </ul>
+  </li>
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="../apksigning/index.html">
+        <span class="en">Application Signing</span>
+      </a>
+    </div>
+    <ul>
+      <li><a href="../apksigning/v2.html">APK Signature Scheme v2</a></li>
+    </ul>
+  </li>
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="../authentication/index.html">
+        <span class="en">Authentication</span>
+      </a>
+    </div>
+    <ul>
+      <li><a href="../../devices/tech/security/authentication/fingerprint-hal.html">Fingerprint HAL</a></li>
+      <li><a href="../../devices/tech/security/authentication/gatekeeper.html">Gatekeeper</a></li>
+    </ul>
+  </li>
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="../keystore/index.html">
+        <span class="en">Keystore</span>
+      </a>
+    </div>
+    <ul>
+      <li><a href="../keystore/features.html">Features</a></li>
+      <li><a href="../keystore/implementer-ref.html">Implementer's Reference</a></li>
+    </ul>
+  </li>
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="../trusty/index.html">
+        <span class="en">Trusty TEE</span>
+      </a>
+    </div>
+    <ul>
+      <li><a href="../trusty/trusty-ref.html">Trusty API Reference</a></li>
+    </ul>
+  </li>
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="../../devices/tech/encryption/index.html">
+        <span class="en">Encryption</span>
+      </a>
+    </div>
+    <ul>
+      <li><a href="../encryption/file-based.html">File-Based Encryption</a></li>
+      <li><a href="../encryption/full-disk.html">Full-Disk Encryption</a></li>
+    </ul>
+  </li>
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="../../devices/tech/security/selinux/index.html">
+        <span class="en">SELinux</span>
+      </a>
+    </div>
+    <ul>
+      <li><a href="concepts.html">Concepts</a></li>
+      <li><a href="implement.html">Implementation</a></li>
+      <li><a href="customize.html">Customization</a></li>
+      <li><a href="validate.html">Validation</a></li>
+      <li><a href="device-policy.html">Writing Policy</a></li>
+    </ul>
+  </li>
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="../verifiedboot/index.html">
+        <span class="en">Verified Boot</span>
+      </a>
+    </div>
+    <ul>
+      <li><a href="../verifiedboot/verified-boot.html">Verifying Boot</a></li>
+      <li><a href="../verifiedboot/dm-verity.html">Implementing dm-verity</a></li>
+    </ul>
+  </li>
+</ul>
+
+
+      </div>
+    </div> <!-- end side-nav -->
+    <script>
+      $(document).ready(function() {
+        scrollIntoView("devdoc-nav");
+        });
+    </script>
+
+  
+
+
+
+
+<div class="col-12" id="doc-col" >
+
+
+  
+    
+      
+        <h1 itemprop="name" >SELinux concepts</h1>
+      
+    
+  
+
+
+  
+  <div id="jd-content">
+
+    <div class="jd-descr" itemprop="articleBody">
+    <!--
+    Copyright 2014 The Android Open Source Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<div id="qv-wrapper">
+  <div id="qv">
+    <h2>In this document</h2>
+    <ol id="auto-toc">
+    </ol>
+  </div>
+</div>
+
+<p>Review this page to become familar with the concepts at play within SELinux.</p>
+
+<h2 id=mandatory_access_control>Mandatory access control</h2>
+
+<p>Security Enhanced Linux (SELinux), is a mandatory access control (MAC) system
+for the Linux operating system.  As a MAC system, it differs from Linux’s
+familiar discretionary access control (DAC) system.  In a DAC system, a concept
+of ownership exists, whereby an owner of a particular resource controls access
+permissions associated with it.  This is generally coarse-grained and subject
+to unintended privilege escalation.  A MAC system, however, consults a central
+authority for a decision on all access attempts.</p>
+
+<p>SELinux has been implemented as part of the Linux Security Module (LSM)
+framework, which recognizes various kernel objects, and sensitive actions
+performed on them.  At the point at which each of these actions would be
+performed, an LSM hook function is called to determine whether or not the
+action should be allowed based on the information for it stored in an opaque
+security object. SELinux provides an implementation for these hooks and
+management of these security objects, which combine with its own policy, to
+determine the access decisions.</p>
+
+<p>In conjunction with other Android security measures, Android's access control
+policy greatly limits the potential damage of compromised machines and
+accounts. Using tools like Android's discretionary and mandatory access
+controls gives you a structure to ensure your software runs only at the minimum
+privilege level. This mitigates the effects of attacks and reduces the
+likelihood of errant processes overwriting or even transmitting data.</p>
+
+<p>Starting in Android 4.3, SELinux provides a mandatory access control (MAC)
+umbrella over traditional discretionary access control (DAC) environments. For
+instance, software must typically run as the root user account to write to raw
+block devices. In a traditional DAC-based Linux environment, if the root user
+becomes compromised that user can write to every raw block device. However,
+SELinux can be used to label these devices so the process assigned the root
+privilege can write to only those specified in the associated policy. In this
+way, the process cannot overwrite data and system settings outside of the
+specific raw block device.</p>
+
+<p>See <a href="implement.html#use_cases">Use Cases</a> for more examples of threats and ways to address them with SELinux.</p>
+
+<h2 id=enforcement_levels>Enforcement levels</h2>
+
+<p>Become familiar with the following terms to understand how SELinux can be
+implemented to varying strengths.</p>
+
+<ul>
+  <li><em>Permissive</em> - SELinux security policy is not enforced, only logged.
+  <li><em>Enforcing</em> - Security policy is enforced and logged. Failures appear as EPERM errors.
+</ul>
+
+<p>This choice is binary and determines whether your policy takes action or merely
+allows you to gather potential failures. Permissive is especially useful during
+implementation.</p>
+
+<ul>
+  <li><em>Unconfined</em> - A very light policy that prohibits certain tasks and provides a temporary
+stop-gap during development. Should not be used for anything outside of the
+Android Open Source Project (AOSP).
+  <li><em>Confined</em> - A custom-written policy designed for the service. That policy should define
+precisely what is allowed.
+</ul>
+
+<p>Unconfined policies are available to help implement SELinux in Android quickly.
+They are suitable for most root-level applications. But they should be
+converted to confined policies wherever possible over time to restrict each
+application to precisely the resources it needs.</p>
+
+<p>Ideally, your policy is both in enforcing mode and confined. Unconfined
+policies in enforcement mode can mask potential violations that would have been
+logged in permissive mode with a confined policy. Therefore, we strongly
+recommend partners implement true confined policies.</p>
+
+<h2 id=labels_rules_and_domains>Labels, rules and domains</h2>
+
+<p>SELinux depends upon <em>labels</em> to match actions and policies. Labels determine what is allowed. Sockets,
+files, and processes all have labels in SELinux. SELinux decisions are based
+fundamentally on labels assigned to these objects and the policy defining how
+they may interact.  In SELinux, a label takes the form:
+user:role:type:mls_level, where the type is the primary component of the access
+decisions, which may be modified by the other sections components which make up
+the label.  The objects are mapped to classes and the different types of access
+for each class are represented by permissions. </p>
+
+<p>The policy rules come in the form: allow <em>domains</em> <em>types</em>:<em>classes</em> <em>permissions</em>;, where:</p>
+
+<ul>
+  <li><em>Domain</em> - A label for the process or set of processes.  Also called a domain type as it is just a type for a process.
+  <li><em>Type</em> - A label for the object (e.g. file, socket) or set of objects.
+  <li><em>Class</em> - The kind of object (e.g. file, socket) being accessed.
+  <li><em>Permission</em> - The operation (e.g. read, write) being performed.
+</ul>
+
+<p>And so an example use of this would follow the structure:</p>
+<code>allow appdomain app_data_file:file rw_file_perms;</code>
+
+<p>This says that all application domains are allowed to read and write files labeled
+app_data_file. Note that this rule relies upon macros defined in the
+global_macros file, and other helpful macros can also be found in the te_macros
+file, both of which can be found in the <a href="https://android.googlesource.com/platform/system/sepolicy/">system/sepolicy</a> directory in the AOSP source tree. Macros are provided for common groupings of classes, permissions and
+rules, and should be used whenever possible to help reduce the likelihood of
+failures due to denials on related permissions.</p>
+
+<p>In addition to individually listing domains or types in a rule, one can also refer to a set of domains or types via an <em>attribute</em>.  An attribute is simply a name for a set of domains or types.  Each domain or type can be associated with any number of attributes.  When a rule is written that specifies an attribute name, that name is automatically expanded to the list of domains or types associated with the attribute.  For example, the <em>domain</em> attribute is associated with all process domains, and the <em>file_type</em> attribute is associated with all file types.</p>
+
+<p>Use the syntax above to create avc rules that comprise the essence of an
+SELinux policy.  A rule takes the form:
+<pre>
+&lt;rule variant&gt; &lt;source_types&gt; &lt;target_types&gt; : &lt;classes&gt; &lt;permissions&gt;
+</pre>
+
+<p>The rule indicates what should happen when a subject labeled with any of the <em>source_types</em> attempts an action corresponding to any of the <em>permissions</em> on an object with any of the class <em>classes</em> which has any of the <em>target_types</em> label.  The most common example of one of these rules is an allow rule, e.g.:</p>
+
+<pre>
+allow domain null_device:chr_file { open };
+</pre>
+
+
+<p>
+This rule allows a process with any <em>domain</em> associated with the ‘domain’ attribute to take the action described by the <em>permission</em> ‘open’ on an object of <em>class</em> ‘chr_file’ (character device file) that has the <em>target_type</em> label of ‘null_device.’  In practice, this rule may be extended to include other permissions: </p>
+
+<pre>
+allow domain null_device:chr_file { getattr open read ioctl lock append write};
+</pre>
+
+<p>When combined with the knowledge that ‘domain’ is an attribute assigned to
+all process domains and
+that null_device is the label for the character device /dev/null, this rule basically
+permits reading and writing to <code>/dev/null</code>.</p>
+
+<p>A <em>domain</em> generally corresponds to a process and will have a label associated with it.</p>
+
+<p>For example, a typical Android app is running in its own process and has the
+label of untrusted_app that grants it certain restricted permissions.</p>
+
+<p>Platform apps built into the system run under a separate label and are granted
+a distinct set of permissions. System UID apps that are part of the core Android
+system run under the system_app label for yet another set of privileges.</p>
+
+<p>Access to the following generic labels should never be directly allowed to domains; instead, a more specific type should be created for the object or objects:</p>
+
+<ul>
+  <li> socket_device
+  <li> device
+  <li> block_device
+  <li> default_service
+  <li> system_data_file
+  <li> tmpfs
+</ul>
+
+    </div>
+
+      <div class="content-footer-sac"
+                    itemscope itemtype="http://schema.org/SiteNavigationElement">
+        <div class="layout-content-col col-9" style="padding-top:4px">
+        </div>
+        
+        <div class="paging-links layout-content-col col-4">
+          
+        </div>
+        
+      </div>
+      
+      
+    </div> <!-- end jd-content -->
+  <div id="footer" class="wrap" >
+  <style>.feedback { float: right !Important }</style>
+  <div class="feedback">
+    <a href="concepts.html#" class="button" onclick=" try {
+      userfeedback.api.startFeedback({'productId':'715571','authuser':'1'});return false;}catch(e){}">Site Feedback</a>
+  </div>
+  <div id="copyright">
+    
+  Except as noted, this content is 
+  licensed under <a href="http://creativecommons.org/licenses/by/2.5/">
+  Creative Commons Attribution 2.5</a>. For details and 
+  restrictions, see the <a href="../../license.html">Content 
+  License</a>.
+  </div>
+    <div id="footerlinks">
+    
+  <p>
+    <a href="../../source/index.html">About Android</a>&nbsp;&nbsp;|&nbsp;
+    <a href="../../source/community.html">Community</a>&nbsp;&nbsp;|&nbsp;
+    <a href="../../legal.html">Legal</a>&nbsp;&nbsp;|&nbsp;
+  </p>
+  </div>
+
+</div><!-- end doc-content -->
+
+</div> <!-- end body-content --> 
+
+
+
+
+
+
+</body>
+</html>
+
+
+

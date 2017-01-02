@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<meta name="Description" content="Key character map files ( .kcm files) are responsible for mapping combinations of Android key codes with modifiers to Unicode characters. Device-specific key layout files are required for all internal (built-in) input devices that have keys, if only to…">
+
+<link rel="shortcut icon" type="image/x-icon" href="../../favicon.ico" />
+<title>Key Character Map Files | Android Open Source Project</title>
+
+<!-- STYLESHEETS -->
+<link rel="stylesheet"
+href="https://fonts.googleapis.com/css?family=Roboto:regular,medium,thin,italic,mediumitalic,bold" title="roboto">
+<link href="../../assets/css/default.css" rel="stylesheet" type="text/css">
+
+
+
+<!-- JAVASCRIPT -->
+<script src="https://www.google.com/jsapi" type="text/javascript"></script>
+<script src="../../assets/js/android_3p-bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+  var toRoot = "/";
+  
+  var devsite = false;
+  
+</script>
+<script src="../../assets/js/docs.js" type="text/javascript"></script>
+
+<script src="../../navtree_data.js" type="text/javascript"></script>
+
+
+<script type="text/javascript" src="https://www.gstatic.com/feedback/api.js"></script>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-45455297-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</head>
+
+<body class="gc-documentation 
+  " itemscope itemtype="http://schema.org/Article">
+<a name="top"></a>
+
+  
+    <!-- Header -->
+    <div id="header">
+        <div class="wrap" id="header-wrap">
+          <div class="col-3 saclogo">
+          <a href="../../index.html">
+            <img src="../../assets/images/sac_logo.png"
+                srcset="/assets/images/sac_logo@2x.png 2x"
+                width="123" height="25" alt="Android Open Source Project" />
+          </a>
+          </div>
+            <ul class="nav-x col-9">
+                <li class="source">
+                  <a href="../../source/index.html" 
+                  >Source</a></li>
+                <li class="devices"><a href="../index.html" class="selected"
+                  >Devices</a></li>
+                <li class="security"><a href="../../security/index.html" 
+                  >Security</a></li>
+                <li class="compatibility last"><a href="../../compatibility/index.html" 
+                  >Compatibility</a></li>
+            </ul>
+            <!-- New Search -->
+            <div class="menu-container">
+            <div class="moremenu">
+    <div id="more-btn"></div>
+  </div>
+  <div class="morehover" id="moremenu">
+    <div class="top"></div>
+    <div class="mid">
+      <div class="header">Android Sites</div>
+      <ul>
+        <li class="active"><a>Android Open Source Project</a></li>
+        <li><a href="http://www.android.com">Android.com</a></li>
+        <li><a href="http://developer.android.com">Android Developers</a></li>
+      </ul>
+      <!-- <div class="header">Support</div>
+      <ul>
+        <li><a href="/support.html">Developer Support</a></li>
+      </ul> -->
+      <br class="clearfix" />
+    </div>
+    <div class="bottom"></div>
+  </div>
+
+  <div class="search" id="search-container">
+    <div class="search-inner">
+      <div id="search-btn"></div>
+      <div class="left"></div>
+      <form onsubmit="return submit_search()">
+        <input id="search_autocomplete" type="text" value="" autocomplete="off" name="q"
+onfocus="search_focus_changed(this, true)" onblur="search_focus_changed(this, false)"
+onkeydown="return search_changed(event, true, '/')"
+onkeyup="return search_changed(event, false, '/')" />
+      </form>
+      <div class="right"></div>
+        <a class="close hide">close</a>
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+  </div>
+  <div id="search_filtered_wrapper">
+    <div id="search_filtered_div" class="no-display">
+        <ul id="search_filtered">
+        </ul>
+    </div>
+  </div>
+
+  </div>
+  <!-- /New Search> -->
+        </div>
+    </div>
+    <!-- /Header -->
+
+  <div id="searchResults" class="wrap" style="display:none;">
+          <h2 id="searchTitle">Results</h2>
+          <div id="leftSearchControl" class="search-control">Loading...</div>
+  </div>
+
+  
+  
+  
+    
+  <div class="wrap clearfix" id="body-content">
+    <div class="col-4" id="side-nav" itemscope itemtype="http://schema.org/SiteNavigationElement">
+      <div id="devdoc-nav" class="scroll-pane">
+<a class="totop" href="key-character-map-files.html#top" data-g-event="left-nav-top">to top</a>
+
+<!--
+    Copyright 2015 The Android Open Source Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<ul id="nav">
+  <li class="nav-section">  <!-- Begin nav section, Device Interfaces -->
+    <div class="nav-section-header">
+      <a href="../index.html">
+        <span class="en">Interfaces</span>
+      </a>
+    </div>
+    <ul>
+  <li class="nav-section">
+  <div class="nav-section-header">
+      <a href="../accessories/index.html">
+        <span class="en">Accessories</span>
+      </a>
+    </div>
+    <ul>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../accessories/audio.html">
+            <span class="en">Audio Accessories</span>
+          </a>
+        </div>
+        <ul>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../accessories/headset/index.html">
+            <span class="en">Headset</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../accessories/headset/specification.html">Specification</a></li>
+          <li><a href="../accessories/headset/requirements.html">Requirements</a></li>
+          <li><a href="../accessories/headset/testing.html">Testing</a></li>
+        </ul>
+      </li>
+        </ul>
+      </li>
+  <li class="nav-section">
+  <div class="nav-section-header">
+      <a href="../accessories/custom.html">
+        <span class="en">Custom Accessories</span>
+      </a>
+    </div>
+    <ul>
+      <li class="nav-section">
+        <div class="nav-section-header"><a href="../accessories/protocol.html"><span class="en">AOA</span>
+        </a>
+        </div>
+        <ul>
+          <li><a href="../accessories/aoa2.html">AOA 2.0</a></li>
+          <li><a href="../accessories/aoa.html">AOA 1.0</a></li>
+        </ul>
+        </li>
+        <div class="nav-section-header"><a href="../accessories/stylus.html"><span class="en">Stylus</span>
+        </a>
+        </div>
+       </ul>
+     </li>
+    </ul>
+      <li class="nav-section">
+      <div class="nav-section-header">
+        <a href="../audio/index.html">
+          <span class="en">Audio</span>
+        </a>
+      </div>
+        <ul>
+          <li><a href="../audio/terminology.html">Terminology</a></li>
+          <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="../audio/implement.html">
+                <span class="en">Implementation</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="../audio/implement-policy.html">Policy Configuration</a></li>
+              <li><a href="../audio/implement-shared-library.html">Shared Library</a></li>
+              <li><a href="../audio/implement-pre-processing.html">Pre-processing Effects</a></li>
+            </ul>
+         </li>
+          <li><a href="../audio/data_formats.html">Data Formats</a></li>
+          <li><a href="../audio/attributes.html">Attributes</a></li>
+          <li><a href="../audio/warmup.html">Warmup</a></li>
+          <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="../audio/latency.html">
+                <span class="en">Latency</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="../audio/latency_contrib.html">Contributors</a></li>
+              <li><a href="../audio/latency_design.html">Design</a></li>
+              <li><a href="../audio/latency_measure.html">Measure</a></li>
+              <li><a href="../audio/testing_circuit.html">Light Testing Circuit</a></li>
+              <li><a href="../audio/loopback.html">Audio Loopback Dongle</a></li>
+              <li><a href="../audio/latency_measurements.html">Measurements</a></li>
+              <li><a href="../audio/latency_app.html">Applications</a></li>
+            </ul>
+          </li>
+          <li><a href="../audio/avoiding_pi.html">Priority Inversion</a></li>
+          <li><a href="../audio/src.html">Sample Rate Conversion</a></li>
+          <li><a href="../audio/debugging.html">Debugging</a></li>
+          <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="../audio/midi.html">
+                <span class="em">MIDI</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="../audio/midi_arch.html">MIDI Architecture</a></li>
+              <li><a href="../audio/midi_test.html">MIDI Test Procedure</a></li>
+            </ul>
+          <li><a href="../audio/usb.html">USB Digital Audio</a></li>
+          <li><a href="../audio/tv.html">TV Audio</a></li>
+        </ul>
+      </li>
+      <li><a href="../automotive.html">Automotive</a></li>
+      <li><a href="../bluetooth.html">Bluetooth</a></li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../camera/index.html">
+            <span class="en">Camera</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../camera/camera3.html">Camera HAL3</a></li>
+          <li><a href="../camera/camera3_requests_hal.html">HAL Subsystem</a></li>
+          <li><a href="../camera/camera3_metadata.html">Metadata and Controls</a></li>
+          <li><a href="../camera/camera3_3Amodes.html">3A Modes and State</a></li>
+          <li><a href="../camera/camera3_crop_reprocess.html">Output and Cropping</a></li>
+          <li><a href="../camera/camera3_error_stream.html">Errors and Streams</a></li>
+          <li><a href="../camera/camera3_requests_methods.html">Request Creation</a></li>
+          <li><a href="../camera/versioning.html">Version Support</a></li>
+        </ul>
+      </li>
+
+      <li><a href="../drm.html">DRM</a></li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../graphics/index.html">
+            <span class="en">Graphics</span>
+          </a>
+        </div>
+        <ul>
+         <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="../graphics/architecture.html">
+                <span class="en">Architecture</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="../graphics/arch-bq-gralloc.html">BufferQueue</a></li>
+              <li><a href="../graphics/arch-sf-hwc.html">SurfaceFlinger and HWC</a></li>
+              <li><a href="../graphics/arch-sh.html">Surface and SurfaceHolder</a></li>
+              <li><a href="../graphics/arch-egl-opengl.html">OpenGL ES</a></li>
+              <li><a href="../graphics/arch-vulkan.html">Vulkan</a></li>
+              <li><a href="../graphics/arch-sv-glsv.html">SurfaceView</a></li>
+              <li><a href="../graphics/arch-st.html">SurfaceTexture</a></li>
+              <li><a href="../graphics/arch-tv.html">TextureView</a></li>
+              <li><a href="../graphics/arch-gameloops.html">Game Loops</a></li>
+            </ul>
+         </li>
+         <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="../graphics/implement.html">
+                <span class="en">Implementing</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="../graphics/implement-hwc.html">Hardware Composer HAL</a></li>
+              <li><a href="../graphics/implement-vsync.html">VSYNC</a></li>
+              <li><a href="../graphics/implement-vulkan.html">Vulkan</a></li>
+              <li><a href="../graphics/implement-vdisplays.html">Virtual Displays</a></li>
+            </ul>
+         </li>
+         <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="../graphics/testing.html">
+                <span class="en">OpenGL ES Testing</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="../graphics/build-tests.html">Building test programs</a></li>
+              <li><a href="../graphics/port-tests.html">Porting the test framework</a></li>
+              <li><a href="../graphics/run-tests.html">Running the tests</a></li>
+              <li><a href="../graphics/automate-tests.html">Automating the tests</a></li>
+              <li><a href="../graphics/test-groups.html">Using special test groups</a></li>
+              <li><a href="../graphics/cts-integration.html">Integrating with Android CTS</a></li>
+            </ul>
+         </li>
+        </ul> </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="index.html">
+            <span class="en">Input</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="overview.html">Overview</a></li>
+          <li><a href="key-layout-files.html">Key Layout Files</a></li>
+          <li><a href="key-character-map-files.html">Key Character Map Files</a></li>
+          <li><a href="input-device-configuration-files.html">Input Device Configuration Files</a></li>
+          <li><a href="migration-guide.html">Migration Guide</a></li>
+          <li><a href="keyboard-devices.html">Keyboard Devices</a></li>
+          <li><a href="../tech/input/touch-devices.html">Touch Devices</a></li>
+          <li><a href="../tech/input/dumpsys.html">Diagnostics</a></li>
+          <li><a href="getevent.html">Getevent</a></li>
+          <li><a href="validate-keymaps.html">Validate Keymaps</a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../media.html">
+            <span class="en">Media</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../media/framework-hardening.html">Framework
+          Hardening</a></li>
+          <li><a href="../media/soc.html">SoC Dependencies</a></li>
+          <li><a href="../media/oem.html">OEM Dependencies</a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../sensors/index.html">
+            <span class="en">Sensors</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../sensors/sensor-stack.html">Sensor stack</a></li>
+          <li><a href="../sensors/report-modes.html">Reporting modes</a></li>
+          <li><a href="../sensors/suspend-mode.html">Suspend mode</a></li>
+          <li><a href="../sensors/power-use.html">Power consumption</a></li>
+          <li><a href="../sensors/interaction.html">Interaction</span></a></li>
+          <li><a href="../sensors/hal-interface.html">HAL interface</a></li>
+          <li><a href="../sensors/batching.html">Batching</a></li>
+          <li><a href="../sensors/sensor-types.html">Sensor types</a></li>
+          <li><a href="../sensors/versioning.html">Version deprecation</a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="https://source.android.com/devices/storage/index.html">
+            <span class="en">Storage</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../storage/traditional.html">Traditional Storage</a></li>
+          <li><a href="../storage/adoptable.html">Adoptable Storage</a></li>
+          <li><a href="../storage/config.html">Device Configuration</a></li>
+          <li><a href="../storage/config-example.html">Configuration Examples</a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../tv/index.html">
+            <span class="en">TV</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../tv/HDMI-CEC.html">HDMI-CEC control service</a></li>
+          <li><a href="../tv/reference-tv-app.html">Reference TV App</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li> <!-- End nav-section, Device Interfaces-->
+
+
+  <li class="nav-section"> <!--Begin nav-section, Core Technologies-->
+    <div class="nav-section-header">
+      <a href="../tech/index.html">
+        <span class="en">Core Technologies</span>
+      </a>
+    </div>
+
+    <ul>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../tech/dalvik/index.html">
+          <span class="en">ART and Dalvik</span></a>
+        </div>
+        <ul>
+          <li><a href="../tech/dalvik/dalvik-bytecode.html">Bytecode Format</a></li>
+          <li><a href="../tech/dalvik/dex-format.html">.Dex Format</a></li>
+          <li><a href="../tech/dalvik/instruction-formats.html">Instruction Formats</a></li>
+          <li><a href="../tech/dalvik/constraints.html">Constraints</a></li>
+          <li><a href="../tech/dalvik/configure.html">Configuration</a></li>
+          <li><a href="../tech/dalvik/gc-debug.html">Garbage Collection</a></li>
+          <li><a href="../tech/dalvik/jit-compiler.html">JIT Compilation</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+            <a href="../tech/config/index.html">
+              <span class="en">Configuration</span>
+            </a>
+        </div>
+        <ul>
+          <li><a href="../tech/config/carrier.html">Carrier Customization</a></li>
+          <li><a href="../tech/config/connect_tests.html">Connectivity Tests</a></li>
+          <li><a href="../tech/config/filesystem.html">File System</a></li>
+          <li><a href="../tech/kernel.html">Kernel Configuration</a></li>
+          <li><a href="../tech/config/kernel_network_tests.html">Kernel Network Tests</a></li>
+          <li><a href="../tech/config/low-ram.html">Low RAM</a></li>
+          <li><a href="../tech/config/namespaces_libraries.html">Namespaces for Libraries</a></li>
+          <li><a href="../tech/config/renderer.html">OpenGLRenderer</a></li>
+          <li><a href="../tech/config/runtime_perms.html">Runtime Permissions</a></li>
+          <li><a href="../tech/config/uicc.html">UICC</a></li>
+          <li><a href="../tech/config/voicemail.html">Visual Voicemail</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+            <a href="../tech/connect/index.html">
+              <span class="en">Connectivity</span>
+            </a>
+        </div>
+        <ul>
+          <li><a href="../tech/connect/block-numbers.html">Block Phone Numbers</a></li>
+          <li><a href="../tech/connect/call-notification.html">Call Notifications</a></li>
+          <li><a href="../tech/connect/data-saver.html">Data Saver Mode</a></li>
+          <li><a href="../tech/connect/felica.html">Host Card Emulation of FeliCa</a></li>
+          <li><a href="../tech/connect/ril.html">Radio Interface Layer (RIL)</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../tech/datausage/index.html">
+            <span class="en">Data Usage</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../tech/datausage/iface-overview.html">Network interface statistics overview</a></li>
+          <li><a href="../tech/datausage/excluding-network-types.html">Excluding Network Types from Data Usage</a></li>
+          <li><a href="../tech/datausage/tethering-data.html">Tethering Data</a></li>
+          <li><a href="../tech/datausage/usage-cycle-resets-dates.html">Usage Cycle Reset Dates</a></li>
+          <li><a href="../tech/datausage/kernel-overview.html">Kernel Overview</a></li>
+          <li><a href="../tech/datausage/tags-explained.html">Data Usage Tags Explained</a></li>
+          <li><a href="../tech/datausage/kernel-changes.html">Kernel Changes</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../tech/debug/index.html">
+            <span class="en">Debugging</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../tech/debug/asan.html">AddressSanitizer</a></li>
+          <li><a href="../tech/debug/dumpsys.html">Dumpsys</a></li>
+          <li><a href="../tech/debug/native-memory.html">Native Memory Use</a></li>
+          <li><a href="../tech/debug/netstats.html">Network Use</a></li>
+          <li><a href="../tech/debug/procstats.html">RAM Use</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../tech/admin/index.html">
+          <span class="en">Device Administration</span></a>
+        </div>
+        <ul>
+          <li><a href="../tech/admin/implement.html">Implementation</a></li>
+          <li><a href="../tech/admin/multi-user.html">Multiple Users</a></li>
+          <li><a href="../tech/admin/managed-profiles.html">Managed Profiles</a></li>
+          <li><a href="../tech/admin/provision.html">Provisioning</a></li>
+          <li><a href="../tech/admin/multiuser-apps.html">Multiuser Apps</a></li>
+          <li><a href="../tech/admin/enterprise-telephony.html">Enterprise Telephony</a></li>
+          <li><a href="../tech/admin/testing-provision.html">Testing Device Provisioning</a></li>
+          <li><a href="../tech/admin/testing-setup.html">Testing Device Administration</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+            <a href="../tech/display/index.html">
+              <span class="en">Display Settings</span></a>
+        </div>
+        <ul>
+          <li><a href="../tech/display/dnd.html">Do Not Disturb</a></li>
+          <li><a href="../tech/display/multi-window.html">Multi-Window</a></li>
+          <li><a href="../tech/display/hdr.html">HDR Video</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header empty">
+          <a href="../halref/index.html">
+            <span class="en">HAL File Reference</span>
+          </a>
+        </div>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+            <a href="../tech/ota/index.html">
+              <span class="en">OTA Updates</span>
+            </a>
+        </div>
+        <ul>
+          <li><a href="../tech/ota/tools.html">OTA Tools</a></li>
+          <li><a href="../tech/ota/block.html">Block-based OTA</a></li>
+          <li><a href="../tech/ota/inside_packages.html">Inside OTA Packages</a></li>
+          <li><a href="../tech/ota/device_code.html">Device-Specific Code</a></li>
+          <li><a href="../tech/ota/reduce_size.html">Reducing OTA Size</a></li>
+          <li><a href="../tech/ota/sign_builds.html">Signing Builds for Release</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../tech/power/index.html"><span class="en">Power</span></a>
+        </div>
+        <ul>
+          <li><a href="../tech/power/mgmt.html">Power Management</a></li>
+          <li><a href="../tech/power/performance.html">Performance Management</a></li>
+          <li><a href="../tech/power/component.html">Component Power</a></li>
+          <li><a href="../tech/power/device.html">Device Power</a></li>
+          <li><a href="../tech/power/values.html">Power Values</a></li>
+          <li><a href="../tech/power/batterystats.html">Battery Use</a>
+          </li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../tech/test_infra/tradefed/index.html">
+            <span class="en">Testing Infrastructure</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../tech/test_infra/tradefed/fundamentals/index.html">Start Here</a></li>
+          <li><a href="../tech/test_infra/tradefed/fundamentals/machine_setup.html">Machine Setup</a></li>
+          <li><a href="../tech/test_infra/tradefed/fundamentals/devices.html">Working with Devices</a></li>
+          <li><a href="../tech/test_infra/tradefed/fundamentals/lifecycle.html">Test Lifecycle</a></li>
+          <li><a href="../tech/test_infra/tradefed/fundamentals/options.html">Option Handling</a></li>
+          <li><a href="../tech/test_infra/tradefed/full_example.html">An End-to-End Example</a></li>
+          <li id="tradefed-tree-list" class="nav-section">
+            <div class="nav-section-header">
+              <a href="../../reference/packages.html">
+                <span class="en">Package Index</span>
+              </a>
+            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li> <!-- End nav-section, Core Technologies -->
+</ul> 
+
+
+      </div>
+      <script type="text/javascript">
+        showTradefedRefTree();
+      </script>
+    </div> <!-- end side-nav -->
+    <script>
+      $(document).ready(function() {
+        scrollIntoView("devdoc-nav");
+        });
+    </script>
+
+  
+
+
+
+
+<div class="col-12" id="doc-col" >
+
+
+  
+    
+      
+        <h1 itemprop="name" >Key Character Map Files</h1>
+      
+    
+  
+
+
+  
+  <div id="jd-content">
+
+    <div class="jd-descr" itemprop="articleBody">
+    <!--
+    Copyright 2015 The Android Open Source Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<div id="qv-wrapper">
+  <div id="qv">
+    <h2>In this document</h2>
+    <ol id="auto-toc">
+    </ol>
+  </div>
+</div>
+
+<p>Key character map files (<code>.kcm</code> files) are responsible for mapping combinations
+of Android key codes with modifiers to Unicode characters.</p>
+<p>Device-specific key layout files are <em>required</em> for all internal (built-in)
+input devices that have keys, if only to tell the system that the device
+is special purpose only (not a full keyboard).</p>
+<p>Device-specific key layout files are <em>optional</em> for external keyboards, and
+often aren't needed at all.  The system provides a generic key character map
+that is suitable for many external keyboards.</p>
+<p>If no device-specific key layout file is available, then the system will
+choose a default instead.</p>
+<h2 id="location">Location</h2>
+<p>Key character map files are located by USB vendor, product (and optionally version)
+id or by input device name.</p>
+<p>The following paths are consulted in order.</p>
+<ul>
+<li><code>/system/usr/keychars/Vendor_XXXX_Product_XXXX_Version_XXXX.kcm</code></li>
+<li><code>/system/usr/keychars/Vendor_XXXX_Product_XXXX.kcm</code></li>
+<li><code>/system/usr/keychars/DEVICE_NAME.kcm</code></li>
+<li><code>/data/system/devices/keychars/Vendor_XXXX_Product_XXXX_Version_XXXX.kcm</code></li>
+<li><code>/data/system/devices/keychars/Vendor_XXXX_Product_XXXX.kcm</code></li>
+<li><code>/data/system/devices/keychars/DEVICE_NAME.kcm</code></li>
+<li><code>/system/usr/keychars/Generic.kcm</code></li>
+<li><code>/data/system/devices/keychars/Generic.kcm</code></li>
+<li><code>/system/usr/keychars/Virtual.kcm</code></li>
+<li><code>/data/system/devices/keychars/Virtual.kcm</code></li>
+</ul>
+<p>When constructing a file path that contains the device name, all characters
+in the device name other than '0'-'9', 'a'-'z', 'A'-'Z', '-' or '<em>' are replaced by '</em>'.</p>
+<h2 id="generic-key-character-map-file">Generic Key Character Map File</h2>
+<p>The system provides a special built-in key character map file called <code>Generic.kcm</code>.
+This key character map is intended to support a variety of standard external
+keyboards.</p>
+<p><em>Do not modify the generic key character map!</em></p>
+<h2 id="virtual-key-character-map-file">Virtual Key Character Map File</h2>
+<p>The system provides a special built-in key character map file called <code>Virtual.kcm</code>
+that is used by the virtual keyboard devices.</p>
+<p>The virtual keyboard device is a synthetic input device whose id is -1
+(see <code>KeyCharacterMap.VIRTUAL_KEYBOARD</code>).  It is present on all Android devices
+beginning with Android Honeycomb 3.0.  The purpose of the virtual keyboard device
+is to provide a known built-in input device that can be used for injecting
+keystrokes into applications by the IME or by test instrumentation, even
+for devices that do not have built-in keyboards.</p>
+<p>The virtual keyboard is assumed to have a full QWERTY layout that is the
+same on all devices.  This makes it possible for applications to inject
+keystrokes using the virtual keyboard device and always get the same results.</p>
+<p><em>Do not modify the virtual key character map!</em></p>
+<h2 id="syntax">Syntax</h2>
+<p>A key character map file is a plain text file consisting of a keyboard type
+declaration and a set of key declarations.</p>
+<h3 id="keyboard-type-declaration">Keyboard Type Declaration</h3>
+<p>A keyboard type declaration describes the overall behavior of the keyboard.
+A character map file must contain a keyboard type declaration.  For clarity,
+it is often placed at the top of the file.</p>
+<pre><code>type FULL
+</code></pre>
+<p>The following keyboard types are recognized:</p>
+<ul>
+<li>
+<p><code>NUMERIC</code>: A numeric (12-key) keyboard.</p>
+<p>A numeric keyboard supports text entry using a multi-tap approach.
+It may be necessary to tap a key multiple times to generate the desired letter or symbol.</p>
+<p>This type of keyboard is generally designed for thumb typing.</p>
+<p>Corresponds to <code>KeyCharacterMap.NUMERIC</code>.</p>
+</li>
+<li>
+<p><code>PREDICTIVE</code>: A keyboard with all the letters, but with more than one letter per key.</p>
+<p>This type of keyboard is generally designed for thumb typing.</p>
+<p>Corresponds to <code>KeyCharacterMap.PREDICTIVE</code>.</p>
+</li>
+<li>
+<p><code>ALPHA</code>: A keyboard with all the letters, and maybe some numbers.</p>
+<p>An alphabetic keyboard supports text entry directly but may have a condensed
+layout with a small form factor.  In contrast to a <code>FULL</code> keyboard, some
+symbols may only be accessible using special on-screen character pickers.
+In addition, to improve typing speed and accuracy, the framework provides
+special affordances for alphabetic keyboards such as auto-capitalization
+and toggled / locked SHIFT and ALT keys.</p>
+<p>This type of keyboard is generally designed for thumb typing.</p>
+</li>
+<li>
+<p><code>FULL</code>: A full PC-style keyboard.</p>
+<p>A full keyboard behaves like a PC keyboard.  All symbols are accessed directly
+by pressing keys on the keyboard without on-screen support or affordances such
+as auto-capitalization.</p>
+<p>This type of keyboard is generally designed for full two hand typing.</p>
+</li>
+<li>
+<p><code>SPECIAL_FUNCTION</code>: A keyboard that is only used to perform system control functions
+    rather than for typing.</p>
+<p>A special function keyboard consists only of non-printing keys such as
+HOME and POWER that are not actually used for typing.</p>
+</li>
+</ul>
+<p>The <code>Generic.kcm</code> and <code>Virtual.kcm</code> key character maps are both <code>FULL</code> keyboards.</p>
+<h3 id="key-declarations">Key Declarations</h3>
+<p>Key declarations each consist of the keyword <code>key</code> followed by an Android key code
+name, an open curly brace, a set of properties and behaviors and a close curly brace.</p>
+<pre><code>key A {
+    label:                              'A'
+    base:                               'a'
+    shift, capslock:                    'A'
+    ctrl, alt, meta:                    none
+}
+</code></pre>
+<h4 id="properties">Properties</h4>
+<p>Each key property establishes a mapping from a key to a behavior.  To make the
+key character map files more compact, several properties can be mapped to the
+same behavior by separating them with a comma.</p>
+<p>In the above example, the <code>label</code> property is assigned the <code>'A'</code> behavior.
+Likewise, the <code>ctrl</code>, <code>alt</code> and <code>meta</code> properties are all simultaneously assigned
+the <code>none</code> behavior.</p>
+<p>The following properties are recognized:</p>
+<ul>
+<li>
+<p><code>label</code>: Specifies the label that is physically printed on the key, when it
+    consists of a single character.  This is the value that is returned by
+    the <code>KeyCharacterMap.getDisplayLabel</code> method.</p>
+</li>
+<li>
+<p><code>number</code>: Specifies the behavior (character that should be typed) when a numeric
+    text view has focus, such as when the user is typing a phone number.</p>
+<p>Compact keyboards often combine multiple symbols into a single key, such that
+the same key might be used to type <code>'1'</code> and <code>'a'</code> or <code>'#'</code> and <code>'q'</code>, perhaps.
+For these keys, the <code>number</code> property should be set to indicate which symbol
+should be typed in a numeric context, if any.</p>
+<p>Some typical "numeric" symbols are digits <code>'0'</code> through <code>'9'</code>, <code>'#'</code>, <code>'+'</code>,
+<code>'('</code>, <code>')'</code>, <code>','</code>, and <code>'.'</code>.</p>
+</li>
+<li>
+<p><code>base</code>: Specifies the behavior (character that should be typed) when no modifiers
+    are pressed.</p>
+</li>
+<li>
+<p>&lt;modifier&gt; or &lt;modifier1&gt;<code>+</code>&lt;modifier2&gt;<code>+</code>...: Specifies the
+    behavior (character that should be typed) when the key is pressed and all of the
+    specified modifiers are active.</p>
+<p>For example, the modifier property <code>shift</code> specifies a behavior that applies when
+the either the LEFT SHIFT or RIGHT SHIFT modifier is pressed.</p>
+<p>Similarly, the modifier property <code>rshift+ralt</code> specifies a behavior that applies
+when the both RIGHT SHIFT and RIGHT ALT modifiers are pressed together.</p>
+</li>
+</ul>
+<p>The following modifiers are recognized in modifier properties:</p>
+<ul>
+<li><code>shift</code>: Applies when either the LEFT SHIFT or RIGHT SHIFT modifier is pressed.</li>
+<li><code>lshift</code>: Applies when the LEFT SHIFT modifier is pressed.</li>
+<li><code>rshift</code>: Applies when the RIGHT SHIFT modifier is pressed.</li>
+<li><code>alt</code>: Applies when either the LEFT ALT or RIGHT ALT modifier is pressed.</li>
+<li><code>lalt</code>: Applies when the LEFT ALT modifier is pressed.</li>
+<li><code>ralt</code>: Applies when the RIGHT ALT modifier is pressed.</li>
+<li><code>ctrl</code>: Applies when either the LEFT CONTROL or RIGHT CONTROL modifier is pressed.</li>
+<li><code>lctrl</code>: Applies when the LEFT CONTROL modifier is pressed.</li>
+<li><code>rctrl</code>: Applies when the RIGHT CONTROL modifier is pressed.</li>
+<li><code>meta</code>: Applies when either the LEFT META or RIGHT META modifier is pressed.</li>
+<li><code>lmeta</code>: Applies when the LEFT META modifier is pressed.</li>
+<li><code>rmeta</code>: Applies when the RIGHT META modifier is pressed.</li>
+<li><code>sym</code>: Applies when the SYMBOL modifier is pressed.</li>
+<li><code>fn</code>: Applies when the FUNCTION modifier is pressed.</li>
+<li><code>capslock</code>: Applies when the CAPS LOCK modifier is locked.</li>
+<li><code>numlock</code>: Applies when the NUM LOCK modifier is locked.</li>
+<li><code>scrolllock</code>: Applies when the SCROLL LOCK modifier is locked.</li>
+</ul>
+<p>The order in which the properties are listed is significant.  When mapping a key to
+a behavior, the system scans all relevant properties in order and returns the last
+applicable behavior that it found.</p>
+<p>Consequently, properties that are specified later override properties that are
+specified earlier for a given key.</p>
+<h4 id="behaviors">Behaviors</h4>
+<p>Each property maps to a behavior.  The most common behavior is typing a character
+but there are others.</p>
+<p>The following behaviors are recognized:</p>
+<ul>
+<li>
+<p><code>none</code>: Don't type a character.</p>
+<p>This behavior is the default when no character is specified.  Specifying <code>none</code>
+is optional but it improves clarity.</p>
+</li>
+<li>
+<p><code>'X'</code>: Type the specified character literal.</p>
+<p>This behavior causes the specified character to be entered into the focused
+text view.  The character literal may be any ASCII character, or one of the
+following escape sequences:</p>
+<ul>
+<li><code>'\\'</code>: Type a backslash character.</li>
+<li><code>'\n'</code>: Type a new line character (use this for ENTER / RETURN).</li>
+<li><code>'\t'</code>: Type a TAB character.</li>
+<li><code>'\''</code>: Type an apostrophe character.</li>
+<li><code>'\"'</code>: Type a quote character.</li>
+<li><code>'\uXXXX'</code>: Type the Unicode character whose code point is given in hex by XXXX.</li>
+</ul>
+</li>
+<li>
+<p><code>fallback</code> &lt;Android key code name&gt;: Perform a default action if the key is not
+    handled by the application.</p>
+<p>This behavior causes the system to simulate a different key press when an application
+does not handle the specified key natively.  It is used to support default behavior
+for new keys that not all applications know how to handle, such as ESCAPE or
+numeric keypad keys (when numlock is not pressed).</p>
+<p>When a fallback behavior is performed, the application will receive two key presses:
+one for the original key and another for the fallback key that was selected.
+If the application handles the original key during key up, then the fallback key
+event will be canceled (<code>KeyEvent.isCanceled</code> will return <code>true</code>).</p>
+</li>
+</ul>
+<p>The system reserves two Unicode characters to perform special functions:</p>
+<ul>
+<li>
+<p><code>'\uef00'</code>: When this behavior is performed, the text view consumes and removes the
+    four characters preceding the cursor, interprets them as hex digits, and inserts the
+    corresponding Unicode code point.</p>
+</li>
+<li>
+<p><code>'\uef01'</code>: When this behavior is performed, the text view displays a
+    character picker dialog that contains miscellaneous symbols.</p>
+</li>
+</ul>
+<p>The system recognizes the following Unicode characters as combining diacritical dead
+key characters:</p>
+<ul>
+<li><code>'\u0300'</code>: Grave accent.</li>
+<li><code>'\u0301'</code>: Acute accent.</li>
+<li><code>'\u0302'</code>: Circumflex accent.</li>
+<li><code>'\u0303'</code>: Tilde accent.</li>
+<li><code>'\u0308'</code>: Umlaut accent.</li>
+</ul>
+<p>When a dead key is typed followed by another character, the dead key and the following
+characters are composed.  For example, when the user types a grave accent dead
+key followed by the letter 'a', the result is '&agrave;'.</p>
+<p>Refer to <code>KeyCharacterMap.getDeadChar</code> for more information about dead key handling.</p>
+<h3 id="comments">Comments</h3>
+<p>Comment lines begin with '#' and continue to the end of the line.  Like this:</p>
+<pre><code># A comment!
+</code></pre>
+<p>Blank lines are ignored.</p>
+<h3 id="how-key-combinations-are-mapped-to-behaviors">How Key Combinations are Mapped to Behaviors</h3>
+<p>When the user presses a key, the system looks up the behavior associated with
+the combination of that key press and the currently pressed modifiers.</p>
+<h4 id="shift-a">SHIFT + A</h4>
+<p>Suppose the user pressed A and SHIFT together.  The system first locates
+the set of properties and behaviors associated with <code>KEYCODE_A</code>.</p>
+<pre><code>key A {
+    label:                              'A'
+    base:                               'a'
+    shift, capslock:                    'A'
+    ctrl, alt, meta:                    none
+}
+</code></pre>
+<p>The system scans the properties from first to last and left to right, ignoring
+the <code>label</code> and <code>number</code> properties, which are special.</p>
+<p>The first property encountered is <code>base</code>.  The <code>base</code> property always applies to
+a key, no matter what modifiers are pressed.  It essentially specifies the default
+behavior for the key unless it is overridden by following properties.
+Since the <code>base</code> property applies to this key press, the system makes note
+of the fact that its behavior is <code>'a'</code> (type the character <code>a</code>).</p>
+<p>The system then continues to scan subsequent properties in case any of them
+are more specific than <code>base</code> and override it.  It encounters <code>shift</code> which
+also applies to the key press SHIFT + A.  So the system decides to ignore
+the <code>base</code> property's behavior and chooses the behavior associated with
+the <code>shift</code> property, which is <code>'A'</code> (type the character <code>A</code>).</p>
+<p>It then continues to scan the table, however no other properties apply to this
+key press (CAPS LOCK is not locked, neither CONTROL key is pressed, neither
+ALT key is pressed and neither META key is pressed).</p>
+<p>So the resulting behavior for the key combination SHIFT + A is <code>'A'</code>.</p>
+<h4 id="control-a">CONTROL + A</h4>
+<p>Now consider what would happen if the user pressed A and CONTROL together.</p>
+<p>As before, the system would scan the table of properties.  It would notice
+that the <code>base</code> property applied but would also continue scanning until
+it eventually reached the <code>control</code> property.  As it happens, the <code>control</code>
+property appears after <code>base</code> so its behavior overrides the <code>base</code> behavior.</p>
+<p>So the resulting behavior for the key combination CONTROL + A is <code>none</code>.</p>
+<h4 id="escape">ESCAPE</h4>
+<p>Now suppose the user pressed ESCAPE.</p>
+<pre><code>key ESCAPE {
+    base:                               fallback BACK
+    alt, meta:                          fallback HOME
+    ctrl:                               fallback MENU
+}
+</code></pre>
+<p>This time the system obtains the behavior <code>fallback BACK</code>, a fallback behavior.
+Because no character literal appears, no character will be typed.</p>
+<p>When processing the key, the system will first deliver <code>KEYCODE_ESCAPE</code> to the
+application.  If the application does not handle it, then the system will try
+again but this time it will deliver <code>KEYCODE_BACK</code> to the application as
+requested by the fallback behavior.</p>
+<p>So applications that recognize and support <code>KEYCODE_ESCAPE</code> have the
+opportunity to handle it as is, but other applications that do not can instead
+perform the fallback action of treating the key as if it were <code>KEYCODE_BACK</code>.</p>
+<h4 id="numpad_0-with-or-without-num-lock">NUMPAD_0 with or without NUM LOCK</h4>
+<p>The numeric keypad keys have very different interpretations depending on whether
+the NUM LOCK key is locked.</p>
+<p>The following key declaration ensures that <code>KEYCODE_NUMPAD_0</code> types <code>0</code>
+when NUM LOCK is pressed.  When NUM LOCK is not pressed, the key is delivered
+to the application as usual, and if it is not handled, then the fallback
+key <code>KEYCODE_INSERT</code> is delivered instead.</p>
+<pre><code>key NUMPAD_0 {
+    label, number:                      '0'
+    base:                               fallback INSERT
+    numlock:                            '0'
+    ctrl, alt, meta:                    none
+}
+</code></pre>
+<p>As we can see, fallback key declarations greatly improve compatibility
+with older applications that do not recognize or directly support all of the keys
+that are present on a full PC style keyboard.</p>
+<h3 id="examples">Examples</h3>
+<h4 id="full-keyboard">Full Keyboard</h4>
+<pre><code># This is an example of part of a key character map file for a full keyboard
+# include a few fallback behaviors for special keys that few applications
+# handle themselves.
+
+type FULL
+
+key C {
+    label:                              'C'
+    base:                               'c'
+    shift, capslock:                    'C'
+    alt:                                '\u00e7'
+    shift+alt:                          '\u00c7'
+    ctrl, meta:                         none
+}
+
+key SPACE {
+    label:                              ' '
+    base:                               ' '
+    ctrl:                               none
+    alt, meta:                          fallback SEARCH
+}
+
+key NUMPAD_9 {
+    label, number:                      '9'
+    base:                               fallback PAGE_UP
+    numlock:                            '9'
+    ctrl, alt, meta:                    none
+}
+</code></pre>
+<h4 id="alphanumeric-keyboard">Alphanumeric Keyboard</h4>
+<pre><code># This is an example of part of a key character map file for an alphanumeric
+# thumb keyboard.  Some keys are combined, such as `A` and `2`.  Here we
+# specify `number` labels to tell the system what to do when the user is
+# typing a number into a dial pad.
+#
+# Also note the special character '\uef01' mapped to ALT+SPACE.
+# Pressing this combination of keys invokes an on-screen character picker.
+
+type ALPHA
+
+key A {
+    label:                              'A'
+    number:                             '2'
+    base:                               'a'
+    shift, capslock:                    'A'
+    alt:                                '#'
+    shift+alt, capslock+alt:            none
+}
+
+key SPACE {
+    label:                              ' '
+    number:                             ' '
+    base:                               ' '
+    shift:                              ' '
+    alt:                                '\uef01'
+    shift+alt:                          '\uef01'
+}
+</code></pre>
+<h4 id="game-pad">Game Pad</h4>
+<pre><code># This is an example of part of a key character map file for a game pad.
+# It defines fallback actions that enable the user to navigate the user interface
+# by pressing buttons.
+
+type SPECIAL_FUNCTION
+
+key BUTTON_A {
+    base:                               fallback BACK
+}
+
+key BUTTON_X {
+    base:                               fallback DPAD_CENTER
+}
+
+key BUTTON_START {
+    base:                               fallback HOME
+}
+
+key BUTTON_SELECT {
+    base:                               fallback MENU
+}
+</code></pre>
+<h2 id="compatibility-note">Compatibility Note</h2>
+<p>Prior to Android Honeycomb 3.0, the Android key character map was specified
+using a very different syntax and was compiled into a binary file format
+(<code>.kcm.bin</code>) at build time.</p>
+<p>Although the new format uses the same extension <code>.kcm</code>, the syntax is quite
+different (and much more powerful).</p>
+<p>As of Android Honeycomb 3.0, all Android key character map files must use
+the new syntax and plain text file format that is described in this document.
+The old syntax is not supported and the old <code>.kcm.bin</code> files are not recognized
+by the system.</p>
+<h2 id="language-note">Language Note</h2>
+<p>Android does not currently support multilingual keyboards.  Moreover, the
+built-in generic key character map assumes a US English keyboard layout.</p>
+<p>OEMs are encouraged to provide custom key character maps for their keyboards
+if they are designed for other languages.</p>
+<p>Future versions of Android may provide better support for multilingual keyboards
+or user-selectable keyboard layouts.</p>
+<h2 id="validation">Validation</h2>
+<p>Make sure to validate your key character map files using the
+<a href="validate-keymaps.html">Validate Keymaps</a> tool.</p>
+
+    </div>
+
+      <div class="content-footer-sac"
+                    itemscope itemtype="http://schema.org/SiteNavigationElement">
+        <div class="layout-content-col col-9" style="padding-top:4px">
+        </div>
+        
+        <div class="paging-links layout-content-col col-4">
+          
+        </div>
+        
+      </div>
+      
+      
+    </div> <!-- end jd-content -->
+  <div id="footer" class="wrap" >
+  <style>.feedback { float: right !Important }</style>
+  <div class="feedback">
+    <a href="key-character-map-files.html#" class="button" onclick=" try {
+      userfeedback.api.startFeedback({'productId':'715571','authuser':'1'});return false;}catch(e){}">Site Feedback</a>
+  </div>
+  <div id="copyright">
+    
+  Except as noted, this content is 
+  licensed under <a href="http://creativecommons.org/licenses/by/2.5/">
+  Creative Commons Attribution 2.5</a>. For details and 
+  restrictions, see the <a href="../../license.html">Content 
+  License</a>.
+  </div>
+    <div id="footerlinks">
+    
+  <p>
+    <a href="../../source/index.html">About Android</a>&nbsp;&nbsp;|&nbsp;
+    <a href="../../source/community.html">Community</a>&nbsp;&nbsp;|&nbsp;
+    <a href="../../legal.html">Legal</a>&nbsp;&nbsp;|&nbsp;
+  </p>
+  </div>
+
+</div><!-- end doc-content -->
+
+</div> <!-- end body-content --> 
+
+
+
+
+
+
+</body>
+</html>
+
+
+

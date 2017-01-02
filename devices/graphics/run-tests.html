@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<meta name="Description" content="This page provides instructions for running deqp tests in Linux and Windows environments, using command line arguments, and working with the Android application package. Start by copying the following files and directories to the target. You can deploy…">
+
+<link rel="shortcut icon" type="image/x-icon" href="../../favicon.ico" />
+<title>Running the tests | Android Open Source Project</title>
+
+<!-- STYLESHEETS -->
+<link rel="stylesheet"
+href="https://fonts.googleapis.com/css?family=Roboto:regular,medium,thin,italic,mediumitalic,bold" title="roboto">
+<link href="../../assets/css/default.css" rel="stylesheet" type="text/css">
+
+
+
+<!-- JAVASCRIPT -->
+<script src="https://www.google.com/jsapi" type="text/javascript"></script>
+<script src="../../assets/js/android_3p-bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+  var toRoot = "/";
+  
+  var devsite = false;
+  
+</script>
+<script src="../../assets/js/docs.js" type="text/javascript"></script>
+
+<script src="../../navtree_data.js" type="text/javascript"></script>
+
+
+<script type="text/javascript" src="https://www.gstatic.com/feedback/api.js"></script>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-45455297-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</head>
+
+<body class="gc-documentation 
+  " itemscope itemtype="http://schema.org/Article">
+<a name="top"></a>
+
+  
+    <!-- Header -->
+    <div id="header">
+        <div class="wrap" id="header-wrap">
+          <div class="col-3 saclogo">
+          <a href="../../index.html">
+            <img src="../../assets/images/sac_logo.png"
+                srcset="/assets/images/sac_logo@2x.png 2x"
+                width="123" height="25" alt="Android Open Source Project" />
+          </a>
+          </div>
+            <ul class="nav-x col-9">
+                <li class="source">
+                  <a href="../../source/index.html" 
+                  >Source</a></li>
+                <li class="devices"><a href="../index.html" class="selected"
+                  >Devices</a></li>
+                <li class="security"><a href="../../security/index.html" 
+                  >Security</a></li>
+                <li class="compatibility last"><a href="../../compatibility/index.html" 
+                  >Compatibility</a></li>
+            </ul>
+            <!-- New Search -->
+            <div class="menu-container">
+            <div class="moremenu">
+    <div id="more-btn"></div>
+  </div>
+  <div class="morehover" id="moremenu">
+    <div class="top"></div>
+    <div class="mid">
+      <div class="header">Android Sites</div>
+      <ul>
+        <li class="active"><a>Android Open Source Project</a></li>
+        <li><a href="http://www.android.com">Android.com</a></li>
+        <li><a href="http://developer.android.com">Android Developers</a></li>
+      </ul>
+      <!-- <div class="header">Support</div>
+      <ul>
+        <li><a href="/support.html">Developer Support</a></li>
+      </ul> -->
+      <br class="clearfix" />
+    </div>
+    <div class="bottom"></div>
+  </div>
+
+  <div class="search" id="search-container">
+    <div class="search-inner">
+      <div id="search-btn"></div>
+      <div class="left"></div>
+      <form onsubmit="return submit_search()">
+        <input id="search_autocomplete" type="text" value="" autocomplete="off" name="q"
+onfocus="search_focus_changed(this, true)" onblur="search_focus_changed(this, false)"
+onkeydown="return search_changed(event, true, '/')"
+onkeyup="return search_changed(event, false, '/')" />
+      </form>
+      <div class="right"></div>
+        <a class="close hide">close</a>
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+  </div>
+  <div id="search_filtered_wrapper">
+    <div id="search_filtered_div" class="no-display">
+        <ul id="search_filtered">
+        </ul>
+    </div>
+  </div>
+
+  </div>
+  <!-- /New Search> -->
+        </div>
+    </div>
+    <!-- /Header -->
+
+  <div id="searchResults" class="wrap" style="display:none;">
+          <h2 id="searchTitle">Results</h2>
+          <div id="leftSearchControl" class="search-control">Loading...</div>
+  </div>
+
+  
+  
+  
+    
+  <div class="wrap clearfix" id="body-content">
+    <div class="col-4" id="side-nav" itemscope itemtype="http://schema.org/SiteNavigationElement">
+      <div id="devdoc-nav" class="scroll-pane">
+<a class="totop" href="run-tests.html#top" data-g-event="left-nav-top">to top</a>
+
+<!--
+    Copyright 2015 The Android Open Source Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<ul id="nav">
+  <li class="nav-section">  <!-- Begin nav section, Device Interfaces -->
+    <div class="nav-section-header">
+      <a href="../index.html">
+        <span class="en">Interfaces</span>
+      </a>
+    </div>
+    <ul>
+  <li class="nav-section">
+  <div class="nav-section-header">
+      <a href="../accessories/index.html">
+        <span class="en">Accessories</span>
+      </a>
+    </div>
+    <ul>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../accessories/audio.html">
+            <span class="en">Audio Accessories</span>
+          </a>
+        </div>
+        <ul>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../accessories/headset/index.html">
+            <span class="en">Headset</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../accessories/headset/specification.html">Specification</a></li>
+          <li><a href="../accessories/headset/requirements.html">Requirements</a></li>
+          <li><a href="../accessories/headset/testing.html">Testing</a></li>
+        </ul>
+      </li>
+        </ul>
+      </li>
+  <li class="nav-section">
+  <div class="nav-section-header">
+      <a href="../accessories/custom.html">
+        <span class="en">Custom Accessories</span>
+      </a>
+    </div>
+    <ul>
+      <li class="nav-section">
+        <div class="nav-section-header"><a href="../accessories/protocol.html"><span class="en">AOA</span>
+        </a>
+        </div>
+        <ul>
+          <li><a href="../accessories/aoa2.html">AOA 2.0</a></li>
+          <li><a href="../accessories/aoa.html">AOA 1.0</a></li>
+        </ul>
+        </li>
+        <div class="nav-section-header"><a href="../accessories/stylus.html"><span class="en">Stylus</span>
+        </a>
+        </div>
+       </ul>
+     </li>
+    </ul>
+      <li class="nav-section">
+      <div class="nav-section-header">
+        <a href="../audio/index.html">
+          <span class="en">Audio</span>
+        </a>
+      </div>
+        <ul>
+          <li><a href="../audio/terminology.html">Terminology</a></li>
+          <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="../audio/implement.html">
+                <span class="en">Implementation</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="../audio/implement-policy.html">Policy Configuration</a></li>
+              <li><a href="../audio/implement-shared-library.html">Shared Library</a></li>
+              <li><a href="../audio/implement-pre-processing.html">Pre-processing Effects</a></li>
+            </ul>
+         </li>
+          <li><a href="../audio/data_formats.html">Data Formats</a></li>
+          <li><a href="../audio/attributes.html">Attributes</a></li>
+          <li><a href="../audio/warmup.html">Warmup</a></li>
+          <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="../audio/latency.html">
+                <span class="en">Latency</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="../audio/latency_contrib.html">Contributors</a></li>
+              <li><a href="../audio/latency_design.html">Design</a></li>
+              <li><a href="../audio/latency_measure.html">Measure</a></li>
+              <li><a href="../audio/testing_circuit.html">Light Testing Circuit</a></li>
+              <li><a href="../audio/loopback.html">Audio Loopback Dongle</a></li>
+              <li><a href="../audio/latency_measurements.html">Measurements</a></li>
+              <li><a href="../audio/latency_app.html">Applications</a></li>
+            </ul>
+          </li>
+          <li><a href="../audio/avoiding_pi.html">Priority Inversion</a></li>
+          <li><a href="../audio/src.html">Sample Rate Conversion</a></li>
+          <li><a href="../audio/debugging.html">Debugging</a></li>
+          <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="../audio/midi.html">
+                <span class="em">MIDI</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="../audio/midi_arch.html">MIDI Architecture</a></li>
+              <li><a href="../audio/midi_test.html">MIDI Test Procedure</a></li>
+            </ul>
+          <li><a href="../audio/usb.html">USB Digital Audio</a></li>
+          <li><a href="../audio/tv.html">TV Audio</a></li>
+        </ul>
+      </li>
+      <li><a href="../automotive.html">Automotive</a></li>
+      <li><a href="../bluetooth.html">Bluetooth</a></li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../camera/index.html">
+            <span class="en">Camera</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../camera/camera3.html">Camera HAL3</a></li>
+          <li><a href="../camera/camera3_requests_hal.html">HAL Subsystem</a></li>
+          <li><a href="../camera/camera3_metadata.html">Metadata and Controls</a></li>
+          <li><a href="../camera/camera3_3Amodes.html">3A Modes and State</a></li>
+          <li><a href="../camera/camera3_crop_reprocess.html">Output and Cropping</a></li>
+          <li><a href="../camera/camera3_error_stream.html">Errors and Streams</a></li>
+          <li><a href="../camera/camera3_requests_methods.html">Request Creation</a></li>
+          <li><a href="../camera/versioning.html">Version Support</a></li>
+        </ul>
+      </li>
+
+      <li><a href="../drm.html">DRM</a></li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="index.html">
+            <span class="en">Graphics</span>
+          </a>
+        </div>
+        <ul>
+         <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="architecture.html">
+                <span class="en">Architecture</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="arch-bq-gralloc.html">BufferQueue</a></li>
+              <li><a href="arch-sf-hwc.html">SurfaceFlinger and HWC</a></li>
+              <li><a href="arch-sh.html">Surface and SurfaceHolder</a></li>
+              <li><a href="arch-egl-opengl.html">OpenGL ES</a></li>
+              <li><a href="arch-vulkan.html">Vulkan</a></li>
+              <li><a href="arch-sv-glsv.html">SurfaceView</a></li>
+              <li><a href="arch-st.html">SurfaceTexture</a></li>
+              <li><a href="arch-tv.html">TextureView</a></li>
+              <li><a href="arch-gameloops.html">Game Loops</a></li>
+            </ul>
+         </li>
+         <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="implement.html">
+                <span class="en">Implementing</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="implement-hwc.html">Hardware Composer HAL</a></li>
+              <li><a href="implement-vsync.html">VSYNC</a></li>
+              <li><a href="implement-vulkan.html">Vulkan</a></li>
+              <li><a href="implement-vdisplays.html">Virtual Displays</a></li>
+            </ul>
+         </li>
+         <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="testing.html">
+                <span class="en">OpenGL ES Testing</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="build-tests.html">Building test programs</a></li>
+              <li><a href="port-tests.html">Porting the test framework</a></li>
+              <li><a href="run-tests.html">Running the tests</a></li>
+              <li><a href="automate-tests.html">Automating the tests</a></li>
+              <li><a href="test-groups.html">Using special test groups</a></li>
+              <li><a href="cts-integration.html">Integrating with Android CTS</a></li>
+            </ul>
+         </li>
+        </ul> </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../input/index.html">
+            <span class="en">Input</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../input/overview.html">Overview</a></li>
+          <li><a href="../input/key-layout-files.html">Key Layout Files</a></li>
+          <li><a href="../input/key-character-map-files.html">Key Character Map Files</a></li>
+          <li><a href="../input/input-device-configuration-files.html">Input Device Configuration Files</a></li>
+          <li><a href="../input/migration-guide.html">Migration Guide</a></li>
+          <li><a href="../input/keyboard-devices.html">Keyboard Devices</a></li>
+          <li><a href="../tech/input/touch-devices.html">Touch Devices</a></li>
+          <li><a href="../tech/input/dumpsys.html">Diagnostics</a></li>
+          <li><a href="../input/getevent.html">Getevent</a></li>
+          <li><a href="../input/validate-keymaps.html">Validate Keymaps</a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../media.html">
+            <span class="en">Media</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../media/framework-hardening.html">Framework
+          Hardening</a></li>
+          <li><a href="../media/soc.html">SoC Dependencies</a></li>
+          <li><a href="../media/oem.html">OEM Dependencies</a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../sensors/index.html">
+            <span class="en">Sensors</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../sensors/sensor-stack.html">Sensor stack</a></li>
+          <li><a href="../sensors/report-modes.html">Reporting modes</a></li>
+          <li><a href="../sensors/suspend-mode.html">Suspend mode</a></li>
+          <li><a href="../sensors/power-use.html">Power consumption</a></li>
+          <li><a href="../sensors/interaction.html">Interaction</span></a></li>
+          <li><a href="../sensors/hal-interface.html">HAL interface</a></li>
+          <li><a href="../sensors/batching.html">Batching</a></li>
+          <li><a href="../sensors/sensor-types.html">Sensor types</a></li>
+          <li><a href="../sensors/versioning.html">Version deprecation</a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="https://source.android.com/devices/storage/index.html">
+            <span class="en">Storage</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../storage/traditional.html">Traditional Storage</a></li>
+          <li><a href="../storage/adoptable.html">Adoptable Storage</a></li>
+          <li><a href="../storage/config.html">Device Configuration</a></li>
+          <li><a href="../storage/config-example.html">Configuration Examples</a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../tv/index.html">
+            <span class="en">TV</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../tv/HDMI-CEC.html">HDMI-CEC control service</a></li>
+          <li><a href="../tv/reference-tv-app.html">Reference TV App</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li> <!-- End nav-section, Device Interfaces-->
+
+
+  <li class="nav-section"> <!--Begin nav-section, Core Technologies-->
+    <div class="nav-section-header">
+      <a href="../tech/index.html">
+        <span class="en">Core Technologies</span>
+      </a>
+    </div>
+
+    <ul>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../tech/dalvik/index.html">
+          <span class="en">ART and Dalvik</span></a>
+        </div>
+        <ul>
+          <li><a href="../tech/dalvik/dalvik-bytecode.html">Bytecode Format</a></li>
+          <li><a href="../tech/dalvik/dex-format.html">.Dex Format</a></li>
+          <li><a href="../tech/dalvik/instruction-formats.html">Instruction Formats</a></li>
+          <li><a href="../tech/dalvik/constraints.html">Constraints</a></li>
+          <li><a href="../tech/dalvik/configure.html">Configuration</a></li>
+          <li><a href="../tech/dalvik/gc-debug.html">Garbage Collection</a></li>
+          <li><a href="../tech/dalvik/jit-compiler.html">JIT Compilation</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+            <a href="../tech/config/index.html">
+              <span class="en">Configuration</span>
+            </a>
+        </div>
+        <ul>
+          <li><a href="../tech/config/carrier.html">Carrier Customization</a></li>
+          <li><a href="../tech/config/connect_tests.html">Connectivity Tests</a></li>
+          <li><a href="../tech/config/filesystem.html">File System</a></li>
+          <li><a href="../tech/kernel.html">Kernel Configuration</a></li>
+          <li><a href="../tech/config/kernel_network_tests.html">Kernel Network Tests</a></li>
+          <li><a href="../tech/config/low-ram.html">Low RAM</a></li>
+          <li><a href="../tech/config/namespaces_libraries.html">Namespaces for Libraries</a></li>
+          <li><a href="../tech/config/renderer.html">OpenGLRenderer</a></li>
+          <li><a href="../tech/config/runtime_perms.html">Runtime Permissions</a></li>
+          <li><a href="../tech/config/uicc.html">UICC</a></li>
+          <li><a href="../tech/config/voicemail.html">Visual Voicemail</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+            <a href="../tech/connect/index.html">
+              <span class="en">Connectivity</span>
+            </a>
+        </div>
+        <ul>
+          <li><a href="../tech/connect/block-numbers.html">Block Phone Numbers</a></li>
+          <li><a href="../tech/connect/call-notification.html">Call Notifications</a></li>
+          <li><a href="../tech/connect/data-saver.html">Data Saver Mode</a></li>
+          <li><a href="../tech/connect/felica.html">Host Card Emulation of FeliCa</a></li>
+          <li><a href="../tech/connect/ril.html">Radio Interface Layer (RIL)</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../tech/datausage/index.html">
+            <span class="en">Data Usage</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../tech/datausage/iface-overview.html">Network interface statistics overview</a></li>
+          <li><a href="../tech/datausage/excluding-network-types.html">Excluding Network Types from Data Usage</a></li>
+          <li><a href="../tech/datausage/tethering-data.html">Tethering Data</a></li>
+          <li><a href="../tech/datausage/usage-cycle-resets-dates.html">Usage Cycle Reset Dates</a></li>
+          <li><a href="../tech/datausage/kernel-overview.html">Kernel Overview</a></li>
+          <li><a href="../tech/datausage/tags-explained.html">Data Usage Tags Explained</a></li>
+          <li><a href="../tech/datausage/kernel-changes.html">Kernel Changes</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../tech/debug/index.html">
+            <span class="en">Debugging</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../tech/debug/asan.html">AddressSanitizer</a></li>
+          <li><a href="../tech/debug/dumpsys.html">Dumpsys</a></li>
+          <li><a href="../tech/debug/native-memory.html">Native Memory Use</a></li>
+          <li><a href="../tech/debug/netstats.html">Network Use</a></li>
+          <li><a href="../tech/debug/procstats.html">RAM Use</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../tech/admin/index.html">
+          <span class="en">Device Administration</span></a>
+        </div>
+        <ul>
+          <li><a href="../tech/admin/implement.html">Implementation</a></li>
+          <li><a href="../tech/admin/multi-user.html">Multiple Users</a></li>
+          <li><a href="../tech/admin/managed-profiles.html">Managed Profiles</a></li>
+          <li><a href="../tech/admin/provision.html">Provisioning</a></li>
+          <li><a href="../tech/admin/multiuser-apps.html">Multiuser Apps</a></li>
+          <li><a href="../tech/admin/enterprise-telephony.html">Enterprise Telephony</a></li>
+          <li><a href="../tech/admin/testing-provision.html">Testing Device Provisioning</a></li>
+          <li><a href="../tech/admin/testing-setup.html">Testing Device Administration</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+            <a href="../tech/display/index.html">
+              <span class="en">Display Settings</span></a>
+        </div>
+        <ul>
+          <li><a href="../tech/display/dnd.html">Do Not Disturb</a></li>
+          <li><a href="../tech/display/multi-window.html">Multi-Window</a></li>
+          <li><a href="../tech/display/hdr.html">HDR Video</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header empty">
+          <a href="../halref/index.html">
+            <span class="en">HAL File Reference</span>
+          </a>
+        </div>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+            <a href="../tech/ota/index.html">
+              <span class="en">OTA Updates</span>
+            </a>
+        </div>
+        <ul>
+          <li><a href="../tech/ota/tools.html">OTA Tools</a></li>
+          <li><a href="../tech/ota/block.html">Block-based OTA</a></li>
+          <li><a href="../tech/ota/inside_packages.html">Inside OTA Packages</a></li>
+          <li><a href="../tech/ota/device_code.html">Device-Specific Code</a></li>
+          <li><a href="../tech/ota/reduce_size.html">Reducing OTA Size</a></li>
+          <li><a href="../tech/ota/sign_builds.html">Signing Builds for Release</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../tech/power/index.html"><span class="en">Power</span></a>
+        </div>
+        <ul>
+          <li><a href="../tech/power/mgmt.html">Power Management</a></li>
+          <li><a href="../tech/power/performance.html">Performance Management</a></li>
+          <li><a href="../tech/power/component.html">Component Power</a></li>
+          <li><a href="../tech/power/device.html">Device Power</a></li>
+          <li><a href="../tech/power/values.html">Power Values</a></li>
+          <li><a href="../tech/power/batterystats.html">Battery Use</a>
+          </li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../tech/test_infra/tradefed/index.html">
+            <span class="en">Testing Infrastructure</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../tech/test_infra/tradefed/fundamentals/index.html">Start Here</a></li>
+          <li><a href="../tech/test_infra/tradefed/fundamentals/machine_setup.html">Machine Setup</a></li>
+          <li><a href="../tech/test_infra/tradefed/fundamentals/devices.html">Working with Devices</a></li>
+          <li><a href="../tech/test_infra/tradefed/fundamentals/lifecycle.html">Test Lifecycle</a></li>
+          <li><a href="../tech/test_infra/tradefed/fundamentals/options.html">Option Handling</a></li>
+          <li><a href="../tech/test_infra/tradefed/full_example.html">An End-to-End Example</a></li>
+          <li id="tradefed-tree-list" class="nav-section">
+            <div class="nav-section-header">
+              <a href="../../reference/packages.html">
+                <span class="en">Package Index</span>
+              </a>
+            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li> <!-- End nav-section, Core Technologies -->
+</ul> 
+
+
+      </div>
+      <script type="text/javascript">
+        showTradefedRefTree();
+      </script>
+    </div> <!-- end side-nav -->
+    <script>
+      $(document).ready(function() {
+        scrollIntoView("devdoc-nav");
+        });
+    </script>
+
+  
+
+
+
+
+<div class="col-12" id="doc-col" >
+
+
+  
+    
+      
+        <h1 itemprop="name" >Running the tests</h1>
+      
+    
+  
+
+
+  
+  <div id="jd-content">
+
+    <div class="jd-descr" itemprop="articleBody">
+    <!--
+    Copyright 2015 The Android Open Source Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<div id="qv-wrapper">
+  <div id="qv">
+    <h2>In this document</h2>
+    <ol id="auto-toc">
+    </ol>
+  </div>
+</div>
+<p>This page provides instructions for running deqp tests in Linux and Windows
+environments, using command line arguments, and working with the Android
+application package.</p>
+
+<h2 id=linux_and_windows_environments>Linux and Windows environments</h2>
+
+<p>Start by copying the following files and directories to the target.</p>
+
+<table>
+ <tr>
+   <th>Module</th>
+   <th>Directory</th>
+   <th>Target</th>
+ </tr>
+
+ <tr>
+    <td>Execution Server</td>
+    <td><code>build/execserver/execserver</code></td>
+    <td><code>&lt;dst&gt;/execserver</code></td>
+ </tr>
+
+ <tr>
+    <td>EGL Module</td>
+    <td><code>build/modules/egl/deqp-egl</code></td>
+    <td><code>&lt;dst&gt;/deqp-egl</code></td>
+ </tr>
+
+ <tr>
+    <td rowspan=2 style="vertical-align:middle">GLES2 Module</td>
+    <td><code>build/modules/gles2/deqp-gles2</code></td>
+    <td><code>&lt;dst&gt;/deqp-gles2</code></td>
+ </tr>
+
+
+ <tr>
+    <td><code>data/gles2</code></td>
+    <td><code>&lt;dst&gt;/gles2</code></td>
+ </tr>
+
+
+
+ <tr>
+    <td rowspan=2 style="vertical-align:middle">GLES3 Module</td>
+    <td><code>build/modules/gles3/deqp-gles3</td>
+    <td><code>&lt;dst&gt;/deqp-gles3</code></td>
+ </tr>
+
+ <tr>
+    <td><code>data/gles3</code></td>
+    <td><code>&lt;dst&gt;/gles3</code></td>
+ </tr>
+
+ <tr>
+    <td rowspan=2 style="vertical-align:middle">GLES3.1 Module</td>
+    <td><code>build/modules/gles31/deqp-gles31</code></td>
+    <td><code>&lt;dst&gt;/deqp-gles31</code></td>
+ </tr>
+
+ <tr>
+    <td><code>data/gles31</code></td>
+    <td><code>&lt;dst&gt;/gles31</code></td>
+ </tr>
+
+
+  <tr>
+    <td rowspan=2 style="vertical-align:middle">GLES3.2 Module</td>
+    <td><code>build/modules/gles32/deqp-gles32</code></td>
+    <td><code>&lt;dst&gt;/deqp-gles32</code></td>
+ </tr>
+
+  <tr>
+    <td><code>data/gles32</code></td>
+    <td><code>&lt;dst&gt;/gles32</code></td>
+ </tr>
+
+</table>
+
+<p>You can deploy the execution service and test binaries anywhere in the target
+file system; however, test binaries expect to find data directories in the
+current working directory. When ready, start the Test Execution Service on the
+target device. For details on starting the service, see
+<a href="port-tests.html#test_execution_service">Test
+execution service</a>.</p>
+
+<h2 id=command_line_arguments>Command line arguments</h2>
+
+<p>The following table lists command line arguments that affect execution of all
+test programs.</p>
+
+<table width="100%">
+<col style="width:50%">
+<col style="width:50%">
+ <tr>
+   <th>Argument</th>
+   <th>Description</th>
+ </tr>
+
+ <tr>
+<td><code>--deqp-case=&lt;casename&gt;</code></td>
+<td>Run cases that match a given pattern. Wildcard (*) is supported.</td>
+ </tr>
+
+ <tr>
+<td><code>--deqp-log-filename=&lt;filename&gt;</code></td>
+<td>Write test results to the file whose name you provide. The test execution
+service will set the filename when starting a test.</td>
+ </tr>
+
+ <tr>
+ <td><code>--deqp-stdin-caselist<br/>
+--deqp-caselist=&lt;caselist&gt;<br/>
+--deqp-caselist-file=&lt;filename&gt;</code></td>
+<td>Read case list from stdin or from a given argument. The test execution
+service will set the argument according to the execution request received. See
+the next section for a description of the case list format.</td>
+ </tr>
+ <tr>
+<td><code>--deqp-test-iteration-count=&lt;count&gt;</code></td>
+<td>Override iteration count for tests that support a variable number of
+iterations.</td>
+ </tr>
+ <tr>
+    <td><code>--deqp-base-seed=&lt;seed&gt;</code></td>
+    <td>Base seed for the test cases that use randomization.</td>
+ </tr>
+</table>
+
+<h3 id=gles2_and_gles3-specific_arguments>GLES2 and GLES3-specific arguments</h3>
+
+The following table lists the GLES2- and GLES3-specific arguments.
+
+<table>
+<table width="100%">
+<col style="width:50%">
+<col style="width:50%">
+ <tr>
+   <th>Argument</th>
+   <th>Description</th>
+ </tr>
+ <tr>
+    <td><code>--deqp-gl-context-type=&lt;type&gt;</code></td>
+    <td>OpenGL context type. Available context types depend on the platform. On
+    platforms supporting EGL, the value <code>egl</code> can be used to select
+    the EGL context.</td>
+ </tr>
+ <tr>
+    <td><code>--deqp-gl-config-id=&lt;id&gt;</code></td>
+    <td>Run tests for the provided GL configuration ID. Interpretation is
+    platform-dependent. On the EGL platform, this is the EGL configuration ID.</td>
+ </tr>
+ <tr>
+    <td><code>--deqp-gl-config-name=&lt;name&gt;</code></td>
+    <td><p>Run tests for a named GL configuration. Interpretation is
+    platform-dependent. For EGL, the format is
+    <code>rgb(a)&lt;bits&gt;d&lt;bits&gt;s&lt;bits&gt;</code>. For example, a
+    value of <code>rgb888s8</code> will select the first configuration where the
+    color buffer is RGB888 and the stencil buffer has 8 bits.</td>
+ </tr>
+ <tr>
+    <td><code>--deqp-gl-context-flags=&lt;flags&gt;</code></td>
+    <td>Creates a context. Specify <code>robust</code> or <code>debug</code>.</td>
+ </tr>
+ <tr>
+    <td><code>--deqp-surface-width=&lt;width&gt;<br/>
+    --deqp-surface-height=&lt;height&gt;</code></td>
+    <td>Try to create a surface with a given size. Support for this is optional.</td>
+ </tr>
+ <tr>
+    <td><code>--deqp-surface-type=&lt;type&gt;</code></td>
+    <td>Use a given surface type as the main test rendering target. Possible
+    types are <code>window</code>, <code>pixmap</code>, <code>pbuffer</code>,
+    and <code>fbo</code>.</td>
+ </tr>
+ <tr>
+    <td><code>--deqp-screen-rotation=&lt;rotation&gt;</code></td>
+    <td>Screen orientation in increments of 90 degrees for platforms that
+    support it.</td>
+ </tr>
+</table>
+
+<h3 id=test_case_list_format>Test case list format</h3>
+
+<p>The test case list can be given in two formats. The first option is to list
+the full name of each test on a separate line in a standard ASCII file. As the
+test sets grow, the repetitive prefixes can be cumbersome. To avoid repeating
+the prefixes, use a trie (also known as a prefix tree) syntax shown below.</p>
+
+<pre>
+{nodeName{firstChild{…},…lastChild{…}}}
+</pre>
+
+<p>For example:</p>
+
+<pre>
+{dEQP-EGL{config-list,create_context{rgb565_depth_stencil}}}
+</pre>
+
+<p>Translates into the following two test cases:</p>
+
+<pre>
+dEQP-EGL.config_list
+dEQP-EGL.create_context.rgb565_depth_stencil
+</pre>
+
+<h2 id=android>Android</h2>
+
+<p>The Android application package contains all required components, including
+the test execution service, test binaries, and data files. The test activity is
+a <code>NativeActivity</code> that uses EGL (requires Android 3.2 or higher).</p>
+
+<p>The application package can be installed with the following command (name
+shown is the name of the APK in the Android CTS package; which name depends on
+the build):</p>
+<pre>$ adb –d install –r com.drawelements.deqp.apk</pre>
+
+<p>To launch the test execution service and to setup port forwarding, use the
+following:</p>
+<pre>
+$ adb –d forward tcp:50016 tcp:50016
+$ adb –d shell am start –n com.drawelements.deqp/.execserver.ServiceStarter
+</pre>
+
+<p>Debug prints can be enabled by executing the following before starting the
+tests:</p>
+
+<pre>
+$ adb –d shell setprop log.tag.dEQP DEBUG
+</pre>
+
+<h3 id=executing_tests_on_android_without_android_cts>Executing tests on
+Android without Android CTS</h3>
+
+<p>To manually start the test execution activity, construct an Android intent
+that targets <code>android.app.NativeActivity</code>. The activities can be
+found in the <code>com.drawelements.deqp</code> package. The command line must
+be supplied as an extra string with key <code>"cmdLine"</code> in the Intent.</p>
+
+<p>A test log is written to <code>/sdcard/dEQP-log.qpa</code>. If the test run
+does not start normally, additional debug information is available in the device
+log.</p>
+
+<p>You can launch an activity from the command line using the <code>am</code>
+utility. For example, to run <code>dEQP-GLES2.info</code> tests on a platform
+supporting <code>NativeActivity,</code> use the following commands.</p>
+
+<pre>$ adb -d shell am start -n com.drawelements.deqp/android.app.NativeActivity -e \
+cmdLine "deqp --deqp-case=dEQP-GLES2.info.* --deqp-log-filename=/sdcard/dEQP-Log.qpa
+</pre>
+
+<h3 id=debugging_on_android>Debugging on Android</h3>
+
+<p>To run the tests under the GDB debugger on Android, first compile and install
+the debug build by running the following two scripts:</p>
+
+<pre>
+$ python android/scripts/build.py --native-build-type=Debug
+$ python android/scripts/install.py
+</pre>
+
+<p>After the debug build is installed on the device, to launch the tests under
+GDB running on the host, run the following command:</p>
+
+<pre>$ python android/scripts/debug.py \
+--deqp-commandline="--deqp-log-filename=/sdcard/TestLog.qpa --deqp-case=dEQP-GLES2.functional.*"
+</pre>
+
+<p>The deqp command line depends on the test cases to be executed and other
+required parameters. The script adds a default breakpoint at the beginning of
+the deqp execution (<code>tcu::App::App</code>).</p>
+
+<p>The <code>debug.py</code> script accepts multiple command line arguments for
+actions such as setting breakpoints for debugging, gdbserver connection
+parameters, and paths to additional binaries to debug (use <code>debug.py
+--help</code> for all arguments and explanations). The script also copies some
+default libraries from the target device to get symbol listings.</p>
+
+<p>To step through driver code (such as when the GDB needs to know the locations
+of the binaries with full debug information), add more libraries via
+<code>debug.py</code> command line parameters. This script writes out a
+configuration file for the GDB starting from line 132 of the script file. You
+can provide additional paths to binaries, etc., but supplying correct command
+line parameters should be enough.</p>
+
+<p class="note"><strong>Note:</strong> On Windows, the GDB binary requires
+<code>libpython2.7.dll</code>. Before launching <code>debug.py</code>, add
+<code>&lt;path-to-ndk&gt;/prebuilt/windows/bin</code> to the PATH variable.</p>
+
+<p class="note"><strong>Note:</strong> Native code debugging does not work on
+stock Android 4.3; for workarounds, refer to
+<a href="https://code.google.com/p/android/issues/detail?id=58373">https://code.google.com/p/android/issues/detail?id=58373</a>.
+Android 4.4 and higher do not contain this bug.</p>
+
+    </div>
+
+      <div class="content-footer-sac"
+                    itemscope itemtype="http://schema.org/SiteNavigationElement">
+        <div class="layout-content-col col-9" style="padding-top:4px">
+        </div>
+        
+        <div class="paging-links layout-content-col col-4">
+          
+        </div>
+        
+      </div>
+      
+      
+    </div> <!-- end jd-content -->
+  <div id="footer" class="wrap" >
+  <style>.feedback { float: right !Important }</style>
+  <div class="feedback">
+    <a href="run-tests.html#" class="button" onclick=" try {
+      userfeedback.api.startFeedback({'productId':'715571','authuser':'1'});return false;}catch(e){}">Site Feedback</a>
+  </div>
+  <div id="copyright">
+    
+  Except as noted, this content is 
+  licensed under <a href="http://creativecommons.org/licenses/by/2.5/">
+  Creative Commons Attribution 2.5</a>. For details and 
+  restrictions, see the <a href="../../license.html">Content 
+  License</a>.
+  </div>
+    <div id="footerlinks">
+    
+  <p>
+    <a href="../../source/index.html">About Android</a>&nbsp;&nbsp;|&nbsp;
+    <a href="../../source/community.html">Community</a>&nbsp;&nbsp;|&nbsp;
+    <a href="../../legal.html">Legal</a>&nbsp;&nbsp;|&nbsp;
+  </p>
+  </div>
+
+</div><!-- end doc-content -->
+
+</div> <!-- end body-content --> 
+
+
+
+
+
+
+</body>
+</html>
+
+
+

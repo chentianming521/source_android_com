@@ -1,0 +1,1567 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<meta name="Description" content="This section describes sensor axes, base sensors, and composite sensors (activity, attitude, uncalibrated, and interaction). Sensor event values from many sensors are expressed in a specific frame that is static relative to the device. The Sensor API …">
+
+<link rel="shortcut icon" type="image/x-icon" href="../../favicon.ico" />
+<title>Sensor types | Android Open Source Project</title>
+
+<!-- STYLESHEETS -->
+<link rel="stylesheet"
+href="https://fonts.googleapis.com/css?family=Roboto:regular,medium,thin,italic,mediumitalic,bold" title="roboto">
+<link href="../../assets/css/default.css" rel="stylesheet" type="text/css">
+
+
+
+<!-- JAVASCRIPT -->
+<script src="https://www.google.com/jsapi" type="text/javascript"></script>
+<script src="../../assets/js/android_3p-bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+  var toRoot = "/";
+  
+  var devsite = false;
+  
+</script>
+<script src="../../assets/js/docs.js" type="text/javascript"></script>
+
+<script src="../../navtree_data.js" type="text/javascript"></script>
+
+
+<script type="text/javascript" src="https://www.gstatic.com/feedback/api.js"></script>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-45455297-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</head>
+
+<body class="gc-documentation 
+  " itemscope itemtype="http://schema.org/Article">
+<a name="top"></a>
+
+  
+    <!-- Header -->
+    <div id="header">
+        <div class="wrap" id="header-wrap">
+          <div class="col-3 saclogo">
+          <a href="../../index.html">
+            <img src="../../assets/images/sac_logo.png"
+                srcset="/assets/images/sac_logo@2x.png 2x"
+                width="123" height="25" alt="Android Open Source Project" />
+          </a>
+          </div>
+            <ul class="nav-x col-9">
+                <li class="source">
+                  <a href="../../source/index.html" 
+                  >Source</a></li>
+                <li class="devices"><a href="../index.html" class="selected"
+                  >Devices</a></li>
+                <li class="security"><a href="../../security/index.html" 
+                  >Security</a></li>
+                <li class="compatibility last"><a href="../../compatibility/index.html" 
+                  >Compatibility</a></li>
+            </ul>
+            <!-- New Search -->
+            <div class="menu-container">
+            <div class="moremenu">
+    <div id="more-btn"></div>
+  </div>
+  <div class="morehover" id="moremenu">
+    <div class="top"></div>
+    <div class="mid">
+      <div class="header">Android Sites</div>
+      <ul>
+        <li class="active"><a>Android Open Source Project</a></li>
+        <li><a href="http://www.android.com">Android.com</a></li>
+        <li><a href="http://developer.android.com">Android Developers</a></li>
+      </ul>
+      <!-- <div class="header">Support</div>
+      <ul>
+        <li><a href="/support.html">Developer Support</a></li>
+      </ul> -->
+      <br class="clearfix" />
+    </div>
+    <div class="bottom"></div>
+  </div>
+
+  <div class="search" id="search-container">
+    <div class="search-inner">
+      <div id="search-btn"></div>
+      <div class="left"></div>
+      <form onsubmit="return submit_search()">
+        <input id="search_autocomplete" type="text" value="" autocomplete="off" name="q"
+onfocus="search_focus_changed(this, true)" onblur="search_focus_changed(this, false)"
+onkeydown="return search_changed(event, true, '/')"
+onkeyup="return search_changed(event, false, '/')" />
+      </form>
+      <div class="right"></div>
+        <a class="close hide">close</a>
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+  </div>
+  <div id="search_filtered_wrapper">
+    <div id="search_filtered_div" class="no-display">
+        <ul id="search_filtered">
+        </ul>
+    </div>
+  </div>
+
+  </div>
+  <!-- /New Search> -->
+        </div>
+    </div>
+    <!-- /Header -->
+
+  <div id="searchResults" class="wrap" style="display:none;">
+          <h2 id="searchTitle">Results</h2>
+          <div id="leftSearchControl" class="search-control">Loading...</div>
+  </div>
+
+  
+  
+  
+    
+  <div class="wrap clearfix" id="body-content">
+    <div class="col-4" id="side-nav" itemscope itemtype="http://schema.org/SiteNavigationElement">
+      <div id="devdoc-nav" class="scroll-pane">
+<a class="totop" href="sensor-types.html#top" data-g-event="left-nav-top">to top</a>
+
+<!--
+    Copyright 2015 The Android Open Source Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<ul id="nav">
+  <li class="nav-section">  <!-- Begin nav section, Device Interfaces -->
+    <div class="nav-section-header">
+      <a href="../index.html">
+        <span class="en">Interfaces</span>
+      </a>
+    </div>
+    <ul>
+  <li class="nav-section">
+  <div class="nav-section-header">
+      <a href="../accessories/index.html">
+        <span class="en">Accessories</span>
+      </a>
+    </div>
+    <ul>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../accessories/audio.html">
+            <span class="en">Audio Accessories</span>
+          </a>
+        </div>
+        <ul>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../accessories/headset/index.html">
+            <span class="en">Headset</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../accessories/headset/specification.html">Specification</a></li>
+          <li><a href="../accessories/headset/requirements.html">Requirements</a></li>
+          <li><a href="../accessories/headset/testing.html">Testing</a></li>
+        </ul>
+      </li>
+        </ul>
+      </li>
+  <li class="nav-section">
+  <div class="nav-section-header">
+      <a href="../accessories/custom.html">
+        <span class="en">Custom Accessories</span>
+      </a>
+    </div>
+    <ul>
+      <li class="nav-section">
+        <div class="nav-section-header"><a href="../accessories/protocol.html"><span class="en">AOA</span>
+        </a>
+        </div>
+        <ul>
+          <li><a href="../accessories/aoa2.html">AOA 2.0</a></li>
+          <li><a href="../accessories/aoa.html">AOA 1.0</a></li>
+        </ul>
+        </li>
+        <div class="nav-section-header"><a href="../accessories/stylus.html"><span class="en">Stylus</span>
+        </a>
+        </div>
+       </ul>
+     </li>
+    </ul>
+      <li class="nav-section">
+      <div class="nav-section-header">
+        <a href="../audio/index.html">
+          <span class="en">Audio</span>
+        </a>
+      </div>
+        <ul>
+          <li><a href="../audio/terminology.html">Terminology</a></li>
+          <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="../audio/implement.html">
+                <span class="en">Implementation</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="../audio/implement-policy.html">Policy Configuration</a></li>
+              <li><a href="../audio/implement-shared-library.html">Shared Library</a></li>
+              <li><a href="../audio/implement-pre-processing.html">Pre-processing Effects</a></li>
+            </ul>
+         </li>
+          <li><a href="../audio/data_formats.html">Data Formats</a></li>
+          <li><a href="../audio/attributes.html">Attributes</a></li>
+          <li><a href="../audio/warmup.html">Warmup</a></li>
+          <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="../audio/latency.html">
+                <span class="en">Latency</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="../audio/latency_contrib.html">Contributors</a></li>
+              <li><a href="../audio/latency_design.html">Design</a></li>
+              <li><a href="../audio/latency_measure.html">Measure</a></li>
+              <li><a href="../audio/testing_circuit.html">Light Testing Circuit</a></li>
+              <li><a href="../audio/loopback.html">Audio Loopback Dongle</a></li>
+              <li><a href="../audio/latency_measurements.html">Measurements</a></li>
+              <li><a href="../audio/latency_app.html">Applications</a></li>
+            </ul>
+          </li>
+          <li><a href="../audio/avoiding_pi.html">Priority Inversion</a></li>
+          <li><a href="../audio/src.html">Sample Rate Conversion</a></li>
+          <li><a href="../audio/debugging.html">Debugging</a></li>
+          <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="../audio/midi.html">
+                <span class="em">MIDI</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="../audio/midi_arch.html">MIDI Architecture</a></li>
+              <li><a href="../audio/midi_test.html">MIDI Test Procedure</a></li>
+            </ul>
+          <li><a href="../audio/usb.html">USB Digital Audio</a></li>
+          <li><a href="../audio/tv.html">TV Audio</a></li>
+        </ul>
+      </li>
+      <li><a href="../automotive.html">Automotive</a></li>
+      <li><a href="../bluetooth.html">Bluetooth</a></li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../camera/index.html">
+            <span class="en">Camera</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../camera/camera3.html">Camera HAL3</a></li>
+          <li><a href="../camera/camera3_requests_hal.html">HAL Subsystem</a></li>
+          <li><a href="../camera/camera3_metadata.html">Metadata and Controls</a></li>
+          <li><a href="../camera/camera3_3Amodes.html">3A Modes and State</a></li>
+          <li><a href="../camera/camera3_crop_reprocess.html">Output and Cropping</a></li>
+          <li><a href="../camera/camera3_error_stream.html">Errors and Streams</a></li>
+          <li><a href="../camera/camera3_requests_methods.html">Request Creation</a></li>
+          <li><a href="../camera/versioning.html">Version Support</a></li>
+        </ul>
+      </li>
+
+      <li><a href="../drm.html">DRM</a></li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../graphics/index.html">
+            <span class="en">Graphics</span>
+          </a>
+        </div>
+        <ul>
+         <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="../graphics/architecture.html">
+                <span class="en">Architecture</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="../graphics/arch-bq-gralloc.html">BufferQueue</a></li>
+              <li><a href="../graphics/arch-sf-hwc.html">SurfaceFlinger and HWC</a></li>
+              <li><a href="../graphics/arch-sh.html">Surface and SurfaceHolder</a></li>
+              <li><a href="../graphics/arch-egl-opengl.html">OpenGL ES</a></li>
+              <li><a href="../graphics/arch-vulkan.html">Vulkan</a></li>
+              <li><a href="../graphics/arch-sv-glsv.html">SurfaceView</a></li>
+              <li><a href="../graphics/arch-st.html">SurfaceTexture</a></li>
+              <li><a href="../graphics/arch-tv.html">TextureView</a></li>
+              <li><a href="../graphics/arch-gameloops.html">Game Loops</a></li>
+            </ul>
+         </li>
+         <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="../graphics/implement.html">
+                <span class="en">Implementing</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="../graphics/implement-hwc.html">Hardware Composer HAL</a></li>
+              <li><a href="../graphics/implement-vsync.html">VSYNC</a></li>
+              <li><a href="../graphics/implement-vulkan.html">Vulkan</a></li>
+              <li><a href="../graphics/implement-vdisplays.html">Virtual Displays</a></li>
+            </ul>
+         </li>
+         <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="../graphics/testing.html">
+                <span class="en">OpenGL ES Testing</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="../graphics/build-tests.html">Building test programs</a></li>
+              <li><a href="../graphics/port-tests.html">Porting the test framework</a></li>
+              <li><a href="../graphics/run-tests.html">Running the tests</a></li>
+              <li><a href="../graphics/automate-tests.html">Automating the tests</a></li>
+              <li><a href="../graphics/test-groups.html">Using special test groups</a></li>
+              <li><a href="../graphics/cts-integration.html">Integrating with Android CTS</a></li>
+            </ul>
+         </li>
+        </ul> </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../input/index.html">
+            <span class="en">Input</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../input/overview.html">Overview</a></li>
+          <li><a href="../input/key-layout-files.html">Key Layout Files</a></li>
+          <li><a href="../input/key-character-map-files.html">Key Character Map Files</a></li>
+          <li><a href="../input/input-device-configuration-files.html">Input Device Configuration Files</a></li>
+          <li><a href="../input/migration-guide.html">Migration Guide</a></li>
+          <li><a href="../input/keyboard-devices.html">Keyboard Devices</a></li>
+          <li><a href="../tech/input/touch-devices.html">Touch Devices</a></li>
+          <li><a href="../tech/input/dumpsys.html">Diagnostics</a></li>
+          <li><a href="../input/getevent.html">Getevent</a></li>
+          <li><a href="../input/validate-keymaps.html">Validate Keymaps</a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../media.html">
+            <span class="en">Media</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../media/framework-hardening.html">Framework
+          Hardening</a></li>
+          <li><a href="../media/soc.html">SoC Dependencies</a></li>
+          <li><a href="../media/oem.html">OEM Dependencies</a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="index.html">
+            <span class="en">Sensors</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="sensor-stack.html">Sensor stack</a></li>
+          <li><a href="report-modes.html">Reporting modes</a></li>
+          <li><a href="suspend-mode.html">Suspend mode</a></li>
+          <li><a href="power-use.html">Power consumption</a></li>
+          <li><a href="interaction.html">Interaction</span></a></li>
+          <li><a href="hal-interface.html">HAL interface</a></li>
+          <li><a href="batching.html">Batching</a></li>
+          <li><a href="sensor-types.html">Sensor types</a></li>
+          <li><a href="versioning.html">Version deprecation</a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="https://source.android.com/devices/storage/index.html">
+            <span class="en">Storage</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../storage/traditional.html">Traditional Storage</a></li>
+          <li><a href="../storage/adoptable.html">Adoptable Storage</a></li>
+          <li><a href="../storage/config.html">Device Configuration</a></li>
+          <li><a href="../storage/config-example.html">Configuration Examples</a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../tv/index.html">
+            <span class="en">TV</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../tv/HDMI-CEC.html">HDMI-CEC control service</a></li>
+          <li><a href="../tv/reference-tv-app.html">Reference TV App</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li> <!-- End nav-section, Device Interfaces-->
+
+
+  <li class="nav-section"> <!--Begin nav-section, Core Technologies-->
+    <div class="nav-section-header">
+      <a href="../tech/index.html">
+        <span class="en">Core Technologies</span>
+      </a>
+    </div>
+
+    <ul>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../tech/dalvik/index.html">
+          <span class="en">ART and Dalvik</span></a>
+        </div>
+        <ul>
+          <li><a href="../tech/dalvik/dalvik-bytecode.html">Bytecode Format</a></li>
+          <li><a href="../tech/dalvik/dex-format.html">.Dex Format</a></li>
+          <li><a href="../tech/dalvik/instruction-formats.html">Instruction Formats</a></li>
+          <li><a href="../tech/dalvik/constraints.html">Constraints</a></li>
+          <li><a href="../tech/dalvik/configure.html">Configuration</a></li>
+          <li><a href="../tech/dalvik/gc-debug.html">Garbage Collection</a></li>
+          <li><a href="../tech/dalvik/jit-compiler.html">JIT Compilation</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+            <a href="../tech/config/index.html">
+              <span class="en">Configuration</span>
+            </a>
+        </div>
+        <ul>
+          <li><a href="../tech/config/carrier.html">Carrier Customization</a></li>
+          <li><a href="../tech/config/connect_tests.html">Connectivity Tests</a></li>
+          <li><a href="../tech/config/filesystem.html">File System</a></li>
+          <li><a href="../tech/kernel.html">Kernel Configuration</a></li>
+          <li><a href="../tech/config/kernel_network_tests.html">Kernel Network Tests</a></li>
+          <li><a href="../tech/config/low-ram.html">Low RAM</a></li>
+          <li><a href="../tech/config/namespaces_libraries.html">Namespaces for Libraries</a></li>
+          <li><a href="../tech/config/renderer.html">OpenGLRenderer</a></li>
+          <li><a href="../tech/config/runtime_perms.html">Runtime Permissions</a></li>
+          <li><a href="../tech/config/uicc.html">UICC</a></li>
+          <li><a href="../tech/config/voicemail.html">Visual Voicemail</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+            <a href="../tech/connect/index.html">
+              <span class="en">Connectivity</span>
+            </a>
+        </div>
+        <ul>
+          <li><a href="../tech/connect/block-numbers.html">Block Phone Numbers</a></li>
+          <li><a href="../tech/connect/call-notification.html">Call Notifications</a></li>
+          <li><a href="../tech/connect/data-saver.html">Data Saver Mode</a></li>
+          <li><a href="../tech/connect/felica.html">Host Card Emulation of FeliCa</a></li>
+          <li><a href="../tech/connect/ril.html">Radio Interface Layer (RIL)</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../tech/datausage/index.html">
+            <span class="en">Data Usage</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../tech/datausage/iface-overview.html">Network interface statistics overview</a></li>
+          <li><a href="../tech/datausage/excluding-network-types.html">Excluding Network Types from Data Usage</a></li>
+          <li><a href="../tech/datausage/tethering-data.html">Tethering Data</a></li>
+          <li><a href="../tech/datausage/usage-cycle-resets-dates.html">Usage Cycle Reset Dates</a></li>
+          <li><a href="../tech/datausage/kernel-overview.html">Kernel Overview</a></li>
+          <li><a href="../tech/datausage/tags-explained.html">Data Usage Tags Explained</a></li>
+          <li><a href="../tech/datausage/kernel-changes.html">Kernel Changes</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../tech/debug/index.html">
+            <span class="en">Debugging</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../tech/debug/asan.html">AddressSanitizer</a></li>
+          <li><a href="../tech/debug/dumpsys.html">Dumpsys</a></li>
+          <li><a href="../tech/debug/native-memory.html">Native Memory Use</a></li>
+          <li><a href="../tech/debug/netstats.html">Network Use</a></li>
+          <li><a href="../tech/debug/procstats.html">RAM Use</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../tech/admin/index.html">
+          <span class="en">Device Administration</span></a>
+        </div>
+        <ul>
+          <li><a href="../tech/admin/implement.html">Implementation</a></li>
+          <li><a href="../tech/admin/multi-user.html">Multiple Users</a></li>
+          <li><a href="../tech/admin/managed-profiles.html">Managed Profiles</a></li>
+          <li><a href="../tech/admin/provision.html">Provisioning</a></li>
+          <li><a href="../tech/admin/multiuser-apps.html">Multiuser Apps</a></li>
+          <li><a href="../tech/admin/enterprise-telephony.html">Enterprise Telephony</a></li>
+          <li><a href="../tech/admin/testing-provision.html">Testing Device Provisioning</a></li>
+          <li><a href="../tech/admin/testing-setup.html">Testing Device Administration</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+            <a href="../tech/display/index.html">
+              <span class="en">Display Settings</span></a>
+        </div>
+        <ul>
+          <li><a href="../tech/display/dnd.html">Do Not Disturb</a></li>
+          <li><a href="../tech/display/multi-window.html">Multi-Window</a></li>
+          <li><a href="../tech/display/hdr.html">HDR Video</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header empty">
+          <a href="../halref/index.html">
+            <span class="en">HAL File Reference</span>
+          </a>
+        </div>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+            <a href="../tech/ota/index.html">
+              <span class="en">OTA Updates</span>
+            </a>
+        </div>
+        <ul>
+          <li><a href="../tech/ota/tools.html">OTA Tools</a></li>
+          <li><a href="../tech/ota/block.html">Block-based OTA</a></li>
+          <li><a href="../tech/ota/inside_packages.html">Inside OTA Packages</a></li>
+          <li><a href="../tech/ota/device_code.html">Device-Specific Code</a></li>
+          <li><a href="../tech/ota/reduce_size.html">Reducing OTA Size</a></li>
+          <li><a href="../tech/ota/sign_builds.html">Signing Builds for Release</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../tech/power/index.html"><span class="en">Power</span></a>
+        </div>
+        <ul>
+          <li><a href="../tech/power/mgmt.html">Power Management</a></li>
+          <li><a href="../tech/power/performance.html">Performance Management</a></li>
+          <li><a href="../tech/power/component.html">Component Power</a></li>
+          <li><a href="../tech/power/device.html">Device Power</a></li>
+          <li><a href="../tech/power/values.html">Power Values</a></li>
+          <li><a href="../tech/power/batterystats.html">Battery Use</a>
+          </li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../tech/test_infra/tradefed/index.html">
+            <span class="en">Testing Infrastructure</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../tech/test_infra/tradefed/fundamentals/index.html">Start Here</a></li>
+          <li><a href="../tech/test_infra/tradefed/fundamentals/machine_setup.html">Machine Setup</a></li>
+          <li><a href="../tech/test_infra/tradefed/fundamentals/devices.html">Working with Devices</a></li>
+          <li><a href="../tech/test_infra/tradefed/fundamentals/lifecycle.html">Test Lifecycle</a></li>
+          <li><a href="../tech/test_infra/tradefed/fundamentals/options.html">Option Handling</a></li>
+          <li><a href="../tech/test_infra/tradefed/full_example.html">An End-to-End Example</a></li>
+          <li id="tradefed-tree-list" class="nav-section">
+            <div class="nav-section-header">
+              <a href="../../reference/packages.html">
+                <span class="en">Package Index</span>
+              </a>
+            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li> <!-- End nav-section, Core Technologies -->
+</ul> 
+
+
+      </div>
+      <script type="text/javascript">
+        showTradefedRefTree();
+      </script>
+    </div> <!-- end side-nav -->
+    <script>
+      $(document).ready(function() {
+        scrollIntoView("devdoc-nav");
+        });
+    </script>
+
+  
+
+
+
+
+<div class="col-12" id="doc-col" >
+
+
+  
+    
+      
+        <h1 itemprop="name" >Sensor types</h1>
+      
+    
+  
+
+
+  
+  <div id="jd-content">
+
+    <div class="jd-descr" itemprop="articleBody">
+    <!--
+    Copyright 2014 The Android Open Source Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<div id="qv-wrapper">
+  <div id="qv">
+    <h2>In this document</h2>
+    <ol id="auto-toc">
+    </ol>
+  </div>
+</div>
+
+<p>This section describes sensor axes, base sensors, and composite sensors
+(activity, attitude, uncalibrated, and interaction).</p>
+
+<h2 id="sensor_axis_definition">Sensor axes</h2>
+<p>Sensor event values from many sensors are expressed in a specific frame that
+is static relative to the device.
+
+<h3 id=phone_axes>Mobile device axes</h3>
+<p>The Sensor API is relative only to the natural orientation of the screen
+(axes are not swapped when the device's screen orientation changes.</p>
+
+<img src="http://developer.android.com/images/axis_device.png" alt="Coordinate
+system of sensor API for mobile devices"/>
+<p class="img-caption"><strong>Figure 1.</strong> Coordinate system (relative to
+a mobile device) used by the Sensor API.</p>
+
+<h3 id=auto_axes>Automotive axes</h3>
+<p>In Android Automotive implementations, axes are defined with respect to the
+vehicle body frame:</p>
+
+<img src="images/axis_auto.png" alt="Coordinate system of sensor API for
+automotive devices"/>
+<p class="img-caption"><strong>Figure 2.</strong> Coordinate system (relative to
+an automotive device) used by the Sensor API.</p>
+
+<ul>
+<li>X increases towards the right of the vehicle</li>
+<li>Y increases towards the nose of the body frame</li>
+<li>Z increases towards the roof of the body frame</li>
+</ul>
+
+<p>When looking from the positive direction of an axis, positive rotations are
+counterclockwise. Thus, when a vehicle is making a left turn, the z-axis
+gyroscope rate of turn is expected to be a positive value.</p>
+
+<h2 id="base_sensors">Base sensors</h2>
+<p>Base sensor types are named after the physical sensors they represent. These
+sensors relay data from a single physical sensor (as opposed to composite
+sensors that generate data out of other sensors). Examples of base sensor types
+include:</p>
+<ul>
+  <li><code>SENSOR_TYPE_ACCELEROMETER</code></li>
+  <li><code>SENSOR_TYPE_GYROSCOPE</code></li>
+  <li><code>SENSOR_TYPE_MAGNETOMETER</code></li>
+</ul>
+
+<p class='note'><strong>Note:</strong> For details on each Android sensor type,
+review the following sections.</p>
+
+<p>However, base sensors are not equal to and should not be confused with their
+underlying physical sensor. The data from a base sensor is <strong>not</strong>
+the raw output of the physical sensor because corrections (such as bias
+compensation and temperature compensation) are applied.</p>
+
+<p>For example, the characteristics of a base sensor might be different from the
+characteristics of its underlying physical sensor in the following use cases:</p>
+<ul>
+<li>A gyroscope chip rated to have a bias range of 1 deg/sec.
+  <ul>
+    <li>After factory calibration, temperature compensation and bias compensation are
+      applied, the actual bias of the Android sensor will be reduced, may be to a
+      point where the bias is guaranteed to be below 0.01deg/sec.</li>
+    <li>In this situation, we say that the Android sensor has a bias below 0.01
+      deg/sec, even though the data sheet of the underlying sensor said 1 deg/sec.</li>
+  </ul>
+</li>
+<li>A barometer with a power consumption of 100uW.
+  <ul>
+    <li>Because the generated data needs to be transported from the chip to the SoC,
+      the actual power cost to gather data from the barometer Android sensor might be
+      much higher, for example 1000uW.</li>
+    <li>In this situation, we say that the Android sensor has a power consumption of
+      1000uW, even though the power consumption measured at the barometer chip leads
+      is 100uW.</li>
+  </ul>
+</li>
+<li>A magnetometer that consumes 100uW when calibrated, but consumes more when
+calibrating.
+  <ul>
+    <li>Its calibration routine might require activating the gyroscope, consuming
+      5000uW, and running some algorithm, costing another 900uW.</li>
+    <li> In this situation, we say that the maximum power consumption of the
+      (magnetometer) Android sensor is 6000uW.</li>
+    <li>In this case, the average power consumption is the more useful measure, and it
+      is what is reported in the sensor static characteristics through the HAL.</li>
+  </ul>
+</li>
+</ul>
+<h3 id="accelerometer">Accelerometer</h3>
+<p>Reporting-mode: <em><a href="report-modes.html#continuous">Continuous</a></em></p>
+<p><code>getDefaultSensor(SENSOR_TYPE_ACCELEROMETER)</code> <em>returns a non-wake-up sensor</em></p>
+<p>An accelerometer sensor reports the acceleration of the device along the 3
+  sensor axes. The measured acceleration includes both the physical acceleration
+  (change of velocity) and the gravity. The measurement is reported in the x, y
+  and z fields of sensors_event_t.acceleration.</p>
+<p>All values are in SI units (m/s^2) and measure the acceleration of the device
+  minus the force of gravity along the 3 sensor axes.</p>
+<p>Here are examples:</p>
+<ul>
+  <li> The norm of (x, y, z) should be close to 0 when in free fall. </li>
+  <li> When the device lies flat on a table and is pushed on its left side toward the
+    right, the x acceleration value is positive. </li>
+  <li> When the device lies flat on a table, the acceleration value along z is +9.81
+    alo, which corresponds to the acceleration of the device (0 m/s^2) minus the
+    force of gravity (-9.81 m/s^2). </li>
+  <li> When the device lies flat on a table and is pushed toward the sky, the
+    acceleration value is greater than +9.81, which corresponds to the acceleration
+    of the device (+A m/s^2) minus the force of gravity (-9.81 m/s^2). </li>
+</ul>
+<p>The readings are calibrated using:</p>
+<ul>
+  <li> temperature compensation </li>
+  <li> online bias calibration </li>
+  <li> online scale calibration </li>
+</ul>
+<p>The bias and scale calibration must only be updated while the sensor is
+  deactivated, so as to avoid causing jumps in values during streaming.</p>
+<p>The accelerometer also reports how accurate it expects its readings to be
+  through <code>sensors_event_t.acceleration.status</code>. See the <a
+  href="http://developer.android.com/reference/android/hardware/SensorManager.html">SensorManager</a>’s
+  <a href="http://developer.android.com/reference/android/hardware/SensorManager.html#SENSOR_STATUS_ACCURACY_HIGH"><code>SENSOR_STATUS_*  </code></a> constants for more information on possible values for this field.</p>
+<h3 id="ambient_temperature">Ambient temperature</h3>
+<p>Reporting-mode: <em><a href="report-modes.html#on-change">On-change</a></em></p>
+<p><code>getDefaultSensor(SENSOR_TYPE_AMBIENT_TEMPERATURE)</code> <em>returns a non-wake-up sensor</em></p>
+<p>This sensor provides the ambient (room) temperature in degrees Celsius.</p>
+<h3 id="magnetic_field_sensor">Magnetic field sensor</h3>
+<p>Reporting-mode: <em><a href="report-modes.html#continuous">Continuous</a></em></p>
+<p><code>getDefaultSensor(SENSOR_TYPE_MAGNETIC_FIELD)</code> <em>returns a non-wake-up sensor</em></p>
+<p><code>SENSOR_TYPE_GEOMAGNETIC_FIELD == SENSOR_TYPE_MAGNETIC_FIELD</code></p>
+<p>A magnetic field sensor (also known as magnetometer) reports the ambient
+  magnetic field, as measured along the 3 sensor axes.</p>
+<p>The measurement is reported in the x, y and z fields of
+  <code>sensors_event_t.magnetic</code> and all values are in micro-Tesla (uT).</p>
+<p>The magnetometer also reports how accurate it expects its readings to be
+  through <code>sensors_event_t.magnetic.status</code>. See the <a
+href="http://developer.android.com/reference/android/hardware/SensorManager.html">SensorManager</a>’s
+<a href="http://developer.android.com/reference/android/hardware/SensorManager.html#SENSOR_STATUS_ACCURACY_HIGH"><code>SENSOR_STATUS_*</code></a> constants for more information on possible values for this field.</p>
+<p>The readings are calibrated using:</p>
+<ul>
+  <li> temperature compensation </li>
+  <li> factory (or online) soft-iron calibration </li>
+  <li> online hard-iron calibration </li>
+</ul>
+<h3 id="gyroscope">Gyroscope</h3>
+<p>Reporting-mode: <em><a href="report-modes.html#continuous">Continuous</a></em></p>
+<p><code>getDefaultSensor(SENSOR_TYPE_GYROSCOPE)</code> <em>returns a non-wake-up sensor</em></p>
+<p>A gyroscope sensor reports the rate of rotation of the device around the 3
+  sensor axes.</p>
+<p>Rotation is positive in the counterclockwise direction (right-hand rule). That
+  is, an observer looking from some positive location on the x, y or z axis at a
+  device positioned on the origin would report positive rotation if the device
+  appeared to be rotating counter clockwise. Note that this is the standard
+  mathematical definition of positive rotation and does not agree with the
+  aerospace definition of roll.</p>
+<p>The measurement is reported in the x, y and z fields of <code>sensors_event_t.gyro</code>
+  and all values are in radians per second (rad/s).</p>
+<p>The readings are calibrated using:</p>
+<ul>
+  <li> temperature compensation </li>
+  <li> factory (or online) scale compensation </li>
+  <li> online bias calibration (to remove drift) </li>
+</ul>
+<p>The gyroscope also reports how accurate it expects its readings to be through
+  <code>sensors_event_t.gyro.status</code>. See the <a
+  href="http://developer.android.com/reference/android/hardware/SensorManager.html">SensorManager</a>’s
+  <a
+href="http://developer.android.com/reference/android/hardware/SensorManager.html#SENSOR_STATUS_ACCURACY_HIGH"><code>SENSOR_STATUS_*</code></a> constants for more information on possible values for this field.</p>
+<p>The gyroscope cannot be emulated based on magnetometers and accelerometers, as
+  this would cause it to have reduced local consistency and responsiveness. It
+  must be based on a usual gyroscope chip.</p>
+<h3 id="heart_rate">Heart Rate</h3>
+<p>Reporting-mode: <em><a href="report-modes.html#on-change">On-change</a></em></p>
+<p><code>getDefaultSensor(SENSOR_TYPE_HEART_RATE)</code> <em>returns a non-wake-up sensor</em></p>
+<p>A heart rate sensor reports the current heart rate of the person touching the
+  device.</p>
+<p>The current heart rate in beats per minute (BPM) is reported in
+  <code>sensors_event_t.heart_rate.bpm</code> and the status of the sensor is reported in
+  <code>sensors_event_t.heart_rate.status</code>. See the <a
+  href="http://developer.android.com/reference/android/hardware/SensorManager.html">SensorManager</a>’s
+  <a href="http://developer.android.com/reference/android/hardware/SensorManager.html#SENSOR_STATUS_ACCURACY_HIGH"><code>SENSOR_STATUS_*</code></a> constants for more information on possible values for this field. In
+  particular, upon the first activation, unless the device is known to not be on
+  the body, the status field of the first event must be set to
+  <code>SENSOR_STATUS_UNRELIABLE</code>. Because this sensor is on-change,
+  events are generated when and only when <code>heart_rate.bpm</code> or
+  <code>heart_rate.status</code> have changed since the last event. The events
+  are generated no faster than every <code>sampling_period</code>.</p>
+<p><code>sensor_t.requiredPermission</code> is always <code>SENSOR_PERMISSION_BODY_SENSORS</code>.</p>
+<h3 id="light">Light</h3>
+<p>Reporting-mode: <em><a href="report-modes.html#on-change">On-change</a></em></p>
+<p><code>getDefaultSensor(SENSOR_TYPE_LIGHT)</code> <em>returns a non-wake-up sensor</em></p>
+<p>A light sensor reports the current illumination in SI lux units.</p>
+<p>The measurement is reported in <code>sensors_event_t.light</code>.</p>
+<h3 id="proximity">Proximity</h3>
+<p>Reporting-mode: <em><a href="report-modes.html#on-change">On-change</a></em></p>
+<p>Usually defined as a wake-up sensor</p>
+<p><code>getDefaultSensor(SENSOR_TYPE_PROXIMITY)</code> <em>returns a wake-up sensor</em></p>
+<p>A proximity sensor reports the distance from the sensor to the closest visible
+  surface.</p>
+<p>Up to Android KitKat, the proximity sensors were always wake-up sensors, waking
+  up the SoC when detecting a change in proximity. After Android KitKat, we
+  advise to implement the wake-up version of this sensor first, as it is the one
+  that is used to turn the screen on and off while making phone calls.</p>
+<p>The measurement is reported in centimeters in <code>sensors_event_t.distance</code>. Note
+  that some proximity sensors only support a binary &quot;near&quot; or &quot;far&quot; measurement.
+  In this case, the sensor report its <code>sensor_t.maxRange</code> value in the &quot;far&quot; state
+  and a value less than <code>sensor_t.maxRange</code> in the &quot;near&quot; state.</p>
+<h3 id="pressure">Pressure</h3>
+<p>Reporting-mode: <em><a href="report-modes.html#continuous">Continuous</a></em></p>
+<p><code>getDefaultSensor(SENSOR_TYPE_PRESSURE)</code> <em>returns a non-wake-up sensor</em></p>
+<p>A pressure sensor (also known as barometer) reports the atmospheric pressure in
+  hectopascal (hPa).</p>
+<p>The readings are calibrated using</p>
+<ul>
+  <li> temperature compensation </li>
+  <li> factory bias calibration </li>
+  <li> factory scale calibration </li>
+</ul>
+<p>The barometer is often used to estimate elevation changes. To estimate absolute
+  elevation, the sea-level pressure (changing depending on the weather) must be
+  used as a reference.</p>
+<h3 id="relative_humidity">Relative humidity</h3>
+<p>Reporting-mode: <em><a href="report-modes.html#on-change">On-change</a></em></p>
+<p><code>getDefaultSensor(SENSOR_TYPE_RELATIVE_HUMIDITY)</code> <em>returns a non-wake-up sensor</em></p>
+<p>A relative humidity sensor measures relative ambient air humidity and returns a
+  value in percent.</p>
+
+<h2 id="composite_sensor_types">Composite sensor types</h2>
+<p>A composite sensor generates data by processing and/or fusing data from one
+or several physical sensors. (Any sensor that is not a base sensor is called a
+composite sensor.) Examples of composite sensors include:</p>
+<ul>
+<li><a href="sensor-types.html#step_detector">Step detector</a> and
+<a href="sensor-types.html#significant_motion">Significant motion</a>, which are usually based on
+an accelerometer, but could be based on other sensors as well, if the power
+consumption and accuracy was acceptable.</li>
+<li><a href="sensor-types.html#game_rotation_vector">Game rotation vector</a>, based on an
+accelerometer and a gyroscope.</li>
+<li><a href="sensor-types.html#gyroscope_uncalibrated">Uncalibrated gyroscope</a>, which is
+similar to the gyroscope base sensor, but with the bias calibration being
+reported separately instead of being corrected in the measurement.</li>
+</ul>
+<p>As with base sensors, the characteristics of the composite sensors come from
+the characteristics of their final data. For example, the power consumption of a
+game rotation vector is probably equal to the sum of the power consumptions of
+the accelerometer chip, the gyroscope chip, the chip processing the data, and
+the buses transporting the data. As another example, the drift of a game
+rotation vector depends as much on the quality of the calibration algorithm as
+on the physical sensor characteristics.</p>
+
+<p>The following table lists available composite sensor types. Each composite
+sensor relies on data from one or several physical sensors. Avoid choosing other
+underlying physical sensors to approximate results as they provide a poor user
+experience.</p>
+<p class="note"><strong>Note:</strong> When there is no gyroscope on the device
+(and only when there is no gyroscope), you may implement the rotation vector,
+linear acceleration, and gravity sensors without using the gyroscope.</p>
+
+<table>
+  <tr>
+    <th width=34%>Sensor type</th>
+    <th width=10%>Category</th>
+    <th width=34%>Underlying physical sensors</th>
+    <th width=19%>Reporting mode</th>
+  </tr>
+  <tr>
+    <td><p><a href="sensor-types.html#game_rotation_vector">Game rotation vector</a></p></td>
+    <td><p>Attitude</p></td>
+    <td><p>Accelerometer, Gyroscope MUST NOT USE Magnetometer</p></td>
+    <td><p>Continuous</p></td>
+  </tr>
+  <tr>
+    <td><p><a href="sensor-types.html#geomagnetic_rotation_vector">Geomagnetic rotation
+     vector</a> <img src="images/battery_icon.png" width="20" height="20" alt="Low
+     power sensor" /></p></td>
+    <td><p>Attitude</p></td>
+    <td><p>Accelerometer, Magnetometer, MUST NOT USE Gyroscope</p></td>
+    <td><p>Continuous</p></td>
+  </tr>
+  <tr>
+    <td><a href="sensor-types.html#glance_gesture">Glance gesture</a> <img
+     src="images/battery_icon.png" width="20" height="20" alt="Low power sensor"
+     /></p></td>
+    <td><p>Interaction</p></td>
+    <td><p>Undefined</p></td>
+    <td><p>One-shot</p></td>
+  </tr>
+  <tr>
+    <td><p><a href="sensor-types.html#gravity">Gravity</a></p></td>
+    <td><p>Attitude</p></td>
+    <td><p>Accelerometer, Gyroscope</p></td>
+    <td><p>Continuous</p></td>
+  </tr>
+  <tr>
+    <td><p><a href="sensor-types.html#gyroscope_uncalibrated">Gyroscope uncalibrated</a></p></td>
+    <td><p>Uncalibrated</p></td>
+    <td><p>Gyroscope</p></td>
+    <td><p>Continuous</p></td>
+  </tr>
+  <tr>
+    <td><p><a href="sensor-types.html#linear_acceleration">Linear acceleration</a></p></td>
+    <td><p>Activity</p></td>
+    <td><p>Accelerometer, Gyroscope (if present) or Magnetometer (if gyro not present)</p></td>
+    <td><p>Continuous</p></td>
+  </tr>
+  <tr>
+    <td><p><a href="sensor-types.html#magnetic_field_uncalibrated">Magnetic field uncalibrated</a></p></td>
+    <td><p>Uncalibrated</p></td>
+    <td><p>Magnetometer</p></td>
+    <td><p>Continuous</p></td>
+  </tr>
+  <tr>
+    <td><p><a href="sensor-types.html#orientation_deprecated">Orientation</a> (deprecated)</p></td>
+    <td><p>Attitude</p></td>
+    <td><p>Accelerometer, Magnetometer PREFERRED Gyroscope</p></td>
+    <td><p>Continuous</p></td>
+  </tr>
+  <tr>
+    <td><p><a href="sensor-types.html#pick_up_gesture">Pick up gesture</a> <img
+     src="images/battery_icon.png" width="20" height="20" alt="Low power sensor"
+     /></p></td>
+    <td><p>Interaction</p></td>
+    <td><p>Undefined</p></td>
+    <td><p>One-shot</p></td>
+  </tr>
+  <tr>
+    <td><p><a href="sensor-types.html#rotation_vector">Rotation vector</a></p></td>
+    <td><p>Attitude</p></td>
+    <td><p>Accelerometer, Magnetometer, AND (when present) <em>Gyroscope </em></p></td>
+    <td><p>Continuous</p></td>
+  </tr>
+  <tr>
+    <td><p><a href="sensor-types.html#significant_motion">Significant motion</a> <img
+     src="images/battery_icon.png" width="20" height="20" alt="Low power sensor"
+     /></p></td>
+    <td><p>Activity</p></td>
+    <td><p>Accelerometer (or another as long as very low power)</p></td>
+    <td><p>One-shot</p></td>
+  </tr>
+  <tr>
+    <td><p><a href="sensor-types.html#step_counter">Step counter</a> <img
+     src="images/battery_icon.png" width="20" height="20" alt="Low power sensor"
+     /></p></td>
+    <td><p>Activity</p></td>
+    <td><p>Accelerometer</p></td>
+    <td><p>On-change</p></td>
+  </tr>
+  <tr>
+    <td><p><a href="sensor-types.html#step_detector">Step detector</a> <img
+     src="images/battery_icon.png" width="20" height="20" alt="Low power sensor"
+     /></p></td> <td><p>Activity</p></td>
+    <td><p>Accelerometer</p></td>
+    <td><p>Special</p></td>
+  </tr>
+  <tr>
+    <td><p><a href="sensor-types.html#tilt_detector">Tilt detector</a> <img
+     src="images/battery_icon.png" width="20" height="20" alt="Low power sensor"
+     /></p></td>
+    <td><p>Activity</p></td>
+    <td><p>Accelerometer</p></td>
+    <td><p>Special</p></td>
+  </tr>
+  <tr>
+    <td><p><a href="sensor-types.html#wake_up_gesture">Wake up gesture</a> <img
+     src="images/battery_icon.png" width="20" height="20" alt="Low power sensor"
+     /></p></td>
+    <td><p>Interaction</p></td>
+    <td><p>Undefined</p></td>
+    <td><p>One-shot</p></td>
+  </tr>
+</table>
+<p><img src="images/battery_icon.png" width="20" height="20" alt="Low power sensor" /> = Low power sensor</p>
+<h2 id="activity_composite_sensors">Activity composite sensors</h2>
+<h3 id="linear_acceleration">Linear acceleration</h3>
+<p>Underlying physical sensors:  Accelerometer and (if present) Gyroscope (or
+  magnetometer if gyroscope not present)</p>
+<p>Reporting-mode: <em><a href="report-modes.html#continuous">Continuous</a></em></p>
+<p><code>getDefaultSensor(SENSOR_TYPE_LINEAR_ACCELERATION)</code> <em>returns a non-wake-up sensor</em></p>
+<p>A linear acceleration sensor reports the linear acceleration of the device in
+  the sensor frame, not including gravity.</p>
+<p>The output is conceptually: output of the <a
+  href="sensor-types.html#accelerometer">accelerometer</a> minus the output of the <a
+  href="sensor-types.html#gravity">gravity sensor</a>. It is reported in m/s^2 in the x, y and z
+  fields of <code>sensors_event_t.acceleration</code>.</p>
+<p>Readings on all axes should be close to 0 when the device is immobile.</p>
+<p>If the device possesses a gyroscope, the linear acceleration sensor must use
+  the gyroscope and accelerometer as input.</p>
+<p>If the device doesn’t possess a gyroscope, the linear acceleration sensor must
+  use the accelerometer and the magnetometer as input.</p>
+<h3 id="significant_motion">Significant motion</h3>
+<p>Underlying physical sensor: Accelerometer (or another as long as low power)</p>
+<p>Reporting-mode: <em><a href="report-modes.html#one-shot">One-shot</a></em></p>
+<p>Low-power</p>
+<p>Implement only the wake-up version of this sensor.</p>
+<p><code>getDefaultSensor(SENSOR_TYPE_SIGNIFICANT_MOTION)</code> <em>returns a wake-up sensor</em></p>
+<p>A significant motion detector triggers when the detecting a “significant
+  motion”: a motion that might lead to a change in the user location.</p>
+<p>Examples of such significant motions are:</p>
+<ul>
+  <li> walking or biking </li>
+  <li> sitting in a moving car, coach or train </li>
+</ul>
+<p>Examples of situations that do not trigger significant motion:</p>
+<ul>
+  <li> phone in pocket and person is not moving </li>
+  <li> phone is on a table and the table shakes a bit due to nearby traffic or washing
+    machine </li>
+</ul>
+<p>At the high level, the significant motion detector is used to reduce the power
+  consumption of location determination. When the localization algorithms detect
+  that the device is static, they can switch to a low power mode, where they rely
+  on significant motion to wake the device up when the user is changing location.</p>
+<p>This sensor must be low power. It makes a tradeoff for power consumption that
+  may result in a small amount of false negatives. This is done for a few
+  reasons:</p>
+<ul>
+  <li> The goal of this sensor is to save power. </li>
+  <li> Triggering an event when the user is not moving (false positive) is costly in
+    terms of power, so it should be avoided. </li>
+  <li> Not triggering an event when the user is moving (false negative) is acceptable
+    as long as it is not done repeatedly. If the user has been walking for 10
+    seconds, not triggering an event within those 10 seconds is not acceptable. </li>
+</ul>
+<p>Each sensor event reports 1 in <code>sensors_event_t.data[0]</code></p>
+<h3 id="step_detector">Step detector</h3>
+<p>Underlying physical sensor: Accelerometer (+ possibly others as long as low
+  power)</p>
+<p>Reporting-mode: <em><a href="report-modes.html#special">Special</a> (one event per step taken)</em></p>
+<p>Low-power</p>
+<p><code>getDefaultSensor(SENSOR_TYPE_STEP_DETECTOR)</code> <em>returns a non-wake-up sensor</em></p>
+<p>A step detector generates an event each time a step is taken by the user.</p>
+<p>The timestamp of the event <code>sensors_event_t.timestamp</code> corresponds to when the
+  foot hit the ground, generating a high variation in acceleration.</p>
+<p>Compared to the step counter, the step detector should have a lower latency
+  (less than 2 seconds). Both the step detector and the step counter detect when
+  the user is walking, running and walking up the stairs. They should not trigger
+  when the user is biking, driving or in other vehicles.</p>
+<p>This sensor must be low power. That is, if the step detection cannot be done in
+  hardware, this sensor should not be defined. In particular, when the step
+  detector is activated and the accelerometer is not, only steps should trigger
+  interrupts (not every accelerometer reading).</p>
+<p><code>sampling_period_ns</code> has no impact on step detectors.</p>
+<p>Each sensor event reports 1 in <code>sensors_event_t.data[0]</code></p>
+<h3 id="step_counter">Step counter</h3>
+<p>Underlying physical sensor: Accelerometer (+ possibly others as long as low
+  power)</p>
+<p>Reporting-mode: <em><a href="report-modes.html#on-change">On-change</a></em></p>
+<p>Low-power</p>
+<p><code>getDefaultSensor(SENSOR_TYPE_STEP_COUNTER)</code> <em>returns a non-wake-up sensor</em></p>
+<p>A step counter reports the number of steps taken by the user since the last
+  reboot while activated.</p>
+<p>The measurement is reported as a <code>uint64_t</code> in
+  <code>sensors_event_t.step_counter</code> and
+  is reset to zero only on a system reboot.</p>
+<p>The timestamp of the event is set to the time when the last step for that event
+  was taken.</p>
+<p>See the <a href="sensor-types.html#step_detector">Step detector</a> sensor type for the signification of the time of a step.</p>
+<p>Compared to the step detector, the step counter can have a higher latency (up
+  to 10 seconds). Thanks to this latency, this sensor has a high accuracy; the
+  step count after a full day of measures should be within 10% of the actual step
+  count. Both the step detector and the step counter detect when the user is
+  walking, running and walking up the stairs. They should not trigger when the
+  user is biking, driving or in other vehicles.</p>
+<p>The hardware must ensure the internal step count never overflows. The minimum
+  size of the hardware's internal counter shall be 16 bits. In case of imminent
+  overflow (at most every ~2^16 steps), the SoC can be woken up so the driver can
+  do the counter maintenance.</p>
+<p>As stated in <a href="interaction.html">Interaction</a>, while this sensor
+  operates, it shall not disrupt any other sensors, in particular, the
+  accelerometer, which might very well be in use.</p>
+<p>If a particular device cannot support these modes of operation, then this
+  sensor type must not be reported by the HAL. ie: it is not acceptable to
+  &quot;emulate&quot; this sensor in the HAL.</p>
+<p>This sensor must be low power. That is, if the step detection cannot be done in
+  hardware, this sensor should not be defined. In particular, when the step
+  counter is activated and the accelerometer is not, only steps should trigger
+  interrupts (not accelerometer data).</p>
+<h3 id="tilt_detector">Tilt detector</h3>
+<p>Underlying physical sensor: Accelerometer (+ possibly others as long as low
+  power)</p>
+<p>Reporting-mode: <em><a href="report-modes.html#special">Special</a></em></p>
+<p>Low-power</p>
+<p>Implement only the wake-up version of this sensor.</p>
+<p><code>getDefaultSensor(SENSOR_TYPE_TILT_DETECTOR)</code> <em>returns a wake-up sensor</em></p>
+<p>A tilt detector generates an event each time a tilt event is detected.</p>
+<p>A tilt event is defined by the direction of the 2-seconds window average
+  gravity changing by at least 35 degrees since the activation or the last event
+  generated by the sensor. Here is the algorithm:</p>
+<ul>
+  <li> <code>reference_estimated_gravity</code> = average of accelerometer measurements over the
+    first second after activation or the estimated gravity when the last tilt event
+    was generated. </li>
+  <li> <code>current_estimated_gravity</code> = average of accelerometer measurements over the last
+    2 seconds. </li>
+  <li> trigger when <code>angle(reference_estimated_gravity, current_estimated_gravity) &gt; 35
+    degrees</code> </li>
+</ul>
+<p>Large accelerations without a change in phone orientation should not trigger a
+  tilt event. For example, a sharp turn or strong acceleration while driving a
+  car should not trigger a tilt event, even though the angle of the average
+  acceleration might vary by more than 35 degrees.
+  Typically, this sensor is
+  implemented with the help of only an accelerometer. Other sensors can be used
+  as well if they do not increase the power consumption significantly. This is a
+  low power sensor that should allow the SoC to go into suspend mode. Do not
+  emulate this sensor in the HAL. Each sensor event reports 1 in
+  <code>sensors_event_t.data[0]</code>.</p>
+<h2 id="attitude_composite_sensors">Attitude composite sensors</h2>
+<h3 id="rotation_vector">Rotation vector</h3>
+<p>Underlying physical sensors: Accelerometer, Magnetometer, and Gyroscope</p>
+<p>Reporting-mode: <em><a href="report-modes.html#continuous">Continuous</a></em></p>
+<p><code>getDefaultSensor(SENSOR_TYPE_ROTATION_VECTOR)</code> <em>returns a non-wake-up sensor</em></p>
+<p>A rotation vector sensor reports the orientation of the device relative to the
+  East-North-Up coordinates frame. It is usually obtained by integration of
+  accelerometer, gyroscope, and magnetometer readings. The East-North-Up
+  coordinate system is defined as a direct orthonormal basis where:</p>
+<ul>
+  <li> X points east and is tangential to the ground. </li>
+  <li> Y points north and is tangential to the ground. </li>
+  <li> Z points towards the sky and is perpendicular to the ground. </li>
+</ul>
+<p>The orientation of the phone is represented by the rotation necessary to align
+  the East-North-Up coordinates with the phone's coordinates. That is, applying
+  the rotation to the world frame (X,Y,Z) would align them with the phone
+  coordinates (x,y,z).</p>
+<p>The rotation can be seen as rotating the phone by an angle theta around an axis
+  rot_axis to go from the reference (East-North-Up aligned) device orientation to
+  the current device orientation. The rotation is encoded as the four unit-less
+  x, y, z, w components of a unit quaternion:</p>
+<ul>
+  <li> <code>sensors_event_t.data[0] = rot_axis.x*sin(theta/2)</code> </li>
+  <li> <code>sensors_event_t.data[1] = rot_axis.y*sin(theta/2)</code> </li>
+  <li> <code>sensors_event_t.data[2] = rot_axis.z*sin(theta/2)</code> </li>
+  <li> <code>sensors_event_t.data[3] = cos(theta/2)</code> </li>
+</ul>
+<p>Where:</p>
+<ul>
+  <li> the  x, y and z fields of <code>rot_axis</code> are the East-North-Up
+  coordinates of a unit length vector representing the rotation axis </li>
+  <li> <code>theta</code> is the rotation angle </li>
+</ul>
+<p>The quaternion is a unit quaternion: it must be of norm 1. Failure to ensure
+  this will cause erratic client behaviour.</p>
+<p>In addition, this sensor reports an estimated heading accuracy:</p>
+<p><code>sensors_event_t.data[4] = estimated_accuracy</code> (in radians)</p>
+<p>The heading error must be less than <code>estimated_accuracy</code> 95% of
+the time. This sensor must use a gyroscope as the main orientation change input.</p>
+<p>This sensor also uses accelerometer and magnetometer input to make up
+  for gyroscope drift, and it cannot be implemented using only the accelerometer
+  and magnetometer.</p>
+<h3 id="game_rotation_vector">Game rotation vector</h3>
+<p>Underlying physical sensors: Accelerometer and Gyroscope (no Magnetometer)</p>
+<p>Reporting-mode: <em><a href="report-modes.html#continuous">Continuous</a></em></p>
+<p><code>getDefaultSensor(SENSOR_TYPE_GAME_ROTATION_VECTOR)</code> <em>returns a non-wake-up sensor</em></p>
+<p>A game rotation vector sensor is similar to a rotation vector sensor but not
+  using the geomagnetic field. Therefore the Y axis doesn't point north but
+  instead to some other reference. That reference is allowed to drift by the same
+  order of magnitude as the gyroscope drifts around the Z axis.</p>
+<p>See the <a href="sensor-types.html#rotation_vector">Rotation vector</a> sensor for details on
+  how to set <code>sensors_event_t.data[0-3]</code>. This sensor does
+  not report an estimated heading accuracy:
+  <code>sensors_event_t.data[4]</code> is reserved and should be set to 0.</p>
+<p>In an ideal case, a phone rotated and returned to the same real-world
+  orientation should report the same game rotation vector.</p>
+<p>This sensor must be based on a gyroscope and an accelerometer. It cannot use
+  magnetometer as an input, besides, indirectly, through estimation of the
+  gyroscope bias.</p>
+<h3 id="gravity">Gravity</h3>
+<p>Underlying physical sensors: Accelerometer and (if present) Gyroscope (or
+  magnetometer if gyroscope not present)</p>
+<p>Reporting-mode: <em><a href="report-modes.html#continuous">Continuous</a></em></p>
+<p><code>getDefaultSensor(SENSOR_TYPE_GRAVITY)</code> <em>returns a non-wake-up sensor</em></p>
+<p>A gravity sensor reports the direction and magnitude of gravity in the device's
+  coordinates.</p>
+<p>The gravity vector components are reported in m/s^2 in the x, y and z fields of
+  <code>sensors_event_t.acceleration</code>.</p>
+<p>When the device is at rest, the output of the gravity sensor should be
+  identical to that of the accelerometer. On Earth, the magnitude is around 9.8
+  m/s^2.</p>
+<p>If the device possesses a gyroscope, the gravity sensor must use the
+  gyroscope and accelerometer as input.</p>
+<p>If the device doesn’t possess a gyroscope, the gravity sensor must use the
+  accelerometer and the magnetometer as input.</p>
+<h3 id="geomagnetic_rotation_vector">Geomagnetic rotation vector</h3>
+<p>Underlying physical sensors: Accelerometer and Magnetometer (no Gyroscope)</p>
+<p>Reporting-mode: <em><a href="report-modes.html#continuous">Continuous</a></em></p>
+<p>Low-power</p>
+<p><code>getDefaultSensor(SENSOR_TYPE_GEOMAGNETIC_ROTATION_VECTOR)</code> <em>returns a non-wake-up sensor</em></p>
+<p>A geomagnetic rotation vector is similar to a rotation vector sensor but using
+  a magnetometer and no gyroscope.</p>
+<p>This sensor must be based on a magnetometer. It cannot be implemented using a
+  gyroscope, and gyroscope input cannot be used by this sensor.</p>
+<p>See the <a href="sensor-types.html#rotation_vector">Rotation vector</a> sensor for details on
+  how to set <code>sensors_event_t.data[0-4]</code>.</p>
+<p>Just like for the rotation vector sensor, the heading error must be less than
+  the estimated accuracy (<code>sensors_event_t.data[4]</code>) 95% of the time.</p>
+<p>This sensor must be low power, so it has to be implemented in hardware.</p>
+<h3 id="orientation_deprecated">Orientation (deprecated)</h3>
+<p>Underlying physical sensors: Accelerometer, Magnetometer and (if present)
+  Gyroscope</p>
+<p>Reporting-mode: <em><a href="report-modes.html#continuous">Continuous</a></em></p>
+<p><code>getDefaultSensor(SENSOR_TYPE_ORIENTATION)</code> <em>returns a non-wake-up sensor</em></p>
+<p class="note"><strong>Note:</strong> This is an older sensor type that has been deprecated in the Android SDK.
+  It has been replaced by the rotation vector sensor, which is more clearly
+  defined. Use the rotation vector sensor over the orientation sensor whenever
+  possible.</p>
+<p>An orientation sensor reports the attitude of the device. The measurements are
+  reported in degrees in the x, y and z fields of <code>sensors_event_t.orientation</code>:</p>
+<ul>
+  <li> <code>sensors_event_t.orientation.x</code>: azimuth, the angle between the magnetic north
+    direction and the Y axis, around the Z axis (<code>0&lt;=azimuth&lt;360</code>). 0=North, 90=East,
+    180=South, 270=West </li>
+  <li> <code>sensors_event_t.orientation.y</code>: pitch, rotation around X axis
+    (<code>-180&lt;=pitch&lt;=180</code>), with positive values when the z-axis moves toward the
+    y-axis. </li>
+  <li> <code>sensors_event_t.orientation.z</code>: roll, rotation around Y axis (<code>-90&lt;=roll&lt;=90</code>),
+    with positive values when the x-axis moves towards the z-axis. </li>
+</ul>
+<p>Please note, for historical reasons the roll angle is positive in the clockwise
+  direction. (Mathematically speaking, it should be positive in the
+  counter-clockwise direction):</p>
+<div class="figure" style="width:264px">
+  <img src="images/axis_positive_roll.png" alt="Depiction of orientation
+   relative to a device" height="253" />
+  <p class="img-caption">
+    <strong>Figure 3.</strong> Orientation relative to a device.
+  </p>
+</div>
+<p>This definition is different from yaw, pitch and roll used in aviation where
+  the X axis is along the long side of the plane (tail to nose).</p>
+<p>The orientation sensor also reports how accurate it expects its readings to be
+  through sensors_event_t.orientation.status. See the <a href="http://developer.android.com/reference/android/hardware/SensorManager.html">SensorManager</a>’s <a href="http://developer.android.com/reference/android/hardware/SensorManager.html#SENSOR_STATUS_ACCURACY_HIGH">SENSOR_STATUS_</a>* constants for more information on possible values for this field.</p>
+<h2 id="uncalibrated_sensors">Uncalibrated sensors</h2>
+<p>Uncalibrated sensors provide more raw results and may include some bias but
+  also contain fewer &quot;jumps&quot; from corrections applied through calibration. Some
+  applications may prefer these uncalibrated results as smoother and more
+  reliable. For instance, if an application is attempting to conduct its own
+  sensor fusion, introducing calibrations can actually distort results.</p>
+<h3 id="gyroscope_uncalibrated">Gyroscope uncalibrated</h3>
+<p>Underlying physical sensor: Gyroscope</p>
+<p>Reporting-mode: <em><a href="report-modes.html#continuous">Continuous</a></em></p>
+<p><code>getDefaultSensor(SENSOR_TYPE_GYROSCOPE_UNCALIBRATED)</code> <em>returns a non-wake-up sensor</em></p>
+<p>An uncalibrated gyroscope reports the rate of rotation around the sensor axes
+  without applying bias compensation to them, along with a bias estimate. All
+  values are in radians/second and are reported in the fields of
+  <code>sensors_event_t.uncalibrated_gyro</code>:</p>
+<ul>
+  <li> <code>x_uncalib</code>: angular speed (w/o drift compensation) around the X axis </li>
+  <li> <code>y_uncalib</code>: angular speed (w/o drift compensation) around the Y axis </li>
+  <li> <code>z_uncalib</code>: angular speed (w/o drift compensation) around the Z axis </li>
+  <li> <code>x_bias</code>: estimated drift around X axis </li>
+  <li> <code>y_bias</code>: estimated drift around Y axis </li>
+  <li> <code>z_bias</code>: estimated drift around Z axis </li>
+</ul>
+<p>Conceptually, the uncalibrated measurement is the sum of the calibrated
+  measurement and the bias estimate: <code>_uncalibrated = _calibrated + _bias</code>.</p>
+<p>The <code>x/y/z_bias</code> values are expected to jump as soon as the estimate of the bias
+  changes, and they should be stable the rest of the time.</p>
+<p>See the definition of the <a href="sensor-types.html#gyroscope">gyroscope</a> sensor for
+  details on the coordinate system used.</p>
+<p>Factory calibration and temperature compensation must be applied to the
+  measurements. Also, gyroscope drift estimation must be implemented so that
+  reasonable estimates can be reported in <code>x_bias</code>,
+  <code>y_bias</code> and <code>z_bias</code>. If the
+  implementation is not able to estimate the drift, then this sensor must not be
+  implemented.</p>
+<p>If this sensor is present, then the corresponding Gyroscope sensor must also be
+  present and both sensors must share the same <code>sensor_t.name</code> and
+  <code>sensor_t.vendor</code> values.</p>
+<h3 id="magnetic_field_uncalibrated">Magnetic field uncalibrated</h3>
+<p>Underlying physical sensor: Magnetometer</p>
+<p>Reporting-mode: <em><a href="report-modes.html#continuous">Continuous</a></em></p>
+<p><code>getDefaultSensor(SENSOR_TYPE_MAGNETIC_FIELD_UNCALIBRATED)</code> <em>returns a non-wake-up sensor</em></p>
+<p>An uncalibrated magnetic field sensor reports the ambient magnetic field
+  together with a hard iron calibration estimate. All values are in micro-Tesla
+  (uT) and are reported in the fields of <code>sensors_event_t.uncalibrated_magnetic</code>:</p>
+<ul>
+  <li> <code>x_uncalib</code>: magnetic field (w/o hard-iron compensation) along the X axis </li>
+  <li> <code>y_uncalib</code>: magnetic field (w/o hard-iron compensation) along the Y axis </li>
+  <li> <code>z_uncalib</code>: magnetic field (w/o hard-iron compensation) along the Z axis </li>
+  <li> <code>x_bias</code>: estimated hard-iron bias along the X axis </li>
+  <li> <code>y_bias</code>: estimated hard-iron bias along the Y axis </li>
+  <li> <code>z_bias</code>: estimated hard-iron bias along the Z axis </li>
+</ul>
+<p>Conceptually, the uncalibrated measurement is the sum of the calibrated
+  measurement and the bias estimate: <code>_uncalibrated = _calibrated + _bias</code>.</p>
+<p>The uncalibrated magnetometer allows higher level algorithms to handle bad hard
+  iron estimation. The <code>x/y/z_bias</code> values are expected to jump as soon as the
+  estimate of the hard-iron changes, and they should be stable the rest of the
+  time.</p>
+<p>Soft-iron calibration and temperature compensation must be applied to the
+  measurements. Also, hard-iron estimation must be implemented so that reasonable
+  estimates can be reported in <code>x_bias</code>, <code>y_bias</code> and
+  <code>z_bias</code>. If the implementation is not able to estimate the bias,
+  then this sensor must not be implemented.</p>
+<p>If this sensor is present, then the corresponding magnetic field sensor must be
+  present and both sensors must share the same <code>sensor_t.name</code> and
+  <code>sensor_t.vendor</code> values.</p>
+<h2 id="interaction_composite_sensors">Interaction composite sensors</h2>
+<p>Some sensors are mostly used to detect interactions with the user. We do not
+  define how those sensors must be implemented, but they must be low power and it
+  is the responsibility of the device manufacturer to verify their quality in
+  terms of user experience.</p>
+<h3 id="wake_up_gesture">Wake up gesture</h3>
+<p>Underlying physical sensors: Undefined (anything low power)</p>
+<p>Reporting-mode: <em><a href="report-modes.html#one-shot">One-shot</a></em></p>
+<p>Low-power</p>
+<p>Implement only the wake-up version of this sensor.</p>
+<p><code>getDefaultSensor(SENSOR_TYPE_WAKE_GESTURE)</code> <em>returns a wake-up sensor</em></p>
+<p>A wake up gesture sensor enables waking up the device based on a device
+  specific motion. When this sensor triggers, the device behaves as if the power
+  button was pressed, turning the screen on. This behavior (turning on the screen
+  when this sensor triggers) might be deactivated by the user in the device
+  settings. Changes in settings do not impact the behavior of the sensor: only
+  whether the framework turns the screen on when it triggers.
+  The actual gesture to be detected is not specified, and can be chosen by the
+  manufacturer of the device.</p>
+<p>This sensor must be low power, as it is likely to be activated 24/7.</p>
+<p>Each sensor event reports 1 in <code>sensors_event_t.data[0]</code>.</p>
+<h3 id="pick_up_gesture">Pick up gesture</h3>
+<p>Underlying physical sensors: Undefined (anything low power)</p>
+<p>Reporting-mode: <em><a href="report-modes.html#one-shot">One-shot</a></em></p>
+<p>Low-power</p>
+<p>Implement only the wake-up version of this sensor.</p>
+<p><code>getDefaultSensor(SENSOR_TYPE_PICK_UP_GESTURE)</code> <em>returns a wake-up sensor</em></p>
+<p>A pick-up gesture sensor triggers when the device is picked up
+  regardless of wherever it was before (desk, pocket, bag).</p>
+<p>Each sensor event reports 1 in <code>sensors_event_t.data[0]</code>.</p>
+<h3 id="glance_gesture">Glance gesture</h3>
+<p>Underlying physical sensors: Undefined (anything low power)</p>
+<p>Reporting-mode: <em><a href="report-modes.html#one-shot">One-shot</a></em></p>
+<p>Low-power</p>
+<p>Implement only the wake-up version of this sensor.</p>
+<p><code>getDefaultSensor(SENSOR_TYPE_GLANCE_GESTURE)</code> <em>returns a wake-up sensor</em></p>
+<p>A glance gesture sensor enables briefly turning the screen on to enable the
+  user to glance content on screen based on a specific motion. When this sensor
+  triggers, the device will turn the screen on momentarily to allow the user to
+  glance notifications or other content while the device remains locked in a
+  non-interactive state (dozing), then the screen will turn off again. This
+  behavior (briefly turning on the screen when this sensor triggers) might be
+  deactivated by the user in the device settings. Changes in settings do not
+  impact the behavior of the sensor: only whether the framework briefly turns the
+  screen on when it triggers. The actual gesture to be detected is not specified,
+  and can be chosen by the manufacturer of the device.</p>
+<p>This sensor must be low power, as it is likely to be activated 24/7.
+  Each sensor event reports 1 in <code>sensors_event_t.data[0]</code>.</p>
+
+    </div>
+
+      <div class="content-footer-sac"
+                    itemscope itemtype="http://schema.org/SiteNavigationElement">
+        <div class="layout-content-col col-9" style="padding-top:4px">
+        </div>
+        
+        <div class="paging-links layout-content-col col-4">
+          
+        </div>
+        
+      </div>
+      
+      
+    </div> <!-- end jd-content -->
+  <div id="footer" class="wrap" >
+  <style>.feedback { float: right !Important }</style>
+  <div class="feedback">
+    <a href="sensor-types.html#" class="button" onclick=" try {
+      userfeedback.api.startFeedback({'productId':'715571','authuser':'1'});return false;}catch(e){}">Site Feedback</a>
+  </div>
+  <div id="copyright">
+    
+  Except as noted, this content is 
+  licensed under <a href="http://creativecommons.org/licenses/by/2.5/">
+  Creative Commons Attribution 2.5</a>. For details and 
+  restrictions, see the <a href="../../license.html">Content 
+  License</a>.
+  </div>
+    <div id="footerlinks">
+    
+  <p>
+    <a href="../../source/index.html">About Android</a>&nbsp;&nbsp;|&nbsp;
+    <a href="../../source/community.html">Community</a>&nbsp;&nbsp;|&nbsp;
+    <a href="../../legal.html">Legal</a>&nbsp;&nbsp;|&nbsp;
+  </p>
+  </div>
+
+</div><!-- end doc-content -->
+
+</div> <!-- end body-content --> 
+
+
+
+
+
+
+</body>
+</html>
+
+
+

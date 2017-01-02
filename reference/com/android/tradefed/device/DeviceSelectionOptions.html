@@ -1,0 +1,4051 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<link rel="shortcut icon" type="image/x-icon" href="http://source.android.com/favicon.ico" />
+<title>DeviceSelectionOptions | Android Open Source Project</title>
+
+<!-- STYLESHEETS -->
+<link rel="stylesheet"
+href="http://fonts.googleapis.com/css?family=Roboto:regular,medium,thin,italic,mediumitalic,bold" title="roboto">
+<link href="http://source.android.com/assets/css/default.css" rel="stylesheet" type="text/css">
+
+
+
+<!-- JAVASCRIPT -->
+<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+<script src="http://source.android.com/assets/js/android_3p-bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+  var toRoot = "/";
+  
+  var devsite = false;
+  
+</script>
+<script src="http://source.android.com/assets/js/docs.js" type="text/javascript"></script>
+
+<script src="http://source.android.com/navtree_data.js" type="text/javascript"></script>
+
+
+<script type="text/javascript" src="http://www.gstatic.com/feedback/api.js"></script>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-45455297-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</head>
+
+<body class="gc-documentation 
+  develop" itemscope itemtype="http://schema.org/Article">
+  <div id="doc-api-level" class="" style="display:none"></div>
+  <a name="top"></a>
+
+  
+    <!-- Header -->
+    <div id="header">
+        <div class="wrap" id="header-wrap">
+          <div class="col-3 saclogo">
+          <a href="http://source.android.com/index.html">
+            <img src="http://source.android.com/assets/images/sac_logo.png"
+                srcset="/assets/images/sac_logo@2x.png 2x"
+                width="123" height="25" alt="Android Open Source Project" />
+          </a>
+          </div>
+            <ul class="nav-x col-9">
+                <li class="source">
+                  <a href="http://source.android.com/source/index.html" 
+                  >Source</a></li>
+                <li class="devices"><a href="http://source.android.com/devices/index.html" class="selected"
+                  >Devices</a></li>
+                <li class="security"><a href="http://source.android.com/security/index.html" 
+                  >Security</a></li>
+                <li class="compatibility last"><a href="http://source.android.com/compatibility/index.html" 
+                  >Compatibility</a></li>
+            </ul>
+            <!-- New Search -->
+            <div class="menu-container">
+            <div class="moremenu">
+    <div id="more-btn"></div>
+  </div>
+  <div class="morehover" id="moremenu">
+    <div class="top"></div>
+    <div class="mid">
+      <div class="header">Android Sites</div>
+      <ul>
+        <li class="active"><a>Android Open Source Project</a></li>
+        <li><a href="http://www.android.com">Android.com</a></li>
+        <li><a href="http://developer.android.com">Android Developers</a></li>
+      </ul>
+      <!-- <div class="header">Support</div>
+      <ul>
+        <li><a href="/support.html">Developer Support</a></li>
+      </ul> -->
+      <br class="clearfix" />
+    </div>
+    <div class="bottom"></div>
+  </div>
+
+  <div class="search" id="search-container">
+    <div class="search-inner">
+      <div id="search-btn"></div>
+      <div class="left"></div>
+      <form onsubmit="return submit_search()">
+        <input id="search_autocomplete" type="text" value="" autocomplete="off" name="q"
+onfocus="search_focus_changed(this, true)" onblur="search_focus_changed(this, false)"
+onkeydown="return search_changed(event, true, '/')"
+onkeyup="return search_changed(event, false, '/')" />
+      </form>
+      <div class="right"></div>
+        <a class="close hide">close</a>
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+  </div>
+  <div id="search_filtered_wrapper">
+    <div id="search_filtered_div" class="no-display">
+        <ul id="search_filtered">
+        </ul>
+    </div>
+  </div>
+
+  </div>
+  <!-- /New Search> -->
+        </div>
+    </div>
+    <!-- /Header -->
+
+  <div id="searchResults" class="wrap" style="display:none;">
+          <h2 id="searchTitle">Results</h2>
+          <div id="leftSearchControl" class="search-control">Loading...</div>
+  </div>
+
+  
+  
+  
+    
+  <div class="wrap clearfix" id="body-content">
+    <div class="col-4" id="side-nav" itemscope itemtype="http://schema.org/SiteNavigationElement">
+      <div id="devdoc-nav" class="scroll-pane">
+<a class="totop" href="DeviceSelectionOptions.html#top" data-g-event="left-nav-top">to top</a>
+
+<!--
+    Copyright 2015 The Android Open Source Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<ul id="nav">
+  <li class="nav-section">  <!-- Begin nav section, Device Interfaces -->
+    <div class="nav-section-header">
+      <a href="http://source.android.com/devices/index.html">
+        <span class="en">Interfaces</span>
+      </a>
+    </div>
+    <ul>
+  <li class="nav-section">
+  <div class="nav-section-header">
+      <a href="http://source.android.com/devices/accessories/index.html">
+        <span class="en">Accessories</span>
+      </a>
+    </div>
+    <ul>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="http://source.android.com/devices/accessories/audio.html">
+            <span class="en">Audio Accessories</span>
+          </a>
+        </div>
+        <ul>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="http://source.android.com/devices/accessories/headset/index.html">
+            <span class="en">Headset</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="http://source.android.com/devices/accessories/headset/specification.html">Specification</a></li>
+          <li><a href="http://source.android.com/devices/accessories/headset/requirements.html">Requirements</a></li>
+          <li><a href="http://source.android.com/devices/accessories/headset/testing.html">Testing</a></li>
+        </ul>
+      </li>
+        </ul>
+      </li>
+  <li class="nav-section">
+  <div class="nav-section-header">
+      <a href="http://source.android.com/devices/accessories/custom.html">
+        <span class="en">Custom Accessories</span>
+      </a>
+    </div>
+    <ul>
+      <li class="nav-section">
+        <div class="nav-section-header"><a href="http://source.android.com/devices/accessories/protocol.html"><span class="en">AOA</span>
+        </a>
+        </div>
+        <ul>
+          <li><a href="http://source.android.com/devices/accessories/aoa2.html">AOA 2.0</a></li>
+          <li><a href="http://source.android.com/devices/accessories/aoa.html">AOA 1.0</a></li>
+        </ul>
+        </li>
+        <div class="nav-section-header"><a href="http://source.android.com/devices/accessories/stylus.html"><span class="en">Stylus</span>
+        </a>
+        </div>
+       </ul>
+     </li>
+    </ul>
+      <li class="nav-section">
+      <div class="nav-section-header">
+        <a href="http://source.android.com/devices/audio/index.html">
+          <span class="en">Audio</span>
+        </a>
+      </div>
+        <ul>
+          <li><a href="http://source.android.com/devices/audio/terminology.html">Terminology</a></li>
+          <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="http://source.android.com/devices/audio/implement.html">
+                <span class="en">Implementation</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="http://source.android.com/devices/audio/implement-policy.html">Policy Configuration</a></li>
+              <li><a href="http://source.android.com/devices/audio/implement-shared-library.html">Shared Library</a></li>
+              <li><a href="http://source.android.com/devices/audio/implement-pre-processing.html">Pre-processing Effects</a></li>
+            </ul>
+         </li>
+          <li><a href="http://source.android.com/devices/audio/data_formats.html">Data Formats</a></li>
+          <li><a href="http://source.android.com/devices/audio/attributes.html">Attributes</a></li>
+          <li><a href="http://source.android.com/devices/audio/warmup.html">Warmup</a></li>
+          <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="http://source.android.com/devices/audio/latency.html">
+                <span class="en">Latency</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="http://source.android.com/devices/audio/latency_contrib.html">Contributors</a></li>
+              <li><a href="http://source.android.com/devices/audio/latency_design.html">Design</a></li>
+              <li><a href="http://source.android.com/devices/audio/latency_measure.html">Measure</a></li>
+              <li><a href="http://source.android.com/devices/audio/testing_circuit.html">Light Testing Circuit</a></li>
+              <li><a href="http://source.android.com/devices/audio/loopback.html">Audio Loopback Dongle</a></li>
+              <li><a href="http://source.android.com/devices/audio/latency_measurements.html">Measurements</a></li>
+              <li><a href="http://source.android.com/devices/audio/latency_app.html">Applications</a></li>
+            </ul>
+          </li>
+          <li><a href="http://source.android.com/devices/audio/avoiding_pi.html">Priority Inversion</a></li>
+          <li><a href="http://source.android.com/devices/audio/src.html">Sample Rate Conversion</a></li>
+          <li><a href="http://source.android.com/devices/audio/debugging.html">Debugging</a></li>
+          <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="http://source.android.com/devices/audio/midi.html">
+                <span class="em">MIDI</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="http://source.android.com/devices/audio/midi_arch.html">MIDI Architecture</a></li>
+              <li><a href="http://source.android.com/devices/audio/midi_test.html">MIDI Test Procedure</a></li>
+            </ul>
+          <li><a href="http://source.android.com/devices/audio/usb.html">USB Digital Audio</a></li>
+          <li><a href="http://source.android.com/devices/audio/tv.html">TV Audio</a></li>
+        </ul>
+      </li>
+      <li><a href="http://source.android.com/devices/automotive.html">Automotive</a></li>
+      <li><a href="http://source.android.com/devices/bluetooth.html">Bluetooth</a></li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="http://source.android.com/devices/camera/index.html">
+            <span class="en">Camera</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="http://source.android.com/devices/camera/camera3.html">Camera HAL3</a></li>
+          <li><a href="http://source.android.com/devices/camera/camera3_requests_hal.html">HAL Subsystem</a></li>
+          <li><a href="http://source.android.com/devices/camera/camera3_metadata.html">Metadata and Controls</a></li>
+          <li><a href="http://source.android.com/devices/camera/camera3_3Amodes.html">3A Modes and State</a></li>
+          <li><a href="http://source.android.com/devices/camera/camera3_crop_reprocess.html">Output and Cropping</a></li>
+          <li><a href="http://source.android.com/devices/camera/camera3_error_stream.html">Errors and Streams</a></li>
+          <li><a href="http://source.android.com/devices/camera/camera3_requests_methods.html">Request Creation</a></li>
+          <li><a href="http://source.android.com/devices/camera/versioning.html">Version Support</a></li>
+        </ul>
+      </li>
+
+      <li><a href="http://source.android.com/devices/drm.html">DRM</a></li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="http://source.android.com/devices/graphics/index.html">
+            <span class="en">Graphics</span>
+          </a>
+        </div>
+        <ul>
+         <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="http://source.android.com/devices/graphics/architecture.html">
+                <span class="en">Architecture</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="http://source.android.com/devices/graphics/arch-bq-gralloc.html">BufferQueue</a></li>
+              <li><a href="http://source.android.com/devices/graphics/arch-sf-hwc.html">SurfaceFlinger and HWC</a></li>
+              <li><a href="http://source.android.com/devices/graphics/arch-sh.html">Surface and SurfaceHolder</a></li>
+              <li><a href="http://source.android.com/devices/graphics/arch-egl-opengl.html">OpenGL ES</a></li>
+              <li><a href="http://source.android.com/devices/graphics/arch-vulkan.html">Vulkan</a></li>
+              <li><a href="http://source.android.com/devices/graphics/arch-sv-glsv.html">SurfaceView</a></li>
+              <li><a href="http://source.android.com/devices/graphics/arch-st.html">SurfaceTexture</a></li>
+              <li><a href="http://source.android.com/devices/graphics/arch-tv.html">TextureView</a></li>
+              <li><a href="http://source.android.com/devices/graphics/arch-gameloops.html">Game Loops</a></li>
+            </ul>
+         </li>
+         <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="http://source.android.com/devices/graphics/implement.html">
+                <span class="en">Implementing</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="http://source.android.com/devices/graphics/implement-hwc.html">Hardware Composer HAL</a></li>
+              <li><a href="http://source.android.com/devices/graphics/implement-vsync.html">VSYNC</a></li>
+              <li><a href="http://source.android.com/devices/graphics/implement-vulkan.html">Vulkan</a></li>
+              <li><a href="http://source.android.com/devices/graphics/implement-vdisplays.html">Virtual Displays</a></li>
+            </ul>
+         </li>
+         <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="http://source.android.com/devices/graphics/testing.html">
+                <span class="en">OpenGL ES Testing</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="http://source.android.com/devices/graphics/build-tests.html">Building test programs</a></li>
+              <li><a href="http://source.android.com/devices/graphics/port-tests.html">Porting the test framework</a></li>
+              <li><a href="http://source.android.com/devices/graphics/run-tests.html">Running the tests</a></li>
+              <li><a href="http://source.android.com/devices/graphics/automate-tests.html">Automating the tests</a></li>
+              <li><a href="http://source.android.com/devices/graphics/test-groups.html">Using special test groups</a></li>
+              <li><a href="http://source.android.com/devices/graphics/cts-integration.html">Integrating with Android CTS</a></li>
+            </ul>
+         </li>
+        </ul> </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="http://source.android.com/devices/input/index.html">
+            <span class="en">Input</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="http://source.android.com/devices/input/overview.html">Overview</a></li>
+          <li><a href="http://source.android.com/devices/input/key-layout-files.html">Key Layout Files</a></li>
+          <li><a href="http://source.android.com/devices/input/key-character-map-files.html">Key Character Map Files</a></li>
+          <li><a href="http://source.android.com/devices/input/input-device-configuration-files.html">Input Device Configuration Files</a></li>
+          <li><a href="http://source.android.com/devices/input/migration-guide.html">Migration Guide</a></li>
+          <li><a href="http://source.android.com/devices/input/keyboard-devices.html">Keyboard Devices</a></li>
+          <li><a href="../../../../../devices/input/touch-devices.html">Touch Devices</a></li>
+          <li><a href="../../../../../devices/input/diagnostics.html">Diagnostics</a></li>
+          <li><a href="http://source.android.com/devices/input/getevent.html">Getevent</a></li>
+          <li><a href="http://source.android.com/devices/input/validate-keymaps.html">Validate Keymaps</a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../../../../../devices/media/index.html">
+            <span class="en">Media</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="http://source.android.com/devices/media/framework-hardening.html">Framework
+          Hardening</a></li>
+          <li><a href="http://source.android.com/devices/media/soc.html">SoC Dependencies</a></li>
+          <li><a href="http://source.android.com/devices/media/oem.html">OEM Dependencies</a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="http://source.android.com/devices/sensors/index.html">
+            <span class="en">Sensors</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="http://source.android.com/devices/sensors/sensor-stack.html">Sensor stack</a></li>
+          <li><a href="http://source.android.com/devices/sensors/report-modes.html">Reporting modes</a></li>
+          <li><a href="http://source.android.com/devices/sensors/suspend-mode.html">Suspend mode</a></li>
+          <li><a href="http://source.android.com/devices/sensors/power-use.html">Power consumption</a></li>
+          <li><a href="http://source.android.com/devices/sensors/interaction.html">Interaction</span></a></li>
+          <li><a href="http://source.android.com/devices/sensors/hal-interface.html">HAL interface</a></li>
+          <li><a href="http://source.android.com/devices/sensors/batching.html">Batching</a></li>
+          <li><a href="http://source.android.com/devices/sensors/sensor-types.html">Sensor types</a></li>
+          <li><a href="http://source.android.com/devices/sensors/versioning.html">Version deprecation</a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="http://source.android.com/devices/storage/index.html">
+            <span class="en">Storage</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="http://source.android.com/devices/storage/traditional.html">Traditional Storage</a></li>
+          <li><a href="http://source.android.com/devices/storage/adoptable.html">Adoptable Storage</a></li>
+          <li><a href="http://source.android.com/devices/storage/config.html">Device Configuration</a></li>
+          <li><a href="http://source.android.com/devices/storage/config-example.html">Configuration Examples</a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="http://source.android.com/devices/tv/index.html">
+            <span class="en">TV</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="http://source.android.com/devices/tv/HDMI-CEC.html">HDMI-CEC control service</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li> <!-- End nav-section, Device Interfaces-->
+
+
+  <li class="nav-section"> <!--Begin nav-section, Core Technologies-->
+    <div class="nav-section-header">
+      <a href="http://source.android.com/devices/tech/index.html">
+        <span class="en">Core Technologies</span>
+      </a>
+    </div>
+
+    <ul>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="http://source.android.com/devices/tech/dalvik/index.html">
+          <span class="en">ART and Dalvik</span></a>
+        </div>
+        <ul>
+          <li><a href="http://source.android.com/devices/tech/dalvik/dalvik-bytecode.html">Bytecode Format</a></li>
+          <li><a href="http://source.android.com/devices/tech/dalvik/dex-format.html">.Dex Format</a></li>
+          <li><a href="http://source.android.com/devices/tech/dalvik/instruction-formats.html">Instruction Formats</a></li>
+          <li><a href="http://source.android.com/devices/tech/dalvik/constraints.html">Constraints</a></li>
+          <li><a href="http://source.android.com/devices/tech/dalvik/configure.html">Configuration</a></li>
+          <li><a href="http://source.android.com/devices/tech/dalvik/gc-debug.html">Garbage Collection</a></li>
+          <li><a href="http://source.android.com/devices/tech/dalvik/jit-compiler.html">JIT Compilation</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+            <a href="http://source.android.com/devices/tech/config/index.html">
+              <span class="en">Configuration</span>
+            </a>
+        </div>
+        <ul>
+          <li><a href="http://source.android.com/devices/tech/config/carrier.html">Carrier Customization</a></li>
+          <li><a href="http://source.android.com/devices/tech/config/filesystem.html">File System</a></li>
+          <li><a href="http://source.android.com/devices/tech/config/kernel.html">Kernel Configuration</a></li>
+          <li><a href="http://source.android.com/devices/tech/config/kernel_network_tests.html">Kernel Network Tests</a></li>
+          <li><a href="http://source.android.com/devices/tech/config/low-ram.html">Low RAM</a></li>
+          <li><a href="http://source.android.com/devices/tech/config/namespaces_libraries.html">Namespaces for Libraries</a></li>
+          <li><a href="http://source.android.com/devices/tech/config/renderer.html">OpenGLRenderer</a></li>
+          <li><a href="http://source.android.com/devices/tech/config/runtime_perms.html">Runtime Permissions</a></li>
+          <li><a href="http://source.android.com/devices/tech/config/uicc.html">UICC</a></li>
+          <li><a href="http://source.android.com/devices/tech/config/voicemail.html">Visual Voicemail</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+            <a href="http://source.android.com/devices/tech/connect/index.html">
+              <span class="en">Connectivity</span>
+            </a>
+        </div>
+        <ul>
+          <li><a href="http://source.android.com/devices/tech/connect/block-numbers.html">Block Phone Numbers</a></li>
+          <li><a href="http://source.android.com/devices/tech/connect/call-notification.html">Call Notifications</a></li>
+          <li><a href="http://source.android.com/devices/tech/connect/data-saver.html">Data Saver Mode</a></li>
+          <li><a href="http://source.android.com/devices/tech/connect/felica.html">Host Card Emulation of FeliCa</a></li>
+          <li><a href="http://source.android.com/devices/tech/connect/ril.html">Radio Interface Layer (RIL)</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="http://source.android.com/devices/tech/datausage/index.html">
+            <span class="en">Data Usage</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="http://source.android.com/devices/tech/datausage/iface-overview.html">Network interface statistics overview</a></li>
+          <li><a href="http://source.android.com/devices/tech/datausage/excluding-network-types.html">Excluding Network Types from Data Usage</a></li>
+          <li><a href="http://source.android.com/devices/tech/datausage/tethering-data.html">Tethering Data</a></li>
+          <li><a href="http://source.android.com/devices/tech/datausage/usage-cycle-resets-dates.html">Usage Cycle Reset Dates</a></li>
+          <li><a href="http://source.android.com/devices/tech/datausage/kernel-overview.html">Kernel Overview</a></li>
+          <li><a href="http://source.android.com/devices/tech/datausage/tags-explained.html">Data Usage Tags Explained</a></li>
+          <li><a href="http://source.android.com/devices/tech/datausage/kernel-changes.html">Kernel Changes</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="http://source.android.com/devices/tech/debug/index.html">
+            <span class="en">Debugging</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="http://source.android.com/devices/tech/debug/asan.html">AddressSanitizer</a></li>
+          <li><a href="http://source.android.com/devices/tech/debug/dumpsys.html">Dumpsys</a></li>
+          <li><a href="http://source.android.com/devices/tech/debug/native-memory.html">Native Memory Use</a></li>
+          <li><a href="http://source.android.com/devices/tech/debug/netstats.html">Network Use</a></li>
+          <li><a href="http://source.android.com/devices/tech/debug/procstats.html">RAM Use</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="http://source.android.com/devices/tech/admin/index.html">
+          <span class="en">Device Administration</span></a>
+        </div>
+        <ul>
+          <li><a href="http://source.android.com/devices/tech/admin/implement.html">Implementation</a></li>
+          <li><a href="http://source.android.com/devices/tech/admin/multi-user.html">Multiple Users</a></li>
+          <li><a href="http://source.android.com/devices/tech/admin/managed-profiles.html">Managed Profiles</a></li>
+          <li><a href="http://source.android.com/devices/tech/admin/provision.html">Provisioning</a></li>
+          <li><a href="http://source.android.com/devices/tech/admin/multiuser-apps.html">Multiuser Apps</a></li>
+          <li><a href="http://source.android.com/devices/tech/admin/enterprise-telephony.html">Enterprise Telephony</a></li>
+          <li><a href="http://source.android.com/devices/tech/admin/testing-provision.html">Testing Device Provisioning</a></li>
+          <li><a href="http://source.android.com/devices/tech/admin/testing-setup.html">Testing Device Administration</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+            <a href="http://source.android.com/devices/tech/display/index.html">
+              <span class="en">Display Settings</span></a>
+        </div>
+        <ul>
+          <li><a href="http://source.android.com/devices/tech/display/dnd.html">Do Not Disturb</a></li>
+          <li><a href="http://source.android.com/devices/tech/display/multi-window.html">Multi-Window</a></li>
+          <li><a href="http://source.android.com/devices/tech/display/hdr.html">HDR Video</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header empty">
+          <a href="http://source.android.com/devices/halref/index.html">
+            <span class="en">HAL File Reference</span>
+          </a>
+        </div>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+            <a href="http://source.android.com/devices/tech/ota/index.html">
+              <span class="en">OTA Updates</span>
+            </a>
+        </div>
+        <ul>
+          <li><a href="http://source.android.com/devices/tech/ota/tools.html">OTA Tools</a></li>
+          <li><a href="http://source.android.com/devices/tech/ota/block.html">Block-based OTA</a></li>
+          <li><a href="http://source.android.com/devices/tech/ota/inside_packages.html">Inside OTA Packages</a></li>
+          <li><a href="http://source.android.com/devices/tech/ota/device_code.html">Device-Specific Code</a></li>
+          <li><a href="http://source.android.com/devices/tech/ota/sign_builds.html">Signing Builds for Release</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="http://source.android.com/devices/tech/power/index.html"><span class="en">Power</span></a>
+        </div>
+        <ul>
+          <li><a href="http://source.android.com/devices/tech/power/mgmt.html">Power Management</a>
+          </li>
+          <li><a href="http://source.android.com/devices/tech/power/component.html">Component Power</a></li>
+          <li><a href="http://source.android.com/devices/tech/power/device.html">Device Power</a>
+          </li>
+          <li><a href="http://source.android.com/devices/tech/power/values.html">Power Values</a></li>
+          <li><a href="http://source.android.com/devices/tech/power/batterystats.html">Battery Use</a>
+          </li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="http://source.android.com/devices/tech/test_infra/tradefed/index.html">
+            <span class="en">Testing Infrastructure</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="http://source.android.com/devices/tech/test_infra/tradefed/fundamentals/index.html">Start Here</a></li>
+          <li><a href="http://source.android.com/devices/tech/test_infra/tradefed/fundamentals/machine_setup.html">Machine Setup</a></li>
+          <li><a href="http://source.android.com/devices/tech/test_infra/tradefed/fundamentals/devices.html">Working with Devices</a></li>
+          <li><a href="http://source.android.com/devices/tech/test_infra/tradefed/fundamentals/lifecycle.html">Test Lifecycle</a></li>
+          <li><a href="http://source.android.com/devices/tech/test_infra/tradefed/fundamentals/options.html">Option Handling</a></li>
+          <li><a href="http://source.android.com/devices/tech/test_infra/tradefed/full_example.html">An End-to-End Example</a></li>
+          <li id="tradefed-tree-list" class="nav-section">
+            <div class="nav-section-header">
+              <a href="http://source.android.com/reference/packages.html">
+                <span class="en">Package Index</span>
+              </a>
+            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li> <!-- End nav-section, Core Technologies -->
+</ul> 
+
+
+      </div>
+      <script type="text/javascript">
+        showTradefedRefTree();
+      </script>
+    </div> <!-- end side-nav -->
+    <script>
+      $(document).ready(function() {
+        scrollIntoView("devdoc-nav");
+        });
+    </script>
+
+  
+
+
+
+
+<div class="col-12"  id="doc-col">
+
+<div id="api-info-block">
+
+
+
+  
+   
+  
+  
+  
+  
+
+  
+   
+  
+  
+  
+  
+
+  
+   
+  
+  
+  
+  
+
+
+<div class="sum-details-links">
+
+Summary:
+
+
+
+
+
+  <a href="DeviceSelectionOptions.html#constants">Constants</a>
+  
+
+
+
+  &#124; <a href="DeviceSelectionOptions.html#lfields">Fields</a>
+  
+
+
+
+  &#124; <a href="DeviceSelectionOptions.html#pubctors">Ctors</a>
+  
+
+
+
+  &#124; <a href="DeviceSelectionOptions.html#pubmethods">Methods</a>
+  
+
+
+
+  &#124; <a href="DeviceSelectionOptions.html#inhmethods">Inherited Methods</a>
+
+&#124; <a href="DeviceSelectionOptions.html#" onclick="return toggleAllClassInherited()" id="toggleAllClassInherited">[Expand All]</a>
+
+</div><!-- end sum-details-links -->
+<div class="api-level">
+  
+  
+  
+
+</div>
+</div><!-- end api-info-block -->
+
+
+<!-- ======== START OF CLASS DATA ======== -->
+
+<div id="jd-header">
+    public
+     
+     
+    
+    class
+<h1 itemprop="name">DeviceSelectionOptions</h1>
+
+
+
+  
+    extends Object<br/>
+  
+  
+  
+
+  
+  
+      implements 
+      
+        <a href="IDeviceSelection.html">IDeviceSelection</a> 
+      
+  
+  
+
+
+
+</div><!-- end header -->
+
+<div id="naMessage"></div>
+
+<div id="jd-content" class="api apilevel-">
+<table class="jd-inheritance-table">
+
+
+    <tr>
+         	
+        <td colspan="2" class="jd-inheritance-class-cell">java.lang.Object</td>
+    </tr>
+    
+
+    <tr>
+        
+            <td class="jd-inheritance-space">&nbsp;&nbsp;&nbsp;&#x21b3;</td>
+         	
+        <td colspan="1" class="jd-inheritance-class-cell">com.android.tradefed.device.DeviceSelectionOptions</td>
+    </tr>
+    
+
+</table>
+
+
+
+
+
+
+
+<div class="jd-descr">
+
+
+<h2>Class Overview</h2>
+<p itemprop="articleBody">Container for for device selection criteria.
+</p>
+
+
+
+
+
+</div><!-- jd-descr -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="jd-descr">
+
+
+<h2>Summary</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- =========== ENUM CONSTANT SUMMARY =========== -->
+<table id="constants" class="jd-sumtable"><tr><th colspan="12">Constants</th></tr>
+
+
+    
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">String</td>
+        <td class="jd-linkcol"><a href="DeviceSelectionOptions.html#DEVICE_PRODUCT_PROPERTY">DEVICE_PRODUCT_PROPERTY</a></td>
+        <td class="jd-descrcol" width="100%"></td>
+    </tr>
+    
+    
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">String</td>
+        <td class="jd-linkcol"><a href="DeviceSelectionOptions.html#DEVICE_SDK_PROPERTY">DEVICE_SDK_PROPERTY</a></td>
+        <td class="jd-descrcol" width="100%"></td>
+    </tr>
+    
+    
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">String</td>
+        <td class="jd-linkcol"><a href="DeviceSelectionOptions.html#DEVICE_VARIANT_PROPERTY">DEVICE_VARIANT_PROPERTY</a></td>
+        <td class="jd-descrcol" width="100%"></td>
+    </tr>
+    
+    
+
+</table>
+
+
+
+
+
+
+
+<!-- =========== FIELD SUMMARY =========== -->
+<table id="lfields" class="jd-sumtable"><tr><th colspan="12">Fields</th></tr>
+
+
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          private
+          
+          
+          boolean</nobr></td>
+          <td class="jd-linkcol"><a href="DeviceSelectionOptions.html#mDeviceRequested">mDeviceRequested</a></td>
+          <td class="jd-descrcol" width="100%">
+              
+                  <span class='annotation-message'>
+    @Option(name&nbsp;=&nbsp;"device", shortName&nbsp;=&nbsp;100, description&nbsp;=&nbsp;"force this test to run on a physical device, not an emulator.")</span>
+              </td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          private
+          
+          
+          boolean</nobr></td>
+          <td class="jd-linkcol"><a href="DeviceSelectionOptions.html#mEmulatorRequested">mEmulatorRequested</a></td>
+          <td class="jd-descrcol" width="100%">
+              
+                  <span class='annotation-message'>
+    @Option(name&nbsp;=&nbsp;"emulator", shortName&nbsp;=&nbsp;101, description&nbsp;=&nbsp;"force this test to run on emulator.")</span>
+              </td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          private
+          
+          
+          Collection&lt;String&gt;</nobr></td>
+          <td class="jd-linkcol"><a href="DeviceSelectionOptions.html#mExcludeSerials">mExcludeSerials</a></td>
+          <td class="jd-descrcol" width="100%">
+              
+                  <span class='annotation-message'>
+    @Option(name&nbsp;=&nbsp;"exclude-serial", description&nbsp;=&nbsp;"run this test on any device except those with this serial number(s).")</span>
+              </td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          private
+          
+          
+          Integer</nobr></td>
+          <td class="jd-linkcol"><a href="DeviceSelectionOptions.html#mMaxBattery">mMaxBattery</a></td>
+          <td class="jd-descrcol" width="100%">
+              
+                  <span class='annotation-message'>
+    @Option(name&nbsp;=&nbsp;"max-battery", description&nbsp;=&nbsp;"only run this test on a device whose battery level is strictly less than the given amount. Scale: 0-100")</span>
+              </td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          private
+          
+          
+          Integer</nobr></td>
+          <td class="jd-linkcol"><a href="DeviceSelectionOptions.html#mMaxSdk">mMaxSdk</a></td>
+          <td class="jd-descrcol" width="100%">
+              
+                  <span class='annotation-message'>
+    @Option(name&nbsp;=&nbsp;"max-sdk-level", description&nbsp;=&nbsp;"Only run this test on devices that are running this or lower Android SDK/API level")</span>
+              </td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          private
+          
+          
+          Integer</nobr></td>
+          <td class="jd-linkcol"><a href="DeviceSelectionOptions.html#mMinBattery">mMinBattery</a></td>
+          <td class="jd-descrcol" width="100%">
+              
+                  <span class='annotation-message'>
+    @Option(name&nbsp;=&nbsp;"min-battery", description&nbsp;=&nbsp;"only run this test on a device whose battery level is at least the given amount. Scale: 0-100")</span>
+              </td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          private
+          
+          
+          Integer</nobr></td>
+          <td class="jd-linkcol"><a href="DeviceSelectionOptions.html#mMinSdk">mMinSdk</a></td>
+          <td class="jd-descrcol" width="100%">
+              
+                  <span class='annotation-message'>
+    @Option(name&nbsp;=&nbsp;"min-sdk-level", description&nbsp;=&nbsp;"Only run this test on devices that support this Android SDK/API level")</span>
+              </td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          private
+          
+          
+          boolean</nobr></td>
+          <td class="jd-linkcol"><a href="DeviceSelectionOptions.html#mNullDeviceRequested">mNullDeviceRequested</a></td>
+          <td class="jd-descrcol" width="100%">
+              
+                  <span class='annotation-message'>
+    @Option(name&nbsp;=&nbsp;"null-device", shortName&nbsp;=&nbsp;110, description&nbsp;=&nbsp;"do not allocate a device for this test.")</span>
+              </td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          private
+          
+          
+          Collection&lt;String&gt;</nobr></td>
+          <td class="jd-linkcol"><a href="DeviceSelectionOptions.html#mProductTypes">mProductTypes</a></td>
+          <td class="jd-descrcol" width="100%">
+              
+                  <span class='annotation-message'>
+    @Option(name&nbsp;=&nbsp;"product-type", description&nbsp;=&nbsp;"run this test on device with this product type(s).  May also filter by variant using product:variant.")</span>
+              </td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          private
+          
+          
+          Map&lt;String,&nbsp;String&gt;</nobr></td>
+          <td class="jd-linkcol"><a href="DeviceSelectionOptions.html#mPropertyMap">mPropertyMap</a></td>
+          <td class="jd-descrcol" width="100%">
+              
+                  <span class='annotation-message'>
+    @Option(name&nbsp;=&nbsp;"property", description&nbsp;=&nbsp;"run this test on device with this property value. Expected format --property <propertyname> <propertyvalue>.")</span>
+              </td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          private
+          
+          
+          boolean</nobr></td>
+          <td class="jd-linkcol"><a href="DeviceSelectionOptions.html#mRequireBatteryCheck">mRequireBatteryCheck</a></td>
+          <td class="jd-descrcol" width="100%">
+              
+                  <span class='annotation-message'>
+    @Option(name&nbsp;=&nbsp;"require-battery-check", description&nbsp;=&nbsp;"_If_ --min-battery and/or --max-battery is specified, skip devices that have an unknown battery level.  Note that this may leave restart-looping devices in limbo indefinitely without manual intervention.")</span>
+              </td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          private
+          
+          
+          Collection&lt;String&gt;</nobr></td>
+          <td class="jd-linkcol"><a href="DeviceSelectionOptions.html#mSerials">mSerials</a></td>
+          <td class="jd-descrcol" width="100%">
+              
+                  <span class='annotation-message'>
+    @Option(name&nbsp;=&nbsp;"serial", shortName&nbsp;=&nbsp;115, description&nbsp;=&nbsp;"run this test on a specific device with given serial number(s).")</span>
+              </td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          private
+          
+          
+          boolean</nobr></td>
+          <td class="jd-linkcol"><a href="DeviceSelectionOptions.html#mStubEmulatorRequested">mStubEmulatorRequested</a></td>
+          <td class="jd-descrcol" width="100%">
+              
+                  <span class='annotation-message'>
+    @Option(name&nbsp;=&nbsp;"new-emulator", description&nbsp;=&nbsp;"allocate a placeholder emulator. Should be used when config intends to launch an emulator")</span>
+              </td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          private
+          
+          
+          boolean</nobr></td>
+          <td class="jd-linkcol"><a href="DeviceSelectionOptions.html#mTcpDeviceRequested">mTcpDeviceRequested</a></td>
+          <td class="jd-descrcol" width="100%">
+              
+                  <span class='annotation-message'>
+    @Option(name&nbsp;=&nbsp;"tcp-device", description&nbsp;=&nbsp;"start a placeholder for a tcp device that will be connected later.")</span>
+              </td>
+      </tr>
+      
+    
+
+</table>
+
+
+
+
+
+
+
+<!-- ======== CONSTRUCTOR SUMMARY ======== -->
+<table id="pubctors" class="jd-sumtable"><tr><th colspan="12">Public Constructors</th></tr>
+
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            </nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="DeviceSelectionOptions.html#DeviceSelectionOptions()">DeviceSelectionOptions</a></span>()</nobr>
+        
+  </td></tr>
+
+
+
+</table>
+
+
+
+
+
+
+<!-- ========== METHOD SUMMARY =========== -->
+<table id="pubmethods" class="jd-sumtable"><tr><th colspan="12">Public Methods</th></tr>
+
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="DeviceSelectionOptions.html#addExcludeSerial(java.lang.String)">addExcludeSerial</a></span>(String serialNumber)</nobr>
+        
+        <div class="jd-descrdiv">Add a serial number to exclusion list.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="DeviceSelectionOptions.html#addProductType(java.lang.String)">addProductType</a></span>(String productType)</nobr>
+        
+        <div class="jd-descrdiv">Add a product type to the device selection options.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="DeviceSelectionOptions.html#addProperty(java.lang.String, java.lang.String)">addProperty</a></span>(String propertyKey, String propValue)</nobr>
+        
+        <div class="jd-descrdiv">Add a property criteria to the device selection options
+</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="DeviceSelectionOptions.html#addSerial(java.lang.String)">addSerial</a></span>(String serialNumber)</nobr>
+        
+        <div class="jd-descrdiv">Add a serial number to the device selection options.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            static
+            
+            
+            <a href="IDeviceSelection.html">IDeviceSelection</a></nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="DeviceSelectionOptions.html#createForSerial(java.lang.String)">createForSerial</a></span>(String serial)</nobr>
+        
+        <div class="jd-descrdiv">Helper factory method to create a <code><a href="IDeviceSelection.html">IDeviceSelection</a></code> that will only match device
+ with given serial
+</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            boolean</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="DeviceSelectionOptions.html#deviceRequested()">deviceRequested</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">
+</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            boolean</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="DeviceSelectionOptions.html#emulatorRequested()">emulatorRequested</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">
+</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            Integer</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="DeviceSelectionOptions.html#getBatteryLevel(com.android.ddmlib.IDevice)">getBatteryLevel</a></span>(IDevice device)</nobr>
+        
+        <div class="jd-descrdiv">Retrieves the battery level for the given device</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="DeviceSelectionOptions.html#getDeviceProductType(com.android.ddmlib.IDevice)">getDeviceProductType</a></span>(IDevice device)</nobr>
+        
+        <div class="jd-descrdiv">Gets the given devices product type</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="DeviceSelectionOptions.html#getDeviceProductVariant(com.android.ddmlib.IDevice)">getDeviceProductVariant</a></span>(IDevice device)</nobr>
+        
+        <div class="jd-descrdiv">Gets the given devices product variant</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            Collection&lt;String&gt;</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="DeviceSelectionOptions.html#getExcludeSerials()">getExcludeSerials</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets a copy of the serial numbers exclusion list
+</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            Integer</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="DeviceSelectionOptions.html#getMaxBatteryLevel()">getMaxBatteryLevel</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the requested maximum battery level
+</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            Integer</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="DeviceSelectionOptions.html#getMinBatteryLevel()">getMinBatteryLevel</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the requested minimum battery level
+</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            Collection&lt;String&gt;</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="DeviceSelectionOptions.html#getProductTypes()">getProductTypes</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets a copy of the product type list
+</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            Map&lt;String,&nbsp;String&gt;</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="DeviceSelectionOptions.html#getProperties()">getProperties</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Returns a map of the property list
+</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            boolean</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="DeviceSelectionOptions.html#getRequireBatteryCheck()">getRequireBatteryCheck</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets whether battery check is required for devices with unknown battery level
+</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            Collection&lt;String&gt;</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="DeviceSelectionOptions.html#getSerials()">getSerials</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets a copy of the serial numbers
+</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            boolean</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="DeviceSelectionOptions.html#matches(com.android.ddmlib.IDevice)">matches</a></span>(IDevice device)</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            boolean</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="DeviceSelectionOptions.html#nullDeviceRequested()">nullDeviceRequested</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">
+</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="DeviceSelectionOptions.html#setDeviceRequested(boolean)">setDeviceRequested</a></span>(boolean deviceRequested)</nobr>
+        
+        <div class="jd-descrdiv">Sets the emulator requested flag
+</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="DeviceSelectionOptions.html#setEmulatorRequested(boolean)">setEmulatorRequested</a></span>(boolean emulatorRequested)</nobr>
+        
+        <div class="jd-descrdiv">Sets the emulator requested flag
+</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="DeviceSelectionOptions.html#setMaxBatteryLevel(java.lang.Integer)">setMaxBatteryLevel</a></span>(Integer maxBattery)</nobr>
+        
+        <div class="jd-descrdiv">Sets the maximum battery level
+</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="DeviceSelectionOptions.html#setMinBatteryLevel(java.lang.Integer)">setMinBatteryLevel</a></span>(Integer minBattery)</nobr>
+        
+        <div class="jd-descrdiv">Sets the minimum battery level
+</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="DeviceSelectionOptions.html#setNullDeviceRequested(boolean)">setNullDeviceRequested</a></span>(boolean nullDeviceRequested)</nobr>
+        
+        <div class="jd-descrdiv">Sets the null device requested flag
+</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="DeviceSelectionOptions.html#setRequireBatteryCheck(boolean)">setRequireBatteryCheck</a></span>(boolean requireCheck)</nobr>
+        
+        <div class="jd-descrdiv">Sets whether battery check is required for devices with unknown battery level
+</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="DeviceSelectionOptions.html#setSerial(java.lang.String...)">setSerial</a></span>(String... serialNumber)</nobr>
+        
+        <div class="jd-descrdiv">Set the serial numbers inclusion list, replacing any existing values.
+</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="DeviceSelectionOptions.html#setStubEmulatorRequested(boolean)">setStubEmulatorRequested</a></span>(boolean stubEmulatorRequested)</nobr>
+        
+        <div class="jd-descrdiv">Sets the stub emulator requested flag
+</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="DeviceSelectionOptions.html#setTcpDeviceRequested(boolean)">setTcpDeviceRequested</a></span>(boolean tcpDeviceRequested)</nobr>
+        
+        <div class="jd-descrdiv">Sets the tcp device requested flag
+</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            boolean</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="DeviceSelectionOptions.html#stubEmulatorRequested()">stubEmulatorRequested</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">
+</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            boolean</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="DeviceSelectionOptions.html#tcpDeviceRequested()">tcpDeviceRequested</a></span>()</nobr>
+        
+  </td></tr>
+
+
+
+</table>
+
+
+
+
+
+
+
+<!-- ========== METHOD SUMMARY =========== -->
+<table id="inhmethods" class="jd-sumtable"><tr><th>
+  <a href="DeviceSelectionOptions.html#" class="toggle-all" onclick="return toggleAllInherited(this, null)">[Expand]</a>
+  <div style="clear:left;">Inherited Methods</div></th></tr>
+
+
+<tr class="api apilevel-" >
+<td colspan="12">
+  <a href="DeviceSelectionOptions.html#" onclick="return toggleInherited(this, null)" id="inherited-methods-java.lang.Object" class="jd-expando-trigger closed"
+          ><img height="34" id="inherited-methods-java.lang.Object-trigger"
+          src="http://source.android.com/assets/images/styles/disclosure_down.png"
+          class="jd-expando-trigger-img" /></a>
+From class
+
+  java.lang.Object
+
+<div id="inherited-methods-java.lang.Object">
+  <div id="inherited-methods-java.lang.Object-list"
+        class="jd-inheritedlinks">
+  </div>
+  <div id="inherited-methods-java.lang.Object-summary" style="display: none;">
+    <table class="jd-sumtable-expando">
+    
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            Object</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">clone</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            boolean</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">equals</span>(Object arg0)</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">finalize</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            final
+            
+            Class&lt;?&gt;</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">getClass</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            int</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">hashCode</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            final
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">notify</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            final
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">notifyAll</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">toString</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            final
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">wait</span>(long arg0, int arg1)</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            final
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">wait</span>(long arg0)</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            final
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">wait</span>()</nobr>
+        
+  </td></tr>
+
+
+</table>
+  </div>
+</div>
+</td></tr>
+
+
+
+<tr class="api apilevel-" >
+<td colspan="12">
+  <a href="DeviceSelectionOptions.html#" onclick="return toggleInherited(this, null)" id="inherited-methods-com.android.tradefed.device.IDeviceSelection" class="jd-expando-trigger closed"
+          ><img height="34" id="inherited-methods-com.android.tradefed.device.IDeviceSelection-trigger"
+          src="http://source.android.com/assets/images/styles/disclosure_down.png"
+          class="jd-expando-trigger-img" /></a>
+From interface
+
+  <a href="IDeviceSelection.html">com.android.tradefed.device.IDeviceSelection</a>
+
+<div id="inherited-methods-com.android.tradefed.device.IDeviceSelection">
+  <div id="inherited-methods-com.android.tradefed.device.IDeviceSelection-list"
+        class="jd-inheritedlinks">
+  </div>
+  <div id="inherited-methods-com.android.tradefed.device.IDeviceSelection-summary" style="display: none;">
+    <table class="jd-sumtable-expando">
+    
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            boolean</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="IDeviceSelection.html#deviceRequested()">deviceRequested</a></span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            boolean</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="IDeviceSelection.html#emulatorRequested()">emulatorRequested</a></span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            Integer</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="IDeviceSelection.html#getBatteryLevel(com.android.ddmlib.IDevice)">getBatteryLevel</a></span>(IDevice device)</nobr>
+        
+        <div class="jd-descrdiv">Retrieves the battery level for the given device</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="IDeviceSelection.html#getDeviceProductType(com.android.ddmlib.IDevice)">getDeviceProductType</a></span>(IDevice device)</nobr>
+        
+        <div class="jd-descrdiv">Gets the given devices product type</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="IDeviceSelection.html#getDeviceProductVariant(com.android.ddmlib.IDevice)">getDeviceProductVariant</a></span>(IDevice device)</nobr>
+        
+        <div class="jd-descrdiv">Gets the given devices product variant</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            Collection&lt;String&gt;</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="IDeviceSelection.html#getExcludeSerials()">getExcludeSerials</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets a copy of the serial numbers exclusion list</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            Collection&lt;String&gt;</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="IDeviceSelection.html#getProductTypes()">getProductTypes</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets a copy of the product type list</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            Map&lt;String,&nbsp;String&gt;</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="IDeviceSelection.html#getProperties()">getProperties</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Returns a map of the property list</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            Collection&lt;String&gt;</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="IDeviceSelection.html#getSerials()">getSerials</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets a copy of the serial numbers</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            boolean</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="IDeviceSelection.html#nullDeviceRequested()">nullDeviceRequested</a></span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="IDeviceSelection.html#setSerial(java.lang.String...)">setSerial</a></span>(String... serialNumber)</nobr>
+        
+        <div class="jd-descrdiv">Set the serial numbers inclusion list, replacing any existing values.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            boolean</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="IDeviceSelection.html#stubEmulatorRequested()">stubEmulatorRequested</a></span>()</nobr>
+        
+  </td></tr>
+
+
+</table>
+  </div>
+</div>
+</td></tr>
+
+
+
+<tr class="api apilevel-" >
+<td colspan="12">
+  <a href="DeviceSelectionOptions.html#" onclick="return toggleInherited(this, null)" id="inherited-methods-com.android.tradefed.util.ConditionPriorityBlockingQueue.IMatcher" class="jd-expando-trigger closed"
+          ><img height="34" id="inherited-methods-com.android.tradefed.util.ConditionPriorityBlockingQueue.IMatcher-trigger"
+          src="http://source.android.com/assets/images/styles/disclosure_down.png"
+          class="jd-expando-trigger-img" /></a>
+From interface
+
+  <a href="../util/ConditionPriorityBlockingQueue.IMatcher.html">com.android.tradefed.util.ConditionPriorityBlockingQueue.IMatcher</a>
+
+<div id="inherited-methods-com.android.tradefed.util.ConditionPriorityBlockingQueue.IMatcher">
+  <div id="inherited-methods-com.android.tradefed.util.ConditionPriorityBlockingQueue.IMatcher-list"
+        class="jd-inheritedlinks">
+  </div>
+  <div id="inherited-methods-com.android.tradefed.util.ConditionPriorityBlockingQueue.IMatcher-summary" style="display: none;">
+    <table class="jd-sumtable-expando">
+    
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            boolean</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../util/ConditionPriorityBlockingQueue.IMatcher.html#matches(T)">matches</a></span>(IDevice element)</nobr>
+        
+        <div class="jd-descrdiv">Determine if given <var>element</var> meets required condition</div>
+  
+  </td></tr>
+
+
+</table>
+  </div>
+</div>
+</td></tr>
+
+
+</table>
+
+
+</div><!-- jd-descr (summary) -->
+
+<!-- Details -->
+
+
+
+
+
+
+
+
+<!-- XML Attributes -->
+
+
+<!-- Enum Values -->
+
+
+<!-- Constants -->
+
+
+<!-- ========= ENUM CONSTANTS DETAIL ======== -->
+<h2>Constants</h2>
+
+
+
+
+<A NAME="DEVICE_PRODUCT_PROPERTY"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+        static 
+        final 
+        String
+      </span>
+        DEVICE_PRODUCT_PROPERTY
+    </h4>
+      <div class="api-level">
+        
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p></p>
+
+    
+        <div class="jd-tagdata">
+        <span class="jd-tagtitle">Constant Value: </span>
+        <span>
+            
+                "ro.hardware"
+            
+        </span>
+        </div>
+    
+    </div>
+</div>
+
+
+
+<A NAME="DEVICE_SDK_PROPERTY"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+        static 
+        final 
+        String
+      </span>
+        DEVICE_SDK_PROPERTY
+    </h4>
+      <div class="api-level">
+        
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p></p>
+
+    
+        <div class="jd-tagdata">
+        <span class="jd-tagtitle">Constant Value: </span>
+        <span>
+            
+                "ro.build.version.sdk"
+            
+        </span>
+        </div>
+    
+    </div>
+</div>
+
+
+
+<A NAME="DEVICE_VARIANT_PROPERTY"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+        static 
+        final 
+        String
+      </span>
+        DEVICE_VARIANT_PROPERTY
+    </h4>
+      <div class="api-level">
+        
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p></p>
+
+    
+        <div class="jd-tagdata">
+        <span class="jd-tagtitle">Constant Value: </span>
+        <span>
+            
+                "ro.product.device"
+            
+        </span>
+        </div>
+    
+    </div>
+</div>
+
+
+
+
+<!-- Fields -->
+
+
+<!-- ========= FIELD DETAIL ======== -->
+<h2>Fields</h2>
+
+
+
+
+<A NAME="mDeviceRequested"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        private 
+         
+         
+        boolean
+      </span>
+        mDeviceRequested
+    </h4>
+      <div class="api-level">
+        
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p></p>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="mEmulatorRequested"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        private 
+         
+         
+        boolean
+      </span>
+        mEmulatorRequested
+    </h4>
+      <div class="api-level">
+        
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p></p>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="mExcludeSerials"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        private 
+         
+         
+        Collection&lt;String&gt;
+      </span>
+        mExcludeSerials
+    </h4>
+      <div class="api-level">
+        
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p></p>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="mMaxBattery"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        private 
+         
+         
+        Integer
+      </span>
+        mMaxBattery
+    </h4>
+      <div class="api-level">
+        
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p></p>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="mMaxSdk"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        private 
+         
+         
+        Integer
+      </span>
+        mMaxSdk
+    </h4>
+      <div class="api-level">
+        
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p></p>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="mMinBattery"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        private 
+         
+         
+        Integer
+      </span>
+        mMinBattery
+    </h4>
+      <div class="api-level">
+        
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p></p>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="mMinSdk"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        private 
+         
+         
+        Integer
+      </span>
+        mMinSdk
+    </h4>
+      <div class="api-level">
+        
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p></p>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="mNullDeviceRequested"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        private 
+         
+         
+        boolean
+      </span>
+        mNullDeviceRequested
+    </h4>
+      <div class="api-level">
+        
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p></p>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="mProductTypes"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        private 
+         
+         
+        Collection&lt;String&gt;
+      </span>
+        mProductTypes
+    </h4>
+      <div class="api-level">
+        
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p></p>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="mPropertyMap"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        private 
+         
+         
+        Map&lt;String,&nbsp;String&gt;
+      </span>
+        mPropertyMap
+    </h4>
+      <div class="api-level">
+        
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p></p>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="mRequireBatteryCheck"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        private 
+         
+         
+        boolean
+      </span>
+        mRequireBatteryCheck
+    </h4>
+      <div class="api-level">
+        
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p></p>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="mSerials"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        private 
+         
+         
+        Collection&lt;String&gt;
+      </span>
+        mSerials
+    </h4>
+      <div class="api-level">
+        
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p></p>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="mStubEmulatorRequested"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        private 
+         
+         
+        boolean
+      </span>
+        mStubEmulatorRequested
+    </h4>
+      <div class="api-level">
+        
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p></p>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="mTcpDeviceRequested"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        private 
+         
+         
+        boolean
+      </span>
+        mTcpDeviceRequested
+    </h4>
+      <div class="api-level">
+        
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p></p>
+
+    
+    </div>
+</div>
+
+
+
+
+<!-- Public ctors -->
+
+
+<!-- ========= CONSTRUCTOR DETAIL ======== -->
+<h2>Public Constructors</h2>
+
+
+
+<A NAME="DeviceSelectionOptions()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        
+        
+        
+        
+        
+      </span>
+      <span class="sympad">DeviceSelectionOptions</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p></p>
+
+    </div>
+</div>
+
+
+
+
+
+<!-- ========= CONSTRUCTOR DETAIL ======== -->
+<!-- Protected ctors -->
+
+
+
+<!-- ========= METHOD DETAIL ======== -->
+<!-- Public methdos -->
+
+<h2>Public Methods</h2>
+
+
+
+<A NAME="addExcludeSerial(java.lang.String)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        
+        
+        
+        
+        void
+      </span>
+      <span class="sympad">addExcludeSerial</span>
+      <span class="normal">(String serialNumber)</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Add a serial number to exclusion list.</p>
+
+    </div>
+</div>
+
+
+<A NAME="addProductType(java.lang.String)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        
+        
+        
+        
+        void
+      </span>
+      <span class="sympad">addProductType</span>
+      <span class="normal">(String productType)</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Add a product type to the device selection options.</p>
+
+    </div>
+</div>
+
+
+<A NAME="addProperty(java.lang.String, java.lang.String)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        
+        
+        
+        
+        void
+      </span>
+      <span class="sympad">addProperty</span>
+      <span class="normal">(String propertyKey, String propValue)</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Add a property criteria to the device selection options
+</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>propertyKey</code></td>
+        <td width="100%">
+          <code>String</code>
+          <!-- no parameter comment --></td>
+      </tr>
+      <tr>
+        <td><code>propValue</code></td>
+        <td width="100%">
+          <code>String</code>
+          <!-- no parameter comment --></td>
+      </tr>
+    </table>
+
+    </div>
+</div>
+
+
+<A NAME="addSerial(java.lang.String)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        
+        
+        
+        
+        void
+      </span>
+      <span class="sympad">addSerial</span>
+      <span class="normal">(String serialNumber)</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Add a serial number to the device selection options.</p>
+
+    </div>
+</div>
+
+
+<A NAME="createForSerial(java.lang.String)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        
+        
+        static
+        
+        <a href="IDeviceSelection.html">IDeviceSelection</a>
+      </span>
+      <span class="sympad">createForSerial</span>
+      <span class="normal">(String serial)</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Helper factory method to create a <code><a href="IDeviceSelection.html">IDeviceSelection</a></code> that will only match device
+ with given serial
+</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>serial</code></td>
+        <td width="100%">
+          <code>String</code>
+          <!-- no parameter comment --></td>
+      </tr>
+    </table>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code><a href="IDeviceSelection.html">IDeviceSelection</a></code></td>
+        <td width="100%"><!-- no returns description in source --></td>
+      </tr>
+    </table>
+
+    </div>
+</div>
+
+
+<A NAME="deviceRequested()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        
+        
+        
+        
+        boolean
+      </span>
+      <span class="sympad">deviceRequested</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>
+</p>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code>boolean</code></td>
+        <td width="100%"><!-- no returns description in source --></td>
+      </tr>
+    </table>
+
+    </div>
+</div>
+
+
+<A NAME="emulatorRequested()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        
+        
+        
+        
+        boolean
+      </span>
+      <span class="sympad">emulatorRequested</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>
+</p>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code>boolean</code></td>
+        <td width="100%"><!-- no returns description in source --></td>
+      </tr>
+    </table>
+
+    </div>
+</div>
+
+
+<A NAME="getBatteryLevel(com.android.ddmlib.IDevice)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        
+        
+        
+        
+        Integer
+      </span>
+      <span class="sympad">getBatteryLevel</span>
+      <span class="normal">(IDevice device)</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Retrieves the battery level for the given device</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>device</code></td>
+        <td width="100%">
+          <code>IDevice</code>:
+          the <code><a href="http://source.android.com/reference/com/android/ddmlib/IDevice.html">IDevice</a></code></td>
+      </tr>
+    </table>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code>Integer</code></td>
+        <td width="100%">the device battery level or <code>null</code> if unknown
+</td>
+      </tr>
+    </table>
+
+    </div>
+</div>
+
+
+<A NAME="getDeviceProductType(com.android.ddmlib.IDevice)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        
+        
+        
+        
+        String
+      </span>
+      <span class="sympad">getDeviceProductType</span>
+      <span class="normal">(IDevice device)</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Gets the given devices product type</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>device</code></td>
+        <td width="100%">
+          <code>IDevice</code>:
+          the <code><a href="http://source.android.com/reference/com/android/ddmlib/IDevice.html">IDevice</a></code></td>
+      </tr>
+    </table>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code>String</code></td>
+        <td width="100%">the device product type or <code>null</code> if unknown
+</td>
+      </tr>
+    </table>
+
+    </div>
+</div>
+
+
+<A NAME="getDeviceProductVariant(com.android.ddmlib.IDevice)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        
+        
+        
+        
+        String
+      </span>
+      <span class="sympad">getDeviceProductVariant</span>
+      <span class="normal">(IDevice device)</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Gets the given devices product variant</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>device</code></td>
+        <td width="100%">
+          <code>IDevice</code>:
+          the <code><a href="http://source.android.com/reference/com/android/ddmlib/IDevice.html">IDevice</a></code></td>
+      </tr>
+    </table>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code>String</code></td>
+        <td width="100%">the device product variant or <code>null</code> if unknown
+</td>
+      </tr>
+    </table>
+
+    </div>
+</div>
+
+
+<A NAME="getExcludeSerials()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        
+        
+        
+        
+        Collection&lt;String&gt;
+      </span>
+      <span class="sympad">getExcludeSerials</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Gets a copy of the serial numbers exclusion list
+</p>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code>Collection&lt;String&gt;</code></td>
+        <td width="100%">a <code><a href="../../../../java/util/Collection.html">Collection</a></code> of serial numbers
+</td>
+      </tr>
+    </table>
+
+    </div>
+</div>
+
+
+<A NAME="getMaxBatteryLevel()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        
+        
+        
+        
+        Integer
+      </span>
+      <span class="sympad">getMaxBatteryLevel</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Gets the requested maximum battery level
+</p>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code>Integer</code></td>
+        <td width="100%"><!-- no returns description in source --></td>
+      </tr>
+    </table>
+
+    </div>
+</div>
+
+
+<A NAME="getMinBatteryLevel()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        
+        
+        
+        
+        Integer
+      </span>
+      <span class="sympad">getMinBatteryLevel</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Gets the requested minimum battery level
+</p>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code>Integer</code></td>
+        <td width="100%"><!-- no returns description in source --></td>
+      </tr>
+    </table>
+
+    </div>
+</div>
+
+
+<A NAME="getProductTypes()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        
+        
+        
+        
+        Collection&lt;String&gt;
+      </span>
+      <span class="sympad">getProductTypes</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Gets a copy of the product type list
+</p>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code>Collection&lt;String&gt;</code></td>
+        <td width="100%">a <code><a href="../../../../java/util/Collection.html">Collection</a></code> of product types
+</td>
+      </tr>
+    </table>
+
+    </div>
+</div>
+
+
+<A NAME="getProperties()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        
+        
+        
+        
+        Map&lt;String,&nbsp;String&gt;
+      </span>
+      <span class="sympad">getProperties</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Returns a map of the property list
+</p>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code>Map&lt;String,&nbsp;String&gt;</code></td>
+        <td width="100%">a <code><a href="../../../../java/util/Map.html">Map</a></code> of device property names to values
+</td>
+      </tr>
+    </table>
+
+    </div>
+</div>
+
+
+<A NAME="getRequireBatteryCheck()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        
+        
+        
+        
+        boolean
+      </span>
+      <span class="sympad">getRequireBatteryCheck</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Gets whether battery check is required for devices with unknown battery level
+</p>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code>boolean</code></td>
+        <td width="100%"><!-- no returns description in source --></td>
+      </tr>
+    </table>
+
+    </div>
+</div>
+
+
+<A NAME="getSerials()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        
+        
+        
+        
+        Collection&lt;String&gt;
+      </span>
+      <span class="sympad">getSerials</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Gets a copy of the serial numbers
+</p>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code>Collection&lt;String&gt;</code></td>
+        <td width="100%">a <code><a href="../../../../java/util/Collection.html">Collection</a></code> of serial numbers
+</td>
+      </tr>
+    </table>
+
+    </div>
+</div>
+
+
+<A NAME="matches(com.android.ddmlib.IDevice)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        
+        
+        
+        
+        boolean
+      </span>
+      <span class="sympad">matches</span>
+      <span class="normal">(IDevice device)</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p></p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>device</code></td>
+        <td width="100%">
+          <code>IDevice</code>
+          <!-- no parameter comment --></td>
+      </tr>
+    </table>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code>boolean</code></td>
+        <td width="100%"><code>true</code> if the given <code><a href="http://source.android.com/reference/com/android/ddmlib/IDevice.html">IDevice</a></code> is a match for the provided options.
+ <code>false</code> otherwise
+</td>
+      </tr>
+    </table>
+
+    </div>
+</div>
+
+
+<A NAME="nullDeviceRequested()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        
+        
+        
+        
+        boolean
+      </span>
+      <span class="sympad">nullDeviceRequested</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>
+</p>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code>boolean</code></td>
+        <td width="100%"><!-- no returns description in source --></td>
+      </tr>
+    </table>
+
+    </div>
+</div>
+
+
+<A NAME="setDeviceRequested(boolean)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        
+        
+        
+        
+        void
+      </span>
+      <span class="sympad">setDeviceRequested</span>
+      <span class="normal">(boolean deviceRequested)</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Sets the emulator requested flag
+</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>deviceRequested</code></td>
+        <td width="100%">
+          <code>boolean</code>
+          <!-- no parameter comment --></td>
+      </tr>
+    </table>
+
+    </div>
+</div>
+
+
+<A NAME="setEmulatorRequested(boolean)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        
+        
+        
+        
+        void
+      </span>
+      <span class="sympad">setEmulatorRequested</span>
+      <span class="normal">(boolean emulatorRequested)</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Sets the emulator requested flag
+</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>emulatorRequested</code></td>
+        <td width="100%">
+          <code>boolean</code>
+          <!-- no parameter comment --></td>
+      </tr>
+    </table>
+
+    </div>
+</div>
+
+
+<A NAME="setMaxBatteryLevel(java.lang.Integer)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        
+        
+        
+        
+        void
+      </span>
+      <span class="sympad">setMaxBatteryLevel</span>
+      <span class="normal">(Integer maxBattery)</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Sets the maximum battery level
+</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>maxBattery</code></td>
+        <td width="100%">
+          <code>Integer</code>
+          <!-- no parameter comment --></td>
+      </tr>
+    </table>
+
+    </div>
+</div>
+
+
+<A NAME="setMinBatteryLevel(java.lang.Integer)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        
+        
+        
+        
+        void
+      </span>
+      <span class="sympad">setMinBatteryLevel</span>
+      <span class="normal">(Integer minBattery)</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Sets the minimum battery level
+</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>minBattery</code></td>
+        <td width="100%">
+          <code>Integer</code>
+          <!-- no parameter comment --></td>
+      </tr>
+    </table>
+
+    </div>
+</div>
+
+
+<A NAME="setNullDeviceRequested(boolean)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        
+        
+        
+        
+        void
+      </span>
+      <span class="sympad">setNullDeviceRequested</span>
+      <span class="normal">(boolean nullDeviceRequested)</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Sets the null device requested flag
+</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>nullDeviceRequested</code></td>
+        <td width="100%">
+          <code>boolean</code>
+          <!-- no parameter comment --></td>
+      </tr>
+    </table>
+
+    </div>
+</div>
+
+
+<A NAME="setRequireBatteryCheck(boolean)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        
+        
+        
+        
+        void
+      </span>
+      <span class="sympad">setRequireBatteryCheck</span>
+      <span class="normal">(boolean requireCheck)</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Sets whether battery check is required for devices with unknown battery level
+</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>requireCheck</code></td>
+        <td width="100%">
+          <code>boolean</code>
+          <!-- no parameter comment --></td>
+      </tr>
+    </table>
+
+    </div>
+</div>
+
+
+<A NAME="setSerial(java.lang.String...)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        
+        
+        
+        
+        void
+      </span>
+      <span class="sympad">setSerial</span>
+      <span class="normal">(String... serialNumber)</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Set the serial numbers inclusion list, replacing any existing values.
+
+</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>serialNumber</code></td>
+        <td width="100%">
+          <code>String</code>
+          <!-- no parameter comment --></td>
+      </tr>
+    </table>
+
+    </div>
+</div>
+
+
+<A NAME="setStubEmulatorRequested(boolean)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        
+        
+        
+        
+        void
+      </span>
+      <span class="sympad">setStubEmulatorRequested</span>
+      <span class="normal">(boolean stubEmulatorRequested)</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Sets the stub emulator requested flag
+</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>stubEmulatorRequested</code></td>
+        <td width="100%">
+          <code>boolean</code>
+          <!-- no parameter comment --></td>
+      </tr>
+    </table>
+
+    </div>
+</div>
+
+
+<A NAME="setTcpDeviceRequested(boolean)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        
+        
+        
+        
+        void
+      </span>
+      <span class="sympad">setTcpDeviceRequested</span>
+      <span class="normal">(boolean tcpDeviceRequested)</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Sets the tcp device requested flag
+</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>tcpDeviceRequested</code></td>
+        <td width="100%">
+          <code>boolean</code>
+          <!-- no parameter comment --></td>
+      </tr>
+    </table>
+
+    </div>
+</div>
+
+
+<A NAME="stubEmulatorRequested()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        
+        
+        
+        
+        boolean
+      </span>
+      <span class="sympad">stubEmulatorRequested</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>
+</p>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code>boolean</code></td>
+        <td width="100%"><!-- no returns description in source --></td>
+      </tr>
+    </table>
+
+    </div>
+</div>
+
+
+<A NAME="tcpDeviceRequested()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        
+        
+        
+        
+        boolean
+      </span>
+      <span class="sympad">tcpDeviceRequested</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p></p>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code>boolean</code></td>
+        <td width="100%"><!-- no returns description in source --></td>
+      </tr>
+    </table>
+
+    </div>
+</div>
+
+
+
+
+
+<!-- ========= METHOD DETAIL ======== -->
+
+
+
+<!-- ========= END OF CLASS DATA ========= -->
+<A NAME="navbar_top"></A>
+
+<div id="footer" class="wrap" >
+  <style>.feedback { float: right !Important }</style>
+  <div class="feedback">
+    <a href="DeviceSelectionOptions.html#" class="button" onclick=" try {
+      userfeedback.api.startFeedback({'productId':'715571','authuser':'1'});return false;}catch(e){}">Site Feedback</a>
+  </div>
+  <div id="copyright">
+    
+  Except as noted, this content is 
+  licensed under <a href="http://creativecommons.org/licenses/by/2.5/">
+  Creative Commons Attribution 2.5</a>. For details and 
+  restrictions, see the <a href="http://source.android.com/license.html">Content 
+  License</a>.
+  </div>
+    <div id="footerlinks">
+    
+  <p>
+    <a href="http://source.android.com/source/index.html">About Android</a>&nbsp;&nbsp;|&nbsp;
+    <a href="http://source.android.com/source/community.html">Community</a>&nbsp;&nbsp;|&nbsp;
+    <a href="http://source.android.com/legal.html">Legal</a>&nbsp;&nbsp;|&nbsp;
+  </p>
+  </div>
+
+</div> <!-- jd-content -->
+
+</div><!-- end doc-content -->
+
+</div> <!-- end body-content --> 
+
+
+
+
+
+
+</body>
+</html>

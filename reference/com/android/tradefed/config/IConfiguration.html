@@ -1,0 +1,3257 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<link rel="shortcut icon" type="image/x-icon" href="http://source.android.com/favicon.ico" />
+<title>IConfiguration | Android Open Source Project</title>
+
+<!-- STYLESHEETS -->
+<link rel="stylesheet"
+href="http://fonts.googleapis.com/css?family=Roboto:regular,medium,thin,italic,mediumitalic,bold" title="roboto">
+<link href="http://source.android.com/assets/css/default.css" rel="stylesheet" type="text/css">
+
+
+
+<!-- JAVASCRIPT -->
+<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+<script src="http://source.android.com/assets/js/android_3p-bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+  var toRoot = "/";
+  
+  var devsite = false;
+  
+</script>
+<script src="http://source.android.com/assets/js/docs.js" type="text/javascript"></script>
+
+<script src="http://source.android.com/navtree_data.js" type="text/javascript"></script>
+
+
+<script type="text/javascript" src="http://www.gstatic.com/feedback/api.js"></script>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-45455297-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</head>
+
+<body class="gc-documentation 
+  develop" itemscope itemtype="http://schema.org/Article">
+  <div id="doc-api-level" class="" style="display:none"></div>
+  <a name="top"></a>
+
+  
+    <!-- Header -->
+    <div id="header">
+        <div class="wrap" id="header-wrap">
+          <div class="col-3 saclogo">
+          <a href="http://source.android.com/index.html">
+            <img src="http://source.android.com/assets/images/sac_logo.png"
+                srcset="/assets/images/sac_logo@2x.png 2x"
+                width="123" height="25" alt="Android Open Source Project" />
+          </a>
+          </div>
+            <ul class="nav-x col-9">
+                <li class="source">
+                  <a href="http://source.android.com/source/index.html" 
+                  >Source</a></li>
+                <li class="devices"><a href="http://source.android.com/devices/index.html" class="selected"
+                  >Devices</a></li>
+                <li class="security"><a href="http://source.android.com/security/index.html" 
+                  >Security</a></li>
+                <li class="compatibility last"><a href="http://source.android.com/compatibility/index.html" 
+                  >Compatibility</a></li>
+            </ul>
+            <!-- New Search -->
+            <div class="menu-container">
+            <div class="moremenu">
+    <div id="more-btn"></div>
+  </div>
+  <div class="morehover" id="moremenu">
+    <div class="top"></div>
+    <div class="mid">
+      <div class="header">Android Sites</div>
+      <ul>
+        <li class="active"><a>Android Open Source Project</a></li>
+        <li><a href="http://www.android.com">Android.com</a></li>
+        <li><a href="http://developer.android.com">Android Developers</a></li>
+      </ul>
+      <!-- <div class="header">Support</div>
+      <ul>
+        <li><a href="/support.html">Developer Support</a></li>
+      </ul> -->
+      <br class="clearfix" />
+    </div>
+    <div class="bottom"></div>
+  </div>
+
+  <div class="search" id="search-container">
+    <div class="search-inner">
+      <div id="search-btn"></div>
+      <div class="left"></div>
+      <form onsubmit="return submit_search()">
+        <input id="search_autocomplete" type="text" value="" autocomplete="off" name="q"
+onfocus="search_focus_changed(this, true)" onblur="search_focus_changed(this, false)"
+onkeydown="return search_changed(event, true, '/')"
+onkeyup="return search_changed(event, false, '/')" />
+      </form>
+      <div class="right"></div>
+        <a class="close hide">close</a>
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+  </div>
+  <div id="search_filtered_wrapper">
+    <div id="search_filtered_div" class="no-display">
+        <ul id="search_filtered">
+        </ul>
+    </div>
+  </div>
+
+  </div>
+  <!-- /New Search> -->
+        </div>
+    </div>
+    <!-- /Header -->
+
+  <div id="searchResults" class="wrap" style="display:none;">
+          <h2 id="searchTitle">Results</h2>
+          <div id="leftSearchControl" class="search-control">Loading...</div>
+  </div>
+
+  
+  
+  
+    
+  <div class="wrap clearfix" id="body-content">
+    <div class="col-4" id="side-nav" itemscope itemtype="http://schema.org/SiteNavigationElement">
+      <div id="devdoc-nav" class="scroll-pane">
+<a class="totop" href="IConfiguration.html#top" data-g-event="left-nav-top">to top</a>
+
+<!--
+    Copyright 2015 The Android Open Source Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<ul id="nav">
+  <li class="nav-section">  <!-- Begin nav section, Device Interfaces -->
+    <div class="nav-section-header">
+      <a href="http://source.android.com/devices/index.html">
+        <span class="en">Interfaces</span>
+      </a>
+    </div>
+    <ul>
+  <li class="nav-section">
+  <div class="nav-section-header">
+      <a href="http://source.android.com/devices/accessories/index.html">
+        <span class="en">Accessories</span>
+      </a>
+    </div>
+    <ul>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="http://source.android.com/devices/accessories/audio.html">
+            <span class="en">Audio Accessories</span>
+          </a>
+        </div>
+        <ul>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="http://source.android.com/devices/accessories/headset/index.html">
+            <span class="en">Headset</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="http://source.android.com/devices/accessories/headset/specification.html">Specification</a></li>
+          <li><a href="http://source.android.com/devices/accessories/headset/requirements.html">Requirements</a></li>
+          <li><a href="http://source.android.com/devices/accessories/headset/testing.html">Testing</a></li>
+        </ul>
+      </li>
+        </ul>
+      </li>
+  <li class="nav-section">
+  <div class="nav-section-header">
+      <a href="http://source.android.com/devices/accessories/custom.html">
+        <span class="en">Custom Accessories</span>
+      </a>
+    </div>
+    <ul>
+      <li class="nav-section">
+        <div class="nav-section-header"><a href="http://source.android.com/devices/accessories/protocol.html"><span class="en">AOA</span>
+        </a>
+        </div>
+        <ul>
+          <li><a href="http://source.android.com/devices/accessories/aoa2.html">AOA 2.0</a></li>
+          <li><a href="http://source.android.com/devices/accessories/aoa.html">AOA 1.0</a></li>
+        </ul>
+        </li>
+        <div class="nav-section-header"><a href="http://source.android.com/devices/accessories/stylus.html"><span class="en">Stylus</span>
+        </a>
+        </div>
+       </ul>
+     </li>
+    </ul>
+      <li class="nav-section">
+      <div class="nav-section-header">
+        <a href="http://source.android.com/devices/audio/index.html">
+          <span class="en">Audio</span>
+        </a>
+      </div>
+        <ul>
+          <li><a href="http://source.android.com/devices/audio/terminology.html">Terminology</a></li>
+          <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="http://source.android.com/devices/audio/implement.html">
+                <span class="en">Implementation</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="http://source.android.com/devices/audio/implement-policy.html">Policy Configuration</a></li>
+              <li><a href="http://source.android.com/devices/audio/implement-shared-library.html">Shared Library</a></li>
+              <li><a href="http://source.android.com/devices/audio/implement-pre-processing.html">Pre-processing Effects</a></li>
+            </ul>
+         </li>
+          <li><a href="http://source.android.com/devices/audio/data_formats.html">Data Formats</a></li>
+          <li><a href="http://source.android.com/devices/audio/attributes.html">Attributes</a></li>
+          <li><a href="http://source.android.com/devices/audio/warmup.html">Warmup</a></li>
+          <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="http://source.android.com/devices/audio/latency.html">
+                <span class="en">Latency</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="http://source.android.com/devices/audio/latency_contrib.html">Contributors</a></li>
+              <li><a href="http://source.android.com/devices/audio/latency_design.html">Design</a></li>
+              <li><a href="http://source.android.com/devices/audio/latency_measure.html">Measure</a></li>
+              <li><a href="http://source.android.com/devices/audio/testing_circuit.html">Light Testing Circuit</a></li>
+              <li><a href="http://source.android.com/devices/audio/loopback.html">Audio Loopback Dongle</a></li>
+              <li><a href="http://source.android.com/devices/audio/latency_measurements.html">Measurements</a></li>
+              <li><a href="http://source.android.com/devices/audio/latency_app.html">Applications</a></li>
+            </ul>
+          </li>
+          <li><a href="http://source.android.com/devices/audio/avoiding_pi.html">Priority Inversion</a></li>
+          <li><a href="http://source.android.com/devices/audio/src.html">Sample Rate Conversion</a></li>
+          <li><a href="http://source.android.com/devices/audio/debugging.html">Debugging</a></li>
+          <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="http://source.android.com/devices/audio/midi.html">
+                <span class="em">MIDI</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="http://source.android.com/devices/audio/midi_arch.html">MIDI Architecture</a></li>
+              <li><a href="http://source.android.com/devices/audio/midi_test.html">MIDI Test Procedure</a></li>
+            </ul>
+          <li><a href="http://source.android.com/devices/audio/usb.html">USB Digital Audio</a></li>
+          <li><a href="http://source.android.com/devices/audio/tv.html">TV Audio</a></li>
+        </ul>
+      </li>
+      <li><a href="http://source.android.com/devices/automotive.html">Automotive</a></li>
+      <li><a href="http://source.android.com/devices/bluetooth.html">Bluetooth</a></li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="http://source.android.com/devices/camera/index.html">
+            <span class="en">Camera</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="http://source.android.com/devices/camera/camera3.html">Camera HAL3</a></li>
+          <li><a href="http://source.android.com/devices/camera/camera3_requests_hal.html">HAL Subsystem</a></li>
+          <li><a href="http://source.android.com/devices/camera/camera3_metadata.html">Metadata and Controls</a></li>
+          <li><a href="http://source.android.com/devices/camera/camera3_3Amodes.html">3A Modes and State</a></li>
+          <li><a href="http://source.android.com/devices/camera/camera3_crop_reprocess.html">Output and Cropping</a></li>
+          <li><a href="http://source.android.com/devices/camera/camera3_error_stream.html">Errors and Streams</a></li>
+          <li><a href="http://source.android.com/devices/camera/camera3_requests_methods.html">Request Creation</a></li>
+          <li><a href="http://source.android.com/devices/camera/versioning.html">Version Support</a></li>
+        </ul>
+      </li>
+
+      <li><a href="http://source.android.com/devices/drm.html">DRM</a></li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="http://source.android.com/devices/graphics/index.html">
+            <span class="en">Graphics</span>
+          </a>
+        </div>
+        <ul>
+         <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="http://source.android.com/devices/graphics/architecture.html">
+                <span class="en">Architecture</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="http://source.android.com/devices/graphics/arch-bq-gralloc.html">BufferQueue</a></li>
+              <li><a href="http://source.android.com/devices/graphics/arch-sf-hwc.html">SurfaceFlinger and HWC</a></li>
+              <li><a href="http://source.android.com/devices/graphics/arch-sh.html">Surface and SurfaceHolder</a></li>
+              <li><a href="http://source.android.com/devices/graphics/arch-egl-opengl.html">OpenGL ES</a></li>
+              <li><a href="http://source.android.com/devices/graphics/arch-vulkan.html">Vulkan</a></li>
+              <li><a href="http://source.android.com/devices/graphics/arch-sv-glsv.html">SurfaceView</a></li>
+              <li><a href="http://source.android.com/devices/graphics/arch-st.html">SurfaceTexture</a></li>
+              <li><a href="http://source.android.com/devices/graphics/arch-tv.html">TextureView</a></li>
+              <li><a href="http://source.android.com/devices/graphics/arch-gameloops.html">Game Loops</a></li>
+            </ul>
+         </li>
+         <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="http://source.android.com/devices/graphics/implement.html">
+                <span class="en">Implementing</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="http://source.android.com/devices/graphics/implement-hwc.html">Hardware Composer HAL</a></li>
+              <li><a href="http://source.android.com/devices/graphics/implement-vsync.html">VSYNC</a></li>
+              <li><a href="http://source.android.com/devices/graphics/implement-vulkan.html">Vulkan</a></li>
+              <li><a href="http://source.android.com/devices/graphics/implement-vdisplays.html">Virtual Displays</a></li>
+            </ul>
+         </li>
+         <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="http://source.android.com/devices/graphics/testing.html">
+                <span class="en">OpenGL ES Testing</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="http://source.android.com/devices/graphics/build-tests.html">Building test programs</a></li>
+              <li><a href="http://source.android.com/devices/graphics/port-tests.html">Porting the test framework</a></li>
+              <li><a href="http://source.android.com/devices/graphics/run-tests.html">Running the tests</a></li>
+              <li><a href="http://source.android.com/devices/graphics/automate-tests.html">Automating the tests</a></li>
+              <li><a href="http://source.android.com/devices/graphics/test-groups.html">Using special test groups</a></li>
+              <li><a href="http://source.android.com/devices/graphics/cts-integration.html">Integrating with Android CTS</a></li>
+            </ul>
+         </li>
+        </ul> </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="http://source.android.com/devices/input/index.html">
+            <span class="en">Input</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="http://source.android.com/devices/input/overview.html">Overview</a></li>
+          <li><a href="http://source.android.com/devices/input/key-layout-files.html">Key Layout Files</a></li>
+          <li><a href="http://source.android.com/devices/input/key-character-map-files.html">Key Character Map Files</a></li>
+          <li><a href="http://source.android.com/devices/input/input-device-configuration-files.html">Input Device Configuration Files</a></li>
+          <li><a href="http://source.android.com/devices/input/migration-guide.html">Migration Guide</a></li>
+          <li><a href="http://source.android.com/devices/input/keyboard-devices.html">Keyboard Devices</a></li>
+          <li><a href="../../../../../devices/input/touch-devices.html">Touch Devices</a></li>
+          <li><a href="../../../../../devices/input/diagnostics.html">Diagnostics</a></li>
+          <li><a href="http://source.android.com/devices/input/getevent.html">Getevent</a></li>
+          <li><a href="http://source.android.com/devices/input/validate-keymaps.html">Validate Keymaps</a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../../../../../devices/media/index.html">
+            <span class="en">Media</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="http://source.android.com/devices/media/framework-hardening.html">Framework
+          Hardening</a></li>
+          <li><a href="http://source.android.com/devices/media/soc.html">SoC Dependencies</a></li>
+          <li><a href="http://source.android.com/devices/media/oem.html">OEM Dependencies</a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="http://source.android.com/devices/sensors/index.html">
+            <span class="en">Sensors</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="http://source.android.com/devices/sensors/sensor-stack.html">Sensor stack</a></li>
+          <li><a href="http://source.android.com/devices/sensors/report-modes.html">Reporting modes</a></li>
+          <li><a href="http://source.android.com/devices/sensors/suspend-mode.html">Suspend mode</a></li>
+          <li><a href="http://source.android.com/devices/sensors/power-use.html">Power consumption</a></li>
+          <li><a href="http://source.android.com/devices/sensors/interaction.html">Interaction</span></a></li>
+          <li><a href="http://source.android.com/devices/sensors/hal-interface.html">HAL interface</a></li>
+          <li><a href="http://source.android.com/devices/sensors/batching.html">Batching</a></li>
+          <li><a href="http://source.android.com/devices/sensors/sensor-types.html">Sensor types</a></li>
+          <li><a href="http://source.android.com/devices/sensors/versioning.html">Version deprecation</a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="http://source.android.com/devices/storage/index.html">
+            <span class="en">Storage</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="http://source.android.com/devices/storage/traditional.html">Traditional Storage</a></li>
+          <li><a href="http://source.android.com/devices/storage/adoptable.html">Adoptable Storage</a></li>
+          <li><a href="http://source.android.com/devices/storage/config.html">Device Configuration</a></li>
+          <li><a href="http://source.android.com/devices/storage/config-example.html">Configuration Examples</a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="http://source.android.com/devices/tv/index.html">
+            <span class="en">TV</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="http://source.android.com/devices/tv/HDMI-CEC.html">HDMI-CEC control service</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li> <!-- End nav-section, Device Interfaces-->
+
+
+  <li class="nav-section"> <!--Begin nav-section, Core Technologies-->
+    <div class="nav-section-header">
+      <a href="http://source.android.com/devices/tech/index.html">
+        <span class="en">Core Technologies</span>
+      </a>
+    </div>
+
+    <ul>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="http://source.android.com/devices/tech/dalvik/index.html">
+          <span class="en">ART and Dalvik</span></a>
+        </div>
+        <ul>
+          <li><a href="http://source.android.com/devices/tech/dalvik/dalvik-bytecode.html">Bytecode Format</a></li>
+          <li><a href="http://source.android.com/devices/tech/dalvik/dex-format.html">.Dex Format</a></li>
+          <li><a href="http://source.android.com/devices/tech/dalvik/instruction-formats.html">Instruction Formats</a></li>
+          <li><a href="http://source.android.com/devices/tech/dalvik/constraints.html">Constraints</a></li>
+          <li><a href="http://source.android.com/devices/tech/dalvik/configure.html">Configuration</a></li>
+          <li><a href="http://source.android.com/devices/tech/dalvik/gc-debug.html">Garbage Collection</a></li>
+          <li><a href="http://source.android.com/devices/tech/dalvik/jit-compiler.html">JIT Compilation</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+            <a href="http://source.android.com/devices/tech/config/index.html">
+              <span class="en">Configuration</span>
+            </a>
+        </div>
+        <ul>
+          <li><a href="http://source.android.com/devices/tech/config/carrier.html">Carrier Customization</a></li>
+          <li><a href="http://source.android.com/devices/tech/config/filesystem.html">File System</a></li>
+          <li><a href="http://source.android.com/devices/tech/config/kernel.html">Kernel Configuration</a></li>
+          <li><a href="http://source.android.com/devices/tech/config/kernel_network_tests.html">Kernel Network Tests</a></li>
+          <li><a href="http://source.android.com/devices/tech/config/low-ram.html">Low RAM</a></li>
+          <li><a href="http://source.android.com/devices/tech/config/namespaces_libraries.html">Namespaces for Libraries</a></li>
+          <li><a href="http://source.android.com/devices/tech/config/renderer.html">OpenGLRenderer</a></li>
+          <li><a href="http://source.android.com/devices/tech/config/runtime_perms.html">Runtime Permissions</a></li>
+          <li><a href="http://source.android.com/devices/tech/config/uicc.html">UICC</a></li>
+          <li><a href="http://source.android.com/devices/tech/config/voicemail.html">Visual Voicemail</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+            <a href="http://source.android.com/devices/tech/connect/index.html">
+              <span class="en">Connectivity</span>
+            </a>
+        </div>
+        <ul>
+          <li><a href="http://source.android.com/devices/tech/connect/block-numbers.html">Block Phone Numbers</a></li>
+          <li><a href="http://source.android.com/devices/tech/connect/call-notification.html">Call Notifications</a></li>
+          <li><a href="http://source.android.com/devices/tech/connect/data-saver.html">Data Saver Mode</a></li>
+          <li><a href="http://source.android.com/devices/tech/connect/felica.html">Host Card Emulation of FeliCa</a></li>
+          <li><a href="http://source.android.com/devices/tech/connect/ril.html">Radio Interface Layer (RIL)</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="http://source.android.com/devices/tech/datausage/index.html">
+            <span class="en">Data Usage</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="http://source.android.com/devices/tech/datausage/iface-overview.html">Network interface statistics overview</a></li>
+          <li><a href="http://source.android.com/devices/tech/datausage/excluding-network-types.html">Excluding Network Types from Data Usage</a></li>
+          <li><a href="http://source.android.com/devices/tech/datausage/tethering-data.html">Tethering Data</a></li>
+          <li><a href="http://source.android.com/devices/tech/datausage/usage-cycle-resets-dates.html">Usage Cycle Reset Dates</a></li>
+          <li><a href="http://source.android.com/devices/tech/datausage/kernel-overview.html">Kernel Overview</a></li>
+          <li><a href="http://source.android.com/devices/tech/datausage/tags-explained.html">Data Usage Tags Explained</a></li>
+          <li><a href="http://source.android.com/devices/tech/datausage/kernel-changes.html">Kernel Changes</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="http://source.android.com/devices/tech/debug/index.html">
+            <span class="en">Debugging</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="http://source.android.com/devices/tech/debug/asan.html">AddressSanitizer</a></li>
+          <li><a href="http://source.android.com/devices/tech/debug/dumpsys.html">Dumpsys</a></li>
+          <li><a href="http://source.android.com/devices/tech/debug/native-memory.html">Native Memory Use</a></li>
+          <li><a href="http://source.android.com/devices/tech/debug/netstats.html">Network Use</a></li>
+          <li><a href="http://source.android.com/devices/tech/debug/procstats.html">RAM Use</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="http://source.android.com/devices/tech/admin/index.html">
+          <span class="en">Device Administration</span></a>
+        </div>
+        <ul>
+          <li><a href="http://source.android.com/devices/tech/admin/implement.html">Implementation</a></li>
+          <li><a href="http://source.android.com/devices/tech/admin/multi-user.html">Multiple Users</a></li>
+          <li><a href="http://source.android.com/devices/tech/admin/managed-profiles.html">Managed Profiles</a></li>
+          <li><a href="http://source.android.com/devices/tech/admin/provision.html">Provisioning</a></li>
+          <li><a href="http://source.android.com/devices/tech/admin/multiuser-apps.html">Multiuser Apps</a></li>
+          <li><a href="http://source.android.com/devices/tech/admin/enterprise-telephony.html">Enterprise Telephony</a></li>
+          <li><a href="http://source.android.com/devices/tech/admin/testing-provision.html">Testing Device Provisioning</a></li>
+          <li><a href="http://source.android.com/devices/tech/admin/testing-setup.html">Testing Device Administration</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+            <a href="http://source.android.com/devices/tech/display/index.html">
+              <span class="en">Display Settings</span></a>
+        </div>
+        <ul>
+          <li><a href="http://source.android.com/devices/tech/display/dnd.html">Do Not Disturb</a></li>
+          <li><a href="http://source.android.com/devices/tech/display/multi-window.html">Multi-Window</a></li>
+          <li><a href="http://source.android.com/devices/tech/display/hdr.html">HDR Video</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header empty">
+          <a href="http://source.android.com/devices/halref/index.html">
+            <span class="en">HAL File Reference</span>
+          </a>
+        </div>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+            <a href="http://source.android.com/devices/tech/ota/index.html">
+              <span class="en">OTA Updates</span>
+            </a>
+        </div>
+        <ul>
+          <li><a href="http://source.android.com/devices/tech/ota/tools.html">OTA Tools</a></li>
+          <li><a href="http://source.android.com/devices/tech/ota/block.html">Block-based OTA</a></li>
+          <li><a href="http://source.android.com/devices/tech/ota/inside_packages.html">Inside OTA Packages</a></li>
+          <li><a href="http://source.android.com/devices/tech/ota/device_code.html">Device-Specific Code</a></li>
+          <li><a href="http://source.android.com/devices/tech/ota/sign_builds.html">Signing Builds for Release</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="http://source.android.com/devices/tech/power/index.html"><span class="en">Power</span></a>
+        </div>
+        <ul>
+          <li><a href="http://source.android.com/devices/tech/power/mgmt.html">Power Management</a>
+          </li>
+          <li><a href="http://source.android.com/devices/tech/power/component.html">Component Power</a></li>
+          <li><a href="http://source.android.com/devices/tech/power/device.html">Device Power</a>
+          </li>
+          <li><a href="http://source.android.com/devices/tech/power/values.html">Power Values</a></li>
+          <li><a href="http://source.android.com/devices/tech/power/batterystats.html">Battery Use</a>
+          </li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="http://source.android.com/devices/tech/test_infra/tradefed/index.html">
+            <span class="en">Testing Infrastructure</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="http://source.android.com/devices/tech/test_infra/tradefed/fundamentals/index.html">Start Here</a></li>
+          <li><a href="http://source.android.com/devices/tech/test_infra/tradefed/fundamentals/machine_setup.html">Machine Setup</a></li>
+          <li><a href="http://source.android.com/devices/tech/test_infra/tradefed/fundamentals/devices.html">Working with Devices</a></li>
+          <li><a href="http://source.android.com/devices/tech/test_infra/tradefed/fundamentals/lifecycle.html">Test Lifecycle</a></li>
+          <li><a href="http://source.android.com/devices/tech/test_infra/tradefed/fundamentals/options.html">Option Handling</a></li>
+          <li><a href="http://source.android.com/devices/tech/test_infra/tradefed/full_example.html">An End-to-End Example</a></li>
+          <li id="tradefed-tree-list" class="nav-section">
+            <div class="nav-section-header">
+              <a href="http://source.android.com/reference/packages.html">
+                <span class="en">Package Index</span>
+              </a>
+            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li> <!-- End nav-section, Core Technologies -->
+</ul> 
+
+
+      </div>
+      <script type="text/javascript">
+        showTradefedRefTree();
+      </script>
+    </div> <!-- end side-nav -->
+    <script>
+      $(document).ready(function() {
+        scrollIntoView("devdoc-nav");
+        });
+    </script>
+
+  
+
+
+
+
+<div class="col-12"  id="doc-col">
+
+<div id="api-info-block">
+
+
+
+
+<div class="sum-details-links">
+
+Summary:
+
+
+
+
+
+
+
+
+
+
+
+  <a href="IConfiguration.html#pubmethods">Methods</a>
+  
+
+
+
+&#124; <a href="IConfiguration.html#" onclick="return toggleAllClassInherited()" id="toggleAllClassInherited">[Expand All]</a>
+
+</div><!-- end sum-details-links -->
+<div class="api-level">
+  
+  
+  
+
+</div>
+</div><!-- end api-info-block -->
+
+
+<!-- ======== START OF CLASS DATA ======== -->
+
+<div id="jd-header">
+    public
+     
+     
+    
+    interface
+<h1 itemprop="name">IConfiguration</h1>
+
+
+
+  
+  
+  
+
+
+
+</div><!-- end header -->
+
+<div id="naMessage"></div>
+
+<div id="jd-content" class="api apilevel-">
+<table class="jd-inheritance-table">
+
+
+    <tr>
+         	
+        <td colspan="1" class="jd-inheritance-class-cell">com.android.tradefed.config.IConfiguration</td>
+    </tr>
+    
+
+</table>
+
+
+
+
+
+
+<table class="jd-sumtable jd-sumtable-subclasses"><tr><td colspan="12" style="border:none;margin:0;padding:0;">
+
+  <a href="IConfiguration.html#" onclick="return toggleInherited(this, null)" id="subclasses-indirect" class="jd-expando-trigger closed"
+          ><img height="34" id="subclasses-indirect-trigger"
+          src="http://source.android.com/assets/images/styles/disclosure_down.png"
+          class="jd-expando-trigger-img" /></a>Known Indirect Subclasses
+
+  <div id="subclasses-indirect">
+      <div id="subclasses-indirect-list"
+              class="jd-inheritedlinks"
+              
+              >
+          
+            
+              <a href="Configuration.html">Configuration</a>
+            
+          
+      </div>
+      <div id="subclasses-indirect-summary"
+              style="display: none;"
+              >
+  <table class="jd-sumtable-expando">
+        <tr class="alt-color api apilevel-" >
+              <td><a href="Configuration.html">Configuration</a></td>
+              <td width="100%">A concrete <code><a href="IConfiguration.html">IConfiguration</a></code> implementation that stores the loaded config objects in a map
+&nbsp;</td>
+          </tr>
+  </table>
+      </div>
+  </div>
+</td></tr></table>
+
+
+<div class="jd-descr">
+
+
+<h2>Class Overview</h2>
+<p itemprop="articleBody">Configuration information for a TradeFederation invocation.
+
+ Each TradeFederation invocation has a single <code><a href="IConfiguration.html">IConfiguration</a></code>. An <code><a href="IConfiguration.html">IConfiguration</a></code>
+ stores all the delegate objects that should be used during the invocation, and their associated
+ <code><a href="Option.html">Option</a></code>'s
+</p>
+
+
+
+
+
+</div><!-- jd-descr -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="jd-descr">
+
+
+<h2>Summary</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ========== METHOD SUMMARY =========== -->
+<table id="pubmethods" class="jd-sumtable"><tr><th colspan="12">Public Methods</th></tr>
+
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            <a href="IConfiguration.html">IConfiguration</a></nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="IConfiguration.html#clone()">clone</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Create a copy of this object.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="IConfiguration.html#dumpXml(java.io.PrintWriter)">dumpXml</a></span>(PrintWriter output)</nobr>
+        
+        <div class="jd-descrdiv">Gets the expanded XML file for the config with all options shown for this
+ <code><a href="IConfiguration.html">IConfiguration</a></code> as a <code><a href="../../../../java/lang/String.html">String</a></code>.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            <a href="http://source.android.com/reference/com/android/tradefed/build/IBuildProvider.html">IBuildProvider</a></nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="IConfiguration.html#getBuildProvider()">getBuildProvider</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the <code><a href="http://source.android.com/reference/com/android/tradefed/build/IBuildProvider.html">IBuildProvider</a></code> from the configuration.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="IConfiguration.html#getCommandLine()">getCommandLine</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the the command line used to create this <code><a href="IConfiguration.html">IConfiguration</a></code>.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            <a href="../command/ICommandOptions.html">ICommandOptions</a></nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="IConfiguration.html#getCommandOptions()">getCommandOptions</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the <code><a href="../command/ICommandOptions.html">ICommandOptions</a></code> to use from the configuration.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            Object</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="IConfiguration.html#getConfigurationObject(java.lang.String)">getConfigurationObject</a></span>(String typeName)</nobr>
+        
+        <div class="jd-descrdiv">Generic interface to get the configuration object with the given type name.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            List&lt;?&gt;</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="IConfiguration.html#getConfigurationObjectList(java.lang.String)">getConfigurationObjectList</a></span>(String typeName)</nobr>
+        
+        <div class="jd-descrdiv">Similar to <code><a href="IConfiguration.html#getConfigurationObject(java.lang.String)">getConfigurationObject(String)</a></code>, but for configuration
+ object types that support multiple objects.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            <a href="../device/TestDeviceOptions.html">TestDeviceOptions</a></nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="IConfiguration.html#getDeviceOptions()">getDeviceOptions</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the <code><a href="../device/TestDeviceOptions.html">TestDeviceOptions</a></code> to use from the configuration.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            <a href="http://source.android.com/reference/com/android/tradefed/device/IDeviceRecovery.html">IDeviceRecovery</a></nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="IConfiguration.html#getDeviceRecovery()">getDeviceRecovery</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the <code><a href="http://source.android.com/reference/com/android/tradefed/device/IDeviceRecovery.html">IDeviceRecovery</a></code> to use from the configuration.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            <a href="../device/IDeviceSelection.html">IDeviceSelection</a></nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="IConfiguration.html#getDeviceRequirements()">getDeviceRequirements</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the <code><a href="../device/IDeviceSelection.html">IDeviceSelection</a></code> to use from the configuration.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            JSONArray</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="IConfiguration.html#getJsonCommandUsage()">getJsonCommandUsage</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Returns a JSON representation of this configuration.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            <a href="../log/ILeveledLogOutput.html">ILeveledLogOutput</a></nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="IConfiguration.html#getLogOutput()">getLogOutput</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the <code><a href="../log/ILeveledLogOutput.html">ILeveledLogOutput</a></code> to use from the configuration.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            <a href="../result/ILogSaver.html">ILogSaver</a></nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="IConfiguration.html#getLogSaver()">getLogSaver</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the <code><a href="../result/ILogSaver.html">ILogSaver</a></code> to use from the configuration.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            List&lt;<a href="http://source.android.com/reference/com/android/tradefed/targetprep/ITargetPreparer.html">ITargetPreparer</a>&gt;</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="IConfiguration.html#getTargetPreparers()">getTargetPreparers</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the <code><a href="http://source.android.com/reference/com/android/tradefed/targetprep/ITargetPreparer.html">ITargetPreparer</a></code>s from the configuration.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            List&lt;<a href="http://source.android.com/reference/com/android/tradefed/result/ITestInvocationListener.html">ITestInvocationListener</a>&gt;</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="IConfiguration.html#getTestInvocationListeners()">getTestInvocationListeners</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the <code><a href="http://source.android.com/reference/com/android/tradefed/result/ITestInvocationListener.html">ITestInvocationListener</a></code>s to use from the configuration.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            List&lt;<a href="http://source.android.com/reference/com/android/tradefed/testtype/IRemoteTest.html">IRemoteTest</a>&gt;</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="IConfiguration.html#getTests()">getTests</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the <code><a href="http://source.android.com/reference/com/android/tradefed/testtype/IRemoteTest.html">IRemoteTest</a></code>s to run from the configuration.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="IConfiguration.html#injectOptionValue(java.lang.String, java.lang.String)">injectOptionValue</a></span>(String optionName, String optionValue)</nobr>
+        
+        <div class="jd-descrdiv">Inject a option value into the set of configuration objects.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="IConfiguration.html#injectOptionValue(java.lang.String, java.lang.String, java.lang.String)">injectOptionValue</a></span>(String optionName, String optionKey, String optionValue)</nobr>
+        
+        <div class="jd-descrdiv">Inject a option value into the set of configuration objects.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="IConfiguration.html#injectOptionValueWithSource(java.lang.String, java.lang.String, java.lang.String, java.lang.String)">injectOptionValueWithSource</a></span>(String optionName, String optionKey, String optionValue, String source)</nobr>
+        
+        <div class="jd-descrdiv">Inject a option value into the set of configuration objects.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="IConfiguration.html#injectOptionValues(java.util.List<com.android.tradefed.config.ConfigurationDef.OptionDef>)">injectOptionValues</a></span>(List&lt;<a href="ConfigurationDef.OptionDef.html">ConfigurationDef.OptionDef</a>&gt; optionDefs)</nobr>
+        
+        <div class="jd-descrdiv">Inject multiple option values into the set of configuration objects.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="IConfiguration.html#printCommandUsage(boolean, java.io.PrintStream)">printCommandUsage</a></span>(boolean importantOnly, PrintStream out)</nobr>
+        
+        <div class="jd-descrdiv">Outputs a command line usage help text for this configuration to given printStream.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="IConfiguration.html#setBuildProvider(com.android.tradefed.build.IBuildProvider)">setBuildProvider</a></span>(<a href="http://source.android.com/reference/com/android/tradefed/build/IBuildProvider.html">IBuildProvider</a> provider)</nobr>
+        
+        <div class="jd-descrdiv">Replace the current <code><a href="http://source.android.com/reference/com/android/tradefed/build/IBuildProvider.html">IBuildProvider</a></code> in the configuration.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="IConfiguration.html#setCommandLine(java.lang.String[])">setCommandLine</a></span>(String[] arrayArgs)</nobr>
+        
+        <div class="jd-descrdiv">Sets the command line used to create this <code><a href="IConfiguration.html">IConfiguration</a></code>.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="IConfiguration.html#setCommandOptions(com.android.tradefed.command.ICommandOptions)">setCommandOptions</a></span>(<a href="../command/ICommandOptions.html">ICommandOptions</a> cmdOptions)</nobr>
+        
+        <div class="jd-descrdiv">Set the <code><a href="../command/ICommandOptions.html">ICommandOptions</a></code>, replacing any existing values</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="IConfiguration.html#setConfigurationObject(java.lang.String, java.lang.Object)">setConfigurationObject</a></span>(String name, Object configObject)</nobr>
+        
+        <div class="jd-descrdiv">Generic method to set the config object with the given name, replacing any existing value.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="IConfiguration.html#setConfigurationObjectList(java.lang.String, java.util.List<?>)">setConfigurationObjectList</a></span>(String name, List&lt;?&gt; configList)</nobr>
+        
+        <div class="jd-descrdiv">Generic method to set the config object list for the given name, replacing any existing
+ value.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="IConfiguration.html#setDeviceOptions(com.android.tradefed.device.TestDeviceOptions)">setDeviceOptions</a></span>(<a href="../device/TestDeviceOptions.html">TestDeviceOptions</a> deviceOptions)</nobr>
+        
+        <div class="jd-descrdiv">Set the <code><a href="../device/TestDeviceOptions.html">TestDeviceOptions</a></code>, replacing any existing values
+</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="IConfiguration.html#setDeviceRecovery(com.android.tradefed.device.IDeviceRecovery)">setDeviceRecovery</a></span>(<a href="http://source.android.com/reference/com/android/tradefed/device/IDeviceRecovery.html">IDeviceRecovery</a> recovery)</nobr>
+        
+        <div class="jd-descrdiv">Set the <code><a href="http://source.android.com/reference/com/android/tradefed/device/IDeviceRecovery.html">IDeviceRecovery</a></code>, replacing any existing value.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="IConfiguration.html#setDeviceRequirements(com.android.tradefed.device.IDeviceSelection)">setDeviceRequirements</a></span>(<a href="../device/IDeviceSelection.html">IDeviceSelection</a> deviceSelection)</nobr>
+        
+        <div class="jd-descrdiv">Set the <code><a href="../device/IDeviceSelection.html">IDeviceSelection</a></code>, replacing any existing values</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="IConfiguration.html#setLogOutput(com.android.tradefed.log.ILeveledLogOutput)">setLogOutput</a></span>(<a href="../log/ILeveledLogOutput.html">ILeveledLogOutput</a> logger)</nobr>
+        
+        <div class="jd-descrdiv">Set the <code><a href="../log/ILeveledLogOutput.html">ILeveledLogOutput</a></code>, replacing any existing value.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="IConfiguration.html#setLogSaver(com.android.tradefed.result.ILogSaver)">setLogSaver</a></span>(<a href="../result/ILogSaver.html">ILogSaver</a> logSaver)</nobr>
+        
+        <div class="jd-descrdiv">Set the <code><a href="../result/ILogSaver.html">ILogSaver</a></code>, replacing any existing value.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            List&lt;String&gt;</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="IConfiguration.html#setOptionsFromCommandLineArgs(java.util.List<java.lang.String>)">setOptionsFromCommandLineArgs</a></span>(List&lt;String&gt; listArgs)</nobr>
+        
+        <div class="jd-descrdiv">Set the config <code><a href="Option.html">Option</a></code> fields with given set of command line arguments
+ <p/></div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="IConfiguration.html#setTargetPreparer(com.android.tradefed.targetprep.ITargetPreparer)">setTargetPreparer</a></span>(<a href="http://source.android.com/reference/com/android/tradefed/targetprep/ITargetPreparer.html">ITargetPreparer</a> preparer)</nobr>
+        
+        <div class="jd-descrdiv">Set the <code><a href="http://source.android.com/reference/com/android/tradefed/targetprep/ITargetPreparer.html">ITargetPreparer</a></code>, replacing any existing value.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="IConfiguration.html#setTest(com.android.tradefed.testtype.IRemoteTest)">setTest</a></span>(<a href="http://source.android.com/reference/com/android/tradefed/testtype/IRemoteTest.html">IRemoteTest</a> test)</nobr>
+        
+        <div class="jd-descrdiv">Convenience method to set a single <code><a href="http://source.android.com/reference/com/android/tradefed/testtype/IRemoteTest.html">IRemoteTest</a></code> in this configuration, replacing any
+ existing values</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="IConfiguration.html#setTestInvocationListener(com.android.tradefed.result.ITestInvocationListener)">setTestInvocationListener</a></span>(<a href="http://source.android.com/reference/com/android/tradefed/result/ITestInvocationListener.html">ITestInvocationListener</a> listener)</nobr>
+        
+        <div class="jd-descrdiv">Convenience method to set a single <code><a href="http://source.android.com/reference/com/android/tradefed/result/ITestInvocationListener.html">ITestInvocationListener</a></code></div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="IConfiguration.html#setTestInvocationListeners(java.util.List<com.android.tradefed.result.ITestInvocationListener>)">setTestInvocationListeners</a></span>(List&lt;<a href="http://source.android.com/reference/com/android/tradefed/result/ITestInvocationListener.html">ITestInvocationListener</a>&gt; listeners)</nobr>
+        
+        <div class="jd-descrdiv">Set the list of <code><a href="http://source.android.com/reference/com/android/tradefed/result/ITestInvocationListener.html">ITestInvocationListener</a></code>s, replacing any existing values</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="IConfiguration.html#setTests(java.util.List<com.android.tradefed.testtype.IRemoteTest>)">setTests</a></span>(List&lt;<a href="http://source.android.com/reference/com/android/tradefed/testtype/IRemoteTest.html">IRemoteTest</a>&gt; tests)</nobr>
+        
+        <div class="jd-descrdiv">Set the list of <code><a href="http://source.android.com/reference/com/android/tradefed/testtype/IRemoteTest.html">IRemoteTest</a></code>s in this configuration, replacing any
+ existing values</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="IConfiguration.html#validateOptions()">validateOptions</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Validate option values.</div>
+  
+  </td></tr>
+
+
+
+</table>
+
+
+
+
+
+
+
+</div><!-- jd-descr (summary) -->
+
+<!-- Details -->
+
+
+
+
+
+
+
+
+<!-- XML Attributes -->
+
+
+<!-- Enum Values -->
+
+
+<!-- Constants -->
+
+
+<!-- Fields -->
+
+
+<!-- Public ctors -->
+
+
+
+<!-- ========= CONSTRUCTOR DETAIL ======== -->
+<!-- Protected ctors -->
+
+
+
+<!-- ========= METHOD DETAIL ======== -->
+<!-- Public methdos -->
+
+<h2>Public Methods</h2>
+
+
+
+<A NAME="clone()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        abstract
+        
+        
+        
+        <a href="IConfiguration.html">IConfiguration</a>
+      </span>
+      <span class="sympad">clone</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Create a copy of this object.</p>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code><a href="IConfiguration.html">IConfiguration</a></code></td>
+        <td width="100%">a {link IConfiguration} copy
+</td>
+      </tr>
+    </table>
+
+    </div>
+</div>
+
+
+<A NAME="dumpXml(java.io.PrintWriter)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        abstract
+        
+        
+        
+        void
+      </span>
+      <span class="sympad">dumpXml</span>
+      <span class="normal">(PrintWriter output)</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Gets the expanded XML file for the config with all options shown for this
+ <code><a href="IConfiguration.html">IConfiguration</a></code> as a <code><a href="../../../../java/lang/String.html">String</a></code>.</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>output</code></td>
+        <td width="100%">
+          <code>PrintWriter</code>:
+          the writer to print the xml to.</td>
+      </tr>
+    </table>
+      <table class="responsive">
+      <tr><th colspan=2>Throws</th></tr>
+        <tr>
+          <td><code>IOException</code></td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+  
+
+    </div>
+</div>
+
+
+<A NAME="getBuildProvider()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        abstract
+        
+        
+        
+        <a href="http://source.android.com/reference/com/android/tradefed/build/IBuildProvider.html">IBuildProvider</a>
+      </span>
+      <span class="sympad">getBuildProvider</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Gets the <code><a href="http://source.android.com/reference/com/android/tradefed/build/IBuildProvider.html">IBuildProvider</a></code> from the configuration.</p>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code><a href="http://source.android.com/reference/com/android/tradefed/build/IBuildProvider.html">IBuildProvider</a></code></td>
+        <td width="100%">the <code><a href="http://source.android.com/reference/com/android/tradefed/build/IBuildProvider.html">IBuildProvider</a></code> provided in the configuration
+</td>
+      </tr>
+    </table>
+
+    </div>
+</div>
+
+
+<A NAME="getCommandLine()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        abstract
+        
+        
+        
+        String
+      </span>
+      <span class="sympad">getCommandLine</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Gets the the command line used to create this <code><a href="IConfiguration.html">IConfiguration</a></code>.</p>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code>String</code></td>
+        <td width="100%">the command line used to create this <code><a href="IConfiguration.html">IConfiguration</a></code>.
+</td>
+      </tr>
+    </table>
+
+    </div>
+</div>
+
+
+<A NAME="getCommandOptions()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        abstract
+        
+        
+        
+        <a href="../command/ICommandOptions.html">ICommandOptions</a>
+      </span>
+      <span class="sympad">getCommandOptions</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Gets the <code><a href="../command/ICommandOptions.html">ICommandOptions</a></code> to use from the configuration.</p>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code><a href="../command/ICommandOptions.html">ICommandOptions</a></code></td>
+        <td width="100%">the <code><a href="../command/ICommandOptions.html">ICommandOptions</a></code> provided in the configuration.
+</td>
+      </tr>
+    </table>
+
+    </div>
+</div>
+
+
+<A NAME="getConfigurationObject(java.lang.String)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        abstract
+        
+        
+        
+        Object
+      </span>
+      <span class="sympad">getConfigurationObject</span>
+      <span class="normal">(String typeName)</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Generic interface to get the configuration object with the given type name.</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>typeName</code></td>
+        <td width="100%">
+          <code>String</code>:
+          the unique type of the configuration object</td>
+      </tr>
+    </table>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code>Object</code></td>
+        <td width="100%">the configuration object or <code>null</code> if the object type with given name
+ does not exist.
+</td>
+      </tr>
+    </table>
+
+    </div>
+</div>
+
+
+<A NAME="getConfigurationObjectList(java.lang.String)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        abstract
+        
+        
+        
+        List&lt;?&gt;
+      </span>
+      <span class="sympad">getConfigurationObjectList</span>
+      <span class="normal">(String typeName)</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Similar to <code><a href="IConfiguration.html#getConfigurationObject(java.lang.String)">getConfigurationObject(String)</a></code>, but for configuration
+ object types that support multiple objects.</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>typeName</code></td>
+        <td width="100%">
+          <code>String</code>:
+          the unique type name of the configuration object</td>
+      </tr>
+    </table>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code>List&lt;?&gt;</code></td>
+        <td width="100%">the list of configuration objects or <code>null</code> if the object type with
+ given name does not exist.
+</td>
+      </tr>
+    </table>
+
+    </div>
+</div>
+
+
+<A NAME="getDeviceOptions()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        abstract
+        
+        
+        
+        <a href="../device/TestDeviceOptions.html">TestDeviceOptions</a>
+      </span>
+      <span class="sympad">getDeviceOptions</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Gets the <code><a href="../device/TestDeviceOptions.html">TestDeviceOptions</a></code> to use from the configuration.</p>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code><a href="../device/TestDeviceOptions.html">TestDeviceOptions</a></code></td>
+        <td width="100%">the <code><a href="../device/TestDeviceOptions.html">TestDeviceOptions</a></code> provided in the configuration.
+</td>
+      </tr>
+    </table>
+
+    </div>
+</div>
+
+
+<A NAME="getDeviceRecovery()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        abstract
+        
+        
+        
+        <a href="http://source.android.com/reference/com/android/tradefed/device/IDeviceRecovery.html">IDeviceRecovery</a>
+      </span>
+      <span class="sympad">getDeviceRecovery</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Gets the <code><a href="http://source.android.com/reference/com/android/tradefed/device/IDeviceRecovery.html">IDeviceRecovery</a></code> to use from the configuration.</p>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code><a href="http://source.android.com/reference/com/android/tradefed/device/IDeviceRecovery.html">IDeviceRecovery</a></code></td>
+        <td width="100%">the <code><a href="http://source.android.com/reference/com/android/tradefed/device/IDeviceRecovery.html">IDeviceRecovery</a></code> provided in the configuration.
+</td>
+      </tr>
+    </table>
+
+    </div>
+</div>
+
+
+<A NAME="getDeviceRequirements()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        abstract
+        
+        
+        
+        <a href="../device/IDeviceSelection.html">IDeviceSelection</a>
+      </span>
+      <span class="sympad">getDeviceRequirements</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Gets the <code><a href="../device/IDeviceSelection.html">IDeviceSelection</a></code> to use from the configuration.</p>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code><a href="../device/IDeviceSelection.html">IDeviceSelection</a></code></td>
+        <td width="100%">the <code><a href="../device/IDeviceSelection.html">IDeviceSelection</a></code> provided in the configuration.
+</td>
+      </tr>
+    </table>
+
+    </div>
+</div>
+
+
+<A NAME="getJsonCommandUsage()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        abstract
+        
+        
+        
+        JSONArray
+      </span>
+      <span class="sympad">getJsonCommandUsage</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Returns a JSON representation of this configuration.
+ <p/>
+ The return value is a JSONArray containing JSONObjects to represent each configuration
+ object. Each configuration object entry has the following structure:
+ <pre>
+ <code>&amp;#123;
+     "alias": "device-unavail-email",
+     "name": "result_reporter",
+     "class": "com.android.tradefed.result.DeviceUnavailEmailResultReporter",
+     "options": [ ... ]
+   &amp;#125;
+ </code>
+ </pre>
+ The "options" entry is a JSONArray containing JSONObjects to represent each @Option annotated
+ field. Each option entry has the following structure:
+ <pre>
+ <code>&amp;#123;
+     "updateRule": "LAST",
+     "isTimeVal": false,
+     "source": "google\/template\/reporters\/asit",
+     "importance": "IF_UNSET",
+     "description": "The envelope-sender address to use for the messages.",
+     "mandatory": false,
+     "name": "sender",
+     "javaClass": "java.lang.String",
+     "value": "tffail@google.com"
+   &amp;#125;
+ </code>
+ </pre>
+ Most of the values come from the @Option annotation. 'javaClass' is the name of the
+ underlying java class for this option. 'value' is a JSON representation of the field's
+ current value. 'source' is the set of config names which set the field's value. For regular
+ objects or Collections, 'source' is a JSONArray containing each contributing config's name.
+ For map fields, sources for each key are tracked individually and stored in a JSONObject.
+ Each key / value pair in the JSONObject corresponds to a key in the map and an array of its
+ source configurations.</p>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code>JSONArray</code></td>
+        <td width="100%"><!-- no returns description in source --></td>
+      </tr>
+    </table>
+      <table class="responsive">
+      <tr><th colspan=2>Throws</th></tr>
+        <tr>
+          <td><code>JSONException</code></td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+  
+
+    </div>
+</div>
+
+
+<A NAME="getLogOutput()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        abstract
+        
+        
+        
+        <a href="../log/ILeveledLogOutput.html">ILeveledLogOutput</a>
+      </span>
+      <span class="sympad">getLogOutput</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Gets the <code><a href="../log/ILeveledLogOutput.html">ILeveledLogOutput</a></code> to use from the configuration.</p>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code><a href="../log/ILeveledLogOutput.html">ILeveledLogOutput</a></code></td>
+        <td width="100%">the <code><a href="../log/ILeveledLogOutput.html">ILeveledLogOutput</a></code> provided in the configuration.
+</td>
+      </tr>
+    </table>
+
+    </div>
+</div>
+
+
+<A NAME="getLogSaver()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        abstract
+        
+        
+        
+        <a href="../result/ILogSaver.html">ILogSaver</a>
+      </span>
+      <span class="sympad">getLogSaver</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Gets the <code><a href="../result/ILogSaver.html">ILogSaver</a></code> to use from the configuration.</p>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code><a href="../result/ILogSaver.html">ILogSaver</a></code></td>
+        <td width="100%">the <code><a href="../result/ILogSaver.html">ILogSaver</a></code> provided in the configuration.
+</td>
+      </tr>
+    </table>
+
+    </div>
+</div>
+
+
+<A NAME="getTargetPreparers()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        abstract
+        
+        
+        
+        List&lt;<a href="http://source.android.com/reference/com/android/tradefed/targetprep/ITargetPreparer.html">ITargetPreparer</a>&gt;
+      </span>
+      <span class="sympad">getTargetPreparers</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Gets the <code><a href="http://source.android.com/reference/com/android/tradefed/targetprep/ITargetPreparer.html">ITargetPreparer</a></code>s from the configuration.</p>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code>List&lt;<a href="http://source.android.com/reference/com/android/tradefed/targetprep/ITargetPreparer.html">ITargetPreparer</a>&gt;</code></td>
+        <td width="100%">the <code><a href="http://source.android.com/reference/com/android/tradefed/targetprep/ITargetPreparer.html">ITargetPreparer</a></code>s provided in order in the configuration
+</td>
+      </tr>
+    </table>
+
+    </div>
+</div>
+
+
+<A NAME="getTestInvocationListeners()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        abstract
+        
+        
+        
+        List&lt;<a href="http://source.android.com/reference/com/android/tradefed/result/ITestInvocationListener.html">ITestInvocationListener</a>&gt;
+      </span>
+      <span class="sympad">getTestInvocationListeners</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Gets the <code><a href="http://source.android.com/reference/com/android/tradefed/result/ITestInvocationListener.html">ITestInvocationListener</a></code>s to use from the configuration.</p>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code>List&lt;<a href="http://source.android.com/reference/com/android/tradefed/result/ITestInvocationListener.html">ITestInvocationListener</a>&gt;</code></td>
+        <td width="100%">the <code><a href="http://source.android.com/reference/com/android/tradefed/result/ITestInvocationListener.html">ITestInvocationListener</a></code>s provided in the configuration.
+</td>
+      </tr>
+    </table>
+
+    </div>
+</div>
+
+
+<A NAME="getTests()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        abstract
+        
+        
+        
+        List&lt;<a href="http://source.android.com/reference/com/android/tradefed/testtype/IRemoteTest.html">IRemoteTest</a>&gt;
+      </span>
+      <span class="sympad">getTests</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Gets the <code><a href="http://source.android.com/reference/com/android/tradefed/testtype/IRemoteTest.html">IRemoteTest</a></code>s to run from the configuration.</p>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code>List&lt;<a href="http://source.android.com/reference/com/android/tradefed/testtype/IRemoteTest.html">IRemoteTest</a>&gt;</code></td>
+        <td width="100%">the tests provided in the configuration
+</td>
+      </tr>
+    </table>
+
+    </div>
+</div>
+
+
+<A NAME="injectOptionValue(java.lang.String, java.lang.String)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        abstract
+        
+        
+        
+        void
+      </span>
+      <span class="sympad">injectOptionValue</span>
+      <span class="normal">(String optionName, String optionValue)</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Inject a option value into the set of configuration objects.
+ <p/>
+ Useful to provide values for options that are generated dynamically.</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>optionName</code></td>
+        <td width="100%">
+          <code>String</code>:
+          the option name</td>
+      </tr>
+      <tr>
+        <td><code>optionValue</code></td>
+        <td width="100%">
+          <code>String</code>:
+          the option value</td>
+      </tr>
+    </table>
+      <table class="responsive">
+      <tr><th colspan=2>Throws</th></tr>
+        <tr>
+          <td><code><a href="ConfigurationException.html">ConfigurationException</a></code></td>
+          <td width="100%">if failed to set the option's value
+</td>
+        </tr>
+      </table>
+  
+
+    </div>
+</div>
+
+
+<A NAME="injectOptionValue(java.lang.String, java.lang.String, java.lang.String)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        abstract
+        
+        
+        
+        void
+      </span>
+      <span class="sympad">injectOptionValue</span>
+      <span class="normal">(String optionName, String optionKey, String optionValue)</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Inject a option value into the set of configuration objects.
+ <p/>
+ Useful to provide values for options that are generated dynamically.</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>optionName</code></td>
+        <td width="100%">
+          <code>String</code>:
+          the option name</td>
+      </tr>
+      <tr>
+        <td><code>optionKey</code></td>
+        <td width="100%">
+          <code>String</code>:
+          the optional key for map options, or null</td>
+      </tr>
+      <tr>
+        <td><code>optionValue</code></td>
+        <td width="100%">
+          <code>String</code>:
+          the map option value</td>
+      </tr>
+    </table>
+      <table class="responsive">
+      <tr><th colspan=2>Throws</th></tr>
+        <tr>
+          <td><code><a href="ConfigurationException.html">ConfigurationException</a></code></td>
+          <td width="100%">if failed to set the option's value
+</td>
+        </tr>
+      </table>
+  
+
+    </div>
+</div>
+
+
+<A NAME="injectOptionValueWithSource(java.lang.String, java.lang.String, java.lang.String, java.lang.String)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        abstract
+        
+        
+        
+        void
+      </span>
+      <span class="sympad">injectOptionValueWithSource</span>
+      <span class="normal">(String optionName, String optionKey, String optionValue, String source)</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Inject a option value into the set of configuration objects.
+ <p/>
+ Useful to provide values for options that are generated dynamically.</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>optionName</code></td>
+        <td width="100%">
+          <code>String</code>:
+          the option name</td>
+      </tr>
+      <tr>
+        <td><code>optionKey</code></td>
+        <td width="100%">
+          <code>String</code>:
+          the optional key for map options, or null</td>
+      </tr>
+      <tr>
+        <td><code>optionValue</code></td>
+        <td width="100%">
+          <code>String</code>:
+          the map option value</td>
+      </tr>
+      <tr>
+        <td><code>source</code></td>
+        <td width="100%">
+          <code>String</code>
+          <!-- no parameter comment --></td>
+      </tr>
+    </table>
+      <table class="responsive">
+      <tr><th colspan=2>Throws</th></tr>
+        <tr>
+          <td><code><a href="ConfigurationException.html">ConfigurationException</a></code></td>
+          <td width="100%">if failed to set the option's value
+</td>
+        </tr>
+      </table>
+  
+
+    </div>
+</div>
+
+
+<A NAME="injectOptionValues(java.util.List<com.android.tradefed.config.ConfigurationDef.OptionDef>)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        abstract
+        
+        
+        
+        void
+      </span>
+      <span class="sympad">injectOptionValues</span>
+      <span class="normal">(List&lt;<a href="ConfigurationDef.OptionDef.html">ConfigurationDef.OptionDef</a>&gt; optionDefs)</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Inject multiple option values into the set of configuration objects.
+ <p/>
+ Useful to inject many option values at once after creating a new object.</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>optionDefs</code></td>
+        <td width="100%">
+          <code>List</code>:
+          a list of option defs to inject</td>
+      </tr>
+    </table>
+      <table class="responsive">
+      <tr><th colspan=2>Throws</th></tr>
+        <tr>
+          <td><code><a href="ConfigurationException.html">ConfigurationException</a></code></td>
+          <td width="100%">if failed to set option values
+</td>
+        </tr>
+      </table>
+  
+
+    </div>
+</div>
+
+
+<A NAME="printCommandUsage(boolean, java.io.PrintStream)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        abstract
+        
+        
+        
+        void
+      </span>
+      <span class="sympad">printCommandUsage</span>
+      <span class="normal">(boolean importantOnly, PrintStream out)</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Outputs a command line usage help text for this configuration to given printStream.</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>importantOnly</code></td>
+        <td width="100%">
+          <code>boolean</code>:
+          if <code>true</code> only print help for the important options</td>
+      </tr>
+      <tr>
+        <td><code>out</code></td>
+        <td width="100%">
+          <code>PrintStream</code>:
+          the <code><a href="../../../../java/io/PrintStream.html">PrintStream</a></code> to use.</td>
+      </tr>
+    </table>
+      <table class="responsive">
+      <tr><th colspan=2>Throws</th></tr>
+        <tr>
+          <td><code><a href="ConfigurationException.html">ConfigurationException</a></code></td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+  
+
+    </div>
+</div>
+
+
+<A NAME="setBuildProvider(com.android.tradefed.build.IBuildProvider)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        abstract
+        
+        
+        
+        void
+      </span>
+      <span class="sympad">setBuildProvider</span>
+      <span class="normal">(<a href="http://source.android.com/reference/com/android/tradefed/build/IBuildProvider.html">IBuildProvider</a> provider)</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Replace the current <code><a href="http://source.android.com/reference/com/android/tradefed/build/IBuildProvider.html">IBuildProvider</a></code> in the configuration.</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>provider</code></td>
+        <td width="100%">
+          <code>IBuildProvider</code>:
+          the new <code><a href="http://source.android.com/reference/com/android/tradefed/build/IBuildProvider.html">IBuildProvider</a></code>
+</td>
+      </tr>
+    </table>
+
+    </div>
+</div>
+
+
+<A NAME="setCommandLine(java.lang.String[])"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        abstract
+        
+        
+        
+        void
+      </span>
+      <span class="sympad">setCommandLine</span>
+      <span class="normal">(String[] arrayArgs)</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Sets the command line used to create this <code><a href="IConfiguration.html">IConfiguration</a></code>.
+ This stores the whole command line, including the configuration name,
+ unlike setOptionsFromCommandLineArgs.</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>arrayArgs</code></td>
+        <td width="100%">
+          <code>String</code>:
+          the command line
+</td>
+      </tr>
+    </table>
+
+    </div>
+</div>
+
+
+<A NAME="setCommandOptions(com.android.tradefed.command.ICommandOptions)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        abstract
+        
+        
+        
+        void
+      </span>
+      <span class="sympad">setCommandOptions</span>
+      <span class="normal">(<a href="../command/ICommandOptions.html">ICommandOptions</a> cmdOptions)</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Set the <code><a href="../command/ICommandOptions.html">ICommandOptions</a></code>, replacing any existing values</p>
+
+    </div>
+</div>
+
+
+<A NAME="setConfigurationObject(java.lang.String, java.lang.Object)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        abstract
+        
+        
+        
+        void
+      </span>
+      <span class="sympad">setConfigurationObject</span>
+      <span class="normal">(String name, Object configObject)</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Generic method to set the config object with the given name, replacing any existing value.</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>name</code></td>
+        <td width="100%">
+          <code>String</code>:
+          the unique name of the config object type.</td>
+      </tr>
+      <tr>
+        <td><code>configObject</code></td>
+        <td width="100%">
+          <code>Object</code>:
+          the config object</td>
+      </tr>
+    </table>
+      <table class="responsive">
+      <tr><th colspan=2>Throws</th></tr>
+        <tr>
+          <td><code><a href="ConfigurationException.html">ConfigurationException</a></code></td>
+          <td width="100%">if the configObject was not the correct type
+</td>
+        </tr>
+      </table>
+  
+
+    </div>
+</div>
+
+
+<A NAME="setConfigurationObjectList(java.lang.String, java.util.List<?>)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        abstract
+        
+        
+        
+        void
+      </span>
+      <span class="sympad">setConfigurationObjectList</span>
+      <span class="normal">(String name, List&lt;?&gt; configList)</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Generic method to set the config object list for the given name, replacing any existing
+ value.</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>name</code></td>
+        <td width="100%">
+          <code>String</code>:
+          the unique name of the config object type.</td>
+      </tr>
+      <tr>
+        <td><code>configList</code></td>
+        <td width="100%">
+          <code>List</code>:
+          the config object list</td>
+      </tr>
+    </table>
+      <table class="responsive">
+      <tr><th colspan=2>Throws</th></tr>
+        <tr>
+          <td><code><a href="ConfigurationException.html">ConfigurationException</a></code></td>
+          <td width="100%">if any objects in the list are not the correct type
+</td>
+        </tr>
+      </table>
+  
+
+    </div>
+</div>
+
+
+<A NAME="setDeviceOptions(com.android.tradefed.device.TestDeviceOptions)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        abstract
+        
+        
+        
+        void
+      </span>
+      <span class="sympad">setDeviceOptions</span>
+      <span class="normal">(<a href="../device/TestDeviceOptions.html">TestDeviceOptions</a> deviceOptions)</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Set the <code><a href="../device/TestDeviceOptions.html">TestDeviceOptions</a></code>, replacing any existing values
+</p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>deviceOptions</code></td>
+        <td width="100%">
+          <code>TestDeviceOptions</code>
+          <!-- no parameter comment --></td>
+      </tr>
+    </table>
+
+    </div>
+</div>
+
+
+<A NAME="setDeviceRecovery(com.android.tradefed.device.IDeviceRecovery)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        abstract
+        
+        
+        
+        void
+      </span>
+      <span class="sympad">setDeviceRecovery</span>
+      <span class="normal">(<a href="http://source.android.com/reference/com/android/tradefed/device/IDeviceRecovery.html">IDeviceRecovery</a> recovery)</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Set the <code><a href="http://source.android.com/reference/com/android/tradefed/device/IDeviceRecovery.html">IDeviceRecovery</a></code>, replacing any existing value.</p>
+
+    </div>
+</div>
+
+
+<A NAME="setDeviceRequirements(com.android.tradefed.device.IDeviceSelection)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        abstract
+        
+        
+        
+        void
+      </span>
+      <span class="sympad">setDeviceRequirements</span>
+      <span class="normal">(<a href="../device/IDeviceSelection.html">IDeviceSelection</a> deviceSelection)</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Set the <code><a href="../device/IDeviceSelection.html">IDeviceSelection</a></code>, replacing any existing values</p>
+
+    </div>
+</div>
+
+
+<A NAME="setLogOutput(com.android.tradefed.log.ILeveledLogOutput)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        abstract
+        
+        
+        
+        void
+      </span>
+      <span class="sympad">setLogOutput</span>
+      <span class="normal">(<a href="../log/ILeveledLogOutput.html">ILeveledLogOutput</a> logger)</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Set the <code><a href="../log/ILeveledLogOutput.html">ILeveledLogOutput</a></code>, replacing any existing value.</p>
+
+    </div>
+</div>
+
+
+<A NAME="setLogSaver(com.android.tradefed.result.ILogSaver)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        abstract
+        
+        
+        
+        void
+      </span>
+      <span class="sympad">setLogSaver</span>
+      <span class="normal">(<a href="../result/ILogSaver.html">ILogSaver</a> logSaver)</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Set the <code><a href="../result/ILogSaver.html">ILogSaver</a></code>, replacing any existing value.</p>
+
+    </div>
+</div>
+
+
+<A NAME="setOptionsFromCommandLineArgs(java.util.List<java.lang.String>)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        abstract
+        
+        
+        
+        List&lt;String&gt;
+      </span>
+      <span class="sympad">setOptionsFromCommandLineArgs</span>
+      <span class="normal">(List&lt;String&gt; listArgs)</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Set the config <code><a href="Option.html">Option</a></code> fields with given set of command line arguments
+ <p/></p>
+    <table class="responsive">
+    <tr><th colspan=2>Parameters</th></tr>
+      <tr>
+        <td><code>listArgs</code></td>
+        <td width="100%">
+          <code>List</code>:
+          the command line arguments</td>
+      </tr>
+    </table>
+    <table class="responsive">
+      <tr><th colspan=2>Returns</th></tr>
+      <tr>
+        <td><code>List&lt;String&gt;</code></td>
+        <td width="100%">the unconsumed arguments
+</td>
+      </tr>
+    </table>
+      <table class="responsive">
+      <tr><th colspan=2>Throws</th></tr>
+        <tr>
+          <td><code><a href="ConfigurationException.html">ConfigurationException</a></code></td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+  
+  <div>
+      <p><b>See also:</b></p>
+      <ul class="nolist"><li><code><a href="http://source.android.com/">ERROR(ArgsOptionParser} for expected format/{@link ArgsOptionParser} for expected format)</a></code></li>
+      </ul>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="setTargetPreparer(com.android.tradefed.targetprep.ITargetPreparer)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        abstract
+        
+        
+        
+        void
+      </span>
+      <span class="sympad">setTargetPreparer</span>
+      <span class="normal">(<a href="http://source.android.com/reference/com/android/tradefed/targetprep/ITargetPreparer.html">ITargetPreparer</a> preparer)</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Set the <code><a href="http://source.android.com/reference/com/android/tradefed/targetprep/ITargetPreparer.html">ITargetPreparer</a></code>, replacing any existing value.</p>
+
+    </div>
+</div>
+
+
+<A NAME="setTest(com.android.tradefed.testtype.IRemoteTest)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        abstract
+        
+        
+        
+        void
+      </span>
+      <span class="sympad">setTest</span>
+      <span class="normal">(<a href="http://source.android.com/reference/com/android/tradefed/testtype/IRemoteTest.html">IRemoteTest</a> test)</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Convenience method to set a single <code><a href="http://source.android.com/reference/com/android/tradefed/testtype/IRemoteTest.html">IRemoteTest</a></code> in this configuration, replacing any
+ existing values</p>
+
+    </div>
+</div>
+
+
+<A NAME="setTestInvocationListener(com.android.tradefed.result.ITestInvocationListener)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        abstract
+        
+        
+        
+        void
+      </span>
+      <span class="sympad">setTestInvocationListener</span>
+      <span class="normal">(<a href="http://source.android.com/reference/com/android/tradefed/result/ITestInvocationListener.html">ITestInvocationListener</a> listener)</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Convenience method to set a single <code><a href="http://source.android.com/reference/com/android/tradefed/result/ITestInvocationListener.html">ITestInvocationListener</a></code></p>
+
+    </div>
+</div>
+
+
+<A NAME="setTestInvocationListeners(java.util.List<com.android.tradefed.result.ITestInvocationListener>)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        abstract
+        
+        
+        
+        void
+      </span>
+      <span class="sympad">setTestInvocationListeners</span>
+      <span class="normal">(List&lt;<a href="http://source.android.com/reference/com/android/tradefed/result/ITestInvocationListener.html">ITestInvocationListener</a>&gt; listeners)</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Set the list of <code><a href="http://source.android.com/reference/com/android/tradefed/result/ITestInvocationListener.html">ITestInvocationListener</a></code>s, replacing any existing values</p>
+
+    </div>
+</div>
+
+
+<A NAME="setTests(java.util.List<com.android.tradefed.testtype.IRemoteTest>)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        abstract
+        
+        
+        
+        void
+      </span>
+      <span class="sympad">setTests</span>
+      <span class="normal">(List&lt;<a href="http://source.android.com/reference/com/android/tradefed/testtype/IRemoteTest.html">IRemoteTest</a>&gt; tests)</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Set the list of <code><a href="http://source.android.com/reference/com/android/tradefed/testtype/IRemoteTest.html">IRemoteTest</a></code>s in this configuration, replacing any
+ existing values</p>
+
+    </div>
+</div>
+
+
+<A NAME="validateOptions()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public
+        abstract
+        
+        
+        
+        void
+      </span>
+      <span class="sympad">validateOptions</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div></div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <p>Validate option values.
+ <p/>
+ Currently this will just validate that all mandatory options have been set</p>
+      <table class="responsive">
+      <tr><th colspan=2>Throws</th></tr>
+        <tr>
+          <td><code><a href="ConfigurationException.html">ConfigurationException</a></code></td>
+          <td width="100%">if config is not valid
+</td>
+        </tr>
+      </table>
+  
+
+    </div>
+</div>
+
+
+
+
+
+<!-- ========= METHOD DETAIL ======== -->
+
+
+
+<!-- ========= END OF CLASS DATA ========= -->
+<A NAME="navbar_top"></A>
+
+<div id="footer" class="wrap" >
+  <style>.feedback { float: right !Important }</style>
+  <div class="feedback">
+    <a href="IConfiguration.html#" class="button" onclick=" try {
+      userfeedback.api.startFeedback({'productId':'715571','authuser':'1'});return false;}catch(e){}">Site Feedback</a>
+  </div>
+  <div id="copyright">
+    
+  Except as noted, this content is 
+  licensed under <a href="http://creativecommons.org/licenses/by/2.5/">
+  Creative Commons Attribution 2.5</a>. For details and 
+  restrictions, see the <a href="http://source.android.com/license.html">Content 
+  License</a>.
+  </div>
+    <div id="footerlinks">
+    
+  <p>
+    <a href="http://source.android.com/source/index.html">About Android</a>&nbsp;&nbsp;|&nbsp;
+    <a href="http://source.android.com/source/community.html">Community</a>&nbsp;&nbsp;|&nbsp;
+    <a href="http://source.android.com/legal.html">Legal</a>&nbsp;&nbsp;|&nbsp;
+  </p>
+  </div>
+
+</div> <!-- jd-content -->
+
+</div><!-- end doc-content -->
+
+</div> <!-- end body-content --> 
+
+
+
+
+
+
+</body>
+</html>

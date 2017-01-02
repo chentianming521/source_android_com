@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<meta name="Description" content="Welcome to the Android Compatibility Definition Document (CDD). This document enumerates the requirements that must be met in order for devices to be compatible with the latest version of Android. To be considered compatible with Android, device implementations…">
+
+<link rel="shortcut icon" type="image/x-icon" href="../favicon.ico" />
+<title>Android Compatibility Definition Document | Android Open Source Project</title>
+
+<!-- STYLESHEETS -->
+<link rel="stylesheet"
+href="https://fonts.googleapis.com/css?family=Roboto:regular,medium,thin,italic,mediumitalic,bold" title="roboto">
+<link href="../assets/css/default.css" rel="stylesheet" type="text/css">
+
+
+
+<!-- JAVASCRIPT -->
+<script src="https://www.google.com/jsapi" type="text/javascript"></script>
+<script src="../assets/js/android_3p-bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+  var toRoot = "/";
+  
+  var devsite = false;
+  
+</script>
+<script src="../assets/js/docs.js" type="text/javascript"></script>
+
+
+<script type="text/javascript" src="https://www.gstatic.com/feedback/api.js"></script>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-45455297-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</head>
+
+<body class="gc-documentation 
+  " itemscope itemtype="http://schema.org/Article">
+<a name="top"></a>
+
+  
+    <!-- Header -->
+    <div id="header">
+        <div class="wrap" id="header-wrap">
+          <div class="col-3 saclogo">
+          <a href="../index.html">
+            <img src="../assets/images/sac_logo.png"
+                srcset="/assets/images/sac_logo@2x.png 2x"
+                width="123" height="25" alt="Android Open Source Project" />
+          </a>
+          </div>
+            <ul class="nav-x col-9">
+                <li class="source">
+                  <a href="../source/index.html" 
+                  >Source</a></li>
+                <li class="devices"><a href="../devices/index.html" 
+                  >Devices</a></li>
+                <li class="security"><a href="../security/index.html" 
+                  >Security</a></li>
+                <li class="compatibility last"><a href="index.html" class="selected"
+                  >Compatibility</a></li>
+            </ul>
+            <!-- New Search -->
+            <div class="menu-container">
+            <div class="moremenu">
+    <div id="more-btn"></div>
+  </div>
+  <div class="morehover" id="moremenu">
+    <div class="top"></div>
+    <div class="mid">
+      <div class="header">Android Sites</div>
+      <ul>
+        <li class="active"><a>Android Open Source Project</a></li>
+        <li><a href="http://www.android.com">Android.com</a></li>
+        <li><a href="http://developer.android.com">Android Developers</a></li>
+      </ul>
+      <!-- <div class="header">Support</div>
+      <ul>
+        <li><a href="/support.html">Developer Support</a></li>
+      </ul> -->
+      <br class="clearfix" />
+    </div>
+    <div class="bottom"></div>
+  </div>
+
+  <div class="search" id="search-container">
+    <div class="search-inner">
+      <div id="search-btn"></div>
+      <div class="left"></div>
+      <form onsubmit="return submit_search()">
+        <input id="search_autocomplete" type="text" value="" autocomplete="off" name="q"
+onfocus="search_focus_changed(this, true)" onblur="search_focus_changed(this, false)"
+onkeydown="return search_changed(event, true, '/')"
+onkeyup="return search_changed(event, false, '/')" />
+      </form>
+      <div class="right"></div>
+        <a class="close hide">close</a>
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+  </div>
+  <div id="search_filtered_wrapper">
+    <div id="search_filtered_div" class="no-display">
+        <ul id="search_filtered">
+        </ul>
+    </div>
+  </div>
+
+  </div>
+  <!-- /New Search> -->
+        </div>
+    </div>
+    <!-- /Header -->
+
+  <div id="searchResults" class="wrap" style="display:none;">
+          <h2 id="searchTitle">Results</h2>
+          <div id="leftSearchControl" class="search-control">Loading...</div>
+  </div>
+
+  
+  
+  
+    
+  <div class="wrap clearfix" id="body-content">
+    <div class="col-4" id="side-nav" itemscope itemtype="http://schema.org/SiteNavigationElement">
+      <div id="devdoc-nav" class="scroll-pane">
+<a class="totop" href="cdd.html#top" data-g-event="left-nav-top">to top</a>
+
+<!--
+    Copyright 2013 The Android Open Source Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<ul id="nav">
+<!-- Compatibility -->
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="index.html">
+        <span class="en">Compatibility</span>
+      </a>
+    </div>
+    <ul>
+      <li><a href="overview.html">Overview</a></li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="cdd.html">
+            <span class="en">Compatibility Definition</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="android-cdd.html">CDD in HTML</a></li>
+          <li><a href="android-cdd.pdf">CDD in PDF</a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="cts-intro.html">
+            <span class="en">Compatibility Test Suite</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="cts/setup.html">Set up CTS</a></li>
+          <li><a href="cts/run.html">Run CTS</a></li>
+          <li class="nav-section">
+            <div class="nav-section-header">
+            <a href="cts/verifier.html">
+              <span class="en">Run CTS Verifier</span>
+            </a>
+            </div>
+           <ul>
+            <li><a href="cts/audio-framework.html">Audio Framework</a></li>
+            <li><a href="cts/camera-hal.html">Camera HAL Testing</a></li>
+            <li><a href="cts/near-ultrasound.html">Near Ultrasound Tests</a></li>
+            <li><a href="cts/rotation-vector.html">Rotation Vector Crosscheck</a></li>
+           </ul>
+          </li>
+          <li><a href="cts/interpret.html">Interpret Results</a></li>
+          <li><a href="cts/development.html">Develop CTS</a></li>
+          <li><a href="cts/downloads.html">Downloads</a></li>
+        </ul>
+      </li>
+      <li><a href="contact-us.html">Contact Us</a></li>
+    </ul>
+<!-- End Compatibility -->
+  </li>
+
+
+</ul>
+
+
+      </div>
+    </div> <!-- end side-nav -->
+    <script>
+      $(document).ready(function() {
+        scrollIntoView("devdoc-nav");
+        });
+    </script>
+
+  
+
+
+
+
+<div class="col-12" id="doc-col" >
+
+
+  
+    
+      
+        <h1 itemprop="name" >Android Compatibility Definition Document</h1>
+      
+    
+  
+
+
+  
+  <div id="jd-content">
+
+    <div class="jd-descr" itemprop="articleBody">
+    <!--
+    Copyright 2016 The Android Open Source Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<p>Welcome to the Android Compatibility Definition Document (CDD). This document
+enumerates the requirements that must be met in order for devices to be
+compatible with the latest version of Android. To be considered compatible with
+Android, device implementations MUST meet the requirements
+presented in this Compatibility Definition, including any documents
+incorporated via reference. For each release of the Android platform, a
+detailed CDD will be provided. The CDD represents the "policy" aspect of
+Android compatibility.</p>
+
+<p>It is important the policy of the Android compatibility program is codified
+explicitly as no test suite, including CTS, can truly be comprehensive. For
+instance, the CTS includes a test that checks for the presence and correct
+behavior of OpenGL graphics APIs, but no software test can verify that the
+graphics actually appear correctly on the screen. More generally, it's
+impossible to test the presence of hardware features such as keyboards, display
+density, Wi-Fi, and Bluetooth.</p>
+
+<p>The CDD's role is to codify and clarify specific requirements, and
+eliminate ambiguity.  The CDD does not attempt to be comprehensive. Since
+Android is a single corpus of open-source code, the code itself is the
+comprehensive "specification" of the platform and its APIs. The CDD acts as a
+"hub" referencing other content (such as SDK API documentation) that provides
+a framework in which the Android source code may be used so that the end
+result is a compatible system.</p>
+
+<p>If you want to build a device compatible with a given Android version,
+start by checking out the source code for that version, and then read the
+corresponding CDD and stay within its guidelines. For additional details,
+simply examine <a href="android-cdd.pdf">the latest CDD</a>.</p>
+
+<p>
+You may view the latest CDD either as an HTML web page or an easily downloadable PDF:
+</p>
+  <ul>
+    <li><a href="android-cdd.html">HTML</a></li>
+    <li><a href="android-cdd.pdf">PDF</a></li>
+  </ul>
+
+<p>Find older versions of the CDD and approved release version strings here:</p>
+
+<table>
+  <tr>
+    <th>Version</th>
+    <th>PDF</th>
+    <th>HTML/XHTML</th>
+    <th>Strings</th>
+  </tr>
+  <tr>
+    <td>7.0</td>
+    <td><a href="7.0/android-7.0-cdd.pdf">android-7.0-cdd.pdf</a></td>
+    <td><a href="7.0/android-7.0-cdd.html">android-7.0-cdd.html</a></td>
+    <td><a href="7.0/versions.html">Version 7.0</a></td>
+  </tr>
+  <tr>
+    <td>6.0</td>
+    <td><a href="6.0/android-6.0-cdd.pdf">android-6.0-cdd.pdf</a></td>
+    <td><a href="6.0/android-6.0-cdd.html">android-6.0-cdd.html</a></td>
+    <td><a href="6.0/versions.html">Version 6.0</a></td>
+  </tr>
+  <tr>
+    <td>5.1</td>
+    <td><a href="5.1/android-5.1-cdd.pdf">android-5.1.cdd.pdf</a></td>
+    <td><a href="5.1/android-5.1-cdd.html">android-5.1-cdd.html</a></td>
+    <td><a href="5.1/versions.html">Version 5.1</a></td>
+  </tr>
+  <tr>
+    <td>5.0</td>
+    <td><a href="5.0/android-5.0-cdd.pdf">android-5.0.cdd.pdf</a></td>
+    <td><a href="5.0/android-5.0-cdd.html">android-5.0-cdd.html</a></td>
+    <td><a href="5.0/versions.html">Version 5.0</a></td>
+  </tr>
+  <tr>
+    <td>4.4</td>
+    <td><a href="4.4/android-4.4-cdd.pdf">android-4.4.cdd.pdf</a></td>
+    <td><a href="4.4/android-4.4-cdd.xhtml">android-4.4-cdd.xhtml</a></td>
+    <td><a href="4.4/versions.html">Version 4.4</a></td>
+  </tr>
+  <tr>
+    <td>4.3</td>
+    <td><a href="4.3/android-4.3-cdd.pdf">android-4.3.cdd.pdf</a></td>
+    <td><a href="4.3/android-4.3-cdd.xhtml">android-4.3-cdd.xhtml</a></td>
+    <td><a href="4.3/versions.html">Version 4.3</a></td>
+  </tr>
+  <tr>
+    <td>4.2</td>
+    <td><a href="4.2/android-4.2-cdd.pdf">android-4.2.cdd.pdf</a></td>
+    <td><a href="4.2/android-4.2-cdd.xhtml">android-4.2-cdd.xhtml</a></td>
+    <td><a href="4.2/versions.html">Version 4.2</a></td>
+  </tr>
+  <tr>
+    <td>4.1</td>
+    <td><a href="4.1/android-4.1-cdd.pdf">android-4.1.cdd.pdf</a></td>
+    <td><a href="4.1/android-4.1-cdd.html">android-4.1-cdd.html</a></td>
+    <td><a href="4.1/versions.html">Version 4.1</a></td>
+  </tr>
+  <tr>
+    <td>4.0</td>
+    <td><a href="4.0/android-4.0-cdd.pdf">android-4.0.cdd.pdf</a></td>
+    <td><a href="4.0/android-4.0-cdd.xhtml">android-4.0-cdd.xhtml</a></td>
+    <td><a href="4.0/versions.html">Version 4.0</a></td>
+  </tr>
+  <tr>
+    <td>2.3</td>
+    <td><a href="2.3/android-2.3-cdd.pdf">android-2.3.cdd.pdf</a><br/>
+    <a href="2.3/android-2.3.3-cdd.pdf">android-2.3.3-cdd.pdf</a></td>
+    <td><a href="2.3/android-2.3-cdd.html">android-2.3-cdd.html</a></td>
+    <td><a href="2.3/versions.html">Version 2.3</a></td>
+  </tr>
+  <tr>
+    <td>2.2</td>
+    <td><a href="2.2/android-2.2-cdd.pdf">android-2.2.cdd.pdf</a></td>
+    <td><a href="2.2/android-2.2-cdd.xhtml">android-2.2-cdd.xhtml</a></td>
+    <td><a href="2.2/versions.html">Version 2.2</a></td>
+  </tr>
+  <tr>
+    <td>2.1</td>
+    <td><a href="2.1/android-2.1-cdd.pdf">android-2.1.cdd.pdf</a></td>
+    <td><a href="2.1/android-2.1-cdd.xhtml">android-2.1-cdd.xhtml</a></td>
+    <td><a href="2.1/versions.html">Version 2.1</a></td>
+  </tr>
+  <tr>
+    <td>1.6</td>
+    <td><a href="1.6/android-1.6-cdd.pdf">android-1.6.cdd.pdf</a></td>
+    <td><a href="1.6/android-1.6-cdd.html">android-1.6-cdd.html</a></td
+    <td></td>
+  </tr>
+</table>
+
+    </div>
+
+      <div class="content-footer-sac"
+                    itemscope itemtype="http://schema.org/SiteNavigationElement">
+        <div class="layout-content-col col-9" style="padding-top:4px">
+        </div>
+        
+        <div class="paging-links layout-content-col col-4">
+          
+        </div>
+        
+      </div>
+      
+      
+    </div> <!-- end jd-content -->
+  <div id="footer" class="wrap" >
+  <style>.feedback { float: right !Important }</style>
+  <div class="feedback">
+    <a href="cdd.html#" class="button" onclick=" try {
+      userfeedback.api.startFeedback({'productId':'715571','authuser':'1'});return false;}catch(e){}">Site Feedback</a>
+  </div>
+  <div id="copyright">
+    
+  Except as noted, this content is 
+  licensed under <a href="http://creativecommons.org/licenses/by/2.5/">
+  Creative Commons Attribution 2.5</a>. For details and 
+  restrictions, see the <a href="../license.html">Content 
+  License</a>.
+  </div>
+    <div id="footerlinks">
+    
+  <p>
+    <a href="../source/index.html">About Android</a>&nbsp;&nbsp;|&nbsp;
+    <a href="../source/community.html">Community</a>&nbsp;&nbsp;|&nbsp;
+    <a href="../legal.html">Legal</a>&nbsp;&nbsp;|&nbsp;
+  </p>
+  </div>
+
+</div><!-- end doc-content -->
+
+</div> <!-- end body-content --> 
+
+
+
+
+
+
+</body>
+</html>
+
+
+

@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<meta name="Description" content="VSYNC synchronizes certain events to the refresh cycle of the display. Applications always start drawing on a VSYNC boundary, and SurfaceFlinger always composites on a VSYNC boundary. This eliminates stutters and improves visual performance of graphics…">
+
+<link rel="shortcut icon" type="image/x-icon" href="../../favicon.ico" />
+<title>Implementing VSYNC | Android Open Source Project</title>
+
+<!-- STYLESHEETS -->
+<link rel="stylesheet"
+href="https://fonts.googleapis.com/css?family=Roboto:regular,medium,thin,italic,mediumitalic,bold" title="roboto">
+<link href="../../assets/css/default.css" rel="stylesheet" type="text/css">
+
+
+
+<!-- JAVASCRIPT -->
+<script src="https://www.google.com/jsapi" type="text/javascript"></script>
+<script src="../../assets/js/android_3p-bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+  var toRoot = "/";
+  
+  var devsite = false;
+  
+</script>
+<script src="../../assets/js/docs.js" type="text/javascript"></script>
+
+<script src="../../navtree_data.js" type="text/javascript"></script>
+
+
+<script type="text/javascript" src="https://www.gstatic.com/feedback/api.js"></script>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-45455297-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</head>
+
+<body class="gc-documentation 
+  " itemscope itemtype="http://schema.org/Article">
+<a name="top"></a>
+
+  
+    <!-- Header -->
+    <div id="header">
+        <div class="wrap" id="header-wrap">
+          <div class="col-3 saclogo">
+          <a href="../../index.html">
+            <img src="../../assets/images/sac_logo.png"
+                srcset="/assets/images/sac_logo@2x.png 2x"
+                width="123" height="25" alt="Android Open Source Project" />
+          </a>
+          </div>
+            <ul class="nav-x col-9">
+                <li class="source">
+                  <a href="../../source/index.html" 
+                  >Source</a></li>
+                <li class="devices"><a href="../index.html" class="selected"
+                  >Devices</a></li>
+                <li class="security"><a href="../../security/index.html" 
+                  >Security</a></li>
+                <li class="compatibility last"><a href="../../compatibility/index.html" 
+                  >Compatibility</a></li>
+            </ul>
+            <!-- New Search -->
+            <div class="menu-container">
+            <div class="moremenu">
+    <div id="more-btn"></div>
+  </div>
+  <div class="morehover" id="moremenu">
+    <div class="top"></div>
+    <div class="mid">
+      <div class="header">Android Sites</div>
+      <ul>
+        <li class="active"><a>Android Open Source Project</a></li>
+        <li><a href="http://www.android.com">Android.com</a></li>
+        <li><a href="http://developer.android.com">Android Developers</a></li>
+      </ul>
+      <!-- <div class="header">Support</div>
+      <ul>
+        <li><a href="/support.html">Developer Support</a></li>
+      </ul> -->
+      <br class="clearfix" />
+    </div>
+    <div class="bottom"></div>
+  </div>
+
+  <div class="search" id="search-container">
+    <div class="search-inner">
+      <div id="search-btn"></div>
+      <div class="left"></div>
+      <form onsubmit="return submit_search()">
+        <input id="search_autocomplete" type="text" value="" autocomplete="off" name="q"
+onfocus="search_focus_changed(this, true)" onblur="search_focus_changed(this, false)"
+onkeydown="return search_changed(event, true, '/')"
+onkeyup="return search_changed(event, false, '/')" />
+      </form>
+      <div class="right"></div>
+        <a class="close hide">close</a>
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+  </div>
+  <div id="search_filtered_wrapper">
+    <div id="search_filtered_div" class="no-display">
+        <ul id="search_filtered">
+        </ul>
+    </div>
+  </div>
+
+  </div>
+  <!-- /New Search> -->
+        </div>
+    </div>
+    <!-- /Header -->
+
+  <div id="searchResults" class="wrap" style="display:none;">
+          <h2 id="searchTitle">Results</h2>
+          <div id="leftSearchControl" class="search-control">Loading...</div>
+  </div>
+
+  
+  
+  
+    
+  <div class="wrap clearfix" id="body-content">
+    <div class="col-4" id="side-nav" itemscope itemtype="http://schema.org/SiteNavigationElement">
+      <div id="devdoc-nav" class="scroll-pane">
+<a class="totop" href="implement-vsync.html#top" data-g-event="left-nav-top">to top</a>
+
+<!--
+    Copyright 2015 The Android Open Source Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<ul id="nav">
+  <li class="nav-section">  <!-- Begin nav section, Device Interfaces -->
+    <div class="nav-section-header">
+      <a href="../index.html">
+        <span class="en">Interfaces</span>
+      </a>
+    </div>
+    <ul>
+  <li class="nav-section">
+  <div class="nav-section-header">
+      <a href="../accessories/index.html">
+        <span class="en">Accessories</span>
+      </a>
+    </div>
+    <ul>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../accessories/audio.html">
+            <span class="en">Audio Accessories</span>
+          </a>
+        </div>
+        <ul>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../accessories/headset/index.html">
+            <span class="en">Headset</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../accessories/headset/specification.html">Specification</a></li>
+          <li><a href="../accessories/headset/requirements.html">Requirements</a></li>
+          <li><a href="../accessories/headset/testing.html">Testing</a></li>
+        </ul>
+      </li>
+        </ul>
+      </li>
+  <li class="nav-section">
+  <div class="nav-section-header">
+      <a href="../accessories/custom.html">
+        <span class="en">Custom Accessories</span>
+      </a>
+    </div>
+    <ul>
+      <li class="nav-section">
+        <div class="nav-section-header"><a href="../accessories/protocol.html"><span class="en">AOA</span>
+        </a>
+        </div>
+        <ul>
+          <li><a href="../accessories/aoa2.html">AOA 2.0</a></li>
+          <li><a href="../accessories/aoa.html">AOA 1.0</a></li>
+        </ul>
+        </li>
+        <div class="nav-section-header"><a href="../accessories/stylus.html"><span class="en">Stylus</span>
+        </a>
+        </div>
+       </ul>
+     </li>
+    </ul>
+      <li class="nav-section">
+      <div class="nav-section-header">
+        <a href="../audio/index.html">
+          <span class="en">Audio</span>
+        </a>
+      </div>
+        <ul>
+          <li><a href="../audio/terminology.html">Terminology</a></li>
+          <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="../audio/implement.html">
+                <span class="en">Implementation</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="../audio/implement-policy.html">Policy Configuration</a></li>
+              <li><a href="../audio/implement-shared-library.html">Shared Library</a></li>
+              <li><a href="../audio/implement-pre-processing.html">Pre-processing Effects</a></li>
+            </ul>
+         </li>
+          <li><a href="../audio/data_formats.html">Data Formats</a></li>
+          <li><a href="../audio/attributes.html">Attributes</a></li>
+          <li><a href="../audio/warmup.html">Warmup</a></li>
+          <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="../audio/latency.html">
+                <span class="en">Latency</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="../audio/latency_contrib.html">Contributors</a></li>
+              <li><a href="../audio/latency_design.html">Design</a></li>
+              <li><a href="../audio/latency_measure.html">Measure</a></li>
+              <li><a href="../audio/testing_circuit.html">Light Testing Circuit</a></li>
+              <li><a href="../audio/loopback.html">Audio Loopback Dongle</a></li>
+              <li><a href="../audio/latency_measurements.html">Measurements</a></li>
+              <li><a href="../audio/latency_app.html">Applications</a></li>
+            </ul>
+          </li>
+          <li><a href="../audio/avoiding_pi.html">Priority Inversion</a></li>
+          <li><a href="../audio/src.html">Sample Rate Conversion</a></li>
+          <li><a href="../audio/debugging.html">Debugging</a></li>
+          <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="../audio/midi.html">
+                <span class="em">MIDI</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="../audio/midi_arch.html">MIDI Architecture</a></li>
+              <li><a href="../audio/midi_test.html">MIDI Test Procedure</a></li>
+            </ul>
+          <li><a href="../audio/usb.html">USB Digital Audio</a></li>
+          <li><a href="../audio/tv.html">TV Audio</a></li>
+        </ul>
+      </li>
+      <li><a href="../automotive.html">Automotive</a></li>
+      <li><a href="../bluetooth.html">Bluetooth</a></li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../camera/index.html">
+            <span class="en">Camera</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../camera/camera3.html">Camera HAL3</a></li>
+          <li><a href="../camera/camera3_requests_hal.html">HAL Subsystem</a></li>
+          <li><a href="../camera/camera3_metadata.html">Metadata and Controls</a></li>
+          <li><a href="../camera/camera3_3Amodes.html">3A Modes and State</a></li>
+          <li><a href="../camera/camera3_crop_reprocess.html">Output and Cropping</a></li>
+          <li><a href="../camera/camera3_error_stream.html">Errors and Streams</a></li>
+          <li><a href="../camera/camera3_requests_methods.html">Request Creation</a></li>
+          <li><a href="../camera/versioning.html">Version Support</a></li>
+        </ul>
+      </li>
+
+      <li><a href="../drm.html">DRM</a></li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="index.html">
+            <span class="en">Graphics</span>
+          </a>
+        </div>
+        <ul>
+         <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="architecture.html">
+                <span class="en">Architecture</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="arch-bq-gralloc.html">BufferQueue</a></li>
+              <li><a href="arch-sf-hwc.html">SurfaceFlinger and HWC</a></li>
+              <li><a href="arch-sh.html">Surface and SurfaceHolder</a></li>
+              <li><a href="arch-egl-opengl.html">OpenGL ES</a></li>
+              <li><a href="arch-vulkan.html">Vulkan</a></li>
+              <li><a href="arch-sv-glsv.html">SurfaceView</a></li>
+              <li><a href="arch-st.html">SurfaceTexture</a></li>
+              <li><a href="arch-tv.html">TextureView</a></li>
+              <li><a href="arch-gameloops.html">Game Loops</a></li>
+            </ul>
+         </li>
+         <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="implement.html">
+                <span class="en">Implementing</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="implement-hwc.html">Hardware Composer HAL</a></li>
+              <li><a href="implement-vsync.html">VSYNC</a></li>
+              <li><a href="implement-vulkan.html">Vulkan</a></li>
+              <li><a href="implement-vdisplays.html">Virtual Displays</a></li>
+            </ul>
+         </li>
+         <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="testing.html">
+                <span class="en">OpenGL ES Testing</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="build-tests.html">Building test programs</a></li>
+              <li><a href="port-tests.html">Porting the test framework</a></li>
+              <li><a href="run-tests.html">Running the tests</a></li>
+              <li><a href="automate-tests.html">Automating the tests</a></li>
+              <li><a href="test-groups.html">Using special test groups</a></li>
+              <li><a href="cts-integration.html">Integrating with Android CTS</a></li>
+            </ul>
+         </li>
+        </ul> </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../input/index.html">
+            <span class="en">Input</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../input/overview.html">Overview</a></li>
+          <li><a href="../input/key-layout-files.html">Key Layout Files</a></li>
+          <li><a href="../input/key-character-map-files.html">Key Character Map Files</a></li>
+          <li><a href="../input/input-device-configuration-files.html">Input Device Configuration Files</a></li>
+          <li><a href="../input/migration-guide.html">Migration Guide</a></li>
+          <li><a href="../input/keyboard-devices.html">Keyboard Devices</a></li>
+          <li><a href="../tech/input/touch-devices.html">Touch Devices</a></li>
+          <li><a href="../tech/input/dumpsys.html">Diagnostics</a></li>
+          <li><a href="../input/getevent.html">Getevent</a></li>
+          <li><a href="../input/validate-keymaps.html">Validate Keymaps</a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../media.html">
+            <span class="en">Media</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../media/framework-hardening.html">Framework
+          Hardening</a></li>
+          <li><a href="../media/soc.html">SoC Dependencies</a></li>
+          <li><a href="../media/oem.html">OEM Dependencies</a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../sensors/index.html">
+            <span class="en">Sensors</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../sensors/sensor-stack.html">Sensor stack</a></li>
+          <li><a href="../sensors/report-modes.html">Reporting modes</a></li>
+          <li><a href="../sensors/suspend-mode.html">Suspend mode</a></li>
+          <li><a href="../sensors/power-use.html">Power consumption</a></li>
+          <li><a href="../sensors/interaction.html">Interaction</span></a></li>
+          <li><a href="../sensors/hal-interface.html">HAL interface</a></li>
+          <li><a href="../sensors/batching.html">Batching</a></li>
+          <li><a href="../sensors/sensor-types.html">Sensor types</a></li>
+          <li><a href="../sensors/versioning.html">Version deprecation</a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="https://source.android.com/devices/storage/index.html">
+            <span class="en">Storage</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../storage/traditional.html">Traditional Storage</a></li>
+          <li><a href="../storage/adoptable.html">Adoptable Storage</a></li>
+          <li><a href="../storage/config.html">Device Configuration</a></li>
+          <li><a href="../storage/config-example.html">Configuration Examples</a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../tv/index.html">
+            <span class="en">TV</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../tv/HDMI-CEC.html">HDMI-CEC control service</a></li>
+          <li><a href="../tv/reference-tv-app.html">Reference TV App</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li> <!-- End nav-section, Device Interfaces-->
+
+
+  <li class="nav-section"> <!--Begin nav-section, Core Technologies-->
+    <div class="nav-section-header">
+      <a href="../tech/index.html">
+        <span class="en">Core Technologies</span>
+      </a>
+    </div>
+
+    <ul>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../tech/dalvik/index.html">
+          <span class="en">ART and Dalvik</span></a>
+        </div>
+        <ul>
+          <li><a href="../tech/dalvik/dalvik-bytecode.html">Bytecode Format</a></li>
+          <li><a href="../tech/dalvik/dex-format.html">.Dex Format</a></li>
+          <li><a href="../tech/dalvik/instruction-formats.html">Instruction Formats</a></li>
+          <li><a href="../tech/dalvik/constraints.html">Constraints</a></li>
+          <li><a href="../tech/dalvik/configure.html">Configuration</a></li>
+          <li><a href="../tech/dalvik/gc-debug.html">Garbage Collection</a></li>
+          <li><a href="../tech/dalvik/jit-compiler.html">JIT Compilation</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+            <a href="../tech/config/index.html">
+              <span class="en">Configuration</span>
+            </a>
+        </div>
+        <ul>
+          <li><a href="../tech/config/carrier.html">Carrier Customization</a></li>
+          <li><a href="../tech/config/connect_tests.html">Connectivity Tests</a></li>
+          <li><a href="../tech/config/filesystem.html">File System</a></li>
+          <li><a href="../tech/kernel.html">Kernel Configuration</a></li>
+          <li><a href="../tech/config/kernel_network_tests.html">Kernel Network Tests</a></li>
+          <li><a href="../tech/config/low-ram.html">Low RAM</a></li>
+          <li><a href="../tech/config/namespaces_libraries.html">Namespaces for Libraries</a></li>
+          <li><a href="../tech/config/renderer.html">OpenGLRenderer</a></li>
+          <li><a href="../tech/config/runtime_perms.html">Runtime Permissions</a></li>
+          <li><a href="../tech/config/uicc.html">UICC</a></li>
+          <li><a href="../tech/config/voicemail.html">Visual Voicemail</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+            <a href="../tech/connect/index.html">
+              <span class="en">Connectivity</span>
+            </a>
+        </div>
+        <ul>
+          <li><a href="../tech/connect/block-numbers.html">Block Phone Numbers</a></li>
+          <li><a href="../tech/connect/call-notification.html">Call Notifications</a></li>
+          <li><a href="../tech/connect/data-saver.html">Data Saver Mode</a></li>
+          <li><a href="../tech/connect/felica.html">Host Card Emulation of FeliCa</a></li>
+          <li><a href="../tech/connect/ril.html">Radio Interface Layer (RIL)</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../tech/datausage/index.html">
+            <span class="en">Data Usage</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../tech/datausage/iface-overview.html">Network interface statistics overview</a></li>
+          <li><a href="../tech/datausage/excluding-network-types.html">Excluding Network Types from Data Usage</a></li>
+          <li><a href="../tech/datausage/tethering-data.html">Tethering Data</a></li>
+          <li><a href="../tech/datausage/usage-cycle-resets-dates.html">Usage Cycle Reset Dates</a></li>
+          <li><a href="../tech/datausage/kernel-overview.html">Kernel Overview</a></li>
+          <li><a href="../tech/datausage/tags-explained.html">Data Usage Tags Explained</a></li>
+          <li><a href="../tech/datausage/kernel-changes.html">Kernel Changes</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../tech/debug/index.html">
+            <span class="en">Debugging</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../tech/debug/asan.html">AddressSanitizer</a></li>
+          <li><a href="../tech/debug/dumpsys.html">Dumpsys</a></li>
+          <li><a href="../tech/debug/native-memory.html">Native Memory Use</a></li>
+          <li><a href="../tech/debug/netstats.html">Network Use</a></li>
+          <li><a href="../tech/debug/procstats.html">RAM Use</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../tech/admin/index.html">
+          <span class="en">Device Administration</span></a>
+        </div>
+        <ul>
+          <li><a href="../tech/admin/implement.html">Implementation</a></li>
+          <li><a href="../tech/admin/multi-user.html">Multiple Users</a></li>
+          <li><a href="../tech/admin/managed-profiles.html">Managed Profiles</a></li>
+          <li><a href="../tech/admin/provision.html">Provisioning</a></li>
+          <li><a href="../tech/admin/multiuser-apps.html">Multiuser Apps</a></li>
+          <li><a href="../tech/admin/enterprise-telephony.html">Enterprise Telephony</a></li>
+          <li><a href="../tech/admin/testing-provision.html">Testing Device Provisioning</a></li>
+          <li><a href="../tech/admin/testing-setup.html">Testing Device Administration</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+            <a href="../tech/display/index.html">
+              <span class="en">Display Settings</span></a>
+        </div>
+        <ul>
+          <li><a href="../tech/display/dnd.html">Do Not Disturb</a></li>
+          <li><a href="../tech/display/multi-window.html">Multi-Window</a></li>
+          <li><a href="../tech/display/hdr.html">HDR Video</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header empty">
+          <a href="../halref/index.html">
+            <span class="en">HAL File Reference</span>
+          </a>
+        </div>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+            <a href="../tech/ota/index.html">
+              <span class="en">OTA Updates</span>
+            </a>
+        </div>
+        <ul>
+          <li><a href="../tech/ota/tools.html">OTA Tools</a></li>
+          <li><a href="../tech/ota/block.html">Block-based OTA</a></li>
+          <li><a href="../tech/ota/inside_packages.html">Inside OTA Packages</a></li>
+          <li><a href="../tech/ota/device_code.html">Device-Specific Code</a></li>
+          <li><a href="../tech/ota/reduce_size.html">Reducing OTA Size</a></li>
+          <li><a href="../tech/ota/sign_builds.html">Signing Builds for Release</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../tech/power/index.html"><span class="en">Power</span></a>
+        </div>
+        <ul>
+          <li><a href="../tech/power/mgmt.html">Power Management</a></li>
+          <li><a href="../tech/power/performance.html">Performance Management</a></li>
+          <li><a href="../tech/power/component.html">Component Power</a></li>
+          <li><a href="../tech/power/device.html">Device Power</a></li>
+          <li><a href="../tech/power/values.html">Power Values</a></li>
+          <li><a href="../tech/power/batterystats.html">Battery Use</a>
+          </li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../tech/test_infra/tradefed/index.html">
+            <span class="en">Testing Infrastructure</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../tech/test_infra/tradefed/fundamentals/index.html">Start Here</a></li>
+          <li><a href="../tech/test_infra/tradefed/fundamentals/machine_setup.html">Machine Setup</a></li>
+          <li><a href="../tech/test_infra/tradefed/fundamentals/devices.html">Working with Devices</a></li>
+          <li><a href="../tech/test_infra/tradefed/fundamentals/lifecycle.html">Test Lifecycle</a></li>
+          <li><a href="../tech/test_infra/tradefed/fundamentals/options.html">Option Handling</a></li>
+          <li><a href="../tech/test_infra/tradefed/full_example.html">An End-to-End Example</a></li>
+          <li id="tradefed-tree-list" class="nav-section">
+            <div class="nav-section-header">
+              <a href="../../reference/packages.html">
+                <span class="en">Package Index</span>
+              </a>
+            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li> <!-- End nav-section, Core Technologies -->
+</ul> 
+
+
+      </div>
+      <script type="text/javascript">
+        showTradefedRefTree();
+      </script>
+    </div> <!-- end side-nav -->
+    <script>
+      $(document).ready(function() {
+        scrollIntoView("devdoc-nav");
+        });
+    </script>
+
+  
+
+
+
+
+<div class="col-12" id="doc-col" >
+
+
+  
+    
+      
+        <h1 itemprop="name" >Implementing VSYNC</h1>
+      
+    
+  
+
+
+  
+  <div id="jd-content">
+
+    <div class="jd-descr" itemprop="articleBody">
+    <!--
+    Copyright 2016 The Android Open Source Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<div id="qv-wrapper">
+  <div id="qv">
+    <h2>In this document</h2>
+    <ol id="auto-toc">
+    </ol>
+  </div>
+</div>
+
+
+<p>VSYNC synchronizes certain events to the refresh cycle of the display.
+Applications always start drawing on a VSYNC boundary, and SurfaceFlinger
+always composites on a VSYNC boundary. This eliminates stutters and improves
+visual performance of graphics.</p>
+
+<p>The Hardware Composer (HWC) has a function pointer indicating the function
+to implement for VSYNC:</p>
+
+<pre class=prettyprint> int (waitForVsync*) (int64_t *timestamp) </pre>
+
+<p>This function blocks until a VSYNC occurs and returns the timestamp of the
+actual VSYNC. A message must be sent every time VSYNC occurs. A client can
+receive a VSYNC timestamp once at specified intervals or continuously at
+intervals of 1. You must implement VSYNC with a maximum 1 ms lag (0.5 ms or less
+is recommended); timestamps returned must be extremely accurate.</p>
+
+<h2 id=explicit_synchronization>Explicit synchronization</h2>
+
+<p>Explicit synchronization is required and provides a mechanism for Gralloc
+buffers to be acquired and released in a synchronized way. Explicit
+synchronization allows producers and consumers of graphics buffers to signal
+when they are done with a buffer. This allows Android to asynchronously queue
+buffers to be read or written with the certainty that another consumer or
+producer does not currently need them. For details, see
+<a href="index.html#synchronization_framework">Synchronization
+framework</a>.</p>
+
+<p>The benefits of explicit synchronization include less behavior variation
+between devices, better debugging support, and improved testing metrics. For
+instance, the sync framework output readily identifies problem areas and root
+causes, and centralized SurfaceFlinger presentation timestamps show when events
+occur in the normal flow of the system.</p>
+
+<p>This communication is facilitated by the use of synchronization fences,
+which are required when requesting a buffer for consuming or producing. The
+synchronization framework consists of three main building blocks:
+<code>sync_timeline</code>, <code>sync_pt</code>, and <code>sync_fence</code>.</p>
+
+<h3 id=sync_timeline>sync_timeline</h3>
+
+<p>A <code>sync_timeline</code> is a monotonically increasing timeline that
+should be implemented for each driver instance, such as a GL context, display
+controller, or 2D blitter. This is essentially a counter of jobs submitted to
+the kernel for a particular piece of hardware. It provides guarantees about the
+order of operations and allows hardware-specific implementations.</p>
+
+<p>The sync_timeline is offered as a CPU-only reference implementation called
+<code>sw_sync</code> (software sync). If possible, use this instead of a
+<code>sync_timeline</code> to save resources and avoid complexity. If you’re not
+employing a hardware resource, <code>sw_sync</code> should be sufficient.</p>
+
+<p>If you must implement a <code>sync_timeline</code>, use the
+<code>sw_sync</code> driver as a starting point. Follow these guidelines:</p>
+
+<ul>
+<li>Provide useful names for all drivers, timelines, and fences. This simplifies
+debugging.</li>
+<li>Implement <code>timeline_value_str</code> and <code>pt_value_str</code>
+operators in your timelines to make debugging output more readable.</li>
+<li>If you want your userspace libraries (such as the GL library) to have access
+to the private data of your timelines, implement the fill driver_data operator.
+This lets you get information about the immutable sync_fence and
+<code>sync_pts</code> so you can build command lines based upon them.</li>
+</ul>
+
+<p>When implementing a <code>sync_timeline</code>, <strong>do not</strong>:</p>
+
+<ul>
+<li>Base it on any real view of time, such as when a wall clock or other piece
+of work might finish. It is better to create an abstract timeline that you can
+control.</li>
+<li>Allow userspace to explicitly create or signal a fence. This can result in
+one piece of the user pipeline creating a denial-of-service attack that halts
+all functionality. This is because the userspace cannot make promises on behalf
+of the kernel.</li>
+<li>Access <code>sync_timeline</code>, <code>sync_pt</code>, or
+<code>sync_fence</code> elements explicitly, as the API should provide all
+required functions.</li>
+</ul>
+
+<h3 id=sync_pt>sync_pt</h3>
+
+<p>A <code>sync_pt</code> is a single value or point on a sync_timeline. A point
+has three states: active, signaled, and error. Points start in the active state
+and transition to the signaled or error states. For instance, when a buffer is
+no longer needed by an image consumer, this sync_point is signaled so image
+producers know it is okay to write into the buffer again.</p>
+
+<h3 id=sync_fence>sync_fence</h3>
+
+<p>A <code>sync_fence</code> is a collection of <code>sync_pts</code> that often
+have different <code>sync_timeline</code> parents (such as for the display
+controller and GPU). These are the main primitives over which drivers and
+userspace communicate their dependencies. A fence is a promise from the kernel
+given upon accepting work that has been queued and assures completion in a
+finite amount of time.</p>
+
+<p>This allows multiple consumers or producers to signal they are using a
+buffer and to allow this information to be communicated with one function
+parameter. Fences are backed by a file descriptor and can be passed from
+kernel-space to user-space. For instance, a fence can contain two
+<code>sync_points</code> that signify when two separate image consumers are done
+reading a buffer. When the fence is signaled, the image producers know both
+consumers are done consuming.</p>
+
+<p>Fences, like <code>sync_pts</code>, start active and then change state based
+upon the state of their points. If all <code>sync_pts</code> become signaled,
+the <code>sync_fence</code> becomes signaled. If one <code>sync_pt</code> falls
+into an error state, the entire sync_fence has an error state.</p>
+
+<p>Membership in the <code>sync_fence</code> is immutable after the fence is
+created. As a <code>sync_pt</code> can be in only one fence, it is included as a
+copy. Even if two points have the same value, there will be two copies of the
+<code>sync_pt</code> in the fence. To get more than one point in a fence, a
+merge operation is conducted where points from two distinct fences are added to
+a third fence. If one of those points was signaled in the originating fence and
+the other was not, the third fence will also not be in a signaled state.</p>
+
+<p>To implement explicit synchronization, provide the following:</p>
+
+<ul>
+<li>A kernel-space driver that implements a synchronization timeline for a
+particular piece of hardware. Drivers that need to be fence-aware are generally
+anything that accesses or communicates with the Hardware Composer. Key files
+include:
+<ul>
+<li>Core implementation:
+<ul>
+ <li><code>kernel/common/include/linux/sync.h</code></li>
+ <li><code>kernel/common/drivers/base/sync.c</code></li>
+</ul></li>
+<li><code>sw_sync</code>:
+<ul>
+ <li><code>kernel/common/include/linux/sw_sync.h</code></li>
+ <li><code>kernel/common/drivers/base/sw_sync.c</code></li>
+</ul></li>
+<li>Documentation at <code>kernel/common//Documentation/sync.txt</code>.</li>
+<li>Library to communicate with the kernel-space in
+ <code>platform/system/core/libsync</code>.</li>
+</ul></li>
+<li>A Hardware Composer HAL module (v1.3 or higher) that supports the new
+synchronization functionality. You must provide the appropriate synchronization
+fences as parameters to the <code>set()</code> and <code>prepare()</code>
+functions in the HAL.</li>
+<li>Two fence-related GL extensions (<code>EGL_ANDROID_native_fence_sync</code>
+and <code>EGL_ANDROID_wait_sync</code>) and fence support in your graphics
+drivers.</li>
+</ul>
+
+<p>For example, to use the API supporting the synchronization function, you
+might develop a display driver that has a display buffer function. Before the
+synchronization framework existed, this function would receive dma-bufs, put
+those buffers on the display, and block while the buffer is visible. For
+example:</p>
+
+<pre class=prettyprint>/*
+ * assumes buf is ready to be displayed.  returns when buffer is no longer on
+ * screen.
+ */
+void display_buffer(struct dma_buf *buf);
+</pre>
+
+<p>With the synchronization framework, the API call is slightly more complex.
+While putting a buffer on display, you associate it with a fence that says when
+the buffer will be ready. You can queue up the work and initiate after the fence
+clears.</p>
+
+<p>In this manner, you are not blocking anything. You immediately return your
+own fence, which is a guarantee of when the buffer will be off of the display.
+As you queue up buffers, the kernel will list dependencies with the
+synchronization framework:</p>
+
+<pre class=prettyprint>/*
+ * will display buf when fence is signaled.  returns immediately with a fence
+ * that will signal when buf is no longer displayed.
+ */
+struct sync_fence* display_buffer(struct dma_buf *buf, struct sync_fence
+*fence);
+</pre>
+
+
+<h2 id=sync_integration>Sync integration</h2>
+<p>This section explains how to integrate the low-level sync framework with
+different parts of the Android framework and the drivers that must communicate
+with one another.</p>
+
+<h3 id=integration_conventions>Integration conventions</h3>
+
+<p>The Android HAL interfaces for graphics follow consistent conventions so
+when file descriptors are passed across a HAL interface, ownership of the file
+descriptor is always transferred. This means:</p>
+
+<ul>
+<li>If you receive a fence file descriptor from the sync framework, you must
+close it.</li>
+<li>If you return a fence file descriptor to the sync framework, the framework
+will close it.</li>
+<li>To continue using the fence file descriptor, you must duplicate the
+descriptor.</li>
+</ul>
+
+<p>Every time a fence passes through BufferQueue (such as for a window that
+passes a fence to BufferQueue saying when its new contents will be ready) the
+fence object is renamed. Since kernel fence support allows fences to have
+strings for names, the sync framework uses the window name and buffer index
+that is being queued to name the fence (i.e., <code>SurfaceView:0</code>). This
+is helpful in debugging to identify the source of a deadlock as the names appear
+in the output of <code>/d/sync</code> and bug reports.</p>
+
+<h3 id=anativewindow_integration>ANativeWindow integration</h3>
+
+<p>ANativeWindow is fence aware and <code>dequeueBuffer</code>,
+<code>queueBuffer</code>, and <code>cancelBuffer</code> have fence parameters.
+</p>
+
+<h3 id=opengl_es_integration>OpenGL ES integration</h3>
+
+<p>OpenGL ES sync integration relies upon two EGL extensions:</p>
+
+<ul>
+<li><code>EGL_ANDROID_native_fence_sync</code>. Provides a way to either
+wrap or create native Android fence file descriptors in EGLSyncKHR objects.</li>
+<li><code>EGL_ANDROID_wait_sync</code>. Allows GPU-side stalls rather than in
+CPU, making the GPU wait for an EGLSyncKHR. This is essentially the same as the
+<code>EGL_KHR_wait_sync</code> extension (refer to that specification for
+details).</li>
+</ul>
+
+<p>These extensions can be used independently and are controlled by a compile
+flag in libgui. To use them, first implement the
+<code>EGL_ANDROID_native_fence_sync</code> extension along with the associated
+kernel support. Next, add a ANativeWindow support for fences to your driver then
+turn on support in libgui to make use of the
+<code>EGL_ANDROID_native_fence_sync</code> extension.</p>
+
+<p>In a second pass, enable the <code>EGL_ANDROID_wait_sync</code>
+extension in your driver and turn it on separately. The
+<code>EGL_ANDROID_native_fence_sync</code> extension consists of a distinct
+native fence EGLSync object type so extensions that apply to existing EGLSync
+object types don’t necessarily apply to <code>EGL_ANDROID_native_fence</code>
+objects to avoid unwanted interactions.</p>
+
+<p>The EGL_ANDROID_native_fence_sync extension employs a corresponding native
+fence file descriptor attribute that can be set only at creation time and
+cannot be directly queried onward from an existing sync object. This attribute
+can be set to one of two modes:</p>
+
+<ul>
+<li><em>A valid fence file descriptor</em>. Wraps an existing native Android
+fence file descriptor in an EGLSyncKHR object.</li>
+<li><em>-1</em>. Creates a native Android fence file descriptor from an
+EGLSyncKHR object.</li>
+</ul>
+
+<p>The DupNativeFenceFD function call is used to extract the EGLSyncKHR object
+from the native Android fence file descriptor. This has the same result as
+querying the attribute that was set but adheres to the convention that the
+recipient closes the fence (hence the duplicate operation). Finally, destroying
+the EGLSync object should close the internal fence attribute.</p>
+
+<h3 id=hardware_composer_integration>Hardware Composer integration</h3>
+
+<p>The Hardware Composer handles three types of sync fences:</p>
+
+<ul>
+<li><em>Acquire fence</em>. One per layer, set before calling
+<code>HWC::set</code>. It signals when Hardware Composer may read the buffer.</li>
+<li><em>Release fence</em>. One per layer, filled in by the driver in
+<code>HWC::set</code>. It signals when Hardware Composer is done reading the
+buffer so the framework can start using that buffer again for that particular
+layer.</li>
+<li><em>Retire fence</em>. One per the entire frame, filled in by the driver
+each time <code>HWC::set</code> is called. This covers all layers for the set
+operation and signals to the framework when all effects of this set operation
+have completed. The retire fence signals when the next set operation takes place
+on the screen.</li>
+</ul>
+
+<p>The retire fence can be used to determine how long each frame appears on the
+screen. This is useful in identifying the location and source of delays, such
+as a stuttering animation.</p>
+
+<h2 id=vsync_offset>VSYNC offset</h2>
+
+<p>Application and SurfaceFlinger render loops should be synchronized to the
+hardware VSYNC. On a VSYNC event, the display begins showing frame N while
+SurfaceFlinger begins compositing windows for frame N+1. The app handles
+pending input and generates frame N+2.</p>
+
+<p>Synchronizing with VSYNC delivers consistent latency. It reduces errors in
+apps and SurfaceFlinger and the drifting of displays in and out of phase with
+each other. This, however, does assume application and SurfaceFlinger per-frame
+times don’t vary widely. Nevertheless, the latency is at least two frames.</p>
+
+<p>To remedy this, you can employ VSYNC offsets to reduce the input-to-display
+latency by making application and composition signal relative to hardware
+VSYNC. This is possible because application plus composition usually takes less
+than 33 ms.</p>
+
+<p>The result of VSYNC offset is three signals with same period, offset
+phase:</p>
+
+<ul>
+<li><code>HW_VSYNC_0</code>. Display begins showing next frame.</li>
+<li><code>VSYNC</code>. App reads input and generates next frame.</li>
+<li><code>SF VSYNC</code>. SurfaceFlinger begins compositing for next frame.</li>
+</ul>
+
+<p>With VSYNC offset, SurfaceFlinger receives the buffer and composites the
+frame, while the application processes the input and renders the frame, all
+within a single frame of time.</p>
+
+<p class="note"><strong>Note:</strong> VSYNC offsets reduce the time available
+for app and composition and therefore provide a greater chance for error.</p>
+
+<h3 id=dispsync>DispSync</h3>
+
+<p>DispSync maintains a model of the periodic hardware-based VSYNC events of a
+display and uses that model to execute periodic callbacks at specific phase
+offsets from the hardware VSYNC events.</p>
+
+<p>DispSync is essentially a software phase lock loop (PLL) that generates the
+VSYNC and SF VSYNC signals used by Choreographer and SurfaceFlinger, even if
+not offset from hardware VSYNC.</p>
+
+<img src="images/dispsync.png" alt="DispSync flow">
+
+<p class="img-caption"><strong>Figure 1.</strong> DispSync flow</p>
+
+<p>DispSync has the following qualities:</p>
+
+<ul>
+<li><em>Reference</em>. HW_VSYNC_0.</li>
+<li><em>Output</em>. VSYNC and SF VSYNC.</li>
+<li><em>Feedback</em>. Retire fence signal timestamps from Hardware Composer.
+</li>
+</ul>
+
+<h3 id=vsync_retire_offset>VSYNC/Retire offset</h3>
+
+<p>The signal timestamp of retire fences must match HW VSYNC even on devices
+that don’t use the offset phase. Otherwise, errors appear to have greater
+severity than reality. Smart panels often have a delta: Retire fence is the end
+of direct memory access (DMA) to display memory, but the actual display switch
+and HW VSYNC is some time later.</p>
+
+<p><code>PRESENT_TIME_OFFSET_FROM_VSYNC_NS</code> is set in the device’s
+BoardConfig.mk make file. It is based upon the display controller and panel
+characteristics. Time from retire fence timestamp to HW VSYNC signal is
+measured in nanoseconds.</p>
+
+<h3 id=vsync_and_sf_vsync_offsets>VSYNC and SF_VSYNC offsets</h3>
+
+<p>The <code>VSYNC_EVENT_PHASE_OFFSET_NS</code> and
+<code>SF_VSYNC_EVENT_PHASE_OFFSET_NS</code> are set conservatively based on
+high-load use cases, such as partial GPU composition during window transition
+or Chrome scrolling through a webpage containing animations. These offsets
+allow for long application render time and long GPU composition time.</p>
+
+<p>More than a millisecond or two of latency is noticeable. We recommend
+integrating thorough automated error testing to minimize latency without
+significantly increasing error counts.</p>
+
+<p class="note"><strong>Note:</strong> Theses offsets are also configured in the
+device’s BoardConfig.mk file. Both settings are offset in nanoseconds after
+HW_VSYNC_0, default to zero (if not set), and can be negative.</p>
+
+    </div>
+
+      <div class="content-footer-sac"
+                    itemscope itemtype="http://schema.org/SiteNavigationElement">
+        <div class="layout-content-col col-9" style="padding-top:4px">
+        </div>
+        
+        <div class="paging-links layout-content-col col-4">
+          
+        </div>
+        
+      </div>
+      
+      
+    </div> <!-- end jd-content -->
+  <div id="footer" class="wrap" >
+  <style>.feedback { float: right !Important }</style>
+  <div class="feedback">
+    <a href="implement-vsync.html#" class="button" onclick=" try {
+      userfeedback.api.startFeedback({'productId':'715571','authuser':'1'});return false;}catch(e){}">Site Feedback</a>
+  </div>
+  <div id="copyright">
+    
+  Except as noted, this content is 
+  licensed under <a href="http://creativecommons.org/licenses/by/2.5/">
+  Creative Commons Attribution 2.5</a>. For details and 
+  restrictions, see the <a href="../../license.html">Content 
+  License</a>.
+  </div>
+    <div id="footerlinks">
+    
+  <p>
+    <a href="../../source/index.html">About Android</a>&nbsp;&nbsp;|&nbsp;
+    <a href="../../source/community.html">Community</a>&nbsp;&nbsp;|&nbsp;
+    <a href="../../legal.html">Legal</a>&nbsp;&nbsp;|&nbsp;
+  </p>
+  </div>
+
+</div><!-- end doc-content -->
+
+</div> <!-- end body-content --> 
+
+
+
+
+
+
+</body>
+</html>
+
+
+

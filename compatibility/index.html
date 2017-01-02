@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<meta name="Description" content="Android&#39;s purpose is to establish an open platform for developers to build innovative apps. A mobile phone is a highly personal, always-on, always-present gateway to the Internet. We haven&#39;t met a user yet who didn&#39;t want to customize it by…">
+
+<link rel="shortcut icon" type="image/x-icon" href="../favicon.ico" />
+<title>Android Compatibility | Android Open Source Project</title>
+
+<!-- STYLESHEETS -->
+<link rel="stylesheet"
+href="https://fonts.googleapis.com/css?family=Roboto:regular,medium,thin,italic,mediumitalic,bold" title="roboto">
+<link href="../assets/css/default.css" rel="stylesheet" type="text/css">
+
+
+
+<!-- JAVASCRIPT -->
+<script src="https://www.google.com/jsapi" type="text/javascript"></script>
+<script src="../assets/js/android_3p-bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+  var toRoot = "/";
+  
+  var devsite = false;
+  
+</script>
+<script src="../assets/js/docs.js" type="text/javascript"></script>
+
+
+<script type="text/javascript" src="https://www.gstatic.com/feedback/api.js"></script>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-45455297-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</head>
+
+<body class="gc-documentation 
+  " itemscope itemtype="http://schema.org/Article">
+<a name="top"></a>
+
+  
+    <!-- Header -->
+    <div id="header">
+        <div class="wrap" id="header-wrap">
+          <div class="col-3 saclogo">
+          <a href="../index.html">
+            <img src="../assets/images/sac_logo.png"
+                srcset="/assets/images/sac_logo@2x.png 2x"
+                width="123" height="25" alt="Android Open Source Project" />
+          </a>
+          </div>
+            <ul class="nav-x col-9">
+                <li class="source">
+                  <a href="../source/index.html" 
+                  >Source</a></li>
+                <li class="devices"><a href="../devices/index.html" 
+                  >Devices</a></li>
+                <li class="security"><a href="../security/index.html" 
+                  >Security</a></li>
+                <li class="compatibility last"><a href="index.html" class="selected"
+                  >Compatibility</a></li>
+            </ul>
+            <!-- New Search -->
+            <div class="menu-container">
+            <div class="moremenu">
+    <div id="more-btn"></div>
+  </div>
+  <div class="morehover" id="moremenu">
+    <div class="top"></div>
+    <div class="mid">
+      <div class="header">Android Sites</div>
+      <ul>
+        <li class="active"><a>Android Open Source Project</a></li>
+        <li><a href="http://www.android.com">Android.com</a></li>
+        <li><a href="http://developer.android.com">Android Developers</a></li>
+      </ul>
+      <!-- <div class="header">Support</div>
+      <ul>
+        <li><a href="/support.html">Developer Support</a></li>
+      </ul> -->
+      <br class="clearfix" />
+    </div>
+    <div class="bottom"></div>
+  </div>
+
+  <div class="search" id="search-container">
+    <div class="search-inner">
+      <div id="search-btn"></div>
+      <div class="left"></div>
+      <form onsubmit="return submit_search()">
+        <input id="search_autocomplete" type="text" value="" autocomplete="off" name="q"
+onfocus="search_focus_changed(this, true)" onblur="search_focus_changed(this, false)"
+onkeydown="return search_changed(event, true, '/')"
+onkeyup="return search_changed(event, false, '/')" />
+      </form>
+      <div class="right"></div>
+        <a class="close hide">close</a>
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+  </div>
+  <div id="search_filtered_wrapper">
+    <div id="search_filtered_div" class="no-display">
+        <ul id="search_filtered">
+        </ul>
+    </div>
+  </div>
+
+  </div>
+  <!-- /New Search> -->
+        </div>
+    </div>
+    <!-- /Header -->
+
+  <div id="searchResults" class="wrap" style="display:none;">
+          <h2 id="searchTitle">Results</h2>
+          <div id="leftSearchControl" class="search-control">Loading...</div>
+  </div>
+
+  
+  
+  
+    
+  <div class="wrap clearfix" id="body-content">
+    <div class="col-4" id="side-nav" itemscope itemtype="http://schema.org/SiteNavigationElement">
+      <div id="devdoc-nav" class="scroll-pane">
+<a class="totop" href="index.html#top" data-g-event="left-nav-top">to top</a>
+
+<!--
+    Copyright 2013 The Android Open Source Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<ul id="nav">
+<!-- Compatibility -->
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="index.html">
+        <span class="en">Compatibility</span>
+      </a>
+    </div>
+    <ul>
+      <li><a href="overview.html">Overview</a></li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="cdd.html">
+            <span class="en">Compatibility Definition</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="android-cdd.html">CDD in HTML</a></li>
+          <li><a href="android-cdd.pdf">CDD in PDF</a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="cts-intro.html">
+            <span class="en">Compatibility Test Suite</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="cts/setup.html">Set up CTS</a></li>
+          <li><a href="cts/run.html">Run CTS</a></li>
+          <li class="nav-section">
+            <div class="nav-section-header">
+            <a href="cts/verifier.html">
+              <span class="en">Run CTS Verifier</span>
+            </a>
+            </div>
+           <ul>
+            <li><a href="cts/audio-framework.html">Audio Framework</a></li>
+            <li><a href="cts/camera-hal.html">Camera HAL Testing</a></li>
+            <li><a href="cts/near-ultrasound.html">Near Ultrasound Tests</a></li>
+            <li><a href="cts/rotation-vector.html">Rotation Vector Crosscheck</a></li>
+           </ul>
+          </li>
+          <li><a href="cts/interpret.html">Interpret Results</a></li>
+          <li><a href="cts/development.html">Develop CTS</a></li>
+          <li><a href="cts/downloads.html">Downloads</a></li>
+        </ul>
+      </li>
+      <li><a href="contact-us.html">Contact Us</a></li>
+    </ul>
+<!-- End Compatibility -->
+  </li>
+
+
+</ul>
+
+
+      </div>
+    </div> <!-- end side-nav -->
+    <script>
+      $(document).ready(function() {
+        scrollIntoView("devdoc-nav");
+        });
+    </script>
+
+  
+
+
+
+
+<div class="col-12" id="doc-col" >
+
+
+  
+    
+      
+        <h1 itemprop="name" >Android Compatibility</h1>
+      
+    
+  
+
+
+  
+  <div id="jd-content">
+
+    <div class="jd-descr" itemprop="articleBody">
+    <!--
+    Copyright 2015 The Android Open Source Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<div id="qv-wrapper">
+  <div id="qv">
+    <h2>In this document</h2>
+    <ol id="auto-toc">
+    </ol>
+  </div>
+</div>
+
+<p>Android's purpose is to establish an open platform for developers to build
+innovative apps.</p>
+<ul>
+<li>The Android Compatibility program defines technical details of the
+Android platform and provides tools for OEMs to ensure developer applications
+run on a variety of devices.</li>
+<li>The Android SDK provides built-in tools for developers to clearly state the
+device features required by their applications.
+<li>Google Play shows applications only to those devices that can properly run
+those applications.</li></li>
+
+<h2 id="why-build-compatible-android-devices">Why build compatible Android
+devices?</h2>
+
+<h3 id="users-want-a-customizable-device">Users want customizable devices</h3>
+
+<div class="figure">
+  <img src="images/compat-ecosystem.png" alt="Compatibility ecosystem" id="figure1" />
+  <p class="img-caption">
+    <strong>Figure 1.</strong> The Android ecosystem thrives with device compatibility
+  </p>
+</div>
+
+<p>A mobile phone is a highly personal, always-on, always-present gateway to
+the Internet. We haven't met a user yet who didn't want to customize it by
+extending its functionality. That's why Android was designed as a robust
+platform for running aftermarket applications.</p>
+
+<h3 id="developers-outnumber-us-all">Developers outnumber us all</h3>
+<p>No device manufacturer can write all the software a user could conceivably
+need. We need third-party developers to write the apps users want, so the
+Android Open Source Project (AOSP) aims to make application development as easy
+and open as possible.</p>
+
+<h3 id="everyone-needs-a-common-ecosystem">Everyone needs a common ecosystem</h3>
+<p>Every line of code developers write to work around a bug is a line of code
+that didn't add a new feature. The more compatible mobile devices are, the more
+applications we'll have to run on those devices. By building a fully compatible
+Android device, you benefit from the huge pool of apps written for Android while
+increasing the incentive for developers to build more apps.</p>
+
+<h2 id="android-compatibility-is-free-and-its-easy">Android compatibility is
+free, and it's easy</h2>
+<p>To build an Android-compatible mobile device, follow this three-step
+process:</p>
+<ol>
+<li><em>Obtain the <a href="../source/index.html">Android software source
+code</a></em>. This is the source code for the Android platform that you port
+to your hardware.</li>
+<li><em>Comply with the Android Compatibility Definition Document (CDD)</em>
+(<a href="android-cdd.pdf">PDF</a>, <a
+href="android-cdd.html">HTML</a>). The CDD enumerates
+the software and hardware requirements of a compatible Android device.</li>
+<li><em>Pass the <a href="cts-intro.html">Compatibility
+Test Suite (CTS)</a></em>. Use the CTS as an ongoing aid to evaluate
+compatibility during the development process.</li> </ol>
+
+<p>After complying with the CDD and passing the CTS, your device is Android
+compatible, meaning Android apps in the ecosystem provide a consistent
+experience when running on your device. For details about the Android
+compatibility program, see the <a href="overview.html">program overview</a>.</p>
+
+<h2 id="licensing-gms">Licensing Google Mobile Services (GMS)</h2>
+<p>After building an Android compatible device, consider licensing Google Mobile
+Services (GMS), Google’s proprietary suite of apps (Google Play, YouTube, Google
+Maps, Gmail, and more ) that run on top of Android. GMS is not part of the
+Android Open Source Project and is available only through a license with Google.
+For information on how to request a GMS license, see
+<a href="contact-us.html">Contact Us</a>.</p>
+
+    </div>
+
+      <div class="content-footer-sac"
+                    itemscope itemtype="http://schema.org/SiteNavigationElement">
+        <div class="layout-content-col col-9" style="padding-top:4px">
+        </div>
+        
+        <div class="paging-links layout-content-col col-4">
+          
+        </div>
+        
+      </div>
+      
+      
+    </div> <!-- end jd-content -->
+  <div id="footer" class="wrap" >
+  <style>.feedback { float: right !Important }</style>
+  <div class="feedback">
+    <a href="index.html#" class="button" onclick=" try {
+      userfeedback.api.startFeedback({'productId':'715571','authuser':'1'});return false;}catch(e){}">Site Feedback</a>
+  </div>
+  <div id="copyright">
+    
+  Except as noted, this content is 
+  licensed under <a href="http://creativecommons.org/licenses/by/2.5/">
+  Creative Commons Attribution 2.5</a>. For details and 
+  restrictions, see the <a href="../license.html">Content 
+  License</a>.
+  </div>
+    <div id="footerlinks">
+    
+  <p>
+    <a href="../source/index.html">About Android</a>&nbsp;&nbsp;|&nbsp;
+    <a href="../source/community.html">Community</a>&nbsp;&nbsp;|&nbsp;
+    <a href="../legal.html">Legal</a>&nbsp;&nbsp;|&nbsp;
+  </p>
+  </div>
+
+</div><!-- end doc-content -->
+
+</div> <!-- end body-content --> 
+
+
+
+
+
+
+</body>
+</html>
+
+
+

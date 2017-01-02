@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<meta name="Description" content="The Compatibility Test Suite (CTS) is a free, commercial-grade test suite, available for download . The CTS represents the &quot;mechanism&quot; of compatibility. The CTS runs on a desktop machine and executes test cases directly on attached devices or…">
+
+<link rel="shortcut icon" type="image/x-icon" href="../favicon.ico" />
+<title>Compatibility Test Suite | Android Open Source Project</title>
+
+<!-- STYLESHEETS -->
+<link rel="stylesheet"
+href="https://fonts.googleapis.com/css?family=Roboto:regular,medium,thin,italic,mediumitalic,bold" title="roboto">
+<link href="../assets/css/default.css" rel="stylesheet" type="text/css">
+
+
+
+<!-- JAVASCRIPT -->
+<script src="https://www.google.com/jsapi" type="text/javascript"></script>
+<script src="../assets/js/android_3p-bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+  var toRoot = "/";
+  
+  var devsite = false;
+  
+</script>
+<script src="../assets/js/docs.js" type="text/javascript"></script>
+
+
+<script type="text/javascript" src="https://www.gstatic.com/feedback/api.js"></script>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-45455297-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</head>
+
+<body class="gc-documentation 
+  " itemscope itemtype="http://schema.org/Article">
+<a name="top"></a>
+
+  
+    <!-- Header -->
+    <div id="header">
+        <div class="wrap" id="header-wrap">
+          <div class="col-3 saclogo">
+          <a href="../index.html">
+            <img src="../assets/images/sac_logo.png"
+                srcset="/assets/images/sac_logo@2x.png 2x"
+                width="123" height="25" alt="Android Open Source Project" />
+          </a>
+          </div>
+            <ul class="nav-x col-9">
+                <li class="source">
+                  <a href="../source/index.html" 
+                  >Source</a></li>
+                <li class="devices"><a href="../devices/index.html" 
+                  >Devices</a></li>
+                <li class="security"><a href="../security/index.html" 
+                  >Security</a></li>
+                <li class="compatibility last"><a href="index.html" class="selected"
+                  >Compatibility</a></li>
+            </ul>
+            <!-- New Search -->
+            <div class="menu-container">
+            <div class="moremenu">
+    <div id="more-btn"></div>
+  </div>
+  <div class="morehover" id="moremenu">
+    <div class="top"></div>
+    <div class="mid">
+      <div class="header">Android Sites</div>
+      <ul>
+        <li class="active"><a>Android Open Source Project</a></li>
+        <li><a href="http://www.android.com">Android.com</a></li>
+        <li><a href="http://developer.android.com">Android Developers</a></li>
+      </ul>
+      <!-- <div class="header">Support</div>
+      <ul>
+        <li><a href="/support.html">Developer Support</a></li>
+      </ul> -->
+      <br class="clearfix" />
+    </div>
+    <div class="bottom"></div>
+  </div>
+
+  <div class="search" id="search-container">
+    <div class="search-inner">
+      <div id="search-btn"></div>
+      <div class="left"></div>
+      <form onsubmit="return submit_search()">
+        <input id="search_autocomplete" type="text" value="" autocomplete="off" name="q"
+onfocus="search_focus_changed(this, true)" onblur="search_focus_changed(this, false)"
+onkeydown="return search_changed(event, true, '/')"
+onkeyup="return search_changed(event, false, '/')" />
+      </form>
+      <div class="right"></div>
+        <a class="close hide">close</a>
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+  </div>
+  <div id="search_filtered_wrapper">
+    <div id="search_filtered_div" class="no-display">
+        <ul id="search_filtered">
+        </ul>
+    </div>
+  </div>
+
+  </div>
+  <!-- /New Search> -->
+        </div>
+    </div>
+    <!-- /Header -->
+
+  <div id="searchResults" class="wrap" style="display:none;">
+          <h2 id="searchTitle">Results</h2>
+          <div id="leftSearchControl" class="search-control">Loading...</div>
+  </div>
+
+  
+  
+  
+    
+  <div class="wrap clearfix" id="body-content">
+    <div class="col-4" id="side-nav" itemscope itemtype="http://schema.org/SiteNavigationElement">
+      <div id="devdoc-nav" class="scroll-pane">
+<a class="totop" href="cts-intro.html#top" data-g-event="left-nav-top">to top</a>
+
+<!--
+    Copyright 2013 The Android Open Source Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<ul id="nav">
+<!-- Compatibility -->
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="index.html">
+        <span class="en">Compatibility</span>
+      </a>
+    </div>
+    <ul>
+      <li><a href="overview.html">Overview</a></li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="cdd.html">
+            <span class="en">Compatibility Definition</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="android-cdd.html">CDD in HTML</a></li>
+          <li><a href="android-cdd.pdf">CDD in PDF</a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="cts-intro.html">
+            <span class="en">Compatibility Test Suite</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="cts/setup.html">Set up CTS</a></li>
+          <li><a href="cts/run.html">Run CTS</a></li>
+          <li class="nav-section">
+            <div class="nav-section-header">
+            <a href="cts/verifier.html">
+              <span class="en">Run CTS Verifier</span>
+            </a>
+            </div>
+           <ul>
+            <li><a href="cts/audio-framework.html">Audio Framework</a></li>
+            <li><a href="cts/camera-hal.html">Camera HAL Testing</a></li>
+            <li><a href="cts/near-ultrasound.html">Near Ultrasound Tests</a></li>
+            <li><a href="cts/rotation-vector.html">Rotation Vector Crosscheck</a></li>
+           </ul>
+          </li>
+          <li><a href="cts/interpret.html">Interpret Results</a></li>
+          <li><a href="cts/development.html">Develop CTS</a></li>
+          <li><a href="cts/downloads.html">Downloads</a></li>
+        </ul>
+      </li>
+      <li><a href="contact-us.html">Contact Us</a></li>
+    </ul>
+<!-- End Compatibility -->
+  </li>
+
+
+</ul>
+
+
+      </div>
+    </div> <!-- end side-nav -->
+    <script>
+      $(document).ready(function() {
+        scrollIntoView("devdoc-nav");
+        });
+    </script>
+
+  
+
+
+
+
+<div class="col-12" id="doc-col" >
+
+
+  
+    
+      
+        <h1 itemprop="name" >Compatibility Test Suite</h1>
+      
+    
+  
+
+
+  
+  <div id="jd-content">
+
+    <div class="jd-descr" itemprop="articleBody">
+    <!--
+    Copyright 2015 The Android Open Source Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<div id="qv-wrapper">
+  <div id="qv">
+    <h2>In this document</h2>
+    <ol id="auto-toc">
+    </ol>
+  </div>
+</div>
+
+<h2 id="how-does-the-cts-work">How does the CTS work?</h2>
+
+<p>The Compatibility Test Suite (CTS) is a free, commercial-grade test suite,
+available for <a href="cts/downloads.html">download</a>.  The CTS represents the
+"mechanism" of compatibility.</p>
+
+<p>The CTS runs on a desktop machine and executes test cases directly on
+attached devices or an emulator. The CTS is a set of unit tests designed to be
+integrated into the daily workflow (such as via a continuous build system) of
+the engineers building a device. Its intent is to reveal incompatibilities
+early on, and ensure that the software remains compatible throughout the
+development process.</p>
+
+
+<p>The CTS is an automated testing harness that includes two major software components:</p>
+<ul>
+<li>
+<p>The CTS tradefed test harness runs on your desktop machine and manages test execution.</p>
+</li>
+<li>
+<p>Individual test cases are executed on the Device Under Test (DUT). The test
+cases are written in Java as JUnit tests and packaged as
+Android .apk files to run on the actual device target.</p>
+</li>
+</ul>
+
+<p>The Compatibility Test Suite Verifier (CTS Verifier) is a supplement to the
+CTS available for <a href="cts/downloads.html">download</a>. CTS Verifier
+provides tests for APIs and functions that cannot be tested on a stationary
+device without manual input (e.g. audio quality, accelerometer, etc).</p>
+
+<p>The CTS Verifier is a tool for manual testing and includes the following software components:</p>
+<ul>
+<li>
+<p>The CTS verifier app that is executed on the DUT and collects the results.<p>
+</li>
+<li>
+<p>The executable(s) or script(s) that are executed on the desktop machine to
+provide data or additional control for some test cases in the CTS Verifier
+app.</p>
+</li>
+</ul>
+
+<h2 id="workflow">Workflow</h2>
+
+<div class="figure" style="width:383px">
+  <img src="cts/images/cts-0.png" alt="CTS flow" height="340px" id="figure1" />
+  <p class="img-caption">
+    <strong>Figure 1.</strong> How to use CTS
+  </p>
+</div>
+
+<p>This diagram summarizes CTS workflow. Please refer to the subpages of this
+section starting with <a href="cts/setup.html">Setup</a> for detailed
+instructions.</p>
+
+<h2 id="types-of-test-cases">Types of test cases</h2>
+<p>The CTS includes the following types of test cases:</p>
+<ul>
+<li>
+<p><em>Unit tests</em> test atomic units of code within the Android platform; e.g. a single class, such as java.util.HashMap.</p>
+</li>
+<li>
+<p><em>Functional tests</em> test a combination of APIs together in a higher-level use-case.</p>
+</li>
+</ul>
+<p>Future versions of the CTS will include the following types of test cases:</p>
+<ul>
+<li>
+<p><em>Robustness tests</em> test the durability of the system under stress.</p>
+</li>
+<li>
+<p><em>Performance tests</em> test the performance of the system against defined benchmarks, for example rendering frames per second.</p>
+</li>
+</ul>
+<h2 id="areas-covered">Areas covered</h2>
+<p>The unit test cases cover the following areas to ensure compatibility:</p>
+<table>
+<thead>
+<tr>
+<th>Area</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Signature tests</td>
+<td>For each Android release, there are XML files describing the signatures of all public APIs contained in the release. The CTS contains a utility to check those API signatures against the APIs available on the device. The results from signature checking are recorded in the test result XML file.</td>
+</tr>
+<tr>
+<td>Platform API Tests</td>
+<td>Test the platform (core libraries and Android Application Framework) APIs as documented in the SDK <a href="https://developer.android.com/reference/classes.html">Class Index</a> to ensure API correctness, including correct class, attribute and method signatures, correct method behavior, and negative tests to ensure expected behavior for incorrect parameter handling.</td>
+</tr>
+<tr>
+<td>Dalvik Tests</td>
+<td>The tests focus on testing the Dalvik Executable Format.</td>
+</tr>
+<tr>
+<td>Platform Data Model</td>
+<td>The CTS tests the core platform data model as exposed to application developers through content providers, as documented in the SDK <a href="https://developer.android.com/reference/android/provider/package-summary.html">android.provider</a> package: contacts, browser, settings, etc.</td>
+</tr>
+<tr>
+<td>Platform Intents</td>
+<td>The CTS tests the core platform intents, as documented in the SDK <a href="https://developer.android.com/guide/appendix/g-app-intents.html">Available Intents</a>.</td>
+</tr>
+<tr>
+<td>Platform Permissions</td>
+<td>The CTS tests the core platform permissions, as documented in the SDK <a href="https://developer.android.com/reference/android/Manifest.permission.html">Available Permissions</a>.</td>
+</tr>
+<tr>
+<td>Platform Resources</td>
+<td>The CTS tests for correct handling of the core platform resource types, as documented in the SDK <a href="https://developer.android.com/guide/topics/resources/available-resources.html">Available Resource Types</a>. This includes tests for: simple values, drawables, nine-patch, animations, layouts, styles and themes, and loading alternate resources.</td>
+</tr>
+</tbody>
+</table>
+
+    </div>
+
+      <div class="content-footer-sac"
+                    itemscope itemtype="http://schema.org/SiteNavigationElement">
+        <div class="layout-content-col col-9" style="padding-top:4px">
+        </div>
+        
+        <div class="paging-links layout-content-col col-4">
+          
+        </div>
+        
+      </div>
+      
+      
+    </div> <!-- end jd-content -->
+  <div id="footer" class="wrap" >
+  <style>.feedback { float: right !Important }</style>
+  <div class="feedback">
+    <a href="cts-intro.html#" class="button" onclick=" try {
+      userfeedback.api.startFeedback({'productId':'715571','authuser':'1'});return false;}catch(e){}">Site Feedback</a>
+  </div>
+  <div id="copyright">
+    
+  Except as noted, this content is 
+  licensed under <a href="http://creativecommons.org/licenses/by/2.5/">
+  Creative Commons Attribution 2.5</a>. For details and 
+  restrictions, see the <a href="../license.html">Content 
+  License</a>.
+  </div>
+    <div id="footerlinks">
+    
+  <p>
+    <a href="../source/index.html">About Android</a>&nbsp;&nbsp;|&nbsp;
+    <a href="../source/community.html">Community</a>&nbsp;&nbsp;|&nbsp;
+    <a href="../legal.html">Legal</a>&nbsp;&nbsp;|&nbsp;
+  </p>
+  </div>
+
+</div><!-- end doc-content -->
+
+</div> <!-- end body-content --> 
+
+
+
+
+
+
+</body>
+</html>
+
+
+

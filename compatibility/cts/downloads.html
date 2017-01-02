@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<meta name="Description" content="Thank you for your interest in Android Compatibility! The links below give you access to key documents and information about the program. As CTS is updated, new versions are added to this page. CTS versions are denoted by R&lt;number&gt; in the link name…">
+
+<link rel="shortcut icon" type="image/x-icon" href="../../favicon.ico" />
+<title>Compatibility Test Suite Downloads | Android Open Source Project</title>
+
+<!-- STYLESHEETS -->
+<link rel="stylesheet"
+href="https://fonts.googleapis.com/css?family=Roboto:regular,medium,thin,italic,mediumitalic,bold" title="roboto">
+<link href="../../assets/css/default.css" rel="stylesheet" type="text/css">
+
+
+
+<!-- JAVASCRIPT -->
+<script src="https://www.google.com/jsapi" type="text/javascript"></script>
+<script src="../../assets/js/android_3p-bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+  var toRoot = "/";
+  
+  var devsite = false;
+  
+</script>
+<script src="../../assets/js/docs.js" type="text/javascript"></script>
+
+
+<script type="text/javascript" src="https://www.gstatic.com/feedback/api.js"></script>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-45455297-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</head>
+
+<body class="gc-documentation 
+  " itemscope itemtype="http://schema.org/Article">
+<a name="top"></a>
+
+  
+    <!-- Header -->
+    <div id="header">
+        <div class="wrap" id="header-wrap">
+          <div class="col-3 saclogo">
+          <a href="../../index.html">
+            <img src="../../assets/images/sac_logo.png"
+                srcset="/assets/images/sac_logo@2x.png 2x"
+                width="123" height="25" alt="Android Open Source Project" />
+          </a>
+          </div>
+            <ul class="nav-x col-9">
+                <li class="source">
+                  <a href="../../source/index.html" 
+                  >Source</a></li>
+                <li class="devices"><a href="../../devices/index.html" 
+                  >Devices</a></li>
+                <li class="security"><a href="../../security/index.html" 
+                  >Security</a></li>
+                <li class="compatibility last"><a href="../index.html" class="selected"
+                  >Compatibility</a></li>
+            </ul>
+            <!-- New Search -->
+            <div class="menu-container">
+            <div class="moremenu">
+    <div id="more-btn"></div>
+  </div>
+  <div class="morehover" id="moremenu">
+    <div class="top"></div>
+    <div class="mid">
+      <div class="header">Android Sites</div>
+      <ul>
+        <li class="active"><a>Android Open Source Project</a></li>
+        <li><a href="http://www.android.com">Android.com</a></li>
+        <li><a href="http://developer.android.com">Android Developers</a></li>
+      </ul>
+      <!-- <div class="header">Support</div>
+      <ul>
+        <li><a href="/support.html">Developer Support</a></li>
+      </ul> -->
+      <br class="clearfix" />
+    </div>
+    <div class="bottom"></div>
+  </div>
+
+  <div class="search" id="search-container">
+    <div class="search-inner">
+      <div id="search-btn"></div>
+      <div class="left"></div>
+      <form onsubmit="return submit_search()">
+        <input id="search_autocomplete" type="text" value="" autocomplete="off" name="q"
+onfocus="search_focus_changed(this, true)" onblur="search_focus_changed(this, false)"
+onkeydown="return search_changed(event, true, '/')"
+onkeyup="return search_changed(event, false, '/')" />
+      </form>
+      <div class="right"></div>
+        <a class="close hide">close</a>
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+  </div>
+  <div id="search_filtered_wrapper">
+    <div id="search_filtered_div" class="no-display">
+        <ul id="search_filtered">
+        </ul>
+    </div>
+  </div>
+
+  </div>
+  <!-- /New Search> -->
+        </div>
+    </div>
+    <!-- /Header -->
+
+  <div id="searchResults" class="wrap" style="display:none;">
+          <h2 id="searchTitle">Results</h2>
+          <div id="leftSearchControl" class="search-control">Loading...</div>
+  </div>
+
+  
+  
+  
+    
+  <div class="wrap clearfix" id="body-content">
+    <div class="col-4" id="side-nav" itemscope itemtype="http://schema.org/SiteNavigationElement">
+      <div id="devdoc-nav" class="scroll-pane">
+<a class="totop" href="downloads.html#top" data-g-event="left-nav-top">to top</a>
+
+<!--
+    Copyright 2013 The Android Open Source Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<ul id="nav">
+<!-- Compatibility -->
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="../index.html">
+        <span class="en">Compatibility</span>
+      </a>
+    </div>
+    <ul>
+      <li><a href="../overview.html">Overview</a></li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../cdd.html">
+            <span class="en">Compatibility Definition</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../android-cdd.html">CDD in HTML</a></li>
+          <li><a href="../android-cdd.pdf">CDD in PDF</a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../cts-intro.html">
+            <span class="en">Compatibility Test Suite</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="setup.html">Set up CTS</a></li>
+          <li><a href="run.html">Run CTS</a></li>
+          <li class="nav-section">
+            <div class="nav-section-header">
+            <a href="verifier.html">
+              <span class="en">Run CTS Verifier</span>
+            </a>
+            </div>
+           <ul>
+            <li><a href="audio-framework.html">Audio Framework</a></li>
+            <li><a href="camera-hal.html">Camera HAL Testing</a></li>
+            <li><a href="near-ultrasound.html">Near Ultrasound Tests</a></li>
+            <li><a href="rotation-vector.html">Rotation Vector Crosscheck</a></li>
+           </ul>
+          </li>
+          <li><a href="interpret.html">Interpret Results</a></li>
+          <li><a href="development.html">Develop CTS</a></li>
+          <li><a href="downloads.html">Downloads</a></li>
+        </ul>
+      </li>
+      <li><a href="../contact-us.html">Contact Us</a></li>
+    </ul>
+<!-- End Compatibility -->
+  </li>
+
+
+</ul>
+
+
+      </div>
+    </div> <!-- end side-nav -->
+    <script>
+      $(document).ready(function() {
+        scrollIntoView("devdoc-nav");
+        });
+    </script>
+
+  
+
+
+
+
+<div class="col-12" id="doc-col" >
+
+
+  
+    
+      
+        <h1 itemprop="name" >Compatibility Test Suite Downloads</h1>
+      
+    
+  
+
+
+  
+  <div id="jd-content">
+
+    <div class="jd-descr" itemprop="articleBody">
+    <!--
+    Copyright 2016 The Android Open Source Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<div id="qv-wrapper">
+  <div id="qv">
+    <h2>In this document</h2>
+    <ol id="auto-toc">
+    </ol>
+  </div>
+</div>
+
+<p>Thank you for your interest in Android Compatibility! The links below give
+you access to key documents and information about the program. As CTS is
+updated, new versions are added to this page. CTS versions are denoted by
+R&lt;number&gt; in the link name.</p>
+
+<h2 id="android-71">Android 7.1</h2>
+<p>Android 7.1 is the release of the development milestone code-named Nougat-MR1.
+The source code for the following tests can be synced with the
+'android-cts-7.1_r1' tag in the open-source tree.</p>
+<ul>
+<li><a
+href="https://dl.google.com/dl/android/cts/android-cts-7.1_r1-linux_x86-arm.zip">Android
+7.1 R1 Compatibility Test Suite (CTS) - ARM</a></li>
+<li><a
+href="https://dl.google.com/dl/android/cts/android-cts-7.1_r1-linux_x86-x86.zip">Android
+7.1 R1 Compatibility Test Suite (CTS) - x86</a></li>
+<li><a
+href="https://dl.google.com/dl/android/cts/android-cts-verifier-7.1_r1-linux_x86-arm.zip">Android
+7.1 R1 CTS Verifier - ARM</a></li>
+<li><a
+href="https://dl.google.com/dl/android/cts/android-cts-verifier-7.1_r1-linux_x86-x86.zip">Android
+7.1 R1 CTS Verifier - x86</a></li>
+</ul>
+
+<h2 id="android-70">Android 7.0</h2>
+<p>Android 7.0 is the release of the development milestone code-named Nougat.
+The source code for the following tests can be synced with the
+'android-cts-7.0_r4' tag in the open-source tree.</p>
+<ul>
+<li><a
+href="https://dl.google.com/dl/android/cts/android-cts-7.0_r4-linux_x86-arm.zip">Android
+7.0 R4 Compatibility Test Suite (CTS) - ARM</a></li>
+<li><a
+href="https://dl.google.com/dl/android/cts/android-cts-7.0_r4-linux_x86-x86.zip">Android
+7.0 R4 Compatibility Test Suite (CTS) - x86</a></li>
+<li><a
+href="https://dl.google.com/dl/android/cts/android-cts-verifier-7.0_r4-linux_x86-arm.zip">Android
+7.0 R4 CTS Verifier - ARM</a></li>
+<li><a
+href="https://dl.google.com/dl/android/cts/android-cts-verifier-7.0_r4-linux_x86-x86.zip">Android
+7.0 R4 CTS Verifier - x86</a></li>
+</ul>
+
+<h2 id="android-60">Android 6.0</h2>
+<p>Android 6.0 is the release of the development milestone code-named Marshmallow.
+The source code for the following tests can be synced with the
+'android-cts-6.0_r13' tag in the open-source tree.</p>
+<ul>
+<li><a
+href="https://dl.google.com/dl/android/cts/android-cts-6.0_r13-linux_x86-arm.zip">Android
+6.0 R13 Compatibility Test Suite (CTS) - ARM</a></li>
+<li><a
+href="https://dl.google.com/dl/android/cts/android-cts-6.0_r13-linux_x86-x86.zip">Android
+6.0 R13 Compatibility Test Suite (CTS) - x86</a></li>
+<li><a
+href="https://dl.google.com/dl/android/cts/android-cts-verifier-6.0_r13-linux_x86-arm.zip">Android
+6.0 R13 CTS Verifier - ARM</a></li>
+<li><a
+href="https://dl.google.com/dl/android/cts/android-cts-verifier-6.0_r13-linux_x86-x86.zip">Android
+6.0 R13 CTS Verifier - x86</a></li>
+</ul>
+
+<h2 id="android-51">Android 5.1</h2>
+<p>Android 5.1 is the release of the development milestone code-named Lollipop-MR1.
+The source code for the following tests can be synced with the
+'android-cts-5.1_r14' tag in the open source tree.</p>
+<ul>
+<li><a
+href="https://dl.google.com/dl/android/cts/android-cts-5.1_r14-linux_x86-arm.zip">Android
+5.1 R14 Compatibility Test Suite (CTS) - ARM</a></li>
+<li><a
+href="https://dl.google.com/dl/android/cts/android-cts-5.1_r14-linux_x86-x86.zip">Android
+5.1 R14 Compatibility Test Suite (CTS) - x86</a></li>
+<li><a
+href="https://dl.google.com/dl/android/cts/android-cts-verifier-5.1_r14-linux_x86-arm.zip">Android
+5.1 R14 CTS Verifier - ARM</a></li>
+<li><a
+href="https://dl.google.com/dl/android/cts/android-cts-verifier-5.1_r14-linux_x86-x86.zip">Android
+5.1 R14 CTS Verifier - x86</a></li>
+</ul>
+
+<h2 id="android-50">Android 5.0</h2>
+<p>Android 5.0 is the release of the development milestone code-named Lollipop.
+The source code for the following tests can be synced with the
+'android-cts-5.0_r9' tag in the open source tree.</p>
+<ul>
+<li><a
+href="https://dl.google.com/dl/android/cts/android-cts-5.0_r9-linux_x86-arm.zip">Android
+5.0 R9 Compatibility Test Suite (CTS) - ARM</a></li>
+<li><a
+href="https://dl.google.com/dl/android/cts/android-cts-5.0_r9-linux_x86-x86.zip">Android
+5.0 R9 Compatibility Test Suite (CTS) - x86</a></li>
+<li><a
+href="https://dl.google.com/dl/android/cts/android-cts-verifier-5.0_r9-linux_x86-arm.zip">Android
+5.0 R9 CTS Verifier - ARM</a></li>
+<li><a
+href="https://dl.google.com/dl/android/cts/android-cts-verifier-5.0_r9-linux_x86-x86.zip">Android
+5.0 R9 CTS Verifier - x86</a></li>
+</ul>
+
+<h2 id="android-44">Android 4.4</h2>
+<p>Android 4.4 is the release of the development milestone code-named
+KitKat. Source code for Android 4.4 is found in the
+'android-cts-4.4_r4' branch in the open source tree.</p>
+<ul>
+<li><a
+href="https://dl.google.com/dl/android/cts/android-cts-4.4_r4-linux_x86-arm.zip">Android
+4.4 R4 Compatibility Test Suite (CTS) - ARM</a></li>
+<li><a
+href="https://dl.google.com/dl/android/cts/android-cts-4.4_r4-linux_x86-x86.zip">Android
+4.4 R4 Compatibility Test Suite (CTS) - x86</a></li>
+<li><a
+href="https://dl.google.com/dl/android/cts/android-cts-verifier-4.4_r4-linux_x86-arm.zip">Android
+4.4 R4 CTS Verifier - ARM</a></li>
+<li><a
+href="https://dl.google.com/dl/android/cts/android-cts-verifier-4.4_r4-linux_x86-x86.zip">Android
+4.4 R4 CTS Verifier - x86</a></li>
+</ul>
+
+<h2 id="android-43">Android 4.3</h2>
+<p>Android 4.3 is the release of the development milestone code-named
+Jelly Bean-MR2. Source code for Android 4.3 is found in the 'android-4.3_r2.2-cts' branch in the open source tree.</p>
+<ul>
+<li><a
+href="https://dl.google.com/dl/android/cts/android-cts-4.3_r2-linux_x86-arm.zip">Android
+4.3 R2 Compatibility Test Suite (CTS)</a></li>
+<li><a
+href="https://dl.google.com/dl/android/cts/android-cts-verifier-4.3_r1-linux_x86-arm.zip">Android
+4.3 R1 CTS Verifier</a></li>
+</ul>
+
+<h2 id="android-42">Android 4.2</h2>
+<p>Android 4.2 is the release of the development milestone code-named
+Jelly Bean-MR1. Source code for Android 4.2 is found in the 'android-4.2.2_r1' branch in the open source tree.</p>
+<ul>
+<li><a href="https://dl.google.com/dl/android/cts/android-cts-4.2_r4-linux_x86-arm.zip">Android 4.2 R4 Compatibility Test Suite (CTS)</a></li>
+<li><a href="https://dl.google.com/dl/android/cts/android-cts-verifier-4.2_r5-linux_x86-arm.zip">Android 4.2 R5 CTS Verifier</a></li>
+</ul>
+<h2 id="android-41">Android 4.1</h2>
+<p>Android 4.1 is the release of the development milestone code-named Jelly
+Bean. The source code of the Compatibility Test Suite revisions below is
+available at the 'android-cts-4.1_r4' tag in the open source tree.</p>
+<ul>
+<li><a href="https://dl.google.com/dl/android/cts/android-cts-4.1_r4-linux_x86-arm.zip">Android 4.1 R4 Compatibility Test Suite (CTS)</a></li>
+<li><a href="https://dl.google.com/dl/android/cts/android-cts-verifier-4.1_r7-linux_x86-arm.zip">Android 4.1 R7 CTS Verifier</a></li>
+</ul>
+<h2 id="android-403">Android 4.0.3</h2>
+<p>Android 4.0.3 is the release of the development milestone code-named
+Ice Cream Sandwich. Source code for
+Android 4.0.3 is found in the 'android-4.0.3_r1' branch in the open source tree.</p>
+<ul>
+<li><a href="https://dl.google.com/dl/android/cts/android-cts-4.0.3_r3-linux_x86-arm.zip">Android 4.0.3 R3 Compatibility Test Suite (CTS)</a></li>
+<li><a href="https://dl.google.com/dl/android/cts/android-cts-verifier-4.0.3_r2-linux_x86-arm.zip">Android 4.0.3 R2 CTS Verifier</a></li>
+</ul>
+<h2 id="android-23">Android 2.3</h2>
+<p>Android 2.3 is the release of the development milestone code-named
+Gingerbread. Source code for Android 2.3 is found in the 'gingerbread' branch in 
+the open source tree.</p>
+<ul>
+<li><a href="https://dl.google.com/dl/android/cts/android-cts-2.3_r13-linux_x86-arm.zip">Android 2.3 R13 Compatibility Test Suite (CTS)</a></li>
+<li><a href="https://dl.google.com/dl/android/cts/android-cts-verifier-2.3_r3-linux_x86-armv5.zip">Android 2.3 R3 CTS Verifier</a></li>
+</ul>
+<h2 id="android-22">Android 2.2</h2>
+<p>Android 2.2 is the release of the development milestone code-named
+FroYo. Source code for Android 2.2 is found in the 'froyo' branch in the
+open source tree.</p>
+<ul>
+<li><a href="https://dl.google.com/dl/android/cts/android-cts-2.2_r8-linux_x86-arm.zip">Android 2.2 R8 Compatibility Test Suite (CTS)</a></li>
+</ul>
+<h2 id="android-21">Android 2.1</h2>
+<p>Android 2.1 is the release of the development milestone code-named
+Eclair. Source code for Android 2.1 is found in the 'eclair' branch in the
+open source tree. Note that for technical reasons, there is no compatibility
+program for Android 2.0 or 2.0.1, and new devices must use Android 2.1.</p>
+<ul>
+<li><a href="https://dl.google.com/dl/android/cts/android-cts-2.1_r5-x86.zip">Android 2.1 R5 Compatibility Test Suite (CTS)</a></li>
+</ul>
+<h2 id="android-16">Android 1.6</h2>
+<p>Android 1.6 was the release of the development milestone code-named Donut.
+Android 1.6 was obsoleted by Android 2.1. Source code for Android 1.6 is found
+in the 'donut' branch in the open source tree.</p>
+<ul>
+<li><a href="https://dl.google.com/dl/android/cts/android-cts-1.6_r1-x86.zip">Android 1.6 R1 Compatibility Test Suite (CTS)</a></li>
+</ul>
+<h2 id="cts-media-files">CTS Media Files</h2>
+<p>These media files are required for the CTS media stress tests.</p>
+<ul>
+<li><a href="https://dl.google.com/dl/android/cts/android-cts-media-1.2.zip">CTS Media 1.2</a></li>
+<li><a href="https://dl.google.com/dl/android/cts/android-cts-media-1.1.zip">CTS Media 1.1</a></li>
+<li><a href="https://dl.google.com/dl/android/cts/android-cts-media-1.0.zip">CTS Media 1.0</a></li>
+</ul>
+<h2 id="older-android-versions">Older Android Versions</h2>
+<p>There is no Compatibility Program for older versions of Android, such as Android
+1.5 (known in development as Cupcake). New devices intended to be Android
+compatible must ship with Android 1.6 or later.</p>
+
+    </div>
+
+      <div class="content-footer-sac"
+                    itemscope itemtype="http://schema.org/SiteNavigationElement">
+        <div class="layout-content-col col-9" style="padding-top:4px">
+        </div>
+        
+        <div class="paging-links layout-content-col col-4">
+          
+        </div>
+        
+      </div>
+      
+      
+    </div> <!-- end jd-content -->
+  <div id="footer" class="wrap" >
+  <style>.feedback { float: right !Important }</style>
+  <div class="feedback">
+    <a href="downloads.html#" class="button" onclick=" try {
+      userfeedback.api.startFeedback({'productId':'715571','authuser':'1'});return false;}catch(e){}">Site Feedback</a>
+  </div>
+  <div id="copyright">
+    
+  Except as noted, this content is 
+  licensed under <a href="http://creativecommons.org/licenses/by/2.5/">
+  Creative Commons Attribution 2.5</a>. For details and 
+  restrictions, see the <a href="../../license.html">Content 
+  License</a>.
+  </div>
+    <div id="footerlinks">
+    
+  <p>
+    <a href="../../source/index.html">About Android</a>&nbsp;&nbsp;|&nbsp;
+    <a href="../../source/community.html">Community</a>&nbsp;&nbsp;|&nbsp;
+    <a href="../../legal.html">Legal</a>&nbsp;&nbsp;|&nbsp;
+  </p>
+  </div>
+
+</div><!-- end doc-content -->
+
+</div> <!-- end body-content --> 
+
+
+
+
+
+
+</body>
+</html>
+
+
+

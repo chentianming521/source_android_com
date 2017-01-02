@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<meta name="Description" content="The Android input subsystem nominally consists of an event pipeline that traverses multiple layers of the system. At the lowest layer, the physical input device produces signals that describe state changes such as key presses and touch contact points.…">
+
+<link rel="shortcut icon" type="image/x-icon" href="../../favicon.ico" />
+<title>Overview | Android Open Source Project</title>
+
+<!-- STYLESHEETS -->
+<link rel="stylesheet"
+href="https://fonts.googleapis.com/css?family=Roboto:regular,medium,thin,italic,mediumitalic,bold" title="roboto">
+<link href="../../assets/css/default.css" rel="stylesheet" type="text/css">
+
+
+
+<!-- JAVASCRIPT -->
+<script src="https://www.google.com/jsapi" type="text/javascript"></script>
+<script src="../../assets/js/android_3p-bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+  var toRoot = "/";
+  
+  var devsite = false;
+  
+</script>
+<script src="../../assets/js/docs.js" type="text/javascript"></script>
+
+<script src="../../navtree_data.js" type="text/javascript"></script>
+
+
+<script type="text/javascript" src="https://www.gstatic.com/feedback/api.js"></script>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-45455297-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</head>
+
+<body class="gc-documentation 
+  " itemscope itemtype="http://schema.org/Article">
+<a name="top"></a>
+
+  
+    <!-- Header -->
+    <div id="header">
+        <div class="wrap" id="header-wrap">
+          <div class="col-3 saclogo">
+          <a href="../../index.html">
+            <img src="../../assets/images/sac_logo.png"
+                srcset="/assets/images/sac_logo@2x.png 2x"
+                width="123" height="25" alt="Android Open Source Project" />
+          </a>
+          </div>
+            <ul class="nav-x col-9">
+                <li class="source">
+                  <a href="../../source/index.html" 
+                  >Source</a></li>
+                <li class="devices"><a href="../index.html" class="selected"
+                  >Devices</a></li>
+                <li class="security"><a href="../../security/index.html" 
+                  >Security</a></li>
+                <li class="compatibility last"><a href="../../compatibility/index.html" 
+                  >Compatibility</a></li>
+            </ul>
+            <!-- New Search -->
+            <div class="menu-container">
+            <div class="moremenu">
+    <div id="more-btn"></div>
+  </div>
+  <div class="morehover" id="moremenu">
+    <div class="top"></div>
+    <div class="mid">
+      <div class="header">Android Sites</div>
+      <ul>
+        <li class="active"><a>Android Open Source Project</a></li>
+        <li><a href="http://www.android.com">Android.com</a></li>
+        <li><a href="http://developer.android.com">Android Developers</a></li>
+      </ul>
+      <!-- <div class="header">Support</div>
+      <ul>
+        <li><a href="/support.html">Developer Support</a></li>
+      </ul> -->
+      <br class="clearfix" />
+    </div>
+    <div class="bottom"></div>
+  </div>
+
+  <div class="search" id="search-container">
+    <div class="search-inner">
+      <div id="search-btn"></div>
+      <div class="left"></div>
+      <form onsubmit="return submit_search()">
+        <input id="search_autocomplete" type="text" value="" autocomplete="off" name="q"
+onfocus="search_focus_changed(this, true)" onblur="search_focus_changed(this, false)"
+onkeydown="return search_changed(event, true, '/')"
+onkeyup="return search_changed(event, false, '/')" />
+      </form>
+      <div class="right"></div>
+        <a class="close hide">close</a>
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+  </div>
+  <div id="search_filtered_wrapper">
+    <div id="search_filtered_div" class="no-display">
+        <ul id="search_filtered">
+        </ul>
+    </div>
+  </div>
+
+  </div>
+  <!-- /New Search> -->
+        </div>
+    </div>
+    <!-- /Header -->
+
+  <div id="searchResults" class="wrap" style="display:none;">
+          <h2 id="searchTitle">Results</h2>
+          <div id="leftSearchControl" class="search-control">Loading...</div>
+  </div>
+
+  
+  
+  
+    
+  <div class="wrap clearfix" id="body-content">
+    <div class="col-4" id="side-nav" itemscope itemtype="http://schema.org/SiteNavigationElement">
+      <div id="devdoc-nav" class="scroll-pane">
+<a class="totop" href="overview.html#top" data-g-event="left-nav-top">to top</a>
+
+<!--
+    Copyright 2015 The Android Open Source Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<ul id="nav">
+  <li class="nav-section">  <!-- Begin nav section, Device Interfaces -->
+    <div class="nav-section-header">
+      <a href="../index.html">
+        <span class="en">Interfaces</span>
+      </a>
+    </div>
+    <ul>
+  <li class="nav-section">
+  <div class="nav-section-header">
+      <a href="../accessories/index.html">
+        <span class="en">Accessories</span>
+      </a>
+    </div>
+    <ul>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../accessories/audio.html">
+            <span class="en">Audio Accessories</span>
+          </a>
+        </div>
+        <ul>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../accessories/headset/index.html">
+            <span class="en">Headset</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../accessories/headset/specification.html">Specification</a></li>
+          <li><a href="../accessories/headset/requirements.html">Requirements</a></li>
+          <li><a href="../accessories/headset/testing.html">Testing</a></li>
+        </ul>
+      </li>
+        </ul>
+      </li>
+  <li class="nav-section">
+  <div class="nav-section-header">
+      <a href="../accessories/custom.html">
+        <span class="en">Custom Accessories</span>
+      </a>
+    </div>
+    <ul>
+      <li class="nav-section">
+        <div class="nav-section-header"><a href="../accessories/protocol.html"><span class="en">AOA</span>
+        </a>
+        </div>
+        <ul>
+          <li><a href="../accessories/aoa2.html">AOA 2.0</a></li>
+          <li><a href="../accessories/aoa.html">AOA 1.0</a></li>
+        </ul>
+        </li>
+        <div class="nav-section-header"><a href="../accessories/stylus.html"><span class="en">Stylus</span>
+        </a>
+        </div>
+       </ul>
+     </li>
+    </ul>
+      <li class="nav-section">
+      <div class="nav-section-header">
+        <a href="../audio/index.html">
+          <span class="en">Audio</span>
+        </a>
+      </div>
+        <ul>
+          <li><a href="../audio/terminology.html">Terminology</a></li>
+          <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="../audio/implement.html">
+                <span class="en">Implementation</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="../audio/implement-policy.html">Policy Configuration</a></li>
+              <li><a href="../audio/implement-shared-library.html">Shared Library</a></li>
+              <li><a href="../audio/implement-pre-processing.html">Pre-processing Effects</a></li>
+            </ul>
+         </li>
+          <li><a href="../audio/data_formats.html">Data Formats</a></li>
+          <li><a href="../audio/attributes.html">Attributes</a></li>
+          <li><a href="../audio/warmup.html">Warmup</a></li>
+          <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="../audio/latency.html">
+                <span class="en">Latency</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="../audio/latency_contrib.html">Contributors</a></li>
+              <li><a href="../audio/latency_design.html">Design</a></li>
+              <li><a href="../audio/latency_measure.html">Measure</a></li>
+              <li><a href="../audio/testing_circuit.html">Light Testing Circuit</a></li>
+              <li><a href="../audio/loopback.html">Audio Loopback Dongle</a></li>
+              <li><a href="../audio/latency_measurements.html">Measurements</a></li>
+              <li><a href="../audio/latency_app.html">Applications</a></li>
+            </ul>
+          </li>
+          <li><a href="../audio/avoiding_pi.html">Priority Inversion</a></li>
+          <li><a href="../audio/src.html">Sample Rate Conversion</a></li>
+          <li><a href="../audio/debugging.html">Debugging</a></li>
+          <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="../audio/midi.html">
+                <span class="em">MIDI</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="../audio/midi_arch.html">MIDI Architecture</a></li>
+              <li><a href="../audio/midi_test.html">MIDI Test Procedure</a></li>
+            </ul>
+          <li><a href="../audio/usb.html">USB Digital Audio</a></li>
+          <li><a href="../audio/tv.html">TV Audio</a></li>
+        </ul>
+      </li>
+      <li><a href="../automotive.html">Automotive</a></li>
+      <li><a href="../bluetooth.html">Bluetooth</a></li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../camera/index.html">
+            <span class="en">Camera</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../camera/camera3.html">Camera HAL3</a></li>
+          <li><a href="../camera/camera3_requests_hal.html">HAL Subsystem</a></li>
+          <li><a href="../camera/camera3_metadata.html">Metadata and Controls</a></li>
+          <li><a href="../camera/camera3_3Amodes.html">3A Modes and State</a></li>
+          <li><a href="../camera/camera3_crop_reprocess.html">Output and Cropping</a></li>
+          <li><a href="../camera/camera3_error_stream.html">Errors and Streams</a></li>
+          <li><a href="../camera/camera3_requests_methods.html">Request Creation</a></li>
+          <li><a href="../camera/versioning.html">Version Support</a></li>
+        </ul>
+      </li>
+
+      <li><a href="../drm.html">DRM</a></li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../graphics/index.html">
+            <span class="en">Graphics</span>
+          </a>
+        </div>
+        <ul>
+         <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="../graphics/architecture.html">
+                <span class="en">Architecture</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="../graphics/arch-bq-gralloc.html">BufferQueue</a></li>
+              <li><a href="../graphics/arch-sf-hwc.html">SurfaceFlinger and HWC</a></li>
+              <li><a href="../graphics/arch-sh.html">Surface and SurfaceHolder</a></li>
+              <li><a href="../graphics/arch-egl-opengl.html">OpenGL ES</a></li>
+              <li><a href="../graphics/arch-vulkan.html">Vulkan</a></li>
+              <li><a href="../graphics/arch-sv-glsv.html">SurfaceView</a></li>
+              <li><a href="../graphics/arch-st.html">SurfaceTexture</a></li>
+              <li><a href="../graphics/arch-tv.html">TextureView</a></li>
+              <li><a href="../graphics/arch-gameloops.html">Game Loops</a></li>
+            </ul>
+         </li>
+         <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="../graphics/implement.html">
+                <span class="en">Implementing</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="../graphics/implement-hwc.html">Hardware Composer HAL</a></li>
+              <li><a href="../graphics/implement-vsync.html">VSYNC</a></li>
+              <li><a href="../graphics/implement-vulkan.html">Vulkan</a></li>
+              <li><a href="../graphics/implement-vdisplays.html">Virtual Displays</a></li>
+            </ul>
+         </li>
+         <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="../graphics/testing.html">
+                <span class="en">OpenGL ES Testing</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="../graphics/build-tests.html">Building test programs</a></li>
+              <li><a href="../graphics/port-tests.html">Porting the test framework</a></li>
+              <li><a href="../graphics/run-tests.html">Running the tests</a></li>
+              <li><a href="../graphics/automate-tests.html">Automating the tests</a></li>
+              <li><a href="../graphics/test-groups.html">Using special test groups</a></li>
+              <li><a href="../graphics/cts-integration.html">Integrating with Android CTS</a></li>
+            </ul>
+         </li>
+        </ul> </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="index.html">
+            <span class="en">Input</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="overview.html">Overview</a></li>
+          <li><a href="key-layout-files.html">Key Layout Files</a></li>
+          <li><a href="key-character-map-files.html">Key Character Map Files</a></li>
+          <li><a href="input-device-configuration-files.html">Input Device Configuration Files</a></li>
+          <li><a href="migration-guide.html">Migration Guide</a></li>
+          <li><a href="keyboard-devices.html">Keyboard Devices</a></li>
+          <li><a href="../tech/input/touch-devices.html">Touch Devices</a></li>
+          <li><a href="../tech/input/dumpsys.html">Diagnostics</a></li>
+          <li><a href="getevent.html">Getevent</a></li>
+          <li><a href="validate-keymaps.html">Validate Keymaps</a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../media.html">
+            <span class="en">Media</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../media/framework-hardening.html">Framework
+          Hardening</a></li>
+          <li><a href="../media/soc.html">SoC Dependencies</a></li>
+          <li><a href="../media/oem.html">OEM Dependencies</a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../sensors/index.html">
+            <span class="en">Sensors</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../sensors/sensor-stack.html">Sensor stack</a></li>
+          <li><a href="../sensors/report-modes.html">Reporting modes</a></li>
+          <li><a href="../sensors/suspend-mode.html">Suspend mode</a></li>
+          <li><a href="../sensors/power-use.html">Power consumption</a></li>
+          <li><a href="../sensors/interaction.html">Interaction</span></a></li>
+          <li><a href="../sensors/hal-interface.html">HAL interface</a></li>
+          <li><a href="../sensors/batching.html">Batching</a></li>
+          <li><a href="../sensors/sensor-types.html">Sensor types</a></li>
+          <li><a href="../sensors/versioning.html">Version deprecation</a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="https://source.android.com/devices/storage/index.html">
+            <span class="en">Storage</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../storage/traditional.html">Traditional Storage</a></li>
+          <li><a href="../storage/adoptable.html">Adoptable Storage</a></li>
+          <li><a href="../storage/config.html">Device Configuration</a></li>
+          <li><a href="../storage/config-example.html">Configuration Examples</a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../tv/index.html">
+            <span class="en">TV</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../tv/HDMI-CEC.html">HDMI-CEC control service</a></li>
+          <li><a href="../tv/reference-tv-app.html">Reference TV App</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li> <!-- End nav-section, Device Interfaces-->
+
+
+  <li class="nav-section"> <!--Begin nav-section, Core Technologies-->
+    <div class="nav-section-header">
+      <a href="../tech/index.html">
+        <span class="en">Core Technologies</span>
+      </a>
+    </div>
+
+    <ul>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../tech/dalvik/index.html">
+          <span class="en">ART and Dalvik</span></a>
+        </div>
+        <ul>
+          <li><a href="../tech/dalvik/dalvik-bytecode.html">Bytecode Format</a></li>
+          <li><a href="../tech/dalvik/dex-format.html">.Dex Format</a></li>
+          <li><a href="../tech/dalvik/instruction-formats.html">Instruction Formats</a></li>
+          <li><a href="../tech/dalvik/constraints.html">Constraints</a></li>
+          <li><a href="../tech/dalvik/configure.html">Configuration</a></li>
+          <li><a href="../tech/dalvik/gc-debug.html">Garbage Collection</a></li>
+          <li><a href="../tech/dalvik/jit-compiler.html">JIT Compilation</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+            <a href="../tech/config/index.html">
+              <span class="en">Configuration</span>
+            </a>
+        </div>
+        <ul>
+          <li><a href="../tech/config/carrier.html">Carrier Customization</a></li>
+          <li><a href="../tech/config/connect_tests.html">Connectivity Tests</a></li>
+          <li><a href="../tech/config/filesystem.html">File System</a></li>
+          <li><a href="../tech/kernel.html">Kernel Configuration</a></li>
+          <li><a href="../tech/config/kernel_network_tests.html">Kernel Network Tests</a></li>
+          <li><a href="../tech/config/low-ram.html">Low RAM</a></li>
+          <li><a href="../tech/config/namespaces_libraries.html">Namespaces for Libraries</a></li>
+          <li><a href="../tech/config/renderer.html">OpenGLRenderer</a></li>
+          <li><a href="../tech/config/runtime_perms.html">Runtime Permissions</a></li>
+          <li><a href="../tech/config/uicc.html">UICC</a></li>
+          <li><a href="../tech/config/voicemail.html">Visual Voicemail</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+            <a href="../tech/connect/index.html">
+              <span class="en">Connectivity</span>
+            </a>
+        </div>
+        <ul>
+          <li><a href="../tech/connect/block-numbers.html">Block Phone Numbers</a></li>
+          <li><a href="../tech/connect/call-notification.html">Call Notifications</a></li>
+          <li><a href="../tech/connect/data-saver.html">Data Saver Mode</a></li>
+          <li><a href="../tech/connect/felica.html">Host Card Emulation of FeliCa</a></li>
+          <li><a href="../tech/connect/ril.html">Radio Interface Layer (RIL)</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../tech/datausage/index.html">
+            <span class="en">Data Usage</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../tech/datausage/iface-overview.html">Network interface statistics overview</a></li>
+          <li><a href="../tech/datausage/excluding-network-types.html">Excluding Network Types from Data Usage</a></li>
+          <li><a href="../tech/datausage/tethering-data.html">Tethering Data</a></li>
+          <li><a href="../tech/datausage/usage-cycle-resets-dates.html">Usage Cycle Reset Dates</a></li>
+          <li><a href="../tech/datausage/kernel-overview.html">Kernel Overview</a></li>
+          <li><a href="../tech/datausage/tags-explained.html">Data Usage Tags Explained</a></li>
+          <li><a href="../tech/datausage/kernel-changes.html">Kernel Changes</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../tech/debug/index.html">
+            <span class="en">Debugging</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../tech/debug/asan.html">AddressSanitizer</a></li>
+          <li><a href="../tech/debug/dumpsys.html">Dumpsys</a></li>
+          <li><a href="../tech/debug/native-memory.html">Native Memory Use</a></li>
+          <li><a href="../tech/debug/netstats.html">Network Use</a></li>
+          <li><a href="../tech/debug/procstats.html">RAM Use</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../tech/admin/index.html">
+          <span class="en">Device Administration</span></a>
+        </div>
+        <ul>
+          <li><a href="../tech/admin/implement.html">Implementation</a></li>
+          <li><a href="../tech/admin/multi-user.html">Multiple Users</a></li>
+          <li><a href="../tech/admin/managed-profiles.html">Managed Profiles</a></li>
+          <li><a href="../tech/admin/provision.html">Provisioning</a></li>
+          <li><a href="../tech/admin/multiuser-apps.html">Multiuser Apps</a></li>
+          <li><a href="../tech/admin/enterprise-telephony.html">Enterprise Telephony</a></li>
+          <li><a href="../tech/admin/testing-provision.html">Testing Device Provisioning</a></li>
+          <li><a href="../tech/admin/testing-setup.html">Testing Device Administration</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+            <a href="../tech/display/index.html">
+              <span class="en">Display Settings</span></a>
+        </div>
+        <ul>
+          <li><a href="../tech/display/dnd.html">Do Not Disturb</a></li>
+          <li><a href="../tech/display/multi-window.html">Multi-Window</a></li>
+          <li><a href="../tech/display/hdr.html">HDR Video</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header empty">
+          <a href="../halref/index.html">
+            <span class="en">HAL File Reference</span>
+          </a>
+        </div>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+            <a href="../tech/ota/index.html">
+              <span class="en">OTA Updates</span>
+            </a>
+        </div>
+        <ul>
+          <li><a href="../tech/ota/tools.html">OTA Tools</a></li>
+          <li><a href="../tech/ota/block.html">Block-based OTA</a></li>
+          <li><a href="../tech/ota/inside_packages.html">Inside OTA Packages</a></li>
+          <li><a href="../tech/ota/device_code.html">Device-Specific Code</a></li>
+          <li><a href="../tech/ota/reduce_size.html">Reducing OTA Size</a></li>
+          <li><a href="../tech/ota/sign_builds.html">Signing Builds for Release</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../tech/power/index.html"><span class="en">Power</span></a>
+        </div>
+        <ul>
+          <li><a href="../tech/power/mgmt.html">Power Management</a></li>
+          <li><a href="../tech/power/performance.html">Performance Management</a></li>
+          <li><a href="../tech/power/component.html">Component Power</a></li>
+          <li><a href="../tech/power/device.html">Device Power</a></li>
+          <li><a href="../tech/power/values.html">Power Values</a></li>
+          <li><a href="../tech/power/batterystats.html">Battery Use</a>
+          </li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../tech/test_infra/tradefed/index.html">
+            <span class="en">Testing Infrastructure</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../tech/test_infra/tradefed/fundamentals/index.html">Start Here</a></li>
+          <li><a href="../tech/test_infra/tradefed/fundamentals/machine_setup.html">Machine Setup</a></li>
+          <li><a href="../tech/test_infra/tradefed/fundamentals/devices.html">Working with Devices</a></li>
+          <li><a href="../tech/test_infra/tradefed/fundamentals/lifecycle.html">Test Lifecycle</a></li>
+          <li><a href="../tech/test_infra/tradefed/fundamentals/options.html">Option Handling</a></li>
+          <li><a href="../tech/test_infra/tradefed/full_example.html">An End-to-End Example</a></li>
+          <li id="tradefed-tree-list" class="nav-section">
+            <div class="nav-section-header">
+              <a href="../../reference/packages.html">
+                <span class="en">Package Index</span>
+              </a>
+            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li> <!-- End nav-section, Core Technologies -->
+</ul> 
+
+
+      </div>
+      <script type="text/javascript">
+        showTradefedRefTree();
+      </script>
+    </div> <!-- end side-nav -->
+    <script>
+      $(document).ready(function() {
+        scrollIntoView("devdoc-nav");
+        });
+    </script>
+
+  
+
+
+
+
+<div class="col-12" id="doc-col" >
+
+
+  
+    
+      
+        <h1 itemprop="name" >Overview</h1>
+      
+    
+  
+
+
+  
+  <div id="jd-content">
+
+    <div class="jd-descr" itemprop="articleBody">
+    <!--
+    Copyright 2015 The Android Open Source Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<div id="qv-wrapper">
+  <div id="qv">
+    <h2>In this document</h2>
+    <ol id="auto-toc">
+    </ol>
+  </div>
+</div>
+
+<p>The Android input subsystem nominally consists of an event pipeline
+that traverses multiple layers of the system.</p>
+<h2 id="input-pipeline">Input Pipeline</h2>
+<p>At the lowest layer, the physical input device produces signals that
+describe state changes such as key presses and touch contact points.
+The device firmware encodes and transmits these signals in some way
+such as by sending USB HID reports to the system or by producing
+interrupts on an I2C bus.</p>
+<p>The signals are then decoded by a device driver in the Linux kernel.
+The Linux kernel provides drivers for many standard peripherals,
+particularly those that adhere to the HID protocol.  However, an OEM
+must often provide custom drivers for embedded devices that are
+tightly integrated into the system at a low-level, such as touch screens.</p>
+<p>The input device drivers are responsible for translating device-specific
+signals into a standard input event format, by way of the Linux
+input protocol.  The Linux input protocol defines a standard set of
+event types and codes in the <code>linux/input.h</code> kernel header file.
+In this way, components outside the kernel do not need to care about
+the details such as physical scan codes, HID usages, I2C messages,
+GPIO pins, and the like.</p>
+<p>Next, the Android <code>EventHub</code> component reads input events from the kernel
+by opening the <code>evdev</code> driver associated with each input device.
+The Android InputReader component then decodes the input events
+according to the device class and produces a stream of Android input
+events.  As part of this process, the Linux input protocol event codes
+are translated into Android event codes according to the
+input device configuration, keyboard layout files, and various
+mapping tables.</p>
+<p>Finally, the <code>InputReader</code> sends input events to the InputDispatcher
+which forwards them to the appropriate window.</p>
+<h2 id="control-points">Control Points</h2>
+<p>There are several stages in the input pipeline which effect control
+over the behavior of the input device.</p>
+<h3 id="driver-and-firmware-configuration">Driver and Firmware Configuration</h3>
+<p>Input device drivers frequently configure the behavior of the input
+device by setting parameters in registers or even uploading the
+firmware itself.  This is particularly the case for embedded
+devices such as touch screens where a large part of the calibration
+process involves tuning these parameters or fixing the firmware
+to provide the desired accuracy and responsiveness and to suppress
+noise.</p>
+<p>Driver configuration options are often specified as module parameters
+in the kernel board support package (BSP) so that the same driver
+can support multiple different hardware implementations.</p>
+<p>This documentation does attempt to describe driver or firmware
+configuration, but it does offer guidance as to device calibration
+in general.</p>
+<h3 id="board-configuration-properties">Board Configuration Properties</h3>
+<p>The kernel board support package (BSP) may export board configuration
+properties via SysFS that are used by the Android InputReader component,
+such as the placement of virtual keys on a touch screen.</p>
+<p>Refer to the device class sections for details about how different
+devices use board configuration properties.</p>
+<h3 id="resource-overlays">Resource Overlays</h3>
+<p>A few input behaviors are configured by way of resource overlays
+in <code>config.xml</code> such as the operation of lid switch.</p>
+<p>Here are a few examples:</p>
+<ul>
+<li>
+<p><code>config_lidKeyboardAccessibility</code>: Specifies the effect of the
+    lid switch on whether the hardware keyboard is accessible or hidden.</p>
+</li>
+<li>
+<p><code>config_lidNavigationAccessibility</code>: Specifies the effect of the
+    lid switch on whether the trackpad is accessible or hidden.</p>
+</li>
+<li>
+<p><code>config_longPressOnPowerBehavior</code>: Specifies what should happen when
+    the user holds down the power button.</p>
+</li>
+<li>
+<p><code>config_lidOpenRotation</code>: Specifies the effect of the lid switch
+    on screen orientation.</p>
+</li>
+</ul>
+<p>Refer to the documentation within <code>frameworks/base/core/res/res/values/config.xml</code>
+for details about each configuration option.</p>
+<h3 id="key-maps">Key Maps</h3>
+<p>Key maps are used by the Android <code>EventHub</code> and <code>InputReader</code> components
+to configure the mapping from Linux event codes to Android event codes
+for keys, joystick buttons and joystick axes.  The mapping may
+be device or language dependent.</p>
+<p>Refer to the device class sections for details about how different
+devices use key maps.</p>
+<h3 id="input-device-configuration-files">Input Device Configuration Files</h3>
+<p>Input device configuration files are used by the Android <code>EventHub</code> and
+<code>InputReader</code> components to configure special device characteristics
+such as how touch size information is reported.</p>
+<p>Refer to the device class sections for details about how different
+devices use input device configuration maps.</p>
+<h2 id="understanding-hid-usages-and-event-codes">Understanding HID Usages and Event Codes</h2>
+<p>There are often several different identifiers used to refer to any
+given key on a keyboard, button on a game controller, joystick axis
+or other control.  The relationships between these identifiers
+are not always the same: they are dependent on a set of mapping tables,
+some of which are fixed, and some which vary based on characteristics
+of the device, the device driver, the current locale, the system
+configuration, user preferences and other factors.</p>
+<dl>
+<dt>Physical Scan Code</dt>
+<dd>
+<p>A physical scan code is a device-specific identifier that is associated
+with each key, button or other control.  Because physical scan codes
+often vary from one device to another, the firmware or device driver
+is responsible for mapping them to standard identifiers such as
+HID Usages or Linux key codes.</p>
+<p>Scan codes are mainly of interest for keyboards.  Other devices
+typically communicate at a low-level using GPIO pins, I2C messages
+or other means.  Consequently, the upper layers of the software
+stack rely on the device drivers to make sense of what is going on.</p>
+</dd>
+<dt>HID Usage</dt>
+<dd>
+<p>A HID usage is a standard identifier that is used to report the
+state of a control such as a keyboard key, joystick axis,
+mouse button, or touch contact point.  Most USB and Bluetooth
+input devices conform to the HID specification, which enables
+the system to interface with them in a uniform manner.</p>
+<p>The Android Framework relies on the Linux kernel HID drivers to
+translate HID usage codes into Linux key codes and other identifiers.
+Therefore HID usages are mainly of interest to peripheral manufacturers.</p>
+</dd>
+<dt>Linux Key Code</dt>
+<dd>
+<p>A Linux key code is a standard identifier for a key or button.
+Linux key codes are defined in the <code>linux/input.h</code> header file using
+constants that begin with the prefix <code>KEY_</code> or <code>BTN_</code>.  The Linux
+kernel input drivers are responsible for translating physical
+scan codes, HID usages and other device-specific signals into Linux
+key codes and delivering information about them as part of
+<code>EV_KEY</code> events.</p>
+<p>The Android API sometimes refers to the Linux key code associated
+with a key as its "scan code".  This is technically incorrect in
+but it helps to distinguish Linux key codes from Android key codes
+in the API.</p>
+</dd>
+<dt>Linux Relative or Absolute Axis Code</dt>
+<dd>
+<p>A Linux relative or absolute axis code is a standard identifier
+for reporting relative movements or absolute positions along an
+axis, such as the relative movements of a mouse along its X axis
+or the absolute position of a joystick along its X axis.
+Linux axis code are defined in the <code>linux/input.h</code> header file using
+constants that begin with the prefix <code>REL_</code> or <code>ABS_</code>.  The Linux
+kernel input drivers are responsible for translating HID usages
+and other device-specific signals into Linux axis codes and
+delivering information about them as part of <code>EV_REL</code> and
+<code>EV_ABS</code> events.</p>
+</dd>
+<dt>Linux Switch Code</dt>
+<dd>
+<p>A Linux switch code is a standard identifier for reporting the
+state of a switch on a device, such as a lid switch.  Linux
+switch codes are defined in the <code>linux/input.h</code> header file
+using constants that begin with the prefix <code>SW_</code>.  The Linux
+kernel input drivers report switch state changes as <code>EV_SW</code> events.</p>
+<p>Android applications generally do not receive events from switches,
+but the system may use them internally to control various
+device-specific functions.</p>
+</dd>
+<dt>Android Key Code</dt>
+<dd>
+<p>An Android key code is a standard identifier defined in the Android
+API for indicating a particular key such as 'HOME'.  Android key codes
+are defined by the <code>android.view.KeyEvent</code> class as constants that
+begin with the prefix <code>KEYCODE_</code>.</p>
+<p>The key layout specifies how Linux key codes are mapped to Android
+key codes.  Different key layouts may be used depending on the keyboard
+model, language, country, layout, or special functions.</p>
+<p>Combinations of Android key codes are transformed into character codes
+using a device and locale specific key character map.  For example,
+when the keys identified as <code>KEYCODE_SHIFT</code> and <code>KEYCODE_A</code> are both
+pressed together, the system looks up the combination in the key
+character map and finds the capital letter 'A', which is then inserted
+into the currently focused text widget.</p>
+</dd>
+<dt>Android Axis Code</dt>
+<dd>
+<p>An Android axis code is a standard identifier defined in the Android
+API for indicating a particular device axis.  Android axis codes are
+defined by the <code>android.view.MotionEvent</code> class as constants that
+begin with the prefix <code>AXIS_</code>.</p>
+<p>The key layout specifies how Linux Axis Codes are mapped to Android
+axis codes.  Different key layouts may be used depending on the device
+model, language, country, layout, or special functions.</p>
+</dd>
+<dt>Android Meta State</dt>
+<dd>
+<p>An Android meta state is a standard identifier defined in the Android
+API for indicating which modifier keys are pressed.  Android meta states
+are defined by the <code>android.view.KeyEvent</code> class as constants that
+begin with the prefix <code>META_</code>.</p>
+<p>The current meta state is determined by the Android InputReader
+component which monitors when modifier keys such as <code>KEYCODE_SHIFT_LEFT</code>
+are pressed / released and sets / resets the appropriate meta state flag.</p>
+<p>The relationship between modifier keys and meta states is hardcoded
+but the key layout can alter how the modifier keys themselves are
+mapped which in turns affects the meta states.</p>
+</dd>
+<dt>Android Button State</dt>
+<dd>
+<p>An Android button state is a standard identifier defined in the Android
+API for indicating which buttons (on a mouse or stylus) are pressed.
+Android button states are defined by the <code>android.view.MotionEvent</code>
+class as constants that begin with the prefix <code>BUTTON_</code>.</p>
+<p>The current button state is determined by the Android InputReader
+component which monitors when buttons (on a mouse or stylus) are
+pressed / released and sets / resets appropriate button state flag.</p>
+<p>The relationship between buttons and button states is hardcoded.</p>
+</dd>
+</dl>
+<h2 id="further-reading">Further Reading</h2>
+<ol>
+<li><a href="http://www.kernel.org/doc/Documentation/input/event-codes.txt">Linux input event codes</a></li>
+<li><a href="http://www.kernel.org/doc/Documentation/input/multi-touch-protocol.txt">Linux multi-touch protocol</a></li>
+<li><a href="http://www.kernel.org/doc/Documentation/input/input.txt">Linux input drivers</a></li>
+<li><a href="http://www.kernel.org/doc/Documentation/input/ff.txt">Linux force feedback</a></li>
+<li><a href="http://www.usb.org/developers/hidpage">HID information, including HID usage tables</a></li>
+</ol>
+
+    </div>
+
+      <div class="content-footer-sac"
+                    itemscope itemtype="http://schema.org/SiteNavigationElement">
+        <div class="layout-content-col col-9" style="padding-top:4px">
+        </div>
+        
+        <div class="paging-links layout-content-col col-4">
+          
+        </div>
+        
+      </div>
+      
+      
+    </div> <!-- end jd-content -->
+  <div id="footer" class="wrap" >
+  <style>.feedback { float: right !Important }</style>
+  <div class="feedback">
+    <a href="overview.html#" class="button" onclick=" try {
+      userfeedback.api.startFeedback({'productId':'715571','authuser':'1'});return false;}catch(e){}">Site Feedback</a>
+  </div>
+  <div id="copyright">
+    
+  Except as noted, this content is 
+  licensed under <a href="http://creativecommons.org/licenses/by/2.5/">
+  Creative Commons Attribution 2.5</a>. For details and 
+  restrictions, see the <a href="../../license.html">Content 
+  License</a>.
+  </div>
+    <div id="footerlinks">
+    
+  <p>
+    <a href="../../source/index.html">About Android</a>&nbsp;&nbsp;|&nbsp;
+    <a href="../../source/community.html">Community</a>&nbsp;&nbsp;|&nbsp;
+    <a href="../../legal.html">Legal</a>&nbsp;&nbsp;|&nbsp;
+  </p>
+  </div>
+
+</div><!-- end doc-content -->
+
+</div> <!-- end body-content --> 
+
+
+
+
+
+
+</body>
+</html>
+
+
+

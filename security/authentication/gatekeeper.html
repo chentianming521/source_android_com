@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<meta name="Description" content="The Gatekeeper subsystem performs device pattern&#47;password authentication in a Trusted Execution Environment (TEE). Gatekeeper enrolls and verifies passwords via an HMAC with a hardware-backed secret key. Additionally, Gatekeeper throttles consecutive…">
+
+<link rel="shortcut icon" type="image/x-icon" href="http://source.android.com/favicon.ico" />
+<title>Gatekeeper | Android Open Source Project</title>
+
+<!-- STYLESHEETS -->
+<link rel="stylesheet"
+href="http://fonts.googleapis.com/css?family=Roboto:regular,medium,thin,italic,mediumitalic,bold" title="roboto">
+<link href="http://source.android.com/assets/css/default.css" rel="stylesheet" type="text/css">
+
+
+
+<!-- JAVASCRIPT -->
+<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+<script src="http://source.android.com/assets/js/android_3p-bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+  var toRoot = "/";
+  
+  var devsite = false;
+  
+</script>
+<script src="http://source.android.com/assets/js/docs.js" type="text/javascript"></script>
+
+
+<script type="text/javascript" src="http://www.gstatic.com/feedback/api.js"></script>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-45455297-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</head>
+
+<body class="gc-documentation 
+  " itemscope itemtype="http://schema.org/Article">
+<a name="top"></a>
+
+  
+    <!-- Header -->
+    <div id="header">
+        <div class="wrap" id="header-wrap">
+          <div class="col-3 saclogo">
+          <a href="http://source.android.com/index.html">
+            <img src="http://source.android.com/assets/images/sac_logo.png"
+                srcset="/assets/images/sac_logo@2x.png 2x"
+                width="123" height="25" alt="Android Open Source Project" />
+          </a>
+          </div>
+            <ul class="nav-x col-9">
+                <li class="source">
+                  <a href="http://source.android.com/source/index.html" 
+                  >Source</a></li>
+                <li class="devices"><a href="http://source.android.com/devices/index.html" 
+                  >Devices</a></li>
+                <li class="security"><a href="http://source.android.com/security/index.html" class="selected"
+                  >Security</a></li>
+                <li class="compatibility last"><a href="http://source.android.com/compatibility/index.html" 
+                  >Compatibility</a></li>
+            </ul>
+            <!-- New Search -->
+            <div class="menu-container">
+            <div class="moremenu">
+    <div id="more-btn"></div>
+  </div>
+  <div class="morehover" id="moremenu">
+    <div class="top"></div>
+    <div class="mid">
+      <div class="header">Android Sites</div>
+      <ul>
+        <li class="active"><a>Android Open Source Project</a></li>
+        <li><a href="http://www.android.com">Android.com</a></li>
+        <li><a href="http://developer.android.com">Android Developers</a></li>
+      </ul>
+      <!-- <div class="header">Support</div>
+      <ul>
+        <li><a href="/support.html">Developer Support</a></li>
+      </ul> -->
+      <br class="clearfix" />
+    </div>
+    <div class="bottom"></div>
+  </div>
+
+  <div class="search" id="search-container">
+    <div class="search-inner">
+      <div id="search-btn"></div>
+      <div class="left"></div>
+      <form onsubmit="return submit_search()">
+        <input id="search_autocomplete" type="text" value="" autocomplete="off" name="q"
+onfocus="search_focus_changed(this, true)" onblur="search_focus_changed(this, false)"
+onkeydown="return search_changed(event, true, '/')"
+onkeyup="return search_changed(event, false, '/')" />
+      </form>
+      <div class="right"></div>
+        <a class="close hide">close</a>
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+  </div>
+  <div id="search_filtered_wrapper">
+    <div id="search_filtered_div" class="no-display">
+        <ul id="search_filtered">
+        </ul>
+    </div>
+  </div>
+
+  </div>
+  <!-- /New Search> -->
+        </div>
+    </div>
+    <!-- /Header -->
+
+  <div id="searchResults" class="wrap" style="display:none;">
+          <h2 id="searchTitle">Results</h2>
+          <div id="leftSearchControl" class="search-control">Loading...</div>
+  </div>
+
+  
+  
+  
+    
+  <div class="wrap clearfix" id="body-content">
+    <div class="col-4" id="side-nav" itemscope itemtype="http://schema.org/SiteNavigationElement">
+      <div id="devdoc-nav" class="scroll-pane">
+<a class="totop" href="gatekeeper.html#top" data-g-event="left-nav-top">to top</a>
+
+<!--
+    Copyright 2015 The Android Open Source Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<ul id="nav">
+  <li class="nav-section">
+    <div class="nav-section-header">
+        <a href="http://source.android.com/security/index.html">
+          <span class="en">Overview</span>
+        </a>
+    </div>
+    <ul>
+      <li><a href="http://source.android.com/security/overview/kernel-security.html">Kernel Security</a></li>
+      <li><a href="http://source.android.com/security/overview/app-security.html">App Security</a></li>
+      <li><a href="http://source.android.com/security/overview/implement.html">Implementing Security</a></li>
+      <li><a href="http://source.android.com/security/overview/updates-resources.html">Updates and Resources</a></li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="http://source.android.com/security/enhancements/index.html">
+            <span class="en">Enhancements</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="http://source.android.com/security/enhancements/enhancements70.html">Android 7.0</a></li>
+          <li><a href="http://source.android.com/security/enhancements/enhancements60.html">Android 6.0</a></li>
+          <li><a href="http://source.android.com/security/enhancements/enhancements50.html">Android 5.0</a></li>
+          <li><a href="http://source.android.com/security/enhancements/enhancements44.html">Android 4.4</a></li>
+          <li><a href="http://source.android.com/security/enhancements/enhancements43.html">Android 4.3</a></li>
+          <li><a href="http://source.android.com/security/enhancements/enhancements42.html">Android 4.2</a></li>
+          <li><a href="http://source.android.com/security/enhancements/enhancements41.html">Android 4.1</a></li>
+        </ul>
+      </li>
+      <li><a href="http://source.android.com/security/overview/acknowledgements.html">Acknowledgements</a></li>
+    </ul>
+  </li>
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="http://source.android.com/security/bulletin/index.html">
+        <span class="en">Bulletins</span>
+      </a>
+    </div>
+    <ul>
+      <li class="nav-section">
+         <div class="nav-section-header">
+           <a href="http://source.android.com/security/advisory/index.html">
+         <span class="en">Advisories</span>
+        </a>
+       </div>
+         <ul>
+           <li><a href="http://source.android.com/security/advisory/2016-03-18.html">2016-03-18</a></li>
+         </ul>
+      </li>
+      <li><a href="http://source.android.com/security/bulletin/2016-08-01.html">August 2016</a></li>
+      <li><a href="http://source.android.com/security/bulletin/2016-07-01.html">July 2016</a></li>
+      <li><a href="http://source.android.com/security/bulletin/2016-06-01.html">June 2016</a></li>
+      <li><a href="http://source.android.com/security/bulletin/2016-05-01.html">May 2016</a></li>
+      <li><a href="http://source.android.com/security/bulletin/2016-04-02.html">April 2016</a></li>
+      <li><a href="http://source.android.com/security/bulletin/2016-03-01.html">March 2016</a></li>
+      <li><a href="http://source.android.com/security/bulletin/2016-02-01.html">February 2016</a></li>
+      <li><a href="http://source.android.com/security/bulletin/2016-01-01.html">January 2016</a></li>
+      <li class="nav-section">
+         <div class="nav-section-header">
+           <a href="http://source.android.com/security/bulletin/2015.html">
+         <span class="en">2015 Bulletins</span>
+        </a>
+       </div>
+         <ul>
+           <li><a href="http://source.android.com/security/bulletin/2015-12-01.html">December 2015</a></li>
+           <li><a href="http://source.android.com/security/bulletin/2015-11-01.html">November 2015</a></li>
+           <li><a href="http://source.android.com/security/bulletin/2015-10-01.html">October 2015</a></li>
+           <li><a href="http://source.android.com/security/bulletin/2015-09-01.html">September 2015</a></li>
+           <li><a href="http://source.android.com/security/bulletin/2015-08-01.html">August 2015</a></li>
+         </ul>
+      </li>
+    </ul>
+  </li>
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="http://source.android.com/security/apksigning/index.html">
+        <span class="en">Application Signing</span>
+      </a>
+    </div>
+    <ul>
+      <li><a href="http://source.android.com/security/apksigning/v2.html">APK Signature Scheme v2</a></li>
+    </ul>
+  </li>
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="http://source.android.com/security/authentication/index.html">
+        <span class="en">Authentication</span>
+      </a>
+    </div>
+    <ul>
+      <li><a href="fingerprint-hal.html">Fingerprint HAL</a></li>
+      <li><a href="gatekeeper.html">Gatekeeper</a></li>
+    </ul>
+  </li>
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="http://source.android.com/security/keystore/index.html">
+        <span class="en">Keystore</span>
+      </a>
+    </div>
+    <ul>
+      <li><a href="http://source.android.com/security/keystore/features.html">Features</a></li>
+      <li><a href="http://source.android.com/security/keystore/implementer-ref.html">Implementer's Reference</a></li>
+    </ul>
+  </li>
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="http://source.android.com/security/trusty/index.html">
+        <span class="en">Trusty TEE</span>
+      </a>
+    </div>
+    <ul>
+      <li><a href="http://source.android.com/security/trusty/trusty-ref.html">Trusty API Reference</a></li>
+    </ul>
+  </li>
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="../encryption/index.html">
+        <span class="en">Encryption</span>
+      </a>
+    </div>
+    <ul>
+      <li><a href="http://source.android.com/security/encryption/file-based.html">File-Based Encryption</a></li>
+      <li><a href="http://source.android.com/security/encryption/full-disk.html">Full-Disk Encryption</a></li>
+    </ul>
+  </li>
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="http://source.android.com/security/selinux/index.html">
+        <span class="en">SELinux</span>
+      </a>
+    </div>
+    <ul>
+      <li><a href="http://source.android.com/security/selinux/concepts.html">Concepts</a></li>
+      <li><a href="http://source.android.com/security/selinux/implement.html">Implementation</a></li>
+      <li><a href="http://source.android.com/security/selinux/customize.html">Customization</a></li>
+      <li><a href="http://source.android.com/security/selinux/validate.html">Validation</a></li>
+      <li><a href="http://source.android.com/security/selinux/device-policy.html">Writing Policy</a></li>
+    </ul>
+  </li>
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="http://source.android.com/security/verifiedboot/index.html">
+        <span class="en">Verified Boot</span>
+      </a>
+    </div>
+    <ul>
+      <li><a href="http://source.android.com/security/verifiedboot/verified-boot.html">Verifying Boot</a></li>
+      <li><a href="http://source.android.com/security/verifiedboot/dm-verity.html">Implementing dm-verity</a></li>
+    </ul>
+  </li>
+</ul>
+
+
+      </div>
+    </div> <!-- end side-nav -->
+    <script>
+      $(document).ready(function() {
+        scrollIntoView("devdoc-nav");
+        });
+    </script>
+
+  
+
+
+
+
+<div class="col-12" id="doc-col" >
+
+
+  
+    
+      
+        <h1 itemprop="name" >Gatekeeper</h1>
+      
+    
+  
+
+
+  
+  <div id="jd-content">
+
+    <div class="jd-descr" itemprop="articleBody">
+    <!--
+    Copyright 2015 The Android Open Source Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<div id="qv-wrapper">
+  <div id="qv">
+    <h2>In this document</h2>
+    <ol id="auto-toc">
+    </ol>
+  </div>
+</div>
+
+<h2 id=overview>Overview</h2>
+
+<p>The Gatekeeper subsystem performs device pattern/password authentication in a
+Trusted Execution Environment (TEE). Gatekeeper enrolls and verifies passwords
+via an HMAC with a hardware-backed secret key. Additionally, Gatekeeper
+throttles consecutive failed verification attempts and must refuse to service
+requests based on a given timeout and a given number of consecutive failed
+attempts.</p>
+
+<p>When users verify their passwords, Gatekeeper uses the TEE-derived shared
+secret to sign an authentication attestation to
+send to the <a href="http://source.android.com/security/keystore/index.html">hardware-backed Keystore</a>. That is, a
+Gatekeeper attestation notifies Keystore that authentication-bound keys (for
+example, keys that apps have created) can be released for use by apps.</p>
+
+<h2 id=architecture>Architecture</h2>
+
+<p>Gatekeeper involves three main components:</p>
+
+<ul>
+  <li><strong>gatekeeperd (Gatekeeper daemon)</strong>.
+  A C++ binder service containing platform-independent logic and corresponding
+to the <code>GateKeeperService</code> Java interface.
+  <li><strong>Gatekeeper Hardware Abstraction Layer (HAL)</strong>.
+  The HAL interface in <code>hardware/libhardware/include/hardware/gatekeeper.h</code>,
+  and the implementing module.
+  <li><strong>Gatekeeper (TEE)</strong>.
+  The TEE counterpart of <code>gatekeeperd</code>. A TEE-based implementation of Gatekeeper.
+</ul>
+
+<p>To implement Gatekeeper:</p>
+
+<ul>
+  <li>Implement the Gatekeeper HAL, specifically the functions in <code>gatekeeper.h</code>
+  (<code>hardware/libhardware/include/hardware/gatekeeper.h</code>).
+  See <a href="gatekeeper.html#hal_implementation">HAL Implementation</a>.
+  <li>Implement the TEE-specific Gatekeeper component, in part based on the following
+header file: <code>system/gatekeeper/include/gatekeeper/gatekeeper.h</code>. This
+header file includes pure virtual functions for creating and accessing
+keys, as well as for computing signatures.
+See <a href="gatekeeper.html#trusty_and_other_implementations">Trusty and other implementations</a>.
+</ul>
+
+<p>As shown in the following diagram, the <code>LockSettingsService</code> makes a request (via
+Binder) that reaches the <code>gatekeeperd</code> daemon in the Android OS.
+The <code>gatekeeperd</code>
+daemon makes a request that reaches its counterpart (Gatekeeper) in the TEE.</p>
+
+<img src="http://source.android.com/security/images/gatekeeper-flow.png" alt="Gatekeeper flow" id="figure1" />
+<p class="img-caption"><strong>Figure 1.</strong> High-level data flow for authentication by GateKeeper</p>
+
+<p>The <code>gatekeeperd</code> daemon gives the Android framework APIs access to the HAL, and
+participates in reporting device <a href="http://source.android.com/security/authentication/index.html">authentications</a> to Keystore.
+The <code>gatekeeperd</code> daemon runs in its own process, separate from the system
+server.</p>
+
+<h2 id=hal_implementation>HAL Implementation</h2>
+
+<p>The <code>gatekeeperd</code> daemon uses the HAL to interact
+with the <code>gatekeeperd</code> daemon's TEE
+counterpart for password authentication. The HAL implementation must be able to
+sign (enroll) and verify blobs. All implementations are expected to adhere to
+the standard format for the authentication token (AuthToken) generated on each
+successful password verification. The contents and semantics of the AuthToken
+are described in <a href="http://source.android.com/security/authentication/index.html">Authentication</a>.</p>
+
+<p>Specifically, an implementation of the <code>gatekeeper.h</code> header file (in the
+<code>hardware/libhardware/include/hardware</code> folder) needs to implement the
+<code>enroll</code> and <code>verify</code> functions.</p>
+
+<p>The <code>enroll</code> function takes a password blob, signs it, and returns the signature
+as a handle. The returned blob (from a call to <code>enroll</code>) must have the structure
+shown in <code>system/gatekeeper/include/gatekeeper/password_handle.h</code>.</p>
+
+<p>The <code>verify</code> function needs to compare the signature produced
+by the provided password and
+ensure that it matches the enrolled password handle.</p>
+
+<p>The key used to enroll and verify must never change, and should be re-derivable
+at every device boot.</p>
+
+<h2 id=trusty_and_other_implementations>Trusty and other implementations</h2>
+
+<p>The <a href="http://source.android.com/security/trusty/index.html">Trusty</a> operating system is
+Google's open source trusted OS for TEE
+environments. Trusty contains an approved implementation of GateKeeper. However,
+<strong>any TEE OS</strong> can be used for the implementation of Gatekeeper.
+The TEE <strong>must</strong> have access to a hardware-backed key as well as a secure,
+monotonic clock <strong>that ticks in suspend</strong>.</p>
+
+<p>Trusty uses an internal IPC system to communicate a shared secret directly
+between Keymaster and the Trusty implementation of Gatekeeper ("Trusty
+Gatekeeper"). This shared secret is used for signing AuthTokens that will be
+sent to Keystore, providing attestations of password verification. Trusty
+Gatekeeper requests the key from Keymaster for each use and does not persist
+or cache the value. Implementations are free to share this secret in any way
+that does not compromise security.</p>
+
+<p>The HMAC key, used to enroll and verify passwords, is derived and kept solely
+in GateKeeper.</p>
+
+<p>The Android tree provides a generic C++ implementation of GateKeeper, requiring
+only the addition of device-specific routines to be complete. To implement a
+TEE Gatekeeper with device-specific code for your TEE, please refer to the
+functions and comments in the following file:</p>
+<pre>
+system/gatekeeper/include/gatekeeper/gatekeeper.h
+</pre>
+
+<p>For the TEE GateKeeper, the primary responsibilities of a compliant
+implementation are:</p>
+
+<ul>
+  <li>Adherence to the Gatekeeper HAL
+  <li>Returned AuthTokens must be formatted according to the AuthToken specification
+(described in <a href="http://source.android.com/security/authentication/index.html">Authentication</a>)
+  <li>The TEE Gatekeeper must be able to share an HMAC key with Keymaster, either by
+requesting the key through a TEE IPC on demand or maintaining a valid cache of
+the value at all times
+</ul>
+
+<h2 id=user_sids>User SIDs</h2>
+
+<p>A User Secure ID (User SID) is the TEE representation of a user.
+The User SID has no strong connection to an Android user ID.</p>
+
+<p>A User SID is generated with a cryptographic
+PRNG whenever a user enrolls a new password without providing a previous one.
+This is known as an "untrusted" re-enroll.
+A "trusted" re-enroll occurs when a user provides a valid, previous password.
+In this case, the User SID is migrated to the new password handle,
+conserving the keys that were bound to it.
+The Android framework does not allow for an "untrusted" re-enroll under regular circumstances.</p>
+
+<p>The User SID is HMAC'ed along with the password in the password handle when the
+password is enrolled.</p>
+
+<p>User SIDs are written into the AuthToken returned by the <code>verify</code>
+function and associated to all authentication-bound Keystore keys. For
+information about the AuthToken format and Keystore, see
+<a href="http://source.android.com/security/authentication/index.html">Authentication</a>.
+Since an untrusted call to the <code>enroll</code> function
+will change the User SID, the call will render the keys bound to that password useless.</p>
+
+<p>Attackers can change the password for the device if they control the Android
+OS, but they will destroy root-protected, sensitive keys in the process.</p>
+
+<h2 id=request_throttling>Request throttling</h2>
+
+<p>GateKeeper must be able to securely throttle brute-force attempts on a user
+credential. As shown in the <code>gatekeeper.h</code>
+file (in <code>hardware/libhardware/include/hardware</code>),
+the HAL provides for returning a timeout in milliseconds. The timeout
+informs the client not to call GateKeeper again until after the timeout has
+elapsed. GateKeeper should not service requests if there is a pending timeout.</p>
+
+<p>GateKeeper must write a failure counter before verifying a user password. If
+the password verification succeeds, the failure counter should be cleared. This
+prevents attacks that prevent throttling by disabling the embedded MMC (eMMC)
+after issuing a <code>verify</code> call. The <code>enroll</code> function also verifies
+the user password (if provided) and so must be throttled in the same way.</p>
+
+<p>If supported by the device, it is highly recommended that the failure counter
+be written to secure storage. If the device does not support
+file-based encryption, or if secure storage is too slow, implementations may
+use RPMB directly.</p>
+
+
+
+
+
+    </div>
+
+      <div class="content-footer-sac"
+                    itemscope itemtype="http://schema.org/SiteNavigationElement">
+        <div class="layout-content-col col-9" style="padding-top:4px">
+        </div>
+        
+        <div class="paging-links layout-content-col col-4">
+          
+        </div>
+        
+      </div>
+      
+      
+    </div> <!-- end jd-content -->
+  <div id="footer" class="wrap" >
+  <style>.feedback { float: right !Important }</style>
+  <div class="feedback">
+    <a href="gatekeeper.html#" class="button" onclick=" try {
+      userfeedback.api.startFeedback({'productId':'715571','authuser':'1'});return false;}catch(e){}">Site Feedback</a>
+  </div>
+  <div id="copyright">
+    
+  Except as noted, this content is 
+  licensed under <a href="http://creativecommons.org/licenses/by/2.5/">
+  Creative Commons Attribution 2.5</a>. For details and 
+  restrictions, see the <a href="http://source.android.com/license.html">Content 
+  License</a>.
+  </div>
+    <div id="footerlinks">
+    
+  <p>
+    <a href="http://source.android.com/source/index.html">About Android</a>&nbsp;&nbsp;|&nbsp;
+    <a href="http://source.android.com/source/community.html">Community</a>&nbsp;&nbsp;|&nbsp;
+    <a href="http://source.android.com/legal.html">Legal</a>&nbsp;&nbsp;|&nbsp;
+  </p>
+  </div>
+
+</div><!-- end doc-content -->
+
+</div> <!-- end body-content --> 
+
+
+
+
+
+
+</body>
+</html>
+
+
+

@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<meta name="Description" content="You can determine device power consumption for Android devices that include a battery fuel gauge such as a Summit SMB347 or Maxim MAX17050 (available on many Nexus devices). Use the in-system gauge when external measurement equipment is not available …">
+
+<link rel="shortcut icon" type="image/x-icon" href="../../../favicon.ico" />
+<title>Measuring Device Power | Android Open Source Project</title>
+
+<!-- STYLESHEETS -->
+<link rel="stylesheet"
+href="https://fonts.googleapis.com/css?family=Roboto:regular,medium,thin,italic,mediumitalic,bold" title="roboto">
+<link href="../../../assets/css/default.css" rel="stylesheet" type="text/css">
+
+
+
+<!-- JAVASCRIPT -->
+<script src="https://www.google.com/jsapi" type="text/javascript"></script>
+<script src="../../../assets/js/android_3p-bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+  var toRoot = "/";
+  
+  var devsite = false;
+  
+</script>
+<script src="../../../assets/js/docs.js" type="text/javascript"></script>
+
+<script src="../../../navtree_data.js" type="text/javascript"></script>
+
+
+<script type="text/javascript" src="https://www.gstatic.com/feedback/api.js"></script>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-45455297-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</head>
+
+<body class="gc-documentation 
+  " itemscope itemtype="http://schema.org/Article">
+<a name="top"></a>
+
+  
+    <!-- Header -->
+    <div id="header">
+        <div class="wrap" id="header-wrap">
+          <div class="col-3 saclogo">
+          <a href="../../../index.html">
+            <img src="../../../assets/images/sac_logo.png"
+                srcset="/assets/images/sac_logo@2x.png 2x"
+                width="123" height="25" alt="Android Open Source Project" />
+          </a>
+          </div>
+            <ul class="nav-x col-9">
+                <li class="source">
+                  <a href="../../../source/index.html" 
+                  >Source</a></li>
+                <li class="devices"><a href="../../index.html" class="selected"
+                  >Devices</a></li>
+                <li class="security"><a href="../../../security/index.html" 
+                  >Security</a></li>
+                <li class="compatibility last"><a href="../../../compatibility/index.html" 
+                  >Compatibility</a></li>
+            </ul>
+            <!-- New Search -->
+            <div class="menu-container">
+            <div class="moremenu">
+    <div id="more-btn"></div>
+  </div>
+  <div class="morehover" id="moremenu">
+    <div class="top"></div>
+    <div class="mid">
+      <div class="header">Android Sites</div>
+      <ul>
+        <li class="active"><a>Android Open Source Project</a></li>
+        <li><a href="http://www.android.com">Android.com</a></li>
+        <li><a href="http://developer.android.com">Android Developers</a></li>
+      </ul>
+      <!-- <div class="header">Support</div>
+      <ul>
+        <li><a href="/support.html">Developer Support</a></li>
+      </ul> -->
+      <br class="clearfix" />
+    </div>
+    <div class="bottom"></div>
+  </div>
+
+  <div class="search" id="search-container">
+    <div class="search-inner">
+      <div id="search-btn"></div>
+      <div class="left"></div>
+      <form onsubmit="return submit_search()">
+        <input id="search_autocomplete" type="text" value="" autocomplete="off" name="q"
+onfocus="search_focus_changed(this, true)" onblur="search_focus_changed(this, false)"
+onkeydown="return search_changed(event, true, '/')"
+onkeyup="return search_changed(event, false, '/')" />
+      </form>
+      <div class="right"></div>
+        <a class="close hide">close</a>
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+  </div>
+  <div id="search_filtered_wrapper">
+    <div id="search_filtered_div" class="no-display">
+        <ul id="search_filtered">
+        </ul>
+    </div>
+  </div>
+
+  </div>
+  <!-- /New Search> -->
+        </div>
+    </div>
+    <!-- /Header -->
+
+  <div id="searchResults" class="wrap" style="display:none;">
+          <h2 id="searchTitle">Results</h2>
+          <div id="leftSearchControl" class="search-control">Loading...</div>
+  </div>
+
+  
+  
+  
+    
+  <div class="wrap clearfix" id="body-content">
+    <div class="col-4" id="side-nav" itemscope itemtype="http://schema.org/SiteNavigationElement">
+      <div id="devdoc-nav" class="scroll-pane">
+<a class="totop" href="device.html#top" data-g-event="left-nav-top">to top</a>
+
+<!--
+    Copyright 2015 The Android Open Source Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<ul id="nav">
+  <li class="nav-section">  <!-- Begin nav section, Device Interfaces -->
+    <div class="nav-section-header">
+      <a href="../../index.html">
+        <span class="en">Interfaces</span>
+      </a>
+    </div>
+    <ul>
+  <li class="nav-section">
+  <div class="nav-section-header">
+      <a href="../../accessories/index.html">
+        <span class="en">Accessories</span>
+      </a>
+    </div>
+    <ul>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../../accessories/audio.html">
+            <span class="en">Audio Accessories</span>
+          </a>
+        </div>
+        <ul>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../../accessories/headset/index.html">
+            <span class="en">Headset</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../../accessories/headset/specification.html">Specification</a></li>
+          <li><a href="../../accessories/headset/requirements.html">Requirements</a></li>
+          <li><a href="../../accessories/headset/testing.html">Testing</a></li>
+        </ul>
+      </li>
+        </ul>
+      </li>
+  <li class="nav-section">
+  <div class="nav-section-header">
+      <a href="../../accessories/custom.html">
+        <span class="en">Custom Accessories</span>
+      </a>
+    </div>
+    <ul>
+      <li class="nav-section">
+        <div class="nav-section-header"><a href="../../accessories/protocol.html"><span class="en">AOA</span>
+        </a>
+        </div>
+        <ul>
+          <li><a href="../../accessories/aoa2.html">AOA 2.0</a></li>
+          <li><a href="../../accessories/aoa.html">AOA 1.0</a></li>
+        </ul>
+        </li>
+        <div class="nav-section-header"><a href="../../accessories/stylus.html"><span class="en">Stylus</span>
+        </a>
+        </div>
+       </ul>
+     </li>
+    </ul>
+      <li class="nav-section">
+      <div class="nav-section-header">
+        <a href="../../audio/index.html">
+          <span class="en">Audio</span>
+        </a>
+      </div>
+        <ul>
+          <li><a href="../../audio/terminology.html">Terminology</a></li>
+          <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="../../audio/implement.html">
+                <span class="en">Implementation</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="../../audio/implement-policy.html">Policy Configuration</a></li>
+              <li><a href="../../audio/implement-shared-library.html">Shared Library</a></li>
+              <li><a href="../../audio/implement-pre-processing.html">Pre-processing Effects</a></li>
+            </ul>
+         </li>
+          <li><a href="../../audio/data_formats.html">Data Formats</a></li>
+          <li><a href="../../audio/attributes.html">Attributes</a></li>
+          <li><a href="../../audio/warmup.html">Warmup</a></li>
+          <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="../../audio/latency.html">
+                <span class="en">Latency</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="../../audio/latency_contrib.html">Contributors</a></li>
+              <li><a href="../../audio/latency_design.html">Design</a></li>
+              <li><a href="../../audio/latency_measure.html">Measure</a></li>
+              <li><a href="../../audio/testing_circuit.html">Light Testing Circuit</a></li>
+              <li><a href="../../audio/loopback.html">Audio Loopback Dongle</a></li>
+              <li><a href="../../audio/latency_measurements.html">Measurements</a></li>
+              <li><a href="../../audio/latency_app.html">Applications</a></li>
+            </ul>
+          </li>
+          <li><a href="../../audio/avoiding_pi.html">Priority Inversion</a></li>
+          <li><a href="../../audio/src.html">Sample Rate Conversion</a></li>
+          <li><a href="../../audio/debugging.html">Debugging</a></li>
+          <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="../../audio/midi.html">
+                <span class="em">MIDI</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="../../audio/midi_arch.html">MIDI Architecture</a></li>
+              <li><a href="../../audio/midi_test.html">MIDI Test Procedure</a></li>
+            </ul>
+          <li><a href="../../audio/usb.html">USB Digital Audio</a></li>
+          <li><a href="../../audio/tv.html">TV Audio</a></li>
+        </ul>
+      </li>
+      <li><a href="../../automotive.html">Automotive</a></li>
+      <li><a href="../../bluetooth.html">Bluetooth</a></li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../../camera/index.html">
+            <span class="en">Camera</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../../camera/camera3.html">Camera HAL3</a></li>
+          <li><a href="../../camera/camera3_requests_hal.html">HAL Subsystem</a></li>
+          <li><a href="../../camera/camera3_metadata.html">Metadata and Controls</a></li>
+          <li><a href="../../camera/camera3_3Amodes.html">3A Modes and State</a></li>
+          <li><a href="../../camera/camera3_crop_reprocess.html">Output and Cropping</a></li>
+          <li><a href="../../camera/camera3_error_stream.html">Errors and Streams</a></li>
+          <li><a href="../../camera/camera3_requests_methods.html">Request Creation</a></li>
+          <li><a href="../../camera/versioning.html">Version Support</a></li>
+        </ul>
+      </li>
+
+      <li><a href="../../drm.html">DRM</a></li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../../graphics/index.html">
+            <span class="en">Graphics</span>
+          </a>
+        </div>
+        <ul>
+         <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="../../graphics/architecture.html">
+                <span class="en">Architecture</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="../../graphics/arch-bq-gralloc.html">BufferQueue</a></li>
+              <li><a href="../../graphics/arch-sf-hwc.html">SurfaceFlinger and HWC</a></li>
+              <li><a href="../../graphics/arch-sh.html">Surface and SurfaceHolder</a></li>
+              <li><a href="../../graphics/arch-egl-opengl.html">OpenGL ES</a></li>
+              <li><a href="../../graphics/arch-vulkan.html">Vulkan</a></li>
+              <li><a href="../../graphics/arch-sv-glsv.html">SurfaceView</a></li>
+              <li><a href="../../graphics/arch-st.html">SurfaceTexture</a></li>
+              <li><a href="../../graphics/arch-tv.html">TextureView</a></li>
+              <li><a href="../../graphics/arch-gameloops.html">Game Loops</a></li>
+            </ul>
+         </li>
+         <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="../../graphics/implement.html">
+                <span class="en">Implementing</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="../../graphics/implement-hwc.html">Hardware Composer HAL</a></li>
+              <li><a href="../../graphics/implement-vsync.html">VSYNC</a></li>
+              <li><a href="../../graphics/implement-vulkan.html">Vulkan</a></li>
+              <li><a href="../../graphics/implement-vdisplays.html">Virtual Displays</a></li>
+            </ul>
+         </li>
+         <li class="nav-section">
+            <div class="nav-section-header">
+              <a href="../../graphics/testing.html">
+                <span class="en">OpenGL ES Testing</span>
+              </a>
+            </div>
+            <ul>
+              <li><a href="../../graphics/build-tests.html">Building test programs</a></li>
+              <li><a href="../../graphics/port-tests.html">Porting the test framework</a></li>
+              <li><a href="../../graphics/run-tests.html">Running the tests</a></li>
+              <li><a href="../../graphics/automate-tests.html">Automating the tests</a></li>
+              <li><a href="../../graphics/test-groups.html">Using special test groups</a></li>
+              <li><a href="../../graphics/cts-integration.html">Integrating with Android CTS</a></li>
+            </ul>
+         </li>
+        </ul> </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../../input/index.html">
+            <span class="en">Input</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../../input/overview.html">Overview</a></li>
+          <li><a href="../../input/key-layout-files.html">Key Layout Files</a></li>
+          <li><a href="../../input/key-character-map-files.html">Key Character Map Files</a></li>
+          <li><a href="../../input/input-device-configuration-files.html">Input Device Configuration Files</a></li>
+          <li><a href="../../input/migration-guide.html">Migration Guide</a></li>
+          <li><a href="../../input/keyboard-devices.html">Keyboard Devices</a></li>
+          <li><a href="../input/touch-devices.html">Touch Devices</a></li>
+          <li><a href="../input/dumpsys.html">Diagnostics</a></li>
+          <li><a href="../../input/getevent.html">Getevent</a></li>
+          <li><a href="../../input/validate-keymaps.html">Validate Keymaps</a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../../media.html">
+            <span class="en">Media</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../../media/framework-hardening.html">Framework
+          Hardening</a></li>
+          <li><a href="../../media/soc.html">SoC Dependencies</a></li>
+          <li><a href="../../media/oem.html">OEM Dependencies</a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../../sensors/index.html">
+            <span class="en">Sensors</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../../sensors/sensor-stack.html">Sensor stack</a></li>
+          <li><a href="../../sensors/report-modes.html">Reporting modes</a></li>
+          <li><a href="../../sensors/suspend-mode.html">Suspend mode</a></li>
+          <li><a href="../../sensors/power-use.html">Power consumption</a></li>
+          <li><a href="../../sensors/interaction.html">Interaction</span></a></li>
+          <li><a href="../../sensors/hal-interface.html">HAL interface</a></li>
+          <li><a href="../../sensors/batching.html">Batching</a></li>
+          <li><a href="../../sensors/sensor-types.html">Sensor types</a></li>
+          <li><a href="../../sensors/versioning.html">Version deprecation</a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="https://source.android.com/devices/storage/index.html">
+            <span class="en">Storage</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../../storage/traditional.html">Traditional Storage</a></li>
+          <li><a href="../../storage/adoptable.html">Adoptable Storage</a></li>
+          <li><a href="../../storage/config.html">Device Configuration</a></li>
+          <li><a href="../../storage/config-example.html">Configuration Examples</a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../../tv/index.html">
+            <span class="en">TV</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../../tv/HDMI-CEC.html">HDMI-CEC control service</a></li>
+          <li><a href="../../tv/reference-tv-app.html">Reference TV App</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li> <!-- End nav-section, Device Interfaces-->
+
+
+  <li class="nav-section"> <!--Begin nav-section, Core Technologies-->
+    <div class="nav-section-header">
+      <a href="../index.html">
+        <span class="en">Core Technologies</span>
+      </a>
+    </div>
+
+    <ul>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../dalvik/index.html">
+          <span class="en">ART and Dalvik</span></a>
+        </div>
+        <ul>
+          <li><a href="../dalvik/dalvik-bytecode.html">Bytecode Format</a></li>
+          <li><a href="../dalvik/dex-format.html">.Dex Format</a></li>
+          <li><a href="../dalvik/instruction-formats.html">Instruction Formats</a></li>
+          <li><a href="../dalvik/constraints.html">Constraints</a></li>
+          <li><a href="../dalvik/configure.html">Configuration</a></li>
+          <li><a href="../dalvik/gc-debug.html">Garbage Collection</a></li>
+          <li><a href="../dalvik/jit-compiler.html">JIT Compilation</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+            <a href="../config/index.html">
+              <span class="en">Configuration</span>
+            </a>
+        </div>
+        <ul>
+          <li><a href="../config/carrier.html">Carrier Customization</a></li>
+          <li><a href="../config/connect_tests.html">Connectivity Tests</a></li>
+          <li><a href="../config/filesystem.html">File System</a></li>
+          <li><a href="../kernel.html">Kernel Configuration</a></li>
+          <li><a href="../config/kernel_network_tests.html">Kernel Network Tests</a></li>
+          <li><a href="../config/low-ram.html">Low RAM</a></li>
+          <li><a href="../config/namespaces_libraries.html">Namespaces for Libraries</a></li>
+          <li><a href="../config/renderer.html">OpenGLRenderer</a></li>
+          <li><a href="../config/runtime_perms.html">Runtime Permissions</a></li>
+          <li><a href="../config/uicc.html">UICC</a></li>
+          <li><a href="../config/voicemail.html">Visual Voicemail</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+            <a href="../connect/index.html">
+              <span class="en">Connectivity</span>
+            </a>
+        </div>
+        <ul>
+          <li><a href="../connect/block-numbers.html">Block Phone Numbers</a></li>
+          <li><a href="../connect/call-notification.html">Call Notifications</a></li>
+          <li><a href="../connect/data-saver.html">Data Saver Mode</a></li>
+          <li><a href="../connect/felica.html">Host Card Emulation of FeliCa</a></li>
+          <li><a href="../connect/ril.html">Radio Interface Layer (RIL)</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../datausage/index.html">
+            <span class="en">Data Usage</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../datausage/iface-overview.html">Network interface statistics overview</a></li>
+          <li><a href="../datausage/excluding-network-types.html">Excluding Network Types from Data Usage</a></li>
+          <li><a href="../datausage/tethering-data.html">Tethering Data</a></li>
+          <li><a href="../datausage/usage-cycle-resets-dates.html">Usage Cycle Reset Dates</a></li>
+          <li><a href="../datausage/kernel-overview.html">Kernel Overview</a></li>
+          <li><a href="../datausage/tags-explained.html">Data Usage Tags Explained</a></li>
+          <li><a href="../datausage/kernel-changes.html">Kernel Changes</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../debug/index.html">
+            <span class="en">Debugging</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../debug/asan.html">AddressSanitizer</a></li>
+          <li><a href="../debug/dumpsys.html">Dumpsys</a></li>
+          <li><a href="../debug/native-memory.html">Native Memory Use</a></li>
+          <li><a href="../debug/netstats.html">Network Use</a></li>
+          <li><a href="../debug/procstats.html">RAM Use</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../admin/index.html">
+          <span class="en">Device Administration</span></a>
+        </div>
+        <ul>
+          <li><a href="../admin/implement.html">Implementation</a></li>
+          <li><a href="../admin/multi-user.html">Multiple Users</a></li>
+          <li><a href="../admin/managed-profiles.html">Managed Profiles</a></li>
+          <li><a href="../admin/provision.html">Provisioning</a></li>
+          <li><a href="../admin/multiuser-apps.html">Multiuser Apps</a></li>
+          <li><a href="../admin/enterprise-telephony.html">Enterprise Telephony</a></li>
+          <li><a href="../admin/testing-provision.html">Testing Device Provisioning</a></li>
+          <li><a href="../admin/testing-setup.html">Testing Device Administration</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+            <a href="../display/index.html">
+              <span class="en">Display Settings</span></a>
+        </div>
+        <ul>
+          <li><a href="../display/dnd.html">Do Not Disturb</a></li>
+          <li><a href="../display/multi-window.html">Multi-Window</a></li>
+          <li><a href="../display/hdr.html">HDR Video</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header empty">
+          <a href="../../halref/index.html">
+            <span class="en">HAL File Reference</span>
+          </a>
+        </div>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+            <a href="../ota/index.html">
+              <span class="en">OTA Updates</span>
+            </a>
+        </div>
+        <ul>
+          <li><a href="../ota/tools.html">OTA Tools</a></li>
+          <li><a href="../ota/block.html">Block-based OTA</a></li>
+          <li><a href="../ota/inside_packages.html">Inside OTA Packages</a></li>
+          <li><a href="../ota/device_code.html">Device-Specific Code</a></li>
+          <li><a href="../ota/reduce_size.html">Reducing OTA Size</a></li>
+          <li><a href="../ota/sign_builds.html">Signing Builds for Release</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="index.html"><span class="en">Power</span></a>
+        </div>
+        <ul>
+          <li><a href="mgmt.html">Power Management</a></li>
+          <li><a href="performance.html">Performance Management</a></li>
+          <li><a href="component.html">Component Power</a></li>
+          <li><a href="device.html">Device Power</a></li>
+          <li><a href="values.html">Power Values</a></li>
+          <li><a href="batterystats.html">Battery Use</a>
+          </li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../test_infra/tradefed/index.html">
+            <span class="en">Testing Infrastructure</span>
+          </a>
+        </div>
+        <ul>
+          <li><a href="../test_infra/tradefed/fundamentals/index.html">Start Here</a></li>
+          <li><a href="../test_infra/tradefed/fundamentals/machine_setup.html">Machine Setup</a></li>
+          <li><a href="../test_infra/tradefed/fundamentals/devices.html">Working with Devices</a></li>
+          <li><a href="../test_infra/tradefed/fundamentals/lifecycle.html">Test Lifecycle</a></li>
+          <li><a href="../test_infra/tradefed/fundamentals/options.html">Option Handling</a></li>
+          <li><a href="../test_infra/tradefed/full_example.html">An End-to-End Example</a></li>
+          <li id="tradefed-tree-list" class="nav-section">
+            <div class="nav-section-header">
+              <a href="../../../reference/packages.html">
+                <span class="en">Package Index</span>
+              </a>
+            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li> <!-- End nav-section, Core Technologies -->
+</ul> 
+
+
+      </div>
+      <script type="text/javascript">
+        showTradefedRefTree();
+      </script>
+    </div> <!-- end side-nav -->
+    <script>
+      $(document).ready(function() {
+        scrollIntoView("devdoc-nav");
+        });
+    </script>
+
+  
+
+
+
+
+<div class="col-12" id="doc-col" >
+
+
+  
+    
+      
+        <h1 itemprop="name" >Measuring Device Power</h1>
+      
+    
+  
+
+
+  
+  <div id="jd-content">
+
+    <div class="jd-descr" itemprop="articleBody">
+    <!--
+    Copyright 2015 The Android Open Source Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<div id="qv-wrapper">
+  <div id="qv">
+    <h2>In this document</h2>
+    <ol id="auto-toc"></ol>
+  </div>
+</div>
+
+<p>You can determine device power consumption for Android devices that include a battery fuel gauge
+such as a Summit SMB347 or Maxim MAX17050 (available on many Nexus devices). Use the in-system
+gauge when external measurement equipment is not available or is inconvenient to
+connect to a device (such as in mobile usage).</p>
+
+<p>Measurements can include instantaneous current, remaining charge, battery capacity at test start
+and end, and more depending on the supported properties of the device (see below). For best
+results, perform device power measurements during long-running A/B tests that use the same device
+type with the same fuel gauge and same current sense resistor. Ensure the starting battery charge
+is the same for each device to avoid differing fuel gauge behavior at different points in the
+battery discharge curve.</p>
+
+<p>Even with identical test environments, measurements are not guaranteed to be of high absolute
+accuracy. However, most inaccuracies specific to the fuel gauge and sense resistor are consistent
+between test runs, making comparisons between identical devices useful. We recommend running
+multiple tests in different configurations to identify significant differences and relative power
+consumption between configurations.</p>
+
+<h2 id="power-consumption">Reading power consumption</h2>
+
+<p>To read power consumption data, insert calls to the API in your testing code.</p>
+
+<pre>
+import android.os.BatteryManager;
+import android.content.Context;
+BatteryManager mBatteryManager =
+(BatteryManager)Context.getSystemService(Context.BATTERY_SERVICE);
+Long energy =
+mBatteryManager.getLongProperty(BatteryManager.BATTERY_PROPERTY_ENERGY_COUNTER);
+Slog.i(TAG, "Remaining energy = " + energy + "nWh");
+</pre>
+
+<h2 id="avail-props">Available properties</h2>
+
+<p>Android supports the following battery fuel gauge properties:</p>
+
+<pre>
+BATTERY_PROPERTY_CHARGE_COUNTER   Remaining battery capacity in microampere-hours
+BATTERY_PROPERTY_CURRENT_NOW      Instantaneous battery current in microamperes
+BATTERY_PROPERTY_CURRENT_AVERAGE  Average battery current in microamperes
+BATTERY_PROPERTY_CAPACITY         Remaining battery capacity as an integer percentage
+BATTERY_PROPERTY_ENERGY_COUNTER   Remaining energy in nanowatt-hours
+</pre>
+
+<p>Most properties are read from kernel power_supply subsystem attributes of similar names.
+However, the exact properties, resolution of property values, and update frequency
+available for a specific device depend on:</p>
+
+<ul>
+<li>Fuel gauge hardware, such as a Summit SMB347 or Maxim MAX17050.</li>
+<li>Fuel gauge-to-system connection, such as the value of external current sense resistors.</li>
+<li>Fuel gauge chip software configuration, such as values chosen for average current computation
+intervals in the kernel driver.</li>
+</ul>
+
+<p>For details, see the properties available for <a href="device.html#nexus-devices">Nexus devices</a>.</p>
+
+<h2 id="maxim-fuel">Maxim fuel gauge</h2>
+
+<p>When determining battery state-of-charge over a long period of time, the Maxim fuel gauge
+(MAX17050, BC15) corrects for coulomb-counter offset measurements. For measurements made over a
+short period of time (such as power consumption metering tests), the fuel gauge does not make
+corrections, making the offset the primary source of error when current measurements are too small
+(although no amount of time can eliminate the offset error completely).</p>
+
+<p>For a typical 10mOhm sense resistor design, the offset current should be better than 1.5mA,
+meaning any measurement is +/-1.5mA (PCBoard layout can also affect this variation). For example,
+when measuring a large current (200mA) you can expect the following:</p>
+
+<ul>
+<li>2mA (1% gain error of 200mA due to fuel gauge gain error)</li>
+<li>+2mA (1% gain error of 200mA due to sense resistor error)</li>
+<li>+1.5mA  (current sense offset error from fuel gauge)</li>
+</ul>
+
+<p>The total error is 5.5mA (2.75%). Compare this to a medium current (50mA) where the same error
+percentages give a total error of 7% or to a small current (15mA) where +/-1.5mA gives a total
+error of 10%.</p>
+
+<p>For best results, we recommend measuring greater than 20mA. Gain measurement errors are
+systematic and repeatable, enabling you to test a device in multiple modes and get clean relative
+measurements (with exceptions for the 1.5mA offset).</p>
+
+<p>For +/-100uA relative measurements, required measurement time depends on:</p>
+
+<ul>
+<li><b>ADC sampling noise</b>. The MAX17050 with its normal factory configuration produces +/-1.5mA
+sample-to-sample variation due to noise, with each sample delivered at 175.8ms. You can expect a
+rough +/-100uA for a 1 minute test window and a clean  3-sigma noise less than 100uA (or 1-sigma
+noise at 33uA) for a 6 minute test window.</li>
+<li><b>Sample Aliasing because of load variation</b>. Variation exaggerates errors, so for samples
+with variation inherent in the loading, consider using a longer test window.</li>
+</ul>
+
+<h2 id="nexus-devices">Supported Nexus devices</h2>
+
+<h5 id="nexus-5">Nexus 5</h5>
+
+<table>
+<tbody>
+<tr>
+<th>Model</th>
+<td>Nexus 5</td>
+</tr>
+<tr>
+<th>Fuel Gauge</th>
+<td>Maxim MAX17048 fuel gauge (ModelGauge™, no coulomb counter)</td>
+</tr>
+<tr>
+<th>Properties</th>
+<td>BATTERY_PROPERTY_CAPACITY</td>
+</tr>
+<tr>
+<th>Measurements</th>
+<td>The fuel gauge does not support any measurements other than battery State Of Charge to a
+resolution of %/256 (1/256th of a percent of full battery capacity).</td>
+</tr>
+</tbody>
+</table>
+
+
+<h5 id="nexus-6">Nexus 6</h5>
+
+<table>
+<tbody>
+<tr>
+<th>Model</th>
+<td>Nexus 6</td>
+</tr>
+<tr>
+<th>Fuel Gauge</th>
+<td>Maxim MAX17050 fuel gauge (a coulomb counter with Maxim ModelGauge™ adjustments), and a 10mohm
+current sense resistor.</td>
+</tr>
+<tr>
+<th>Properties</th>
+<td>BATTERY_PROPERTY_CAPACITY<br>
+BATTERY_PROPERTY_CURRENT_NOW<br>
+BATTERY_PROPERTY_CURRENT_AVERAGE<br>
+BATTERY_PROPERTY_CHARGE_COUNTER<br>
+BATTERY_PROPERTY_ENERGY_COUNTER</td>
+</tr>
+<tr>
+<th>Measurements</th>
+<td>CURRENT_NOW resolution 156.25uA, update period is 175.8ms.<br>
+CURRENT_AVERAGE resolution 156.25uA, update period configurable 0.7s - 6.4h, default 11.25 secs.<br>
+CHARGE_COUNTER (accumulated current, non-extended precision) resolution is 500uAh (raw coulomb
+counter read, not adjusted by fuel gauge for coulomb counter offset, plus inputs from the ModelGauge
+m3 algorithm including empty compensation).<br>
+CHARGE_COUNTER_EXT (extended precision in kernel) resolution 8nAh.<br>
+ENERGY_COUNTER is CHARGE_COUNTER_EXT at nominal voltage of 3.7V.</td>
+</tr>
+</tbody>
+</table>
+
+
+<h5 id="nexus-9">Nexus 9</h5>
+
+<table>
+<tbody>
+<tr>
+<th>Model</th>
+<td>Nexus 9</td>
+</tr>
+<tr>
+<th>Fuel Gauge</th>
+<td>Maxim MAX17050 fuel gauge (a coulomb counter with Maxim ModelGauge™ adjustments), and a 10mohm
+current sense resistor.</td>
+</tr>
+<tr>
+<th>Properties</th>
+<td>BATTERY_PROPERTY_CAPACITY<br>
+BATTERY_PROPERTY_CURRENT_NOW<br>
+BATTERY_PROPERTY_CURRENT_AVERAGE<br>
+BATTERY_PROPERTY_CHARGE_COUNTER<br>
+BATTERY_PROPERTY_ENERGY_COUNTER</td>
+</tr>
+<tr>
+<th>Measurements</th>
+<td>CURRENT_NOW resolution 156.25uA, update period is 175.8ms.<br>
+CURRENT_AVERAGE resolution 156.25uA, update period configurable 0.7s - 6.4h, default 11.25 secs.<br>
+CHARGE_COUNTER (accumulated current, non-extended precision) resolution is 500uAh.<br>
+CHARGE_COUNTER_EXT (extended precision in kernel) resolution 8nAh.<br>
+ENERGY_COUNTER is CHARGE_COUNTER_EXT at nominal voltage of 3.7V.<br>
+Accumulated current update period 175.8ms.<br>
+ADC sampled at 175ms quantization with a 4ms sample period. Can adjust duty cycle.</td>
+</tr>
+</tbody>
+</table>
+
+
+<h5 id="nexus-10">Nexus 10</h5>
+
+<table>
+<tbody>
+<tr>
+<th>Model</th>
+<td>Nexus 10</td>
+</tr>
+<tr>
+<th>Fuel Gauge</th>
+<td>Dallas Semiconductor DS2784 fuel gauge (a coulomb counter), with a 10mohm current sense
+resistor.</td>
+</tr>
+<tr>
+<th>Properties</th>
+<td>BATTERY_PROPERTY_CAPACITY<br>
+BATTERY_PROPERTY_CURRENT_NOW<br>
+BATTERY_PROPERTY_CURRENT_AVERAGE<br>
+BATTERY_PROPERTY_CHARGE_COUNTER<br>
+BATTERY_PROPERTY_ENERGY_COUNTER</td>
+</tr>
+<tr>
+<th>Measurements</th>
+<td>Current measurement (instantaneous and average) resolution is 156.3uA.<br>
+CURRENT_NOW instantaneous current update period is 3.5 seconds.<br>
+CURRENT_AVERAGE update period is 28 seconds (not configurable).<br>
+CHARGE_COUNTER (accumulated current, non-extended precision) resolution is 625uAh.<br>
+CHARGE_COUNTER_EXT (extended precision in kernel) resolution is 144nAh.<br>
+ENERGY_COUNTER is CHARGE_COUNTER_EXT at nominal voltage of 3.7V.<br>
+Update period for all is 3.5 seconds.</td>
+</tr>
+</tbody>
+</table>
+    </div>
+
+      <div class="content-footer-sac"
+                    itemscope itemtype="http://schema.org/SiteNavigationElement">
+        <div class="layout-content-col col-9" style="padding-top:4px">
+        </div>
+        
+        <div class="paging-links layout-content-col col-4">
+          
+        </div>
+        
+      </div>
+      
+      
+    </div> <!-- end jd-content -->
+  <div id="footer" class="wrap" >
+  <style>.feedback { float: right !Important }</style>
+  <div class="feedback">
+    <a href="device.html#" class="button" onclick=" try {
+      userfeedback.api.startFeedback({'productId':'715571','authuser':'1'});return false;}catch(e){}">Site Feedback</a>
+  </div>
+  <div id="copyright">
+    
+  Except as noted, this content is 
+  licensed under <a href="http://creativecommons.org/licenses/by/2.5/">
+  Creative Commons Attribution 2.5</a>. For details and 
+  restrictions, see the <a href="../../../license.html">Content 
+  License</a>.
+  </div>
+    <div id="footerlinks">
+    
+  <p>
+    <a href="../../../source/index.html">About Android</a>&nbsp;&nbsp;|&nbsp;
+    <a href="../../../source/community.html">Community</a>&nbsp;&nbsp;|&nbsp;
+    <a href="../../../legal.html">Legal</a>&nbsp;&nbsp;|&nbsp;
+  </p>
+  </div>
+
+</div><!-- end doc-content -->
+
+</div> <!-- end body-content --> 
+
+
+
+
+
+
+</body>
+</html>
+
+
+
